@@ -1,0 +1,9 @@
+# java
+*.class
+
+# eclipse
+.metadata/
+.recommenders/
+
+# .DS_store
+.DS_store
