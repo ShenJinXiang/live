@@ -1,3 +1,10 @@
 流程控制
 	循环
 		for in，for，while，repeat while
+	
+	选择控制
+		if ... else if ... else ...
+		switch ... case .. case .. default ..
+			1. switch块中break语句并非必需
+			2. case 后可以跟随多个值，用逗号分隔
+			3. default语句必需有，如 default语句没有任何内容，可以用break或 ()
