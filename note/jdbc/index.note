@@ -30,3 +30,19 @@
 			4. Read uncommitted 最低级别
 		set transacion isolation level  设置事务隔离级别
 		select @@tx_isolation 查询当前事务隔离级别
+
+数据库连接池
+	需实现java.sql.DataSource接口
+		Connection getConnection();
+		Connection getConnection(String username, String password);
+
+	需要修改connection 包装
+		1. 定义一个类，实现与被增强相同的接口
+		2. 在类中定义一个变量，记住被增强对象
+		3. 定义构造函数，接受被增强对象
+		4. 覆盖想增强的方法
+		5. 对于不想增强的方法，直接调用目标对象（被增强对象）的方法
+	开源数据库连接池
+		DBCP
+		C3P0
+		tomcat 自带的(DBCP)
