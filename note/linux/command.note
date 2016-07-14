@@ -38,3 +38,14 @@ exit
 		-r --reverse    相反顺序显示结果
 		-S    按文件大小排序
 		-t    按修改时间排序
+
+file filename    确定文件类型
+less filename    浏览文件内容
+	b    向后翻滚一页
+	space    向前翻动一页
+	G    移动到最后一行
+	g    移动到开头一行
+	/charaters    向前查找指定字符串
+		n    向前查找下一个出现的字符串
+	h    显示帮助屏幕
+	q    退出less程序
