@@ -7,3 +7,7 @@
 
 # .DS_store
 .DS_store
+
+# eclipse
+.metadata
+/RemoteSystemsTempFiles
