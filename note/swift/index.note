@@ -8,3 +8,5 @@
 			1. switch块中break语句并非必需
 			2. case 后可以跟随多个值，用逗号分隔
 			3. default语句必需有，如 default语句没有任何内容，可以用break或 ()
+
+			fallthrough 执行当前case以后可以继续执行下一个case语句
