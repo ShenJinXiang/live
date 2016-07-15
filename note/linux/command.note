@@ -69,3 +69,11 @@ rm    删除文件和目录
 ln    创建硬链接和符号链接
 	ln file link    硬链接
 	ln -s item link    符号链接
+
+type    说明怎样解释一个命令名
+which    显示会执行那个执行程序
+man    显示命令手册页
+apropos    显示一系列适合的命令
+info    显示命令info
+whatis    显示一个命令的简洁描述
+alias    创建命令别名
