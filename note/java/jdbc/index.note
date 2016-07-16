@@ -46,3 +46,20 @@
 		DBCP
 		C3P0
 		tomcat 自带的(DBCP)
+	
+	DBCP数据源
+		Apache软件基金组织下的开源连接池
+		Commons-dbcp.jar  连接池实现jar包
+		Commons-pool.jar 连接池实现的依赖jar
+
+		BasicDataSourceFactory factory = new BasicDataSourceFactory();
+		DataSource ds = fsctory.createDataSource(prop);
+		ds.getConnection();
+	C3P0数据源
+		sprint 内置
+		ComboPooledDataSource ds = new ComboPooledDataSource("..")
+	Tomcat数据源
+		<Context>标签中写内容
+		1. conf内server.xml
+		2. META-INF中 context.xml
+		3. web.xml
