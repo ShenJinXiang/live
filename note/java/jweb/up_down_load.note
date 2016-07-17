@@ -1,0 +1,15 @@
+1. 文件上传
+	1. 从web页面中添加上传输入项
+		<input type='file'> 
+		1. 必须要设置input输入项的name属性。
+		2. 必须吧form的enctype属性的值设定为multipart/form-data，设置以后，浏览器在上传文件时，将把数据附带在http请求消息体中，并使用mime协议对上传的文件进行描述，以方便接收，对上传数据进行解析和处理。
+	2. 在servlet中读取上传文件的数据，并保存到本地硬盘中
+
+	表单类型为multipart/form-data 不能用传统方式获取数据
+	需要用request获取数据流
+	InputStream in = request.getInputStream();
+	int len = 0;
+	byte buffer[] new byte[1024];
+	while((len = in.read(buffer)) > 0) {
+		System.out.println(new String(buffer, 0, len));
+	}
