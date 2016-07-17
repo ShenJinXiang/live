@@ -63,3 +63,26 @@
 		1. conf内server.xml
 		2. META-INF中 context.xml
 		3. web.xml
+
+制作框架
+	元数据
+		Connection.getDatabaseMetaData();
+		DataBaseMetaData对象
+			getURL() 获取url
+			getUserName() 获取用户名
+			getDatabaseProductName() 产品名称
+			getDatabaseProductVersion() 产品版本号
+			getDriverName() 驱动名称
+			getDriverVersion() 驱动版本号
+			isReadOnly() 数据库是否只允许只读操作
+
+		PreparedStatement.getParamenterMetaData();
+		ParameterMetaData对象
+			getParameterCount()	获得制定参数的个数
+			getParameterType(int param) 获得指定参数的sql类型
+
+		ResultSet.getMetaData()
+		ResulteSertMataData对象
+			getColumnCount()  返回resultset对象的列数
+			getColumnName(int column) 获得指列的名称
+			getColumnTypeName(int column) 制定列的类型
