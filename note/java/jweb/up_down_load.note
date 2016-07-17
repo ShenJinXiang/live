@@ -7,9 +7,34 @@
 
 	表单类型为multipart/form-data 不能用传统方式获取数据
 	需要用request获取数据流
-	InputStream in = request.getInputStream();
-	int len = 0;
-	byte buffer[] new byte[1024];
-	while((len = in.read(buffer)) > 0) {
-		System.out.println(new String(buffer, 0, len));
-	}
+		InputStream in = request.getInputStream();
+		int len = 0;
+		byte buffer[] new byte[1024];
+		while((len = in.read(buffer)) > 0) {
+			System.out.println(new String(buffer, 0, len));
+		}
+	倒入jar包
+		commons.fileeupload  commoons-io
+
+		public void doPost(HttpServletRequest req, HttpServletResponse resp) {
+			DiskFileItemFactory factory = new DisFileItemFactory();
+			ServletFileUpload upload = new ServletFileUpload(factory);
+
+			List<FileItem> list = upload.parseRequest(request);
+			for(FileItem item : list) {
+				if(item.isFormField()) {
+					String inputName = item.getFieldName();
+					String inputValue = item.getString();
+					System.out.println(inputName + "=" + inputValue);
+				} else {
+					String filename = item.getName().substring(item.getName().lastIndexOf("\\") + 1);
+					InputStream in = item.getInputStream();
+					int len = 0;
+					byte buffer[] = new byte[1024];
+					FileOutputStream out = new FileOutputStream("...");
+					while((len = in.read(buffer)) > 0) {
+						out.write(buffer, 0 , len);
+					}
+				}
+			}
+		}
