@@ -63,3 +63,10 @@
 		upload.setSizeMax(); // 设置上传文件的总大小
 	判断输入项为空
 		fileName == null || "".equals(fileName); continue;
+	为每一个文件设置唯一文件名
+		public String generateFileName(String fileName) {
+			// UUID.randomUUID().toString();
+			return UUID.randomUUID().toString() + "_" + fileName;
+		}
+	与平台无关的处理
+		分隔符	使用File.separator
