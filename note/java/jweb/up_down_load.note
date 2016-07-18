@@ -83,3 +83,16 @@
 			}
 			return savePath;
 		}
+	上传进度
+		upload.setProgressListener(); //添加监听器
+
+		public interface ProgressListener 接口
+
+		pBytesRead: 解析器已读取的数据 长度
+		pContentLenth	总数据长度
+		upload.setProgressListener(new ProgressListener(){
+			public void update(long pBytesRead, long, pContentLength, int pItems) {
+				System.out.println("当前已解析：" + pBytesRead);
+			}
+		});
+	在web页面中添加动态输入项
