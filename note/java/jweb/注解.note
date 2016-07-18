@@ -45,7 +45,11 @@ java中的常见注解
 	元注解
 		@Target 注解作用域
 		@Retention 生命周期
-		@inherited 
+		@inherited 允许子类继承
 		@Document
 使用自定义注解
 	@注解名(成员名＝值，成员名＝值)
+
+
+
+	507    404    518    7   9   27
