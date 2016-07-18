@@ -70,3 +70,16 @@
 		}
 	与平台无关的处理
 		分隔符	使用File.separator
+	存放文件分类
+		为避免一个文件夹下保存超过1000个文件，影响文件访问性能，程序应该把文件打散后存储
+		public String generateSavePath(String path, String filename) {
+			int hashcode = filename.hashcode();
+			int dir1 = hashcode & 15;
+			int dir2 = (hashcode >> 4) && 0xf;
+			String savePath = path + File.separator + dir1 + File.separator + dir2;
+			File file = new File(savePath);
+			if(!file.exists()) {
+				file.mkdirs();
+			}
+			return savePath;
+		}
