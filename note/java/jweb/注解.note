@@ -3,3 +3,49 @@
 
 概念：
 	java提供的一种源程序中的元素关联任何信息和任何元数据的途径和方法
+
+1. java中的常见注解
+2. 注解分类
+3. 自定义注解
+4. 注解应用实例
+
+java中的常见注解
+	JDK中的注解
+		@Override 
+		@Deprecated // 标识过时的方法
+		@Suppvisewarnings
+	sprint框架
+		@Autowired
+		@Service
+		@Repository
+	mybatis
+		@InsertProvider
+		@UpdateProvider
+		@Options
+
+注解分类
+	按照运行机制分类：
+		源码注解 注解只在源码中存在，编译成.class文件就不存在了
+		编译时注解 在.class文件中存在
+		运行时注解 在运行阶段还在起作用，甚至会影响运行逻辑的注解
+	按照来源分类
+		jdk自带
+		来自第三发注解
+		自定义注解
+自定义注解
+
+	public @interface Description {
+	}
+
+	成员类型： 基本数据类型 String Class Annotation Enumeration
+	成员 必须 无参数 无异常
+	如果注解只有一个成员，则成员名必须取名为 value() 使用时可以忽略成员名喝赋值号（＝）
+	可以没有成员，没有成员的注解称为标识注解
+
+	元注解
+		@Target 注解作用域
+		@Retention 生命周期
+		@inherited 
+		@Document
+使用自定义注解
+	@注解名(成员名＝值，成员名＝值)
