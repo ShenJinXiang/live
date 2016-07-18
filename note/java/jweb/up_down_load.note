@@ -19,6 +19,7 @@
 		public void doPost(HttpServletRequest req, HttpServletResponse resp) {
 			DiskFileItemFactory factory = new DisFileItemFactory();
 			ServletFileUpload upload = new ServletFileUpload(factory);
+			upload.setHeaderEncoding("UTF-8");
 
 			List<FileItem> list = upload.parseRequest(request);
 			for(FileItem item : list) {
@@ -38,3 +39,27 @@
 				}
 			}
 		}
+	中文乱码问题：
+		upload.setHeaderEncoding("UTF-8"); // 上传文件乱码
+		inpuValue = new String(inputValue.getBytes("iso8859-1"), "UTF-8"); // 普通字段乱码
+
+	判断是不是multipart/form-data
+		// 处理表单之前要调用upload.isMultipartContent(request)方法，判断表单提交的类型
+		if(!upload.isMultipartContent(request)) {
+			// 不是multipart
+		} else {
+			// 是multipart
+		}
+	上传文件大小
+		默认为10k
+		factory.setSizeThreshoid(1024 * 1024); // 1M
+		factory.setRepository(new File()); // 如果超过文件大小，设置临时保存目录
+		item.delete(); // 在流关闭以后执行，删除临时文件，应该在finally块中
+		上传文件的保存目录，绝对不能让外界访问到 保存到WEB-INF目录中
+	限制上传文件的类型
+		获取到文件名以后，判断上传文件的后缀名是否是允许的
+	限制文件的大小
+		upload.setFileSizeMax(long fileSizeMx); // 单个文件的大小 单位是 字节, 如果超出，会抛异常 FileUploadBase.FileSizeLimitExcededException
+		upload.setSizeMax(); // 设置上传文件的总大小
+	判断输入项为空
+		fileName == null || "".equals(fileName); continue;
