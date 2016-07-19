@@ -18,9 +18,8 @@
 
 [blog](http://www.shenjinxiang.com)
 ---
-`
+```javascript
 	(function(){
 		console.log("hello world!");
 	})();
-`
-
+```
