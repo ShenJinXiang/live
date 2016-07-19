@@ -50,6 +50,33 @@ java中的常见注解
 使用自定义注解
 	@注解名(成员名＝值，成员名＝值)
 
+解析注解
+	通过反射获取类、函数或成员上的运行时注解信息，从而实现动态控制程序运行的逻辑。
+	// 1 使用类加载器加载类
+	Class c = Class.forName("");
+	// 2 找到类上面的注解
+	boolean isExist = c.isAnnotationPresent(注解类.class);
+	// 3 拿到注解实例
+	c.getAnnotation(注解类.class).value();
+	// 4 找到方法上的注解
+	Method[] ms = c.getMetnod();
+	for(Method m : ms) {
+		if(m.isAnnotationPresent(注解.class)) {
+			....
+		}
+	}
+
+	// 另外一种解析方法
+	for(Method m : ms) {
+		Annotation[] as = m.getAnnotations();
+		for(Annotation a : as) {
+			if(a.instansof 注解类名) {
+				...
+			}
+		}
+	}
+
 
 
 	507    404    518    7   9   27
+
