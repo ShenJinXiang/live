@@ -1,0 +1,29 @@
+﻿# 基本1
+
+tags:javascript
+---
+
+### 布尔类型
+* undefined null 0 -0 '' "" 转成false
+* 其他所有值，包括所有对象(数组)都转成true
+
+### 全局对象
+* 全局属性：undefined Infinity NaN
+* 全局函数：isNaN() parseInt() eval()
+* 构造函数：Date() RegExp() String() Object() Array()
+* 全局对象：Math JSON
+
+### 原始值
+* undefined 
+* null 
+* 布尔值 
+* 数字 
+* 字符串
+
+### 显式类型转换
+* Boolean() 
+* Number() 
+* String() 
+* Object()
+
+
