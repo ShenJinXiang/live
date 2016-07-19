@@ -1,0 +1,41 @@
+filter 也称为过滤器，上servlet技术中最激动人心的技术，开发人员可以通过filter技术，对web服务器管理所有web资源
+例如：权限访问控制 过滤敏感词汇 压缩响应信息
+
+实现filter接口
+init() 初始化
+destroy() 销毁
+doFilter() 核心
+
+public class FilterDemo1 implements Filter {
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		chain.doFilter(request, response); // 放行 下一个filter执行
+	}
+
+	public void init(FilterConfig filterConfig) throws ServletException {
+		String value = filterConfig.getInitParameter("xxx");
+		System.out.println(value);
+	}
+
+	public void destroy() {
+	}
+}
+
+<filter>
+	<filter-name></filter-name>
+	<filter-class></filter-class>
+</filter>
+<filter-mapping>
+	<filter-name></filter-name>
+	<url-pattern></url-pattern>
+</filter-mapping>
+
+常见应用
+1. 在目标资源执行之前，进行权限检查
+2. 做一些预处理，例如解决乱码问题
+3. 网站输出的内容，压缩后输出
+
+filter链
+按配置顺序执行
+
+服务器创建时 执行init方法
+<init-param> 中配置初始化参数
