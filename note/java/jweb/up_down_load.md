@@ -12,7 +12,7 @@ tags: java
 
 ### 在servlet中读取上传文件的数据，并保存到本地硬盘中
 
-**表单类型为multipart/form-data 不能使用传统方式获取数据**
+*表单类型为multipart/form-data 不能使用传统方式获取数据*
 #### 使用request获取数据流
 ```java
 InputStream in = request.getInputStream();
@@ -65,7 +65,7 @@ inputValue = new String(inputValue.getBytes("ISO8859-1"), "UTF-8");
 ```
 
 #### 判断是不是multipart/form-data
-**处理表单之前要调用uploade.isMultipartContent(request)方法，判断表单提交的类型**
+*处理表单之前要调用uploade.isMultipartContent(request)方法，判断表单提交的类型*
 ```java
 if(!upload.isMultipartContent(requset)) {
 // 不是multipart/form-data
@@ -108,7 +108,7 @@ public String generateFileName(String fileName) {
 分隔符  使用*File.separator*
 
 #### 存放文件分类
-**为避免一个文件夹下保存超过1000个文件，影响文件访问性能，程序应该把文件打散后存储**
+*为避免一个文件夹下保存超过1000个文件，影响文件访问性能，程序应该把文件打散后存储*
 ```java
 public String generateSavePath(String path, String filename) {
     int hashcode = filename.hashcode();
