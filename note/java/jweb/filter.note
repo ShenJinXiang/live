@@ -87,3 +87,72 @@ public class CacheFilter implements Filter{
 
 实现用户自动登录
 	用户登陆成功之后，发送一个cookie，cookie的值为用户名喝md5加密后的密码
+
+	login.jsp:
+	<form action=''>
+		用户名：<input type='text' name='username' />
+		密码：<input type='password' name='password' />
+		有效期：
+		1分钟<input type='radio' name='autologin' value='${1 * 60}'/>
+		5分钟<input type='radio' name='autologin' value='${5 * 60}'/>
+		10分钟<input type='radio' name='autologin' value='${10 * 60}'/>
+		<br/>
+		<input type='submit' value='登陆' />
+	</form>
+
+	LonginServlet
+
+	String username = req.getParameter("username");
+	String password = req.getParameter("password");
+	BusinessService service = new BusinessService();
+	User user = service.login(username, password);
+
+	if(user != null) {
+		request.setAttribute("message", "用户名或密码错误");
+		// 跳转
+	}
+
+	int time = Integer.parseInt(req.getParameter("time"));
+
+	request.getSession().setAttribute("user", user);
+	// 给客户端发送cookie
+	Cookie cookie = markCookid();
+	resp.addCookie(cookie);
+
+	public Cookie makeCookie(username, password, expiresttime) {
+		String cookieValue = username + ":" + expiresttime + md5(username, password, expiresttime);
+		Cookie cookie = new Cookie("autologin", cookieValue);
+		cookie.setMaxAge(expirestime);
+		cookie.setPath("/");
+		return cookie;
+	}
+	
+
+	public String md5(String username, string password, int expirestime) {
+		String value = password + ":" + expirestime + ":" + username;
+		MessageDigest md = MessageDigest.getInstance("md5");
+		byte[] md5 = md.digest(value.getBytes());
+		BASE64Encoder encode = new BASE64Encoder();
+		return encode.encode(md5);
+		return null;
+	}
+
+	resp.sendRedirect("");
+
+	BusinessService
+
+	public class BusinessService {
+		private static List<User> list = new ArrayList();
+		static {
+			list.add(new User());
+			list.add(new User());
+		}
+
+		public User login(String username, String password) {
+			for(User user : list) {
+				if(user.getUsername().equals(username) && user.getPassword().equals(password)){
+					return user;
+				}
+			}
+		}
+	}
