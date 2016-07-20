@@ -31,11 +31,58 @@ public class FilterDemo1 implements Filter {
 
 常见应用
 1. 在目标资源执行之前，进行权限检查
-2. 做一些预处理，例如解决乱码问题
-3. 网站输出的内容，压缩后输出
+2. 在目标文件执行之前可以做一些预处理，例如解决乱码问题
+3. 在filter放行之后，可以捕获到目标资源的输出，获取网站输出的内容，压缩后输出
 
 filter链
 按配置顺序执行
 
 服务器创建时 执行init方法
 <init-param> 中配置初始化参数
+
+禁止缓存所有动态页面的数据
+public void doFilter(ServletRequest req, ServletResponse resp) {
+	HttpServletRequest request = (HttpServletRequest)req;
+	HttpServletResponse response = (HttpServletResponse)resp;
+
+	response.setDateHeader("Expires", -1);
+	response.setHeader("Cache-Control", "no-cache");
+	response.setHeader("Paragma", "no-cache");
+	chain.doFilter(req, resp);
+}
+
+控制浏览器缓存静态资源
+CacheFilter
+<filter>
+	<filter-name></filter-name>
+	<filter-class></filter-class>
+	<init-param>
+		
+	</init-param>
+</filter>
+public class CacheFilter implements Filter{
+	private FilterConfig config;
+
+	public void doFilter(req, resp, FilterChain chain) {
+		// 获取用户访问的资源
+		String url = request.getRequestURL();
+		// 获取资源的缓存时间
+		int expires = 0;
+		if(url.endswith(".jpg")) {
+			expires = Integer.parseInt(this.config.getInitParamter("jpg"));
+		} else if (url.endsWith(".css")) (
+			expires = Integer.parseInt(this.config.getInitParamter("css"));
+		) else {
+			expires = Integer.parseInt(this.config.getInitParamter("js"));
+		}
+
+		response.setDataHeader("expires", expires * 60 * 1000) // 分钟转秒
+		chain.doFIlter(request, response);
+	}
+
+	public void init (FilterConfig config) {
+		this.config = config;
+	}
+}
+
+实现用户自动登录
