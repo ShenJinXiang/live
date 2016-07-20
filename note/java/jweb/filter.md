@@ -43,7 +43,11 @@ HttpServletResponse resp = (HttpServletResponse) response;
 |doFilter|执行拦截业务处理|
 |destroy|销毁filter，关闭服务器执行|
 
-### 处理乱码问题
+
+## filter链
+* 可以配置多个filter，按web.xml中的<filter-mapping>标签的配置顺序执行
+
+## 处理乱码问题
 * filter代码
 
 ```java
@@ -90,7 +94,7 @@ public class FileterDemo1 implements Filter {
 </filter-mapping>
 ```
 
-### 禁止缓存动态资源
+## 禁止缓存动态资源
 * filter代码
 
 ```java
@@ -131,5 +135,3 @@ public class FilterDemo2 implements Filter {
   	<url-pattern>*.jsp</url-pattern>
 </filter-mapping>
 ```
-## filter链
-* 可以配置多个filter，按web.xml中的<filter-mapping>标签的配置顺序执行
