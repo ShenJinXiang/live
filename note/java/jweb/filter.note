@@ -156,3 +156,27 @@ public class CacheFilter implements Filter{
 			}
 		}
 	}
+
+	filter 代码
+	public void doFilter(req, resp, chain) {
+		// 1. 检查用户是否登陆
+		User user = req.getSession.getAttribute("user");
+		if(user != null) {
+			chain.doFilter(req, resp);
+			return;
+		}
+		// 获得用户的cookie
+		Cookie autoCookie = null;
+		Cookie cookies[] = req.getCookies();
+		for(Cookie cookie : cookies) {
+			if(cookie.getName().equals("autologin")) {
+				autoCookie = cookie;
+			}
+		}
+		if(autoCookie == null) {
+			chain.doFilter(req, resp);
+			return;
+		}
+		// 检查有效期
+		// 检查有效性
+	}
