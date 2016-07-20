@@ -86,3 +86,4 @@ public class CacheFilter implements Filter{
 }
 
 实现用户自动登录
+	用户登陆成功之后，发送一个cookie，cookie的值为用户名喝md5加密后的密码

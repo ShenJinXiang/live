@@ -98,11 +98,11 @@ public class FileterDemo1 implements Filter {
 * filter代码
 
 ```java
-public class FilterDemo2 implements Filter {
+public class NoCacheFilter implements Filter {
 
 	@Override
 	public void destroy() {
-		System.out.println("FilterDemo2 -----------------  destroy");
+		System.out.println("NoCacheFilter -----------------  destroy");
 	}
 
 	@Override
@@ -117,7 +117,7 @@ public class FilterDemo2 implements Filter {
 
 	@Override
 	public void init(FilterConfig config) throws ServletException {
-		System.out.println("FilterDemo2 ---------------------  init");
+		System.out.println("NoCacheFilter ---------------------  init");
 	}
 
 }
@@ -127,11 +127,85 @@ public class FilterDemo2 implements Filter {
 
 ```xml
 <filter>
-    <filter-name>FilterDemo2</filter-name>
-  	<filter-class>com.shenjinxiang.filter.FilterDemo2</filter-class>
+    <filter-name>NoCacheFilter</filter-name>
+  	<filter-class>com.shenjinxiang.filter.NoCacheFilter</filter-class>
 </filter>
 <filter-mapping>
-  	<filter-name>FilterDemo2</filter-name>
+  	<filter-name>NoCacheFilter</filter-name>
   	<url-pattern>*.jsp</url-pattern>
+</filter-mapping>
+```
+
+## 控制浏览器缓存静态资源
+* filter代码
+
+```java
+public class CacheFilter implements Filter {
+	
+	private FilterConfig config;
+
+	@Override
+	public void destroy() {
+		System.out.println("CacheFilter destroy !!!");
+	}
+
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpServletResponse resp = (HttpServletResponse) response;
+		
+		String url = req.getRequestURI();
+		int expires = 0;
+		if(url.endsWith(".jpg")) {
+			expires = Integer.parseInt(this.config.getInitParameter("jpg"));
+		} else if (url.endsWith(".js")) {
+			expires = Integer.parseInt(this.config.getInitParameter("js"));
+		} else if (url.endsWith(".css")){
+			expires = Integer.parseInt(this.config.getInitParameter("css"));
+		}
+		resp.setDateHeader("expires", expires * 60 * 1000);
+		chain.doFilter(req, resp);
+	}
+
+	@Override
+	public void init(FilterConfig config) throws ServletException {
+		System.out.println("CacheFilter init ~~~");
+		this.config = config;
+	}
+
+}
+```
+
+* web.xml中的配置
+
+```xml
+<filter>
+    <filter-name>CacheFilter</filter-name>
+  	<filter-class>com.shenjinxiang.filter.CacheFilter</filter-class>
+  	<init-param>
+  		<param-name>js</param-name>
+  		<param-value>10</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>jpg</param-name>
+  		<param-value>20</param-value>
+  	</init-param>
+  	<init-param>
+  		<param-name>css</param-name>
+  		<param-value>30</param-value>
+  	</init-param>
+</filter>
+<filter-mapping>
+  	<filter-name>CacheFilter</filter-name>
+  	<url-pattern>*.js</url-pattern>
+</filter-mapping>
+<filter-mapping>
+  	<filter-name>CacheFilter</filter-name>
+  	<url-pattern>*.css</url-pattern>
+</filter-mapping>
+<filter-mapping>
+  	<filter-name>CacheFilter</filter-name>
+  	<url-pattern>*.jpg</url-pattern>
 </filter-mapping>
 ```
