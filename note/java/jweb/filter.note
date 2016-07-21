@@ -253,3 +253,12 @@ filter转义
 
 		}
 	}
+
+敏感词过滤
+	禁用词
+	审核词
+	替换词
+
+response对象增强
+	数据压缩
+	GzipFilter
