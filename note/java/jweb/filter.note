@@ -228,3 +228,28 @@ Filter 高级开发
 			this.request = request;
 		}
 	}
+
+filter转义
+	
+	public void doFilter(req, resp) {
+		
+	}
+
+	class MyRequest extends HttpServletRequestWrapper {
+		private HttpServletRequest request;
+
+		public MyRequest(request) {
+			super(request);
+			this.request = request;'
+		}
+
+		public String getParameter(String name) {
+			String value = this.request.getParameter(name);
+			if(value == null) {
+				return null;
+			}
+			// tomcat/webapps/exam/WEB-INF/classes/util/htmlfilter
+
+
+		}
+	}
