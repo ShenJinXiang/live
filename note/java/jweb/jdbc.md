@@ -44,6 +44,39 @@ Connection.rollback(sp) // 回滚到 回滚点 手动回滚后一定要记得com
 4. Read uncommitted 最低级别
 
 ## 数据库连接池
+* 实现java.sql.DataSource接口
 
+### 增强Connection
+1. 定义一个类，实现与被增强相同的接口
+2. 在类中定义一个变量，记住被增强对象
+3. 定义构造函数，接受被增强对象
+4. 覆盖想增强的方法
+5. 对于不想增强的方法，直接调用目标对象（被增强对象）的方法
 
+### 开源数据库连接池
+* DBCP 
+* C3P0
+
+## 制作框架
+### DataBaseMetaData对象
+
+**Connection.getDatabaseMetaData();**
+* getURL() 获取url
+* getUserName() 获取用户名
+* getDatabaseProductName() 产品名称
+* getDatabaseProductVersion() 产品版本号
+* getDriverName() 驱动名称
+* getDriverVersion() 驱动版本号
+* isReadOnly() 数据库是否只允许只读操作
+
+### ParameterMetaData对象
+**PreparedStatement.getParamenterMetaData();**
+* getParameterCount()	获得制定参数的个数
+* getParameterType(int param) 获得指定参数的sql类型
+
+### ResulteSertMataData对象
+**ResultSet.getMetaData()**
+* getColumnCount()  返回resultset对象的列数
+* getColumnName(int column) 获得指列的名称
+* getColumnTypeName(int column) 制定列的类型
 
