@@ -43,6 +43,22 @@ HttpServletResponse resp = (HttpServletResponse) response;
 |doFilter|执行拦截业务处理|
 |destroy|销毁filter，关闭服务器执行|
 
+### despatcher细节
+*filter-mapping标签中可以添加despatcher标签*
+```xml
+<filter-mapping>
+    <filter-name></filter-name>
+    <url-parttern></url-parttern>
+    <dispatcher>REQUEST|FORWARD|INCLUDE|ERROR</dispatcher>
+</filter-mapping>
+```
+
+|值|说明|
+|:-:|:-:|
+|REQUEST|拦截直接请求访问的资源, 默认选项|
+|FORWARD|拦截forward方式访问的资源|
+|INCLUDE|拦截include方式访问的资源|
+|ERROR|拦截ERROR方式访问的资源|
 
 ## filter链
 * 可以配置多个filter，按web.xml中的<filter-mapping>标签的配置顺序执行
@@ -207,5 +223,77 @@ public class CacheFilter implements Filter {
 <filter-mapping>
   	<filter-name>CacheFilter</filter-name>
   	<url-pattern>*.jpg</url-pattern>
+</filter-mapping>
+```
+
+## 处理get方式乱码问题 
+* 增强request代码：
+
+```java
+public class MyRequest1 extends HttpServletRequestWrapper {
+	
+	private HttpServletRequest request;
+
+	public MyRequest1(HttpServletRequest request) {
+		super(request);
+		this.request = request;
+	}
+
+	@Override
+	public String getParameter(String name) {
+		String value = this.request.getParameter(name);
+		if(!this.request.getMethod().equalsIgnoreCase("get")) {
+			return value;
+		}
+		if(value == null) {
+			return null;
+		}
+		try {
+			value = new String(value.getBytes("iso8859-1"), this.request.getCharacterEncoding());
+		} catch (UnsupportedEncodingException e) {
+			throw new RuntimeException(e);
+		}
+		return value;
+	}
+
+}
+```
+
+* filter代码
+
+```java
+public class CharacterFilter implements Filter {
+	
+	@Override
+	public void destroy() {
+		System.out.println("CharacterFilter destroy");
+	}
+
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpServletResponse resp = (HttpServletResponse) response;
+		HttpServletRequest requ = new MyRequest1(req);
+		chain.doFilter(requ, resp);
+	}
+
+	@Override
+	public void init(FilterConfig config) throws ServletException {
+		System.out.println("CharacterFilter init");
+	}
+
+}
+```
+
+* web.xml配置
+
+```xml
+<filter>
+  	<filter-name>CharacterFilter</filter-name>
+  	<filter-class>com.shenjinxiang.filter.CharacterFilter</filter-class>
+</filter>
+<filter-mapping>
+  	<filter-name>CharacterFilter</filter-name>
+  	<url-pattern>*</url-pattern>
 </filter-mapping>
 ```
