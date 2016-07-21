@@ -180,3 +180,51 @@ public class CacheFilter implements Filter{
 		// 检查有效期
 		// 检查有效性
 	}
+filter 部署
+	注册filter 映射filter
+	用<filter-mapping>映射
+	<filter-mapping>
+		<sevlet-name>
+		<despatcher>
+	</filter-mapping>
+	despatcher标签标示拦截方式
+		可以配置多个despatcher标签
+		REQUEST 请求方式调用的时候 拦截 默认方式 nocachefilter 
+		FORWARD forward方式访问
+		INCLUDE include方式访问 生效
+		ERROR 错误方式调用
+Filter 高级开发
+	可以多request 和response 增强
+	1. 子类的方式增强，不可行，没有request中的客户端请求数据
+	2. 包装设计模式
+	3. 动态代理方式
+
+	增强request方式处理乱码问题
+
+	class MyRequest implements HttpServletRequest{
+		private HttpServletRequest request;
+		public MyRequest(HttpServletRequest) {
+			this.request = request;
+		}
+		public String getParameter(String name) {
+			String value = request.getParameter(name);
+			if(!request.getMethod().equalsIgnoreCase("get")) {
+				return value;
+			}
+			if(value == null) {
+				return null;
+			}
+			value = new String(value.getBytes("iso8859-1"), "utf-8");
+			return value;
+		}
+	}
+	
+	// 继承默认包装类
+	class MyRequest extends HttpServletRequestWrapper {
+
+		private HttpServletRequest request;
+		public MyRequest(HttpServletRequest request) {
+			super(request);
+			this.request = request;
+		}
+	}
