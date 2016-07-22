@@ -389,3 +389,113 @@ public class HTMLFilter implements Filter {
   	<url-pattern>*</url-pattern>
 </filter-mapping>
 ```
+
+## Gzip压缩处理拦截器
+1. 增强responseo 继承 HttpServletResponseWrapper类 
+2. 重写getOutputStream 和 getWriter方法
+
+* filter 代码
+
+```java
+public class GzipFilter implements Filter {
+
+	@Override
+	public void destroy() {
+
+	}
+
+	@Override
+	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
+			throws IOException, ServletException {
+		HttpServletRequest req = (HttpServletRequest) request;
+		HttpServletResponse resp = (HttpServletResponse) response;
+		MyResponse myResponse = new MyResponse(resp);
+		chain.doFilter(req, myResponse);
+		
+		byte[] out = myResponse.getBuffer();
+		byte gzipput[] = gzip(out);
+		
+		resp.setHeader("Content-encoding", "gzip");
+		resp.setHeader("Content-length", gzipput.length + "");
+		resp.getOutputStream().write(gzipput);
+	}
+
+	@Override
+	public void init(FilterConfig arg0) throws ServletException {
+
+	}
+	
+	public byte[] gzip(byte b[]) throws IOException {
+		ByteArrayOutputStream bout = new ByteArrayOutputStream();
+		GZIPOutputStream gout = new GZIPOutputStream(bout);
+		gout.write(b);
+		gout.close();
+		return bout.toByteArray();
+	}
+	
+	class MyResponse extends HttpServletResponseWrapper {
+		
+		private ByteArrayOutputStream bout = new ByteArrayOutputStream();
+		private HttpServletResponse response;
+		private PrintWriter pw;
+
+		public MyResponse(HttpServletResponse response) {
+			super(response);
+			this.response = response;
+		}
+
+		@Override
+		public ServletOutputStream getOutputStream() throws IOException {
+			return new MyServletOutputStream(bout);
+		}
+
+		@Override
+		public PrintWriter getWriter() throws IOException {
+			pw = new PrintWriter(new OutputStreamWriter(bout, this.response.getCharacterEncoding()));
+			return pw;
+		}
+		
+		public byte[] getBuffer() {
+			if(pw != null) {
+				pw.close();
+			}
+			return bout.toByteArray();
+		}
+		
+	}
+	
+	class MyServletOutputStream extends ServletOutputStream{
+
+		private ByteArrayOutputStream bout;
+		
+		public MyServletOutputStream(ByteArrayOutputStream bout) {
+			this.bout = bout;
+		}
+		@Override
+		public void write(int b) throws IOException {
+			bout.write(b);
+		}
+		
+	}
+
+}
+```
+
+* web.xml 配置
+
+```xml
+<filter>
+  	<filter-name>GzipFilter</filter-name>
+  	<filter-class>com.shenjinxiang.filter.GzipFilter</filter-class>
+</filter>
+<filter-mapping>
+  	<filter-name>GzipFilter</filter-name>
+  	<url-pattern>*.js</url-pattern>
+</filter-mapping>
+<filter-mapping>
+  	<filter-name>GzipFilter</filter-name>
+  	<url-pattern>*.jsp</url-pattern>
+  	<dispatcher>REQUEST</dispatcher>
+  	<dispatcher>FORWARD</dispatcher>
+</filter-mapping>
+```
