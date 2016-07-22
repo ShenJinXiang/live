@@ -499,3 +499,12 @@ public class GzipFilter implements Filter {
   	<dispatcher>FORWARD</dispatcher>
 </filter-mapping>
 ```
+
+## 缓存数据
+
+1. 得到用户想访问的资源
+2. 看map集合中是否存在了该资源的数据
+3. 如果保存了，则直接取数据打给浏览器
+4. 如果没有保存数据，则放行目标资源数据，增强response捕获目标资源输出
+5. 以资源url为关键字，资源的数据保存在map中，以备下次访问
+6. 输出数据给浏览器
