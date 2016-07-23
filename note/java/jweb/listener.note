@@ -86,3 +86,16 @@ Servlet 监听器
 自定义session扫描器
 	
 	
+定时发邮件
+	
+	public class SendMailTimer implements ServletContextListener {
+		 
+		 public void contextInitialized() {
+			Timer timer = new Timer();
+			Calendar c = Calendar.getinstance();
+			c.set(2016, 6, 23, 23, 45, 0);
+			timer.schedule(new TimerTask() {
+				System.out.println("mail");
+			}, c.getTime().getTIme());
+		 }
+	}
