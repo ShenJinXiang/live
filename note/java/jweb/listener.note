@@ -39,3 +39,37 @@ windows 窗口监听器
 		public void doEat();
 	}
 
+
+Servlet 监听器
+	事件源：ServletContext HttpSession  ServletRequest
+
+	三大类型监听器
+		监听三个与对象的创建和销毁的事件监听器
+		监听与对象中属性的增加和删除的事件监听器
+		监听绑定到HttpSession域中某个对象的状态的事件监听器
+
+	ServletContextListener 监听到servletContext的创建和销毁
+	HttpSessionListener	监听session的创建和销毁
+	ServletRequestListener	讲台request的创建和销毁
+
+	ServletContextAttributeListener 添加 删除和替换 
+		attributeAdded() attributeRemoved() attributeReplaced()
+		ServletContextAttributeEvent 可以查看属性的name和value
+	
+	ServletRequestAttributeListener 监听到
+	ServletSessionAttributeListener
+
+
+	HttpSessionBindingListener
+	HttpSessionActivationListener
+
+	public class MyServletContextListener implements ServletContextListener {
+		public void contextInitialized(ServletContextEvent sce) {
+		}
+		public void contextDestroyed(servletContextEvent sce) {
+		}
+	}
+	
+	<listener>
+		<listener-class></listener-class>
+	</listener>
