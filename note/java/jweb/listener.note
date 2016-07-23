@@ -73,3 +73,13 @@ Servlet 监听器
 	<listener>
 		<listener-class></listener-class>
 	</listener>
+
+	应用场景：web应用在启动时，运行的代码 如 定时器 spring
+
+	public class MyHttpSessionListener {
+	}
+
+	request监听器 可以查看点击量信息。。。
+
+统计当前在线人数
+	
