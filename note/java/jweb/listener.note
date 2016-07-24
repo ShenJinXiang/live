@@ -96,6 +96,25 @@ Servlet 监听器
 			c.set(2016, 6, 23, 23, 45, 0);
 			timer.schedule(new TimerTask() {
 				System.out.println("mail");
-			}, c.getTime().getTIme());
+			}, c.getTime());
 		 }
 	}
+
+
+
+保存在session域中的对象可以有多种状态：
+	绑定到session中；
+	从session域中解除绑定；
+	随session对象持久化道一个存储设备中；
+	随session对象从一个存储设备中恢复
+
+Servlet规范中定义了两个特殊的监听器 帮助javabean 了解自己在session域中的这些状态 ：
+HttpSessionBindingListener 
+HttpSessionActivationListener
+不需要在web.xml中进行注册
+
+实现HttpSessionBindingListener的javabean 可以检查到
+
+实现了HttpSessionActivationListener接口的javabean 可以感知自己呗活化和钝化的事件
+
+sessionWillPassivate(httpSessionBindingEvent event)
