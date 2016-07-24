@@ -4,3 +4,27 @@ Annotation是代码里边的特殊标记，用于替换配置文件
 	@Override 限定重写父类方法，只能用于方法
 	@Deprecated 用于表示某个程序元素（类、方法等）已过时
 	@SuppressWarnings 抑制编译器警告
+
+自定义Annotation
+	使用@interface 关键字
+
+	注解中属性的类型：
+		String 
+		8大基本类型
+		Class类型
+		枚举类型
+		注解类型
+		以上类型的一维数组
+	特殊属性 value
+元注解
+	用来修饰注解的注解
+
+	.java 文件  --->  .class ---> 运行时
+	
+	@Retention 申明注解的作用域
+		默认为class级别
+		RetentionPolicy.RUNTIME	 运行时
+	@Target	 指定注解的作用的成员类型
+		默认在所有成员上
+	@ Inherited
+
