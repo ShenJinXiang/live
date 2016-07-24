@@ -1,0 +1,6 @@
+Annotation是代码里边的特殊标记，用于替换配置文件
+
+三个基本的注解
+	@Override 限定重写父类方法，只能用于方法
+	@Deprecated 用于表示某个程序元素（类、方法等）已过时
+	@SuppressWarnings 抑制编译器警告
