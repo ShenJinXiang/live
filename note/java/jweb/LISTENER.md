@@ -434,3 +434,102 @@ public class SendMailTimer implements ServletContextListener {
    		<listener-class>com.shenjinxiang.listener.SendMailTimer</listener-class>
 </listener>
 ```
+
+### 属性监听器
+
+* ServletContextAttributeListener
+
+```java
+public class MyServletContextAttributeListener implements ServletContextAttributeListener {
+
+	@Override
+	public void attributeAdded(ServletContextAttributeEvent scab) {
+		String name = scab.getName();
+		Object value = scab.getValue();
+		System.out.println("向ServletContext中存了： " + name + " = " + value);
+	}
+
+	@Override
+	public void attributeRemoved(ServletContextAttributeEvent scab) {
+		System.out.println("从ServletContext中删除了： " + scab.getName());
+	}
+
+	@Override
+	public void attributeReplaced(ServletContextAttributeEvent scab) {
+		System.out.println("ServeltContext中 " + scab.getName() + " 属性被替换了");
+	}
+
+}
+```
+
+### 关于HttpSession
+
+**保存在session域中的对象可以有多种状态**
+
+ * 绑定到session中
+ * 从session域中解除绑定
+ * 随session对象持久化道一个存储设备中
+ * 随session对象从一个存储设备中恢复
+ 
+**Servlet规范中定义了两个特殊的监听器 帮助javabean 了解自己在session域中的这些状态**
+
+* HttpSessionActivationListener
+* HttpSessionBindingListener
+
+**不需要在web.xml中配置**
+
+* HttpSessionBindingListener
+
+```java
+public class User implements HttpSessionBindingListener {
+	
+	private int id;
+	private String name;
+	
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	@Override
+	public void valueBound(HttpSessionBindingEvent arg0) {
+		System.out.println("user对象存到session中了");
+	}
+
+	@Override
+	public void valueUnbound(HttpSessionBindingEvent arg0) {
+		System.out.println("user从session中解除绑定了");
+	}
+
+}
+```
+
+* HttpSessionActivationListener
+
+```java
+public class MyBean implements HttpSessionActivationListener {
+
+	@Override
+	public void sessionDidActivate(HttpSessionEvent arg0) {
+		System.out.println("硬盘 －－> 内存");
+	}
+
+	@Override
+	public void sessionWillPassivate(HttpSessionEvent arg0) {
+		System.out.println("内存 --> 硬盘");
+	}
+
+}
+```
