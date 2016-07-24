@@ -1,0 +1,32 @@
+servlet jdbc jsp
+
+1. 枚举
+	反射
+		反射方法
+		发射构造函数
+		泛瑟字段
+	内省
+	泛型
+2. xml 
+	xml 约束 dtd／ schema
+
+	Jaxp 介些
+		dom sax 
+	dom4j
+
+3 tomcat 目录 配置
+
+4 http协议
+	http 请求 三部分 （请求行 请求头 请求体）
+	http 响应
+
+5 servlet
+	ServletConfig
+	ServletContext
+		1. 实现数据共享
+		2. 请求转发
+		3. 管理web应用中所有web资源
+		4. 通过类加载器读取资源文件
+	
+	reuest response
+	｀
