@@ -27,4 +27,29 @@ Annotation是代码里边的特殊标记，用于替换配置文件
 	@Target	 指定注解的作用的成员类型
 		默认在所有成员上
 	@ Inherited
+解析注解
+	public class JdbcUtils {
+		@DbInfo(driver="com.mysql.jdbc.Driver", url='jdbc:mysql://localhost:3306/webTest', username="root" password="6098")
+		public static Connection getConnection() {
+			Method method = JdbcUtils.class.getMethod("getConnection", null);
+			DbInfo info = method.getAnnotation(DbInfo.class);
+			String driver = info.dirver();
+			String url = info.url();
+			String username = info.username();
+			String password = info.password();
+
+			System.out.println(driver);
+			System.out.println(url);
+			System.out.println(username);
+			System.out.println(password);
+
+		}
+	}
+
+	public @interface DbInfo{
+		String driver();
+		String url();
+		String username();
+		String password();
+	}
 
