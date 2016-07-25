@@ -168,6 +168,7 @@ public @interface Documented {
 
 ### 解析注解
 
+#### 例子1
 ```java
 @Retention(RetentionPolicy.RUNTIME)
 public @interface DbInfo {
@@ -212,4 +213,57 @@ public class JdbcUtils {
 		JdbcUtils.getConnection();
 	}
 }
+```
+
+#### 例子2
+
+* annotation
+
+```java
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface TestAnnotation {
+
+	String name();
+	int age();
+	Gender gender();
+}
+```
+
+* Gender
+
+```java
+public enum Gender {
+
+	MALE, FEMALE;
+}
+
+```
+
+* 解析代码
+
+```java
+public class Demo {
+
+	@Test
+	@TestAnnotation(age = 18, name = "张三", gender = Gender.MALE)
+	public void test() throws NoSuchMethodException, SecurityException {
+		Method method = Demo.class.getMethod("test", null);
+		TestAnnotation ta = method.getAnnotation(TestAnnotation.class);
+		String name  = ta.name();
+		int age = ta.age();
+		Gender gender = ta.gender();
+		System.out.println("name -> " + name);
+		System.out.println("age -> " + age);
+		System.out.println("gender -> " + gender);
+	}
+}
+```
+
+* 运行结果
+
+```
+name -> 张三
+age -> 18
+gender -> MALE
 ```
