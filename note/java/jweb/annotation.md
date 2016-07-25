@@ -20,6 +20,8 @@ tags:java
 ## 自定义注解
 java中使用@interface申明注解, 定义注解的格式：
 > public @interface 注解名{定义体}
+
+代码
 ```java
 public @interface MyAnnotation1 {
 
