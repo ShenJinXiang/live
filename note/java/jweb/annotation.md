@@ -287,3 +287,49 @@ name -> 张三
 age -> 18
 gender -> MALE
 ```
+#### Class类
+* getAnnotation
+
+> public <A extends Annotation> A getAnnotation(Class<A> annotationClass)
+> 如果存在该元素的指定类型的注释，则返回这些注释，否则返回 null
+
+* isAnnotationPresent
+
+> public boolean isAnnotationPresent(Class<? extends Annotation> annotationClass)
+> 如果指定类型的注释存在于此元素上，则返回 true，否则返回 false
+
+* getAnnotations
+
+> public Annotation[] getAnnotations()
+> 返回此元素上存在的所有注释 如果此元素没有注释，则返回长度为零的数组
+
+* getDeclaredAnnotations
+
+> public Annotation[] getDeclaredAnnotations()
+> 返回直接存在于此元素上的所有注释 忽略继承的注释 如果没有注释直接存在于此元素上，则返回长度为零的一个数组
+
+#### Method类
+* getAnnotation
+
+> public <T extends Annotation> T getAnnotation(Class<T> annotationClass)
+> 如果存在该元素的指定类型的注释，则返回这些注释，否则返回 null
+
+* getDeclaredAnnotations
+
+> public Annotation[] getDeclaredAnnotations()
+> 返回直接存在于此元素上的所有注释 忽略继承的注释 如果没有注释直接存在于此元素上，则返回长度为零的一个数组
+
+* getParameterAnnotations
+
+> public Annotation[][] getParameterAnnotations()
+
+#### Field类
+* getAnnotation
+
+> public <T extends Annotation> T getAnnotation(Class<T> annotationClass)
+> 如果存在该元素的指定类型的注释，则返回这些注释，否则返回 null
+
+* getDeclaredAnnotations
+
+> public Annotation[] getDeclaredAnnotations()
+> 返回直接存在于此元素上的所有注释 忽略继承的注释 如果没有注释直接存在于此元素上，则返回长度为零的一个数
