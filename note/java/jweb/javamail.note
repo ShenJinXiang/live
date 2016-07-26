@@ -30,14 +30,20 @@ snmp 161
 3. mail from: aaa@163.com
    rcpt to : bbb@153.com
    data 
-	from:
-	to:
-	subject: 
+	from:发件人地址
+	to:收件人地址
+	subject: 标题
 
 	aaaaaaaaaaaa
 	.
 4. 退出
 
 
-rfc8
+接收
+	user aaa
+	pass 123
+	stat
+	retr _
+
+rfc882
 
