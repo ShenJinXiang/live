@@ -52,3 +52,30 @@ RFC822 规定了编写简单邮件格式
   邮件体
 	邮件内容
 
+MIME协议
+	MIME协议是对RFC882文档的升级和补充，描述了如何生成一封复杂邮件
+	通常吧mime协议描述的邮件称为mime邮件
+	mime协议描述的数据称为mime消息
+
+	对于复杂邮件，由于包含了多个不同的数据，mime协议规定了要使用分割线对多端数据进行分割，并使用Content-Type头字段对数据的类型及多个数据之间的关系进行描述
+
+	from:
+	to:
+	subject:
+
+	content-type:related
+
+	content-type:text/html
+	sdfsdfsfdf <img src='cid:x123'>sdfdsfsfsd
+
+	-------------
+
+	content-type:image/gif
+	content-id:x123
+
+	bbbbbbb
+
+
+javamail
+	new MimeMessage()   setFrom setTo setsubject
+	MimeBody    setData setType
