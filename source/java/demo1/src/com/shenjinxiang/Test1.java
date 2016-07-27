@@ -1,4 +1,6 @@
-public class test1{
+package com.shenjinxiang;
+import com.shenjinxiang.entity.Person;
+public class Test1{
 
 	public static void main(String[] args) {
 		Person p = new Person();
