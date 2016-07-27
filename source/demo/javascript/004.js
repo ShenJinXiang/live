@@ -1,0 +1,11 @@
+var Gender = {};
+Object.defineProperty(Gender, 'MALE', {value: 1, writable: false, enumerable: true, configurable: false});
+Object.defineProperty(Gender, 'FEMALE', {value: 0, writable: false, enumerable: true, configurable: false});
+console.log(Gender);
+console.log(Gender.MALE);
+console.log(Gender.FEMALE);
+console.log("----------------");
+Gender.MALE = 2;
+console.log(Gender);
+Gender.x = 11;
+console.log(Gender);

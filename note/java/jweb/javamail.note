@@ -30,20 +30,25 @@ snmp 161
 3. mail from: aaa@163.com
    rcpt to : bbb@153.com
    data 
-	from:发件人地址
-	to:收件人地址
-	subject: 标题
+	from:
+	to:
+	subject: 
 
 	aaaaaaaaaaaa
 	.
 4. 退出
 
 
-接收
-	user aaa
-	pass 123
-	stat
-	retr _
+rfc8
 
-rfc882
+
+RFC822 规定了编写简单邮件格式
+  邮件头和邮件体，使用空行分割
+  邮件头
+	from字段
+	to字段
+	subject字段
+	cc bcc字段
+  邮件体
+	邮件内容
 
