@@ -79,3 +79,36 @@ MIME协议
 javamail
 	new MimeMessage()   setFrom setTo setsubject
 	MimeBody    setData setType
+
+中文乱码问题
+	标题 无乱吗
+	正文 setContent("", "text/html;charset=utfi-8");
+	附件名称 attach.setFileName(MimeUtility.encodeText(dh.getName()));
+
+mime协议 常用头字段
+	Content-type 字段
+		数据类型：
+			以“主类型／自类型”的形式出现
+				主类型
+					text  文本
+					image  图片
+					audio  音频
+					video  视频
+					application  应用程序
+					message 消息
+
+				自类型
+					text 主要包含的油 plain html xml css 等
+		数据关系
+			multipart/mixed 没关系
+			multipart/related 关联
+			multipart/alternative 二者之一
+	
+	Content-Disposition头字段
+		Content-Disposition头字段用于指定邮件阅读程序处理数据内容的方式，有inline和attachment两种标准方式，
+			inline表示直接处理
+			attachment表示当作附件
+		如果将Content-Disposition设置成attachment，在其后还可以指定filename属性
+	
+	Content-ID 头字段
+		用于为“multipart/related”组合消息中的内嵌资源指定一个唯一标识号，在HTML格式的正文中可以使用这个唯一标识号来引用内嵌的资源。
