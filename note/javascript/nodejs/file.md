@@ -68,6 +68,27 @@ var files = fs.readdirSync('aaa');
 console.log(files);
 ```
 
+## exists
+检查指定路径的文件或者目录是否存在。接着通过 callback 传入的参数指明存在 (true) 或者不存在 (false)
+> fs.exists(path, callback)
+
+```javascript
+var fs = require('fs');
+fs.exists('./encoding.js', function(exists){
+  console.log(exists ? '存在' : '不存在');
+});
+```
+
+## existsSync
+fs.exists 函数的同步版
+> fs.existsSync(path)
+
+```javascript
+var fs = require('fs');
+
+fs.existsSync(path)
+```
+
 ## readline
 
 ### 第一个例子
