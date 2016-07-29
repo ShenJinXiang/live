@@ -228,3 +228,24 @@ EventEmitter 定义了一个特殊的事件 error，它包含了“错误”的�
 异常的时候通常会发射 error 事件。当 error 被发射时， EventEmitter 规定如果没有响
 应的监听器， Node.js 会把它当作异常，退出程序并打印调用栈
 
+### 文件系统 fs
+fs 模块是文件操作的封装，它提供了文件的读取、写入、更名、删除、遍历目录、链接等 POSIX 文件系统操作。与其他模块不同的是， fs 模块中所有的操作都提供了异步的和同步的两个版本，例如读取文件内容的函数有异步的 fs.readFile() 和同步的fs.readFileSync()。
+#### fs.readFile
+fs.readFile(filename,[encoding],[callback(err,data)])是最简单的读取文件的函数。它接受一个必选参数 filename，表示要读取的文件名。第二个参数 encoding是可选的，表示文件的字符编码。 callback 是回调函数，用于接收文件的内容。如果不指定 encoding，则 callback 就是第二个参数。回调函数提供两个参数 err 和 data， err 表示有没有错误发生， data 是文件内容。如果指定了 encoding， data 是一个解析后的字符串，否则 data 将会是以 Buffer 形式表示的二进制数据
+
+Node.js 的异步编程接口习惯是以函数的最后一个参数为回调函数，通常一个函数只有一个回调函数。回调函数是实际参数中第一个是 err，其余的参数是其他返回的内容。如果没有发生错误， err 的值会是 null 或undefined。如果有错误发生， err 通常是 Error 对象的实例
+
+#### fs.readFileSync
+fs.readFileSync(filename, [encoding])是 fs.readFile 同步的版本。它接受的参数和 fs.readFile 相同，而读取到的文件内容会以函数返回值的形式返回。如果有错误发生， fs 将会抛出异常，你需要使用 try 和 catch 捕捉并处理异常。
+
+#### fs.open
+fs.open(path, flags, [mode], [callback(err, fd)])是 POSIX open 函数的封装，与 C 语言标准库中的 fopen 函数类似。它接受两个必选参数， path 为文件的路径，flags 可以是以下值
+
+* r ：以读取模式打开文件。
+* r+ ：以读写模式打开文件。
+* w ：以写入模式打开文件，如果文件不存在则创建。
+* w+ ：以读写模式打开文件，如果文件不存在则创建。
+* a ：以追加模式打开文件，如果文件不存在则创建。
+* a+ ：以读取追加模式打开文件，如果文件不存在则创建。
+
+mode 参数用于创建文件时给文件指定权限，默认是 0666①。回调函数将会传递一个文件描述符 fd
