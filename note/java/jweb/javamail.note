@@ -129,4 +129,11 @@ javamail api
 	3. 创建transpot对象、连接服务器、发送message、关闭连接。
 
 Session类
-	
+	mail.jar包中的javax。mail.Session类用于定义整个javamail应用程序所需的环境信息
+	getInstance 和 getDefaultInstance
+	都可用于获得session类的实例对象，由于session类的构造函数是私有的，所以应用程序必须调用getInstance或getDefaultInstance静态方法获取session类的实例对象
+
+	mail.smtp.host	指定连接的邮件服务器主机名		
+	mail.transport.protocol 指定采用的邮件发送协议
+	mail.store.protocal 指定采用的邮件接收协议
+	mail.smtp.auth 指定客户端是否向邮件服务器提交认证
