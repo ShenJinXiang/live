@@ -1,0 +1,14 @@
+{
+  "main": "./lib/interface.js",
+  "name": "somepackage",
+  "version": "1.0.0",
+  "description": "demo",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "demo1"
+  ],
+  "author": "shenjinxiang",
+  "license": "ISC"
+}
