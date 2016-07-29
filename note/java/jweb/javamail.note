@@ -137,3 +137,7 @@ Session类
 	mail.transport.protocol 指定采用的邮件发送协议
 	mail.store.protocal 指定采用的邮件接收协议
 	mail.smtp.auth 指定客户端是否向邮件服务器提交认证
+
+集成到web应用中
+
+	1. 需要采用多线程
