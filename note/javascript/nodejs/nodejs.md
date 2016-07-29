@@ -151,3 +151,80 @@ npm 还有另一种不同的安装模式被成为全局模式，使用方法为�
 与本地模式的不同之处就在于多了一个参数 -g。我们在 介绍 supervisor那个小节中使用
 了 npm install -g supervisor 命令，就是以全局模式安装 supervisor。
 
+## Node.js核心模块
+### 全局对象
+JavaScript 中有一个特殊的对象，称为全局对象（Global Object），它及其所有属性都可以在程序的任何地方访问，即全局变量。Node.js 中的全局对象是 global，所有全局变量（除了 global 本身以外）都是 global对象的属性。
+
+#### 全局对象与全局变量
+global 最根本的作用是作为全局变量的宿主。按照 ECMAScript 的定义，满足以下条
+件的变量是全局变量：
+* 在最外层定义的变量
+* 全局对象的属性
+* 隐式定义的变量（未定义直接赋值的变量）
+
+在 Node.js 中你不可能在最外层定义变量，因为所有用户代码都是属于当前模块的，
+而模块本身不是最外层上下文
+
+#### process
+process 是一个全局变量，即 global 对象的属性。它用于描述当前 Node.js 进程状态的对象，提供了一个与操作系统的简单接口。
+
+* process.argv是命令行参数数组，第一个元素是 node， 第二个元素是脚本文件名，从第三个元素开始每个元素是一个运行参数。
+* process.stdout是标准输出流，通常我们使用的 console.log() 向标准输出打印字符，而 process.stdout.write() 函数提供了更底层的接口。
+* process.stdin是标准输入流，初始时它是被暂停的，要想从标准输入读取数据，你必须恢复流，并手动编写流的事件响应函数
+* process.nextTick(callback)的功能是为事件循环设置一项任务， Node.js 会在下次事件循环调响应时调用 callback
+
+#### console
+console 用于提供控制台标准输出，console 对象，用于向标准输出流（stdout）或标准错误流（stderr）输出字符
+
+* console.log()：向标准输出流打印字符并以换行符结束。 console.log 接受若干个参数，如果只有一个参数，则输出这个参数的字符串形式。如果有多个参数，则以类似于 C 语言 printf() 命令的格式输出。第一个参数是一个字符串，如果没有参数，只打印一个换行
+* console.error()：与 console.log() 用法相同，只是向标准错误流输出
+* console.trace()：向标准错误流输出当前的调用栈
+
+### 常用工具 util
+util 是一个 Node.js 核心模块，提供常用函数的集合，用于弥补核心 JavaScript 的功能
+过于精简的不足
+
+#### util.inherits
+util.inherits(constructor, superConstructor)是一个实现对象间原型继承 的函数
+
+#### util.inspect
+util.inspect(object,[showHidden],[depth],[colors])是一个将任意对象转换为字符串的方法，通常用于调试和错误输出。它至少接受一个参数 object，即要转换的对象
+
+* showHidden 是一个可选参数，如果值为 true，将会输出更多隐藏信息
+* depth 表示最大递归的层数，如果对象很复杂，你可以指定层数以控制输出信息的多少。如果不指定depth，默认会递归2层，指定为 null 表示将不限递归层数完整遍历对象
+* 如果color 值为 true，输出格式将会以 ANSI 颜色编码，通常用于在终端显示更漂亮的效果。
+
+特别要指出的是， util.inspect 并不会简单地直接把对象转换为字符串，即使该对
+象定义了 toString 方法也不会调用
+
+### 事件驱动 events
+#### 事件发射器
+events 模块只提供了一个对象： events.EventEmitter。 EventEmitter 的核心就是事件发射与事件监听器功能的封装。EventEmitter 的每个事件由一个事件名和若干个参数组成，事件名是一个字符串，通常表达一定的语义。对于每个事件， EventEmitter 支持若干个事件监听器。当事件发射时，注册到这个事件的事件监听器被依次调用，事件参数作为回调函数参数传递
+
+```javascript
+var events = require('events');
+
+var emitter = new events.EventEmitter();
+
+emitter.on('someEvent', function(arg1, arg2) {
+	console.log('listener1', arg1, arg2);
+});
+
+emitter.on('someEvent', function(arg1, arg2) {
+	console.log('listener2', arg1, arg2);
+});
+
+emitter.emit('someEvent', 'hehe', 'haha');
+```
+
+* EventEmitter.on(event, listener) 为指定事件注册一个监听器，接受一个字符串 event 和一个回调函数 listener
+* EventEmitter.emit(event, [arg1], [arg2], [...]) 发射 event 事件，传递若干可选参数到事件监听器的参数表
+* EventEmitter.once(event, listener) 为指定事件注册一个单次监听器，即监听器最多只会触发一次，触发后立刻解除该监听器
+* EventEmitter.removeListener(event, listener) 移除指定事件的某个监听器， listener 必须是该事件已经注册过的监听器
+* EventEmitter.removeAllListeners([event]) 移除所有事件的所有监听器，如果指定 event，则移除指定事件的所有监听器
+
+#### error 事件
+EventEmitter 定义了一个特殊的事件 error，它包含了“错误”的语义，我们在遇到
+异常的时候通常会发射 error 事件。当 error 被发射时， EventEmitter 规定如果没有响
+应的监听器， Node.js 会把它当作异常，退出程序并打印调用栈
+
