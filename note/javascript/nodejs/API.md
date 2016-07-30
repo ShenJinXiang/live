@@ -140,3 +140,80 @@ objReadLine.on('close', function(){
 	console.log("end...........");
 });
 ```
+
+## os
+操作系统 提供一些基本的操作系统相关函数。 
+### os.tmpdir()
+返回操作系统默认的临时文件目录 
+```javascript
+var os = require('os');
+
+var result = os.tmpdir();
+console.log(result);
+```
+
+### os.endianness()
+返回 CPU 的字节序，可能的是 "BE" 或 "LE"。 
+```javascript
+var os = require('os');
+
+var result = os.endianness();
+console.log(result);
+```
+
+### os.hostname()
+返回操作系统的主机名。 
+```javascript
+var os = require('os');
+
+var result = os.hostname();
+console.log(result);
+```
+
+### os.type()
+返回操作系统名称。
+```javascript
+var os = require('os');
+
+var result = os.type();
+console.log(result);
+```
+
+### os.platform()
+返回操作系统平台
+```javascript
+var os = require('os');
+
+var result = os.platform();
+console.log(result);
+// win 32
+```
+
+### os.arch()
+返回操作系统 CPU 架构，可能的值有 "x64"、"arm" 和 "ia32"。 
+```javascript
+var os = require('os');
+
+var result = os.arch();
+console.log(result);
+// ia32
+```
+
+### os.release()
+返回操作系统的发行版本。 
+```javascript
+var os = require('os');
+
+var result = os.release();
+console.log(result);
+// 10.0.10586
+```
+
+### os.uptime()
+返回操作系统运行的时间，以秒为单位。 
+```javascript
+var os = require('os');
+
+var result = os.uptime();
+console.log(result);
+```
