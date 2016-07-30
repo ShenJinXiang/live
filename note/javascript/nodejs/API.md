@@ -327,3 +327,27 @@ EventEmitter 会在添加 listener 时触发 'newListener' 事件，删除 liste
 * 返回指定事件的 listener 数组
 
 > emitter.listeners(event)
+
+
+## Path
+包含一套用于处理和转换文件路径的工具集。几乎所有的方法只做字符串变换， 不会调用文件系统检查路径是否有效
+> require('path')
+
+### path.normalize(p)
+规范化字符串路径,多个斜杠会被替换成一个； 路径末尾的斜杠会被保留； Windows 系统上, 会使用反斜杠
+
+### path.join
+> path.join([path1], [path2], [...])
+
+连接所有参数, 并且规范化得到的路径.
+
+### path.resolve
+> path.resolve([from ...], to)
+
+把to 解析为一个绝对路径。
+如果to不是一个相对于from 参数的绝对路径，to会被添加到from的右边，直到找出一个绝对路径为止。如果使用from路径且仍没有找到绝对路径时，使用当时路径作为目录。返回的结果已经规范化，得到的路径会去掉结尾的斜杠，除非得到的当前路径为root目录。非字符串参数将被忽略
+
+### path.isAbsolute
+> path.isAbsolute(path)
+
+判定path是否为绝对路径。一个绝对路径总是指向一个相同的位置，无论当前工作目录是在哪里。
