@@ -351,3 +351,18 @@ EventEmitter 会在添加 listener 时触发 'newListener' 事件，删除 liste
 > path.isAbsolute(path)
 
 判定path是否为绝对路径。一个绝对路径总是指向一个相同的位置，无论当前工作目录是在哪里。
+
+### path.relative
+> path.relative(from, to)
+
+破解从from到to的相对路径。
+
+### path.dirname
+> path.dirname(p)
+
+返回路径中文件夹的名称. 类似于Unix的dirname 命令.
+
+### path.basename
+> path.basename(p, [ext])
+
+返回路径中的最后哦一部分. 类似于Unix 的 basename 命令.
