@@ -366,3 +366,18 @@ EventEmitter 会在添加 listener 时触发 'newListener' 事件，删除 liste
 > path.basename(p, [ext])
 
 返回路径中的最后哦一部分. 类似于Unix 的 basename 命令.
+
+### path.extname
+> path.extname(p)
+
+返回路径中文件的扩展名, 在从最后一部分中的最后一个'.'到字符串的末尾。 如果在路径的最后一部分没有'.'，或者第一个字符是'.'，就返回一个 空字符串
+
+### path.sep
+> path.sep
+
+特定平台的文件分隔工具. '\\' 或者 '/'.
+
+### path.delimiter
+> path.delimiter
+
+特定平台的路径分隔符, ; 或者 ':'.
