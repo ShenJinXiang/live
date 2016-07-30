@@ -287,3 +287,43 @@ obj.uptime = os.uptime();
 
 console.log(obj);
 ```
+
+## Events
+
+> require("events");
+
+为了处理发出的事件，我们将函数 (Function) 关联到对象上。 我们把这些函数称为 监听器 (listeners)。 在监听函数中 this 指向当前监听函数所关联的 EventEmitter 对象。
+
+当 EventEmitter 实例遇到错误，通常的处理方法是产生一个 'error' 事件，node 对错误事件做特殊处理。 如果程序没有监听错误事件，程序会按照默认行为在打印出 栈追踪信息 (stack trace) 后退出。
+
+EventEmitter 会在添加 listener 时触发 'newListener' 事件，删除 listener 时触发 'removeListener' 事件
+
+### 添加事件
+
+* 添加一个 listener 至特定事件的 listener 数组尾部。
+
+> emitter.addListener(event, listener)
+> emitter.on(event, listener)
+
+返回 emitter，方便链式调用。
+
+
+* 添加一个 一次性 listener，这个 listener 只会在下一次事件发生时被触发一次，触发完成后就被删除。
+
+> emitter.once(event, listener)
+
+### 删除listener
+
+* 从一个事件的 listener 数组中删除一个 listener 注意：此操作会改变 listener 数组中在当前 listener 后的listener 的位置下标
+
+> emitter.removeListener(event, listener)
+
+* 删除所有 listener，或者删除某些事件 (event) 的 listener
+
+> emitter.removeAllListeners([event])
+
+### 获取listener
+
+* 返回指定事件的 listener 数组
+
+> emitter.listeners(event)
