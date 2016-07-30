@@ -217,3 +217,51 @@ var os = require('os');
 var result = os.uptime();
 console.log(result);
 ```
+
+### os.loadavg()
+返回一个包含 1、5、15 分钟平均负载的数组。 
+```javascript
+var os = require('os');
+
+var result = os.loadavg();
+console.log(result);
+```
+
+### os.totalmem()
+返回系统内存总量，单位为字节。 
+```javascript
+var os = require('os');
+
+var result = os.totalmem();
+console.log(result);
+```
+
+### os.freemem()
+返回操作系统空闲内存量，单位是字节。 
+```javascript
+var os = require('os');
+
+var result = os.freemem();
+console.log(result);
+```
+
+### os.cpus()
+返回一个对象数组，包含所安装的每个 CPU/内核的信息：型号、速度（单位 MHz）、时间（一个包含 user、nice、sys、idle 和 irq 所使用 CPU/内核毫秒数的对象）。 
+```javascript
+var os = require('os');
+
+var result = os.cpus();
+console.log(result);
+```
+
+### os.networkInterfaces()
+获取网络接口的一个列表信息
+```javascript
+var os = require('os');
+
+var result = os.networkInterfaces();
+console.log(result);
+```
+
+### os.EOL
+一个定义了操作系统的一行结束的标识的常量。 
