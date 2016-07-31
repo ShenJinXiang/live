@@ -36,3 +36,18 @@ RFC822文档规定了如何编写一封简单邮件(纯文本邮件)，一封简
 ### MIME协议
 MIME协议是对RFC822文档的升级和补充，它描述了如何生成一封复杂邮件。通常我们把MIME协议描述的邮件称之为MIME邮件，MIME协议描述的数据称之为MIME消息。
 对于一封复杂邮件，如果包含了多个不同的数据，MIME协议规定了要使用分隔线对多段数据进行分隔，并使用Content-Type头字段对数据的类型、以及多个数据之间的关系进行描述。
+
+#### Content-type
+* 数据类型 
+
+以“主类型/子类型”的形式出现，主类型有text、image、audio、video、application、message等，分别表示文本、图片、音频、视频、应用程序、组合结构、消息等。每个主类型下面都有多个子类型，例如text主类型包含plain、html、xml、css等子类型。
+
+* 数据的关系
+
+1. multipart/mixed
+2. multipart/related
+3. multipart/alternative
+
+#### Content-Disposition头字段
+Content-Disposition头字段用于指定邮件阅读程序处理数据内容的方式，有inline和attachment两种标准方式，inline表示直接处理，而attachment表示当作附件处理。如果将Content-Disposition设置为attachment，在其后还可以指定filename属性，如下所示： 	Content-Disposition: attachment; filename=“1.bmp” 上面的MIME头字段表示MIME消息体的内容为邮件附件，附件名“1.bmp”
+
