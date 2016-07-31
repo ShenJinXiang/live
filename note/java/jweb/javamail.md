@@ -51,3 +51,12 @@ MIME协议是对RFC822文档的升级和补充，它描述了如何生成一封�
 #### Content-Disposition头字段
 Content-Disposition头字段用于指定邮件阅读程序处理数据内容的方式，有inline和attachment两种标准方式，inline表示直接处理，而attachment表示当作附件处理。如果将Content-Disposition设置为attachment，在其后还可以指定filename属性，如下所示： 	Content-Disposition: attachment; filename=“1.bmp” 上面的MIME头字段表示MIME消息体的内容为邮件附件，附件名“1.bmp”
 
+#### Content-ID头字段
+Content-ID头字段用于为“multipart/related”组合消息中的内嵌资源指定一个唯一标识号，在HTML格式的正文中可以使用这个唯一标识号来引用该内嵌资源。例如，假设将一个表示内嵌图片的MIME消息的Content-ID头字段设置为如下形式：
+Content-ID: it315logo_gif 
+那么，在HTML正文中就需要使用如下HTML语句来引用该图片资源：
+```html
+<img src="cid:it315logo_gif">
+```
+注意，在引用Content-ID头字段标识的内嵌资源时，要在资源的唯一标识号前面加上“cid:”，以说明要采用唯一标识号对资源进行引用。
+
