@@ -381,3 +381,50 @@ EventEmitter 会在添加 listener 时触发 'newListener' 事件，删除 liste
 > path.delimiter
 
 特定平台的路径分隔符, ; 或者 ':'.
+
+## Query String
+提供一些处理 query string 的工具
+### stringify
+> querystring.stringify(obj, [sep], [eq])
+
+序列化一个对象到一个 query string。可以选择是否覆盖默认的分割符（'&'）和分配符（'='）。
+
+```javascript
+var qs = require('querystring');
+var o = {
+    'x' : 1,
+    'y' : 2,
+    'z' : 3
+};
+var ostr = qs.stringify(o);
+
+console.log(o);
+console.log(ostr);
+
+var ostr1 = qs.stringify(o, ', ', ' : ');
+console.log(ostr1);
+```
+
+### parse
+> querystring.parse(str, [sep], [eq], [options])
+
+将一个 query string 反序列化为一个对象。可以选择是否覆盖默认的分割符（'&'）和分配符（'='）。
+
+```javascript
+var qs = require('querystring');
+ 
+var str = 'x: 1, y: 2, z: 3';
+var o = qs.parse(str, ', ', ': ');
+console.log(str);
+console.log(o);
+```
+
+### escape
+> querystring.escape
+
+供 querystring.stringify 使用的转意函数，在必要的时候可被重写。
+
+### unescape
+> querystring.unescape
+
+供 querystring.parse 使用的反转意函数，在必要的时候可被重写。se
