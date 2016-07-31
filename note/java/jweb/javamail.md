@@ -60,3 +60,21 @@ Content-ID: it315logo_gif 
 ```
 注意，在引用Content-ID头字段标识的内嵌资源时，要在资源的唯一标识号前面加上“cid:”，以说明要采用唯一标识号对资源进行引用。
 
+## 相关的API
+* MimeMessage类表示整封邮件。
+* MimeBodyPart类表示邮件的一个MIME消息。
+* MimeMultipart类表示一个由多个MIME消息组合成的组合MIME消息。 
+
+JavaMail API按其功能划分通常可分为如下三大类：
+1. 创建和解析邮件内容的API：Message类是创建和解析邮件的核心API，它的实例对象代表一封电子邮件。
+2. 发送邮件的API：Transport类是发送邮件的核心API类，它的实例对象代表实现了某个邮件发送协议的邮件发送对象，例如SMTP协议。
+3. 接收邮件的API：Store类是接收邮件的核心API类，它的实例对象代表实现了某个邮件接收协议的邮件接收对象，例如POP3协议。
+
+Session类
+Session类用于定义整个应用程序所需的环境信息，以及收集客户端与邮件服务器建立网络连接的会话信息，如邮件服务器的主机名、端口号、采用的邮件发送和接收协议等。Session对象根据这些信息构建用于邮件收发的Transport和Store对象，以及为客户端创建Message对象时提供信息支持。
+
+使用JavaMail发送一封简单的邮件
+
+1. 创建包含邮件服务器的网络连接信息的Session对象。
+2. 创建代表邮件内容的Message对象。 
+3. 创建Transport对象、连接服务器、发送Message、关闭连接。
