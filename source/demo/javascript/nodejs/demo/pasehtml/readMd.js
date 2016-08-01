@@ -5,7 +5,7 @@ function readMd(file, callback) {
 	var data = [];
 
 	var rl = readline.createInterface({
-		input : fs.createReadStream(file);
+		input : fs.createReadStream(file)
 	});
 
 	rl.on('line', function(line){
