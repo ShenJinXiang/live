@@ -1,5 +1,5 @@
 var flag = true;
-var NUM = 30;
+var NUM = 50;
 var index = 1;
 setInterval(function(){
 	var str1 = '';
@@ -22,4 +22,4 @@ setInterval(function(){
 	} else {
 		index--;
 	}
-}, 100 * 1);
+}, 50 * 1);
