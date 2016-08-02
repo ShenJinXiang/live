@@ -10,9 +10,11 @@ module.exports = {
 		'b' : /^[\s]*[*]{2}[.]+[*]{2}[\s]*$/,
 		'ul' : /^[\s]*[*]{1}/,
 		'ol' : /^[\s]*[\d]{1}[.]{1}/,
-		'code' : /^[\s]*[`]{3}/,
-		'space' : /^[\s]+|[\s]+$/g
+		'code' : /^[\s]*[`]{3}/
 	},
 	'language' : ['java', 'c', 'bash', 'xml', 'html', 'javascript', 'css', 'python', 'c++', 'sql'],
-	'mdStatus' : ['default', 'code', 'ol', 'ul']
+	'mdStatus' : {'default' : 0, 'code' : 1, 'ol' : 2, 'ul' : 3},
+	'util' : {
+		'space' : /^[\s]+|[\s]+$/g
+	}
 };
