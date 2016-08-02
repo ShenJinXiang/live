@@ -1,0 +1,18 @@
+算法实现
+jdk
+Commons Codec
+Bouncy Castle
+
+jdk fangshi
+
+```java
+public static void jdkBase64(String str) {
+	BASE64Encoder encoder = new BASE64Encoder();
+	String result = encoder.encode(str.getBytes());
+	System.out.println(result);
+
+	BASE64Decoder decoder = new BASE64Decoder();
+	byte[] bs = decoder.decodeBuffer(result);
+	System.out.println(new String(bs));
+}
+```
