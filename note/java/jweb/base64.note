@@ -15,4 +15,25 @@ public static void jdkBase64(String str) {
 	byte[] bs = decoder.decodeBuffer(result);
 	System.out.println(new String(bs));
 }
+
+commons codec
+```java
+public static void commonsCodesBase64(String src) {
+	byte[] encodeBytes = Base64.encodeBase64(src.getBytes());
+	System.out.println(new String(encodeBytes));
+
+	byte[] decodeBytes = Base64.decodebase64(encodeBytes);
+	System.out.println(new String(decodeBytes));
+}
+```
+
+bouncy castle
+```java
+public static void bouncyCastleBase64(String src) {
+	byte[] encodeBytes = Base64.encode(src.getBytes());
+	System.out.println(new String(encodeBytes));
+
+	byte[] decodeBytes = Base64.decode(encodeBytes);
+	System.out.println(new String(decodeBytes));
+}
 ```
