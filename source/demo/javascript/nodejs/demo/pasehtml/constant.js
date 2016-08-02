@@ -13,5 +13,6 @@ module.exports = {
 		'code' : /^[\s]*[`]{3}/,
 		'space' : /^[\s]+|[\s]+$/g
 	},
-	'language' : ['java', 'c', 'bash', 'xml', 'html', 'javascript', 'css', 'python', 'c++', 'sql']
+	'language' : ['java', 'c', 'bash', 'xml', 'html', 'javascript', 'css', 'python', 'c++', 'sql'],
+	'mdStatus' : ['default', 'code', 'ol', 'ul']
 };
