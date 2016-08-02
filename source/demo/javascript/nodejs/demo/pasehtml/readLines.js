@@ -1,7 +1,7 @@
 var fs = require('fs');
 var readline = require('readline');
 
-function readMd(file, callback) {
+function readLines(file, callback) {
 	var data = [];
 
 	var rl = readline.createInterface({
@@ -17,4 +17,4 @@ function readMd(file, callback) {
 	});
 }
 
-module.exports = readMd;
+module.exports = readLines;
