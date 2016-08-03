@@ -48,7 +48,7 @@ function ul(line) {
 		condeStatus = constant.mdStatus['ul'];
 		return '<ul>' + os.EOL + 
 			'<li>' + line.substr(1) + '</li>' + os.EOL
-	} else (codeStatus == constant.mdStatus['ul']) {
+	} else if (codeStatus == constant.mdStatus['ul']) {
 		return '<li>' + line.substr(1) + '</li>' + os.EOL;
 	}
 }
@@ -85,10 +85,12 @@ function parse(line) {
 	if(codeStatus == constant.mdStatus['default']) {
 		for(var r in regs) {
 			if(regs[r].test(line)) {
-				return r(line);
+				return eval(r + '("' + line + '")');
 			}
 		}
 	} else {
 		return line + os.EOL;
 	}
 }
+
+module.exports = parse;
