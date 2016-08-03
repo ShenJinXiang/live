@@ -76,3 +76,19 @@ function emptyLine(line) {
 	codeStatus = constant.mdStatus['default'];
 	return '<br>' + os.EOL;
 }
+
+function parse(line) {
+	var regs = constant.regular;
+	if(line.replace(space, '') == '') {
+		return emptyLine(line);
+	}
+	if(codeStatus == constant.mdStatus['default']) {
+		for(var r in regs) {
+			if(regs[r].test(line)) {
+				return r(line);
+			}
+		}
+	} else {
+		return line + os.EOL;
+	}
+}
