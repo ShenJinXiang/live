@@ -97,7 +97,7 @@ function inherit(p) {
 ### 检测属性
 in运算符、hasOwnProperty()、propertyIsEnumerable()或者属性查询等方式检测属性。
 
-1. in 运算符
+#### in 运算符
 左侧属性名，右侧对象，如果对象的自有属性或继承属性中包含则返回true
 ```javascript
 // in 运算符
@@ -106,7 +106,7 @@ console.log('"x" in o : ', ('x' in o));  // "x" in o :  true
 console.log('"y" in o : ', ('y' in o));  // "y" in o :  false
 console.log('"toString" in o : ', ('toString' in o)); // "toString" in o :  true
 ```
-2. hasOwnProperty()
+#### hasOwnProperty()
 对象的hasOwnProperty()方法用来检测给定的名字是否是对象的自有属性，对于继承的属性将返回false
 ```javascript
 var o = {x: 1};
@@ -115,7 +115,7 @@ console.log(o.hasOwnProperty('y')); // false
 console.log(o.hasOwnProperty('toString')); // false
 ```
 
-3. propertyIsEnumerable()
+#### propertyIsEnumerable()
 propertyIsEnumerable()是hasOwnProperty的增强版，只有检测到是自有属性且这个自由属性的可枚举性为true才返回true。
 ```javascript
 o = Object.create({y: 2});
@@ -124,3 +124,13 @@ console.log(o.propertyIsEnumerable('x')); // true
 console.log(o.propertyIsEnumerable('y')); // false
 console.log(Object.prototype.propertyIsEnumerable('toString')); // false
 ```
+
+### 枚举属性
+for/in 循环可以遍历对象中所有可枚举的属性(包括自有属性和继承属性)
+```javascript
+var o = {x: 1, y: 2, z: 3};
+for var p in o {
+    console.log(p);
+}
+```
+
