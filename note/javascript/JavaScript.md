@@ -134,3 +134,18 @@ for var p in o {
 }
 ```
 
+* 跳过继承的属性
+
+```javascript
+for var p in o {
+    if(!o.hasOwnProperty(p)) continue;
+}
+```
+
+* 跳过方法(属性的值是方法)
+
+```javascript
+for var p in o {
+    if(typeof o[p] === 'function') continue;
+}
+```
