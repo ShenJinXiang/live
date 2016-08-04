@@ -1,23 +1,11 @@
 var constant = require('./constant');
+
 function parse(data, callback) {
-	var result = [];
-	var codeStatus = 'default';
+	var outData = [];
 	for(var i = 0; i < data.length; i++) {
-		result.push(parseLine(data[i]));
+		outData.push(data[i]);
 	}
-
-	function parseLine(line) {
-		var regs = constant.regular;
-		var reg_result = '';
-		if(codeStatus == 'default') {
-			for(var r in regs) {
-				if(regs[r].test(line)) {
-					reg_result = r;
-					break;
-				}
-			}
-
-		}
-	}
-
+	callback(outData);
 }
+
+module.exports = parse;
