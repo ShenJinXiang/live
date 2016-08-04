@@ -116,3 +116,11 @@ console.log(o.hasOwnProperty('toString')); // false
 ```
 
 3. propertyIsEnumerable()
+propertyIsEnumerable()是hasOwnProperty的增强版，只有检测到是自有属性且这个自由属性的可枚举性为true才返回true。
+```javascript
+o = Object.create({y: 2});
+o.x = 1;
+console.log(o.propertyIsEnumerable('x')); // true
+console.log(o.propertyIsEnumerable('y')); // false
+console.log(Object.prototype.propertyIsEnumerable('toString')); // false
+```

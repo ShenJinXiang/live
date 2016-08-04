@@ -10,3 +10,12 @@ console.log("-----------------------");
 console.log(o.hasOwnProperty('x'));
 console.log(o.hasOwnProperty('y'));
 console.log(o.hasOwnProperty('toString'));
+
+console.log("-----------------------");
+
+// propertyIsEnumerable()
+o = Object.create({y: 2});
+o.x = 1;
+console.log(o.propertyIsEnumerable('x'));
+console.log(o.propertyIsEnumerable('y'));
+console.log(Object.prototype.propertyIsEnumerable('toString'));
