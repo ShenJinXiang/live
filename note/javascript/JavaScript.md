@@ -34,3 +34,45 @@ var a = new Array(); // 创建一个空数组，和[]一样
 var d = new Data(); // 创建一个表示当前时间的Date对象
 var r = new RegExp('ja'); // 创建一个可以进行模式匹配的RegExp对象
 ```
+除了内置构造函数，也可以用自定义构造函数来初始化新对象
+
+#### 原型
+每一个JavaScript对象（null除外）都和另一个对象相关联。“另一个”对象就是原型，每个对象都从原型继承属性。
+
+所有通过对象直接量创建的对象都具有同一个原型对象，并可以通过JavaScript代码Object.prototype获得对原型对象的引用。
+通过关键字new和构造函数调用创建的对象的原型就是构造函数的prototype属性的值。如：
+* new Object()创建的对象也继承自Object.prototype
+* new Array()创建的对象的原型就是Array.prototype
+* new Date()创建的对象的原型就是Date.prototype.
+
+Object.prototype没有原型对象
+
+#### Object.create()
+用于创建一个新对象，第一个参数这个对象的原型。
+```javascript
+var o1 = Object.create({x: 1, y: 2}); // o1继承了属性 x和y
+```
+创建没有原型的新对象：
+```javascript
+var o2 = Object.create(null); // o2 不继承任何属性和方法
+```
+
+创建一个普通的空对象：
+```javascript
+var o3 = Object.create(Object.prototype); // o3 和{} 和 new Object()一样
+```
+
+> 通过原型继承创建一个新对象
+
+```javascript
+function inherit(p) {
+    if(p == null) throw TypeError();
+    if(Object.create)
+        return Object.create(p);
+    var t = typeof p;
+    if(t !== 'object' && t !== 'function' ) throw TypeError();
+    function f() {};
+    f.prototype = p;
+    return new f();
+}
+```
