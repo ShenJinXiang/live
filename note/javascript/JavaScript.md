@@ -297,3 +297,22 @@ classof(new Date()) :  Date
 classof(new f()) :  Object
 */
 ```
+
+#### 可扩展性
+对象的可扩展性用来表示是否可以给对象添加新属性
+将对象作为参数传给Object.isExtensiable()来判断是否可扩展
+
+**Object.preventExtensions()**
+1. 将对象作为参数传给Object.preventExtensions()设置不可扩展 
+2. 一旦设置了不可扩展，就无法转成可扩展了
+3. preventExtensions只会影响对象本身，如果给对象的原型增加属性，它也会继承这个属性
+
+**Object.seal()**
+除了能将对象设置为不可扩展的，还可以将对象的所有自有属性设置成不可配置的。即不能添加新属性，现有属性也不可删除和配置，不过对已又的可写属性，依然可以设置。
+
+可以用Object.isSealed()来检测对象是否封闭
+
+**Object.freeze()**
+Object.freeze() "冻结对象"，将对象设置为不可扩展和不可配置，将所有自由属性设置成只读。
+
+使用Object.isFrozen()检测是否冻结
