@@ -164,3 +164,38 @@ for var p in o {
 
 存取器属性不具有可写性，如果同时具有getter和setter方法，那么这个属性是一个读/写属性，如果只有getter那么是个只读属性，如果只有setter方法，那么是一个只写属性。读取只写属性总是返回undefined。
 
+```javascript
+var obj = {
+	val: 100,
+	get prop() {
+		return this.val;
+	},
+	set prop(x) {
+		this.val = x;
+	}
+};
+console.log(obj.prop); // 100
+obj.prop = 11;
+console.log(obj.prop); // 11
+```
+
+### 属性的特性
+一个属性包含一个名字和四个特性，分别是：值(value)、可写性(writable)、可枚举性(enumerable)和可配置性(configurable)
+
+存取器属性不具有值特性和可写性，它们的可写性是由setter方法存在与否决定的
+
+#### Object.getOwnPropertyDescriptor()
+通过调用Object.getOwnPropertyDescriptor()可以获得某个对象特定属性的属性描述符
+```javascript
+var o = {x: 1};
+var desc = Object.getOwnPropertyDescriptor(o, 'x');
+console.log(desc);
+// { value: 1, writable: true, enumerable: true, configurable: true }
+```
+
+对于继承属性和不存在的属性则返回undefined
+```
+var o = {x: 1};
+var desc1 = Object.getOwnPropertyDescriptor(o, 'y'); // undefined
+var desc2 = Object.getOwnPropertyDescriptor(o, 'toString'); // undefined
+```
