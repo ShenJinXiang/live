@@ -248,3 +248,14 @@ console.log(o === p) // true
 每个对象都有与相关的原型(prototype)、 类(class)和可扩展性(extensible attribute)
 
 #### 原型属性
+将对象作为参数传递给Object.getPrototypeOf()可以查询它的原型。
+要检测一个对象是否是另外一个对象的原型（或处于原型链中），可以使用isPrototypeOf()方法
+```javascript
+var p = {x: 1};
+var o = Object.create(p);
+console.log(Object.getPrototypeOf(o) == p); // true
+console.log(p.isPrototypeOf(o)); // true
+console.log(Object.prototype.isPrototypeOf(o)); // true
+```
+
+#### 类属性
