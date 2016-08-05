@@ -126,6 +126,7 @@ console.log(Object.prototype.propertyIsEnumerable('toString')); // false
 ```
 
 ### 枚举属性
+#### for/in循环
 for/in 循环可以遍历对象中所有可枚举的属性(包括自有属性和继承属性)
 ```javascript
 var o = {x: 1, y: 2, z: 3};
@@ -149,3 +150,11 @@ for var p in o {
     if(typeof o[p] === 'function') continue;
 }
 ```
+
+#### Object.keys()
+返回一个数组，这个数组由对象中可枚举的自有属性的名称组成
+
+#### Object.getOwnPropertyNames()
+返回对象的所有自有属性的名称，而不仅仅是可枚举的属性
+
+### 属性getter和setter
