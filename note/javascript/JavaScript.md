@@ -199,3 +199,19 @@ var o = {x: 1};
 var desc1 = Object.getOwnPropertyDescriptor(o, 'y'); // undefined
 var desc2 = Object.getOwnPropertyDescriptor(o, 'toString'); // undefined
 ```
+
+#### Object.defineProperty()
+
+```javascript
+var o = {};
+Object.defineProperty(o, 'x', {
+    value: 1,
+    writable: true,
+    enumerable: false,
+    configurable: true
+});
+
+console.log(o); // {}
+console.log(o.x); // 1
+console.log('x' in o); // true
+```
