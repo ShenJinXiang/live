@@ -259,3 +259,41 @@ console.log(Object.prototype.isPrototypeOf(o)); // true
 ```
 
 #### 类属性
+对象的类属性是一个字符串，表示对象的类型信息。
+
+默认的toString()方法返回的格式为：
+> [object class]
+
+```javascript
+function classof(o) {
+    if (o === null) return 'Null';
+    if (o === undefined) return 'Undefined';
+    return Object.prototype.toString.call(o).slice(8, -1);
+}
+
+console.log('classof(undefined) : ', classof(undefined));
+console.log('classof(null) : ', classof(null));
+console.log('classof(1) : ', classof(1));
+console.log('classof("") : ', classof(""));
+console.log('classof(false) : ', classof(false));
+console.log('classof({}) : ', classof({}));
+console.log('classof([]) : ', classof([]));
+console.log('classof(/./) : ', classof(/./));
+console.log('classof(new Date()) : ', classof(new Date()));
+function f() {};
+console.log('classof(new f()) : ', classof(new f()));
+
+/**
+运行结果
+classof(undefined) :  Undefined
+classof(null) :  Null
+classof(1) :  Number
+classof("") :  String
+classof(false) :  Boolean
+classof({}) :  Object
+classof([]) :  Array
+classof(/./) :  RegExp
+classof(new Date()) :  Date
+classof(new f()) :  Object
+*/
+```
