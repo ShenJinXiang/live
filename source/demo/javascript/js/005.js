@@ -1,14 +1,12 @@
-var o = {
-	_x : 10,
-	get sx() {
-		return this._x;
+var obj = {
+	val: 100,
+	get prop() {
+		return this.val;
 	},
-	set sx(x) {
-		this._x = x;
+	set prop(x) {
+		this.val = x;
 	}
 };
-
-console.log(o.sx());
-o.sx(11);
-console.log(o.sx());
-
+console.log(obj.prop);
+obj.prop = 11;
+console.log(obj.prop);
