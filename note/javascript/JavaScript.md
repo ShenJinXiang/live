@@ -215,3 +215,36 @@ console.log(o); // {}
 console.log(o.x); // 1
 console.log('x' in o); // true
 ```
+
+#### Object.defineProperties()
+同时修改或创建多个属性，第一个参数是要修改的对象，第二个参数是个映射表，包含要修改或新增的属性以及描述符。
+```javascript
+var o = {};
+var p = Object.defineProperties(o, {
+    x: {value: 1, writable: true, enumerable: true, configurable: true},
+    y: {value: 2, writable: true, enumerable: true, configurable: true},
+    r: {
+        get: function() {
+            return Math.sqrt(this.x * this.x + this.y * this.y);
+        },
+        enumerable: true,
+        configurable: true
+    }
+});
+
+console.log(o); // { x: 1, y: 2, r: [Getter] }
+console.log(p); // { x: 1, y: 2, r: [Getter] }
+console.log(o === p) // true
+```
+
+* 如果对象是不可扩展的，则可以编辑已有的自有属性，但不能添加新属性
+* 如果属性是不可配置的，则不能修改它的可配置性和可枚举性
+* 如果存取器属性是不可配置的，则不可以改变其getter和setter方法，也不能将它转换为数据属性
+* 如果数据属性是不可配置的，则不能将其转换为存取器属性
+* 如果数据属性是不可配置的，则不能将它的可写性从false转成true，但可以从true修改成false
+* 如果数据属性是不可配置也不可写的，则不能修改它的值。然后可配置但不可写属性的值是可以修改的，（实际是标记为可写的，然后修改它的值，最后转为不可写的）
+
+### 对象的三个属性
+每个对象都有与相关的原型(prototype)、 类(class)和可扩展性(extensible attribute)
+
+#### 原型属性
