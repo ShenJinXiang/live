@@ -158,3 +158,9 @@ for var p in o {
 返回对象的所有自有属性的名称，而不仅仅是可枚举的属性
 
 ### 属性getter和setter
+由getter和setter定义的属性称做“存取器属性”
+
+当程序查询存取器属性的值时，JavaScript调用getter方法，这个返回的返回值就是属性存取表达式的值。当程序设置一个存取器属性的值时，JavaScript调用setter方法，设置属性值，可以忽略setter方法的返回值。
+
+存取器属性不具有可写性，如果同时具有getter和setter方法，那么这个属性是一个读/写属性，如果只有getter那么是个只读属性，如果只有setter方法，那么是一个只写属性。读取只写属性总是返回undefined。
+
