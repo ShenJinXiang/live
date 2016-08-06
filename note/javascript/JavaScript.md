@@ -332,3 +332,18 @@ console.log(o); // { x: 1, y: { z: [ false, null, '' ] } }
 console.log(s); // {"x":1,"y":{"z":[false,null,""]}}
 console.log(p); // { x: 1, y: { z: [ false, null, '' ] } }
 ```
+
+### 对象方法
+#### toString()方法
+toString()方法没有参数，返回一个表示调用这个方法的对象值的字符串。
+```javascript
+var s = {x: 1, y: 1}.toString();    // [object Object]
+```
+#### toLocaleString() 方法
+返回表示这个对象的本地化字符串
+Date和Number类对toLocaleString()方法做了定制
+
+#### toJSON() 方法
+Object.prototype实际上没有定义toJSON()方法，但对于需要执行序列化的对象来说，JSON.stringify()方法会调用toJSON()方法。
+
+#### valueOf() 方法
