@@ -529,3 +529,39 @@ var arr1 = arr.reverse();
 console.log(arr); // [ 5, 4, 3, 2, 1 ]
 console.log(arr1); // [ 5, 4, 3, 2, 1 ]
 ```
+
+#### sort() 方法
+Array.sort() 方法将数组中的元素排序并返回排序后的数组。当不带参数调用sort()时，数组元素以字母表顺序排序。
+
+如果数组中包含undefined元素，它们会被排到数组的尾部
+
+为了按照其他方式而非字母表顺序进行数组排序，必须给sort() 传递一个比较函数，该函数决定了它的两个参数在排好序的数组中的先后顺序，假设第一个参数应该在后，函数应该返回一个大于0的数值
+
+按照数值大小排序：
+```javascript
+var arr = [1111, 222, 33, 4];
+arr.sort();
+console.log(arr); // [ 1111, 222, 33, 4 ]
+arr.sort(function(x, y) {
+	return x - y;
+});
+console.log(arr); // [ 4, 33, 222, 1111 ]
+arr.sort(function(x, y) {
+	return y - x;
+});
+console.log(arr); // [ 1111, 222, 33, 4 ]
+```
+忽略大小写排序
+```javascript
+var arr = ['ant', 'Bug', 'cat', 'Dog'];
+arr.sort();
+console.log(arr); // [ 'Bug', 'Dog', 'ant', 'cat' ]
+arr.sort(function(s, t){
+	var s1 = s.toLowerCase();
+	var t1 = t.toLowerCase();
+	if(s1 < t1) return -1;
+	if(s1 > t1) return 1;
+	return 0;
+});
+console.log(arr); // [ 'ant', 'Bug', 'cat', 'Dog' ]
+```
