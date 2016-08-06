@@ -405,3 +405,62 @@ a.length = 3; // 现在a为[1, 2, 3]
 a.length = 0; // 删除所有元素，a 为 []
 a.length = 5; // 长度为5，但是没有元素，就像new Array(5)
 ```
+
+### 数组元素的添加和删除
+####为新索引赋值
+```javascript
+a = [];
+a[0] = 'zero';
+a[1] = 'one';
+```
+
+#### push() 方法
+可以使用push()方法在数组末尾增加一个或多个元素
+```javascript
+var a = []; 
+a.push('zero');
+console.log(a); // [ 'zero' ]
+a.push('one', 'two');
+console.log(a); // [ 'zero', 'one', 'two' ]
+```
+
+#### unshift() 方法
+在数组的首部插入一个元素，并将其他元素一次移到更高的索引处
+```javascript
+var b = [];
+b.unshift('aa');
+console.log(b); // [ 'aa' ]
+b.unshift('bb', 'cc');
+console.log(b); // [ 'bb', 'cc', 'aa' ]
+```
+
+#### delete运算符
+可以像删除对象属性一样使用delete运算符来删除数组元素
+```javascript
+a = [1, 2, 3, 4];
+delete a[1];
+console.log(a); // [ 1, , 3, 4 ]
+console.log(1 in a); // false
+console.log(a.length); // 4 
+```
+
+* delete操作并不影响数组长度
+* 使用delete删除一个元素，数组变成稀疏数组
+
+#### pop() 方法
+使数组长度减少1 并返回被删除的元素的值
+```javascript
+var a = [1, 2, 3, 4, 5];
+console.log(a.pop()); // 5
+console.log(a); // [ 1, 2, 3, 4 ]
+console.log(a.length); // 4
+```
+
+#### shift() 方法
+从数组头部删除一个元素，和delete不同的是shift() 方法将所有元素下移至当前索引低1的地方
+```javascript
+var a = [1, 2, 3, 4, 5];
+console.log(a.shift()); // 1
+console.log(a); // [ 2, 3, 4, 5 ]
+console.log(a.length); // 4
+```
