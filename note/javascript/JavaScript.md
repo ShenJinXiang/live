@@ -521,3 +521,11 @@ console.log(arr1.join('')); // -------------------
 
 Array.join()方法是String.split()方法的逆向操作，String.split()方法是将字符串分隔成若干块来创建一个数组
 
+#### reverse() 方法
+Array.reverse() 方法将数组中的元素颠倒顺序，返回逆序的数组。
+```javascript
+var arr = [1, 2, 3, 4, 5];
+var arr1 = arr.reverse();
+console.log(arr); // [ 5, 4, 3, 2, 1 ]
+console.log(arr1); // [ 5, 4, 3, 2, 1 ]
+```
