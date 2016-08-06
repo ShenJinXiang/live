@@ -316,3 +316,19 @@ classof(new f()) :  Object
 Object.freeze() "冻结对象"，将对象设置为不可扩展和不可配置，将所有自由属性设置成只读。
 
 使用Object.isFrozen()检测是否冻结
+
+### 序列化对象
+对象序列化(serialization)是指将对象的状态转换为字符串，也可以将字符串还原为对象。
+
+JSON.stringify() 和JSON.parse()序列化和还原JavaScript对象。
+
+> JSON JavaScript Object Notation JavaScript对象表示法
+
+```javascript
+var o = {x: 1, y: {z: [false, null, '']}};
+var s = JSON.stringify(o);
+var p = JSON.parse(s);
+console.log(o); // { x: 1, y: { z: [ false, null, '' ] } }
+console.log(s); // {"x":1,"y":{"z":[false,null,""]}}
+console.log(p); // { x: 1, y: { z: [ false, null, '' ] } }
+```
