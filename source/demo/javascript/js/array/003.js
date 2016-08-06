@@ -1,0 +1,11 @@
+var a = []; 
+a.push('zero');
+console.log(a);
+a.push('one', 'two');
+console.log(a);
+console.log("------------------------------");
+var b = [];
+b.unshift('aa');
+console.log(b);
+b.unshift('bb', 'cc');
+console.log(b);
