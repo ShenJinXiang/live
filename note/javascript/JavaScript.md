@@ -504,3 +504,20 @@ for(var p in arr) {
     // 循环体
 }
 ```
+
+### 数组方法
+#### join() 方法
+Array.join()将数组中所有元素都转化为字符串并连接在一起，返回最后生成的字符串
+
+可以指定一个可选的字符串在生成的字符串中来分隔数组的各个元素，如果不指定分隔符，默认使用逗号。
+
+```javascript
+var arr = [1, 2, 3, 4, 5];
+console.log(arr.join()); // 1,2,3,4,5
+console.log(arr.join('-')); // 1-2-3-4-5
+var arr1 = new Array(20);
+console.log(arr1.join('')); // -------------------
+```
+
+Array.join()方法是String.split()方法的逆向操作，String.split()方法是将字符串分隔成若干块来创建一个数组
+
