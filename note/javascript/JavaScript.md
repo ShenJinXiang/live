@@ -583,3 +583,14 @@ console.log(arr2); // [ 1, 2, 3, 4, 5 ]
 console.log(arr3); // [ 1, 2, 3, 4, 5, 6, 7 ]
 console.log(arr4); // [ 1, 2, 3, 4, 5, [ 6, 7 ] ]
 ```
+
+#### slice() 方法
+Array.slice()方法返回指定数组的一个片段或子数组。两个参数分别表示数组的开始和结束位置，slice()不会修改调用的数组
+```javascript
+var arr = [1, 2, 3, 4, 5];
+console.log(arr.slice(0, 3)); // [ 1, 2, 3 ]
+console.log(arr.slice(3)); // [ 4, 5 ]
+console.log(arr.slice(1, -1)); // [ 2, 3, 4 ]
+console.log(arr.slice(-3, -2)); // [ 3 ]
+```
+
