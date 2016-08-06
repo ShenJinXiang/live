@@ -464,3 +464,43 @@ console.log(a.shift()); // 1
 console.log(a); // [ 2, 3, 4, 5 ]
 console.log(a.length); // 4
 ```
+
+### 数组遍历
+#### 使用for循环
+```javascript
+var arr = [1, 2, 3, 4, 5];
+for(var i = 0; i < arr.length; i++) {
+    // 循环体
+}
+```
+对于稀疏数组，要排除null、undefined和不存在的元素
+```javascript
+var arr = [1, 2, 3, 4, 5, 6];
+delete arr[2];
+for(var i = 0; i < arr.length; i++) {
+    if(!arr[i]) continue;
+    // 循环体
+}
+```
+如果只想跳过undefined和不存在的元素：
+```javascript
+for(var i = 0; i < arr.length; i++) {
+    if(a[i] === undefined) continue;
+    // 循环体
+}
+```
+如果只想跳过不存在的元素 仍然要处理存在的undefined元素：
+```javascript
+for(var i = 0; i < arr.length; i++) {
+    if(!(i in arr)) continue;
+    // 循环体
+}
+```
+
+#### for/in 循环
+for/in循环遍历稀疏数组时，可以过滤掉不存在的元素
+```javascript
+for(var p in arr) {
+    // 循环体
+}
+```
