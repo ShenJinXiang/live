@@ -565,3 +565,21 @@ arr.sort(function(s, t){
 });
 console.log(arr); // [ 'ant', 'Bug', 'cat', 'Dog' ]
 ```
+
+#### concat() 方法
+Array.concat() 方法创建并返回一个新数组，它的元素包括调用concat()的原始数组的元素和concat()的没个参数。如果这些参数中的任何一个自身是数组，则连接的是数组的元素，而非数组本身。
+
+*concat()不会递归遍历数组的数组, 也不会修改修用的数组*
+```javascript
+var arr = [1, 2, 3];
+var arr1 = arr.concat(4, 5);
+var arr2 = arr.concat([4, 5]);
+var arr3 = arr.concat([4, 5], [6, 7]);
+var arr4 = arr.concat(4, [5, [6, 7]]);
+
+console.log(arr);  // [ 1, 2, 3 ]
+console.log(arr1); // [ 1, 2, 3, 4, 5 ]
+console.log(arr2); // [ 1, 2, 3, 4, 5 ]
+console.log(arr3); // [ 1, 2, 3, 4, 5, 6, 7 ]
+console.log(arr4); // [ 1, 2, 3, 4, 5, [ 6, 7 ] ]
+```
