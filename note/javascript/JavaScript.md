@@ -667,3 +667,29 @@ console.log(arr); // [ 1 ]
 console.log(arr.shift()); // 1
 console.log(arr); // []
 ```
+
+#### forEach() 方法
+forEach()方法用于遍历整个数组，接受一个函数，forEach用三个参数来调用这个函数：数组元素、元素的索引、数组本身。
+
+```javascript
+var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+arr.forEach(function(val, index, a){
+    if(index === 0) {
+        console.log('a === arr : ' + (a === arr));
+    }
+    console.log('index : ' + index + '  value : ' + val );
+});
+
+/** 输出结果
+a === arr : true
+index : 0  value : 1
+index : 1  value : 2
+index : 2  value : 3
+index : 3  value : 4
+index : 4  value : 5
+index : 5  value : 6
+index : 6  value : 7
+index : 7  value : 8
+index : 8  value : 9
+*/
+```
