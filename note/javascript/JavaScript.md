@@ -733,3 +733,17 @@ var dense = sparse.filter(function(){return true;});
 // 压缩缺失，且删除undefined和null元素
 a = a.filter(function(x){return x !== null && x !== undefined;});
 ```
+
+#### every() 和 some() 方法
+every() 和 some() 方法是数组的逻辑判定：它们将数组元素应用指定的函数进行判定，返回true或false。
+
+* 一旦every() 和some()确定返回值，就停止遍历
+* every()在函数第一次返回false 就返回false
+* some() 在函数第一次返回true 就返回true
+* 空数组调用时，every() 返回true， some()放回false
+
+```javascript
+var arr = [];
+console.log(arr.every(function(){return true;})); // true
+console.log(arr.some(function(){return true;})); // false
+```
