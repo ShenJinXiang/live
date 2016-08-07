@@ -622,3 +622,26 @@ console.log(arr.splice(2, 2, [1, 2,], 3)); // [ 'a', 'b' ]
 console.log(arr); // [ 1, 2, [ 1, 2 ], 3, 3, 4, 5 ]
 ```
 
+#### push() 和 pop() 方法
+* push() 和pop() 方法允许将数组当做栈来用
+* push() 方法在数组的末尾添加一个或多个元素，并返回新数组的长度
+* pop() 方法删除数组的最后一个元素，减小数组的长度，并返回删除的元素的值
+* push() 和pop()方法都是修改原始数组，而非生成新数组
+
+```javascript
+var stack = [];
+console.log(stack.push(1, 2)); // 2
+console.log(stack); // [ 1, 2 ]
+console.log(stack.pop()); // 2
+console.log(stack); // [ 1 ]
+console.log(stack.push(3)); // 2
+console.log(stack); // [ 1, 3 ]
+console.log(stack.pop()); // 3
+console.log(stack); // [ 1 ]
+console.log(stack.push([4, 5])); // 2
+console.log(stack); // [ 1, [ 4, 5 ] ]
+console.log(stack.pop()); // [ 4, 5 ]
+console.log(stack); // [ 1 ]
+console.log(stack.pop()); // 1
+console.log(stack); // []
+```
