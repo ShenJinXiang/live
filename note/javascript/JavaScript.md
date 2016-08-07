@@ -747,3 +747,27 @@ var arr = [];
 console.log(arr.every(function(){return true;})); // true
 console.log(arr.some(function(){return true;})); // false
 ```
+
+#### reduce() 和 reduceRight()
+reduce() 和 reduceRight() 使用指定的函数将数组元素组合，生成单个值。
+```javascript
+var arr = [1, 2, 3, 4, 5,  6, 7, 8, 9];
+var sum = arr.reduce(function(x, y) {
+    console.log('x: ', x, ', y: ', y);
+    return x + y;
+});
+
+console.log(sum);
+
+/** 运行结果
+x:  1 , y:  2
+x:  3 , y:  3
+x:  6 , y:  4
+x:  10 , y:  5
+x:  15 , y:  6
+x:  21 , y:  7
+x:  28 , y:  8
+x:  36 , y:  9
+45
+*/
+```
