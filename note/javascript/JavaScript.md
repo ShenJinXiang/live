@@ -710,3 +710,26 @@ console.log(arr1); // [ 1, 4, 9, 16, 25, 36, 49, 64, 81 ]
 * 传递给map方法的函数应该有返回值
 * map() 方法不会改变调用数组，而是返回一个新数组
 * 如果是稀疏数组，那么返回的也是同样长度的数组，同样的长度，同样的缺失元素
+
+#### filter() 方法
+filter() 方法返回的数组元素是调用的数组的一个子集。如果调用的函数返回true或能转换成true的值，那么判定为这个数组的成员。
+
+```javascript
+var arr = [1, 2, 3, 4, 5, 6, 7, 8, 9];
+var arr2 = arr.filter(function(val){
+    return val % 2 == 0;
+});
+
+console.log(arr); // [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ]
+console.log(arr2); // [ 2, 4, 6, 8 ]
+```
+
+* filter() 会跳过稀疏数组中的缺失元素，返回的数组总是稠密的
+
+```javascript
+// 压缩稀疏数组的缺失元素
+var dense = sparse.filter(function(){return true;});
+
+// 压缩缺失，且删除undefined和null元素
+a = a.filter(function(x){return x !== null && x !== undefined;});
+```
