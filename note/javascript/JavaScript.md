@@ -858,3 +858,25 @@ var tensquared = (function(x){
     return x * x;
 }(10));
 ```
+
+* 通常以函数表达式定义函数时，不需要名称
+* 函数神明语句可以出现在全局代码里，或内嵌到其他函数中，但是不能出现在循环、条件判断、try/catch/finally和with语句中
+* 函数定义表达式可以出现在任意地方
+
+### 函数调用
+只有在调用时，函数才会之行，有四种方式来调用JavaScript函数：
+* 作为函数
+* 作为方法
+* 作为构造函数
+* 通过它们的call() 和 apply() 方法间接调用
+
+#### 作为函数调用
+普通的函数调用，如果函数返回时因为解释器到达结尾，返回值就是undefined，如果返回时因为执行到一条return语句，就返回return之后表达式的值，如果return没有值，就返回undefined
+
+一般不用this关键字，不过可以用来判断是否严格模式：
+```javascript
+var strict = (function(){
+    return !this;
+}());
+console.log(strict);
+```
