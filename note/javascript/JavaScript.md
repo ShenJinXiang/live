@@ -780,3 +780,25 @@ x:  36 , y:  9
 * 第二个参数可以是负数，代表相对于数组末尾的偏移量， 例如：－1指定最后一个元素
 * 字符串也有indexOf() 和 lastIndexOf() 方法，用法类似
 
+### 作为数组的字符串
+字符串的行为类似只读数组。
+* 除了可以用charAt() 来访问当个字符外，还可以使用方括号：
+
+```javascript
+var s = 'ShenJinXiang';
+console.log(s.charAt(0)); // S
+console.log(s[0]); // S
+console.log(s[0] === s.charAt(0)); // true
+```
+
+```javascript
+var s = 'JavaScript';
+
+var result1 = Array.prototype.join.call(s, ' ');
+console.log(result1); // J a v a S c r i p t
+
+var result2 = Array.prototype.filter.call(s, function(x) {
+    return x.match(/[^aeiou]/);
+}).join('')
+console.log(result2); // JvScrpt
+```
