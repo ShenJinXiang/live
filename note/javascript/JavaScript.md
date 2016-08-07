@@ -880,3 +880,33 @@ var strict = (function(){
 }());
 console.log(strict);
 ```
+
+#### 方法调用
+方法是保存在对象的属性里的JavaScript函数
+> 对象名.方法名(参数列表...);
+> 对象命[方法名] (参数列表...);
+
+方法链：当方法不需要返回值时，最好返回this
+
+```javascript
+var o = {
+    m : function() {
+        var self = this;
+        console.log(this == o);
+        f();
+     
+        function f() {
+            console.log(this == o);
+            console.log(self == o);
+        }
+    }
+};
+
+o.m();
+
+/** 运行结果
+true
+false
+true
+*/
+```
