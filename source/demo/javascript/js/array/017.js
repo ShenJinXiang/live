@@ -1,0 +1,15 @@
+var arr = [];
+console.log(arr.unshift(1));
+console.log(arr);
+console.log(arr.unshift(22));
+console.log(arr);
+console.log(arr.shift());
+console.log(arr);
+console.log(arr.unshift(3, [4, 5]));
+console.log(arr);
+console.log(arr.shift());
+console.log(arr);
+console.log(arr.shift());
+console.log(arr);
+console.log(arr.shift());
+console.log(arr);

@@ -645,3 +645,25 @@ console.log(stack); // [ 1 ]
 console.log(stack.pop()); // 1
 console.log(stack); // []
 ```
+
+#### shift() 和 unshift() 方法
+* unshift() 方法在数组的头部添加一个或多个元素，并将已存在的元素移动到更高索引的位置，返回数组的长度
+* shift() 方法将数组的第一个元素删除掉，将其他元素的索引下移一个位置，返回删除掉元素的值
+
+```javascript
+var arr = [];
+console.log(arr.unshift(1)); // 1
+console.log(arr); // [ 1 ]
+console.log(arr.unshift(22)); // 2
+console.log(arr); // [ 22, 1 ]
+console.log(arr.shift()); // 22
+console.log(arr); // [ 1 ]
+console.log(arr.unshift(3, [4, 5])); // 3
+console.log(arr); // [ 3, [ 4, 5 ], 1 ]
+console.log(arr.shift()); // 3
+console.log(arr); // [ [ 4, 5 ], 1 ]
+console.log(arr.shift()); // [ 4, 5 ]
+console.log(arr); // [ 1 ]
+console.log(arr.shift()); // 1
+console.log(arr); // []
+```
