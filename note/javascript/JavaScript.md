@@ -802,3 +802,59 @@ var result2 = Array.prototype.filter.call(s, function(x) {
 }).join('')
 console.log(result2); // JvScrpt
 ```
+
+
+## 函数
+### 函数定义
+函数使用function关键字来定义，可以用在函数定义表达式或函数申明语句里。
+
+* 函数名称标识符: 函数名称是函数神明语句必需的部分。就像变量的名字，新定义的函数对象会赋值给这个变脸。对于函数定义表达式，这个名字是可选的，如果存在，这个名字只存在函数体中，并指代函数对象本身
+* 一对圆括号: 其中包裹0个或多个用都好分隔的标识符组成的列表。这些标识符是函数的参数名称，就像函数中的局部变量一样
+* 一对花括号: 其中包括0或多条JavaScript语句，构成函数题，一旦调用函数，就会之行这些语句
+
+```javascript
+// 输出o的每个属性的名称和值，返回undefined
+function printprops(o) {
+    for(var p in o) {
+         console.log(p + ': ' + o[p] + '\n');
+    }
+}
+
+// 计算两个笛卡尔坐标(x1, y1) 和 (x2, y2) 之间的距离
+function distance(x1, y1, x2, y2) {
+    var dx = x2 - x1;
+    var dy = y2 - y1;
+    return Math.sqrt(dx * dx - dy * dy);
+}
+
+
+// 计算阶乘的递归函数
+function factorial(x) {
+    if(x <= 1) return 1;
+    return x * factorial(x - 1);
+}
+
+// 这个函数表达式定义了一个函数来求传入参数的平方
+var square = function(x) {
+    return x * x;
+};
+
+// 函数表达式可以包含名称
+var f = function fact(x) {
+    if(x <= 1) {
+         return 1;
+    }
+    return x * fact(x - 1);
+};
+
+// 函数表达式也可以作为参数传递给其他函数
+var data = [1, 2, 3];
+data.sort(function(a, b) {
+    return a - b;
+});
+
+// 函数表达式定义后立即调用
+var tensquared = (function(x){
+    return x * x;
+}(10));
+```
