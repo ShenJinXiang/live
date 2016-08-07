@@ -594,3 +594,31 @@ console.log(arr.slice(1, -1)); // [ 2, 3, 4 ]
 console.log(arr.slice(-3, -2)); // [ 3 ]
 ```
 
+#### splice() 方法
+Array.splice() 方法是数组中插入或删除元素的通用方法。
+
+* Array.splice()会修改调用的数组
+* Array.splice()第一个参数指定了删除或修改的起始索引位置
+* Array.splice()第二个参数指定删除的元素个数，如没有指定，则从起始点到数组结尾所有元素都删除
+* Array.splice()返回删除掉的元素组成的数组
+
+```javascript
+var arr = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+console.log(arr.splice(7)); // [ 7, 8, 9 ]
+console.log(arr); // [ 0, 1, 2, 3, 4, 5, 6 ]
+console.log(arr.splice(2, 2)); // [ 2, 3 ]
+console.log(arr); // [ 0, 1, 4, 5, 6 ]
+console.log(arr.splice(5)); // []
+console.log(arr); // [ 0, 1, 4, 5, 6 ]
+```
+
+* Array.splice()中紧随前两个参数后的人一个个数的参数，指定了需要插入到数组中的元素，从起始位置开始插入
+
+```javascript
+var arr = [1, 2, 3, 4, 5];
+console.log(arr.splice(2, 0, 'a', 'b')); // []
+console.log(arr); // [ 1, 2, 'a', 'b', 3, 4, 5 ]
+console.log(arr.splice(2, 2, [1, 2,], 3)); // [ 'a', 'b' ]
+console.log(arr); // [ 1, 2, [ 1, 2 ], 3, 3, 4, 5 ]
+```
+
