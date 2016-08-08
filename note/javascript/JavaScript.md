@@ -1130,3 +1130,21 @@ function checkscope() {
 var result = checkscope()();
 console.log(result); // local scope
 ```
+
+返回唯一数：
+```javascript
+var uniqueInteger = (function(){
+    var counter = 0;
+    return function() {
+        return counter++;
+    };
+}());
+
+console.log(uniqueInteger()); // 0
+console.log(uniqueInteger()); // 1
+console.log(uniqueInteger()); // 2
+console.log(uniqueInteger()); // 3
+console.log(uniqueInteger()); // 4
+console.log(uniqueInteger()); // 5
+```
+
