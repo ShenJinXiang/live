@@ -1081,4 +1081,15 @@ console.log(factorial(5)); // 120
 console.log(factorial(10)); // 3628800
 ```
 
-
+#### 作为命名空间的函数
+```javascript
+function mymodule() {
+    // ...
+}
+mymodule();
+```
+可以用立即调用的匿名函数
+```javascript
+(function() {
+}()));
+```
