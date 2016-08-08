@@ -987,3 +987,6 @@ console.log(factorial(4)); // 24
 console.log(factorial(5)); // 120
 console.log(factorial(10)); // 3628800
 ```
+
+#### 将对象属性用作实参
+定义函数的时候，传入的实参都写入一个单独的对象中。
