@@ -1046,4 +1046,17 @@ console.log(k); // 100
 ```
 
 ** 自定义函数属性 **
+```javascript
+uniqueInteger.counter = 0;
+function uniqueInteger() {
+    return uniqueInteger.counter++;
+}
+
+console.log(uniqueInteger()); // 0
+console.log(uniqueInteger()); // 1
+console.log(uniqueInteger()); // 2
+console.log(uniqueInteger()); // 3
+console.log(uniqueInteger()); // 4
+console.log(uniqueInteger()); // 6
+```
 
