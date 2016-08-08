@@ -936,3 +936,21 @@ JavaScript中的函数也是对象，和其他JavaScript对象没什么两样，
 
 * call() 方法使用它自有的实参列表作为函数的实参
 * apply()方法则要求以数组的形式传入参数
+
+### 函数的实参和形参
+JavaScript中函数的定义并未指定形参的类型，函数调用也未传入实参做任何类型检查。JavaScript函数调用甚至不检查传入形参的个数。
+
+#### 可选形参
+* 当调用函数的时候传入的实参比函数声明时指定的形参个数要少，剩下的形参都将设置为undefined值
+
+可以给省略的参数一个合理的默认值
+```javascript
+function getPropertyNames(o, /* optional */ a) {
+    if(a === undefined) a = [];
+    for(var property in o) a.push(property);
+    return a;
+}
+// ------------------------------
+a = a || []; // 可以代替上面的if语句
+```
+
