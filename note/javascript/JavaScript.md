@@ -954,3 +954,36 @@ function getPropertyNames(o, /* optional */ a) {
 a = a || []; // 可以代替上面的if语句
 ```
 
+#### 可变长的实参列表：实参对象
+在函数体内，标识符arguments是指向实参对象的引用，实参对象是一个类数组对象，可以通过索引就能访问传入函数的实参值
+
+* 可以让函数可以操作任意数量的实参
+
+```javascript
+function max() {
+	var max = Number.NEGATIVE_INFINITY;
+	for(var i = 0; i < arguments.length; i++) {
+		if(arguments[i] > max) max = arguments[i];
+	}
+	return max;
+}
+
+var largest = max(1, 10, 100, 2, 3, 1000, 4, 5, 10000, 6);
+console.log(largest); /// 10000
+```
+
+##### callee和caller属性
+除了数组元素，实参对象还定义了callee和caller属性
+```javascript
+var factorial = function(x) {
+	if(x <= 1) return 1;
+	return x * arguments.callee(x - 1);
+}
+
+console.log(factorial(1)); // 1
+console.log(factorial(2)); // 2
+console.log(factorial(3)); // 6
+console.log(factorial(4)); // 24
+console.log(factorial(5)); // 120
+console.log(factorial(10)); // 3628800
+```
