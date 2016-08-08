@@ -1103,3 +1103,30 @@ mymodule();
 
 当调用函数时闭包所指向的作用域链和定义函数时的作用域链不是同一个作用域链：当一个函数嵌套了另外一个函数，外部的函数将嵌套的函数对象作为返回值返回时就会这样
 
+```javascript
+var scope = 'global scope';
+function checkscope() {
+    var scope = 'local scope';
+    function f() {
+        return scope;
+    }
+    return f();
+}
+
+var result = checkscope();
+console.log(result); // local scope
+```
+变化代码：
+```javascript
+var scope = 'global scope';
+function checkscope() {
+    var scope = 'local scope';
+    function f() {
+        return scope;
+    }
+    return f;
+}
+
+var result = checkscope()();
+console.log(result); // local scope
+```
