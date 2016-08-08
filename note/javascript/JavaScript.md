@@ -990,3 +990,60 @@ console.log(factorial(10)); // 3628800
 
 #### 将对象属性用作实参
 定义函数的时候，传入的实参都写入一个单独的对象中。
+
+#### 作为值的函数
+可以将函数赋值给变量，也可以将函数作为参数传递给另外的函数
+
+```javascript
+function add (x, y) {
+    return x + y;
+}
+
+function subtract(x, y) {
+    return x - y;
+}
+
+function multiply(x, y) {
+    return x * y;
+}
+
+function divide(x, y) {
+    return x / y;
+}
+
+function operate(operator, operand1, operand2) {
+    return operator(operand1, operand2);
+}
+
+var i = operate(add, operate(add, 2, 3), operate(multiply, 4, 5));
+console.log(i); // 25
+
+
+var operators = {
+    add : function(x, y) {
+        return x + y;
+    },
+    subtract: function(x, y) {
+        return x - y;
+    },
+    multiply: function(x, y) {
+        return x * y;
+    },
+    divide: function(x, y) {
+        return x / y;
+    },
+    pow: Math.pow
+};
+
+function operate2(operation, operand1, operand2){
+    return operators[operation](operand1, operand2);
+}
+
+var j = operate2('add', 'hello', operate2('add', ' ', 'world'));
+console.log(j); // hello world
+var k = operate2('pow', 10, 2);
+console.log(k); // 100
+```
+
+** 自定义函数属性 **
+
