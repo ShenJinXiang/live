@@ -1215,3 +1215,18 @@ delete o.m;
 f.call(o, 1, 2);
 f.apply(o, [1, 2]);
 ```
+
+#### bind() 方法
+将函数绑定到某个对象。
+
+当在函数f()上调用bind() 方法，并传入对象o作为参数，这个方法将范围新的函数，传入新函数得任何实参都将传入原函数
+
+```javascript
+function f(y) {
+    return this.x + y;
+}
+var o = {x: 1};
+var g = f.bind(o);
+
+console.log(g(2)); // 3
+```
