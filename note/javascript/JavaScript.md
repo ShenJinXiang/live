@@ -1233,3 +1233,32 @@ console.log(g(2)); // 3
 
 #### toString() 方法
 返回一个字符串，这个字符串和函数声明语句得语法有关。大多数返回函数得完整源代码。
+```javascript
+function f() {
+    console.log('ShenJinXiang!');
+}
+
+console.log(f);  
+console.log(f.toString());
+/** 结果
+[Function: f]
+function f() {
+	console.log('ShenJinXiang!');
+}
+*/
+```
+
+另外一个栗子：
+```javascript
+(function(){
+	console.log(arguments.callee);
+	console.log(arguments.callee.toString());
+}());
+/** 结果
+[Function]
+function (){
+	console.log(arguments.callee);
+	console.log(arguments.callee.toString());
+}
+*/
+```
