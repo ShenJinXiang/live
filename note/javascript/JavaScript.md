@@ -1172,3 +1172,22 @@ console.log(funcs[7]()); // 7
 console.log(funcs[8]()); // 8
 console.log(funcs[9]()); // 9
 ```
+
+### 函数的属性、方法和构造函数
+#### lenght 属性
+在函数体内，arguments.length表示传入函数的实参的个数。而函数本身的length属性表示的是形参的个数，即函数定义时给出的参数的个数，函数的length属性是个只读属性
+
+```javascript
+function check(args) {
+	var actual = args.length;
+	var expected = args.callee.length;
+	if(actual != expected) {
+		throw Error('expected ', expected, ' args ', actual);
+	}
+}
+
+function f(x, y, z) {
+	check(arguments);
+	return x + y + z;
+}
+```
