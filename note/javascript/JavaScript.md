@@ -1318,3 +1318,5 @@ var even = function (x) {
 var odd = not(even);
 console.log([1, 1, 3, 5, 5].every(odd)); // true
 ```
+
+#### 不完全函数
