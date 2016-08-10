@@ -1322,3 +1322,14 @@ console.log([1, 1, 3, 5, 5].every(odd)); // true
 #### 不完全函数
 
 #### 记忆
+
+```javascript
+function memorize(f) {
+    var cache = {};
+    return function() {
+        var key = arguments.length + Array.prototype.join.call(arguments, ',');
+        if(key in cache) return cache[key];
+        else return cache[key] = f.apply(this, arguments);
+    };
+}
+```
