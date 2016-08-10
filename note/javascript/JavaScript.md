@@ -1283,3 +1283,5 @@ function isFunction(x) {
     return Object.prototype.toString.call(x) === '[object Function]';
 }
 ```
+
+### 函数是编程
