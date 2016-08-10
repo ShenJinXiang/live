@@ -1275,3 +1275,11 @@ Function()构造函数可以传入任意数量得字符串，最后一个参数�
 * Function() 构造函数允许在JavaScript运行时动态创建函数
 * 每次调用构造函数都会解析函数题，创建新得函数，如果在循环内，将降低效率
 * 不使用词法作用域，函数题代码得编译总是在顶层作用域执行
+
+
+
+```javascript
+function isFunction(x) {
+    return Object.prototype.toString.call(x) === '[object Function]';
+}
+```
