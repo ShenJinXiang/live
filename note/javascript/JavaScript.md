@@ -1299,3 +1299,5 @@ var map = Array.prototype.map
         return results;
     };
 ```
+
+#### 高阶函数
