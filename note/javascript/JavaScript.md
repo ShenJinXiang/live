@@ -1405,3 +1405,15 @@ r instanceof Range // 如果r继承自Range.prototype 则返回true
 
 #### constructor属性
 任何JavaScript函数都可以用做构造函数，并且调用构造函数是要用到prototype属性的，因此每个JavaScript函数都由一个prototype属性，这个属性的值是一个对象，这个对象包含一个不可枚举的属性constructor。constructor的属性的值是一个函数对象：
+```javascript
+var F = function(){};
+var p = F.prototype;
+var c = p.constructor;
+console.log(c === F); // true
+```
+
+```javascript
+function F(){}
+var o = new F();
+console.log(o.constructor === F); // true
+```
