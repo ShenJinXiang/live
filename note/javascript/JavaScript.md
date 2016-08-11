@@ -1397,3 +1397,8 @@ r.foreach(console.log); // 1 2 3 4 5
 console.log(r); // { from: 1, to: 5 }
 console.log(r.toString()); // (1...5)
 ```
+
+#### 构造函数和类的标识
+```javascript
+r instanceof Range // 如果r继承自Range.prototype 则返回true
+```
