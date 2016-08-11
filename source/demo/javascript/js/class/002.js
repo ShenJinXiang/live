@@ -22,4 +22,4 @@ console.log(r.includes(3));
 console.log(r.includes(7));
 r.foreach(console.log);
 console.log(r);
-
+console.log(r.toString());
