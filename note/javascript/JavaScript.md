@@ -1372,3 +1372,28 @@ console.log(r); // { from: 1, to: 3 }
 ```
 
 ### 类和构造函数
+```javascript
+function Range(from, to) {
+    this.from = from;
+    this.to = to;
+}
+
+Range.prototype = {
+    includes: function(x) {
+        return this.from <= x && x <= this.to;
+    },
+    foreach: function(f) {
+        for(var x = Math.ceil(this.from); x <= this.to; x++) f(x);
+    },
+    toString: function() {
+        return '(' + this.from + '...'+ this.to + ')';
+    }
+};
+
+var r = new Range(1, 5);
+console.log(r.includes(3)); // true
+console.log(r.includes(7)); // false
+r.foreach(console.log); // 1 2 3 4 5
+console.log(r); // { from: 1, to: 5 }
+console.log(r.toString()); // (1...5)
+```
