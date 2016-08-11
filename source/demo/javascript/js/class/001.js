@@ -22,6 +22,7 @@ range.methods = {
 }
 
 var r = range(1, 3);
-r.includes(2);
+console.log(r.includes(2));
+console.log(r.includes(4));
 r.foreach(console.log);
 console.log(r);
