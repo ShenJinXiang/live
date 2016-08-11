@@ -1370,3 +1370,5 @@ console.log(r.includes(4)); // false
 r.foreach(console.log); // 1 2 3
 console.log(r); // { from: 1, to: 3 }
 ```
+
+### 类和构造函数
