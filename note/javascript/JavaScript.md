@@ -1402,3 +1402,5 @@ console.log(r.toString()); // (1...5)
 ```javascript
 r instanceof Range // 如果r继承自Range.prototype 则返回true
 ```
+
+#### constructor属性
