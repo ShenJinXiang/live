@@ -1340,3 +1340,33 @@ function memorize(f) {
 如果两个对象继承自同一个原型，往往意味着它们是由同一个构造函数创建并初始化的。
 ### 类和原型
 在JavaScript中，类的所有实例对象都是从同一个原型对象上继承属性。因此原型对象是类的核心。
+```javascript
+function range(from, to) {
+    var r = Object.create(range.methods);
+
+    r.from = from;
+    r.to = to;
+    return r;
+}
+
+range.methods = {
+    includes: function(x) {
+        return this.from <= x && x <= this.to;
+    },
+    foreach: function(f) {
+        for(var x = Math.ceil(this.from); x <= this.to; x++) {
+            f(x);
+        }
+    },
+
+    toString: function() {
+        return '(' + this.from + '...' + this.to +')';
+    }
+}
+
+var r = range(1, 3);
+console.log(r.includes(2)); // true
+console.log(r.includes(4)); // false
+r.foreach(console.log); // 1 2 3
+console.log(r); // { from: 1, to: 3 }
+```
