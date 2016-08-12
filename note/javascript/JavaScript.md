@@ -1458,3 +1458,4 @@ JavaScript基于原型的继承机制是动态的，对象从其原型继承属�
 
 ### 类和类型
 #### instanceof 运算符
+#### constructor 属性
