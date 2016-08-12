@@ -37,3 +37,14 @@ Complex.prototype.equals = function(that) {
 Complex.ZERO = new Complex(0, 0);
 Complex.ONE = new Complex(1, 0);
 Complex.I = new Complex(0, 1);
+
+Complex.parse = function(s) {
+	try {
+		var m = Complex._format.exec(s);
+		return new Complex(parseFloat(m[1]), parseFloat(m[2]));
+	} catch (x) {
+		throw new TypeError("Can't parse '"+ s + "' as a complex number.");
+	}
+};
+
+Complex._format = /^\{([^,]+),([^}]+)\}$/;
