@@ -1466,3 +1466,75 @@ JavaScript基于原型的继承机制是动态的，对象从其原型继承属�
 ### JavaScript中的面向对象技术
 #### 一个例子：集合类
 集合(set)是一种数据结构，用以表示非重复值的无序集合。
+```javascript
+function Set() {
+	this.values = [];
+	this.n = 0;
+	this.add.apply(this, arguments);
+}
+
+Set.prototype.add = function() {
+	for(var i = 0; i < arguments.length; i++) {
+		var val = arguments[i];
+		var str = Set._v2s(val);
+		if(!this.values.hasOwnProperty(str)) {
+			this.values[str] = val;
+			this.n++;
+		}
+	}
+	return this;
+};
+
+Set.prototype.remove = function() {
+	for(var i = 0; i < arguments.length; i++) {
+		if(this.values.hasOwnProperty(str)) {
+			delete this.values[str];
+			this.n--;
+		}
+	}
+	return this;
+};
+
+Set.prototype.contains = function(value) {
+	return this.values.hasOwnProperty(Set._v2s(value));
+};
+
+Set.prototype.size = function() {
+	return this.n;
+};
+
+Set.prototype.foreach = function(f, context) {
+	for(var s in this.values) {
+		if(this.values.hasOwnProperty(s)) {
+			f.call(context, this.values[s]);
+		}
+	}
+};
+
+Set._v2s = function(val) {
+	switch(val) {
+		case undefined: return 'u';
+		case null: return 'n';
+		case true: return 't',
+		case false: return 'f';
+		default: switch(type of val) {
+			case 'number' : return '#' + val;
+			case 'string' : return '"' + val;
+			default: return '@' + objectId(val);
+		}
+	}
+
+	function objectId(o) {
+		var prop = "|**objectid**|";
+		if(!o.hasOwnProperty(prop)) {
+			o[prop] = Set._v2s.next++;
+		}
+		return o[prop];
+	}
+};
+
+Set._v2s.next = 100;
+```
+
+#### 一个例子：枚举类型
+枚举类型(enumerated type)是一种类型，它是指的有限集合，如果值定义为这个类型则该值是可枚举的。
