@@ -1566,3 +1566,27 @@ Function.prototype.extend = function(construtor, methods, statics) {
 
 ## 正则表达式的模式匹配
 正则表达式(regular expression)是一个描述字符模式的对象。
+
+### 正则表达式的定义
+JavaScript中正则表达式用RegExp对象表示，可以使用RegExp()构造函数来创建RegExp对象，也可以用特殊的直接量语法来创建:
+```javascript
+var pattern = /s$/;
+```
+
+#### 直接量字符
+
+|字符|匹配|
+|:-:|:-:|
+|字母和数字字符|自身|
+|\o|NUL字符(\u0000)|
+|\t|制表符(\u0009)|
+|\n|换行符(\u000A)|
+|\v|垂直制表符(\u000B)|
+|\f|换页符(\u000C)|
+|\r|回车符(\u000D)|
+|\xnn|由十六进制数nn制定的拉丁字符，例如：\x0A等价于\n|
+|\uxxx|由十六进制数xxx制定的Unicode字符，例如\u0009等价于\t|
+|\cx|控制符^X,例如 \cJ等价于换行符\n|
+
+特殊标点符号：
+> ^ $ . * + ? = ! : | \ / ( ) [ ] { }
