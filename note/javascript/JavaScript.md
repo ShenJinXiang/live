@@ -1541,4 +1541,25 @@ Set._v2s.next = 100;
 
 ### 子类
 在面向对象编程中，类B可以继承自另外一个类A，我们将A类称为父类(superclass)将B称为子类(subclass)。
-#### 
+#### 定义子类
+JavaScript的对象可以从类的原型对象中继承属性，如果O是类B的实例，B是A的子类，那么O也一定从A中继承了属性。
+
+```javascript
+B.prototype = Object.create(A.prototype);
+B.prototype.constructor = B;
+```
+
+定义子类的例子：
+```javascript
+function defineSubClass(superclass, constructor, methods, statics) {
+    constructor.prototype = Object.create(superclass.prototype);
+    constructor.prototype.constructor = constructor;
+    if(methods) extend(constructor.prototype, methods);
+    if(statics) extend(constructor, statics);
+    return constructor;
+}
+
+Function.prototype.extend = function(construtor, methods, statics) {
+    return defineSubClass(this, constructor, methods, statics);
+}
+```
