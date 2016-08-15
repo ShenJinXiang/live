@@ -1563,3 +1563,6 @@ Function.prototype.extend = function(construtor, methods, statics) {
     return defineSubClass(this, constructor, methods, statics);
 }
 ```
+
+## 正则表达式的模式匹配
+正则表达式(regular expression)是一个描述字符模式的对象。
