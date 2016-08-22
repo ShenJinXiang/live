@@ -1462,3 +1462,155 @@ JavaScript基于原型的继承机制是动态的，对象从其原型继承属�
 #### 构造函数的名称
 #### 鸭式辩形
 *像鸭子一样走路、游泳并且嘎嘎叫的鸟就是鸭子*
+
+### JavaScript中的面向对象技术
+#### 一个例子：集合类
+集合(set)是一种数据结构，用以表示非重复值的无序集合。
+```javascript
+function Set() {
+	this.values = [];
+	this.n = 0;
+	this.add.apply(this, arguments);
+}
+
+Set.prototype.add = function() {
+	for(var i = 0; i < arguments.length; i++) {
+		var val = arguments[i];
+		var str = Set._v2s(val);
+		if(!this.values.hasOwnProperty(str)) {
+			this.values[str] = val;
+			this.n++;
+		}
+	}
+	return this;
+};
+
+Set.prototype.remove = function() {
+	for(var i = 0; i < arguments.length; i++) {
+		if(this.values.hasOwnProperty(str)) {
+			delete this.values[str];
+			this.n--;
+		}
+	}
+	return this;
+};
+
+Set.prototype.contains = function(value) {
+	return this.values.hasOwnProperty(Set._v2s(value));
+};
+
+Set.prototype.size = function() {
+	return this.n;
+};
+
+Set.prototype.foreach = function(f, context) {
+	for(var s in this.values) {
+		if(this.values.hasOwnProperty(s)) {
+			f.call(context, this.values[s]);
+		}
+	}
+};
+
+Set._v2s = function(val) {
+	switch(val) {
+		case undefined: return 'u';
+		case null: return 'n';
+		case true: return 't',
+		case false: return 'f';
+		default: switch(type of val) {
+			case 'number' : return '#' + val;
+			case 'string' : return '"' + val;
+			default: return '@' + objectId(val);
+		}
+	}
+
+	function objectId(o) {
+		var prop = "|**objectid**|";
+		if(!o.hasOwnProperty(prop)) {
+			o[prop] = Set._v2s.next++;
+		}
+		return o[prop];
+	}
+};
+
+Set._v2s.next = 100;
+```
+
+#### 一个例子：枚举类型
+枚举类型(enumerated type)是一种类型，它是指的有限集合，如果值定义为这个类型则该值是可枚举的。
+
+### 子类
+在面向对象编程中，类B可以继承自另外一个类A，我们将A类称为父类(superclass)将B称为子类(subclass)。
+#### 定义子类
+JavaScript的对象可以从类的原型对象中继承属性，如果O是类B的实例，B是A的子类，那么O也一定从A中继承了属性。
+
+```javascript
+B.prototype = Object.create(A.prototype);
+B.prototype.constructor = B;
+```
+
+定义子类的例子：
+```javascript
+function defineSubClass(superclass, constructor, methods, statics) {
+    constructor.prototype = Object.create(superclass.prototype);
+    constructor.prototype.constructor = constructor;
+    if(methods) extend(constructor.prototype, methods);
+    if(statics) extend(constructor, statics);
+    return constructor;
+}
+
+Function.prototype.extend = function(construtor, methods, statics) {
+    return defineSubClass(this, constructor, methods, statics);
+}
+```
+
+## 正则表达式的模式匹配
+正则表达式(regular expression)是一个描述字符模式的对象。
+
+### 正则表达式的定义
+JavaScript中正则表达式用RegExp对象表示，可以使用RegExp()构造函数来创建RegExp对象，也可以用特殊的直接量语法来创建:
+```javascript
+var pattern = /s$/;
+```
+
+#### 直接量字符
+
+|字符|匹配|
+|:-:|:-:|
+|字母和数字字符|自身|
+|\o|NUL字符(\u0000)|
+|\t|制表符(\u0009)|
+|\n|换行符(\u000A)|
+|\v|垂直制表符(\u000B)|
+|\f|换页符(\u000C)|
+|\r|回车符(\u000D)|
+|\xnn|由十六进制数nn制定的拉丁字符，例如：\x0A等价于\n|
+|\uxxx|由十六进制数xxx制定的Unicode字符，例如\u0009等价于\t|
+|\cx|控制符^X,例如 \cJ等价于换行符\n|
+
+特殊标点符号：
+> ^ $ . * + ? = ! : | \ / ( ) [ ] { }
+
+#### 字符类
+将直接量字符放入方括号内就组成了字符类（character class）。一个字符类可以匹配它所包含的任意字符。
+
+例：
+* /[abc]/ 和字母种的"a", "b", "c"都匹配
+* /[^abc]/ 匹配"a", "b", "c" 之外的所有字符
+* /[a-z]/ 匹配小写字母
+* /[a-zA-Z0-9]/ 匹配任意数字和字母
+
+正则表达式字符类表：
+|字符|匹配|
+|--|--|
+|[...]|方括号内的任意字符|
+|[^...]|不在方括号内的任意字符|
+|.|除换行符和其他Unicode行终止符之外的任意字符|
+|\w|任何ASCII字符组成的单词，等价于[a-zA-Z0-9]|
+|\W|任何不是ASCII字符组成的单词，等价于[^a-zA-Z0-9]|
+|\s|任何Unicode空白符|
+|\S|任何非Unicode空白符|
+|\d|任何ASCII数字，等价于[0-9]|
+|\D|除ASCII数字外的任何字符，等价于[^0-9]|
+|[\b]|退格直接量|
+
