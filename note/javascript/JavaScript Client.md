@@ -31,6 +31,19 @@ if(timestamp.firstChild == null) {
     timestamp.appendChild(document.createTextNode(new Date().toString()));
 }
 ```
+每个Element对象都有style和className属性，可以修改元素的css样式或修改应用到元素上的类名。
+事件处理程序，异步
+
+JavaScript程序可以通过Document对象和它包含的Element对象遍历和管理文档内容。可以通过操作css和类，修改文档内容的呈现。并且可以注册一定的事件程序来定义文档元素的行为。
+
+### 在HTML中嵌入JavaScript
+四种方法：
+
+* 内嵌，放置在<script>和</script>标签对之间
+* 放置在由<script> 标签的src属性指定的外部文件中
+* 放置在HTML事件处理程序中，该程序由onclick、onmousemove之类的HTML属性指定
+* 放置在url中，使用特殊的“javascript:”协议
+
 
 
 
