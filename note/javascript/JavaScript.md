@@ -1679,3 +1679,58 @@ var pattern = /s$/;
 |i|执行不区分大小写的匹配|
 |g|执行一个全局匹配，即找到所有的匹配，而不是在找到第一个之后就停止|
 |m|多行匹配模式，^匹配一行的开头和字符串的开头，$匹配行的结束和字符串的结束|
+
+### 用于模式匹配的String方法
+#### search()方法
+*参数： 正则表达式*
+*返回： 第一个与正则匹配的子串的起始位置，如果没有则返回-1*
+
+```javascript
+JavaScript".search(/script/i);  // 4
+```
+
+* 如果参数不是正则表达式，会通过RegExp构造函数转成正则表达式
+* search()不支持全局搜索，忽略修饰符g
+
+#### replace()方法
+执行检索与替换操作。
+
+*参数1: 正则表达式*
+*参数2: 要进行替换的字符串*
+
+* 如果正则表达式设置的修饰符g，源字符串所有匹配的子串都替换
+* 如果不带修饰符g，只会替换第一个匹配的子串
+* 如果第一个参数不是正则表达式，不会转为正则表达式，直接搜索这个字符串
+
+```javascript
+var str1 = "this is javascripT .";
+console.log(str1); // this is javascripT .
+console.log(str1.replace(/javascript/gi, 'JavaScript')); // this is JavaScript .
+console.log(str1); // this is javascripT .
+```
+
+#### match() 方法
+*参数： 正则表达式*
+*返回： 匹配结果组成的数组*
+
+* 如果正则表达式又修饰符g，则返回的数组包含字符串的所有匹配结果
+
+```javascript
+ar str1 = '1 plus 2 equals 3';
+console.log(str1.match(/\d+/g)); // [ '1', '2', '3' ]
+```
+
+#### split() 方法
+*参数：可以是一个正则表达式*
+*返回：返回调用的字符串拆分成的子串组成的数组*
+
+```javascript
+var str1 = '123,456,789';
+console.log(str1.split(",")); // [ '123', '456', '789' ]
+
+var str2 = '123, 456, 789';
+console.log(str2.split(/\s*,\s*/)); // [ '123', '456', '789' ]
+
+var str3 = '123   ,  456 , 789';
+console.log(str2.split(/\s*,\s*/)); // [ '123', '456', '789' ]
+```
