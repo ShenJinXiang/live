@@ -44,6 +44,19 @@ JavaScript程序可以通过Document对象和它包含的Element对象遍历和�
 * 放置在HTML事件处理程序中，该程序由onclick、onmousemove之类的HTML属性指定
 * 放置在url中，使用特殊的“javascript:”协议
 
+## Window对象
+### 计时器
+setTimeout() 和 setInterval()
+
+* setTimeout() 方法实现一个函数在指定的毫秒�数后运行。返回的值可以传递给clearTimeout()方法来取消函数的运行
+* setInterval() 方法实现一个函数在指定的毫秒数的间隔里重复调用，返回值可以传递给clearInterval()方法来取消
+
+### 浏览器的定位和导航
+Window的location属性引用的是Location对象，表示当前文档的url。
+
+```javascript
+window.location === document.location; // true
+```
 
 
 
