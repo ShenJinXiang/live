@@ -1,0 +1,99 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='utf-8'>
+<link rel='stylesheet' type='text/css' href='../extjs/css/ext-theme-classic/ext-theme-classic-all.css' />
+<script type='text/javascript' src='../extjs/js/ext-all.js'></script>
+<script type='text/javascript' src='../extjs/js/extjs_plus.js'></script>
+<script type='text/javascript' src='../extjs/js/ext-lang-zh_CN.js'></script>
+<script type='text/javascript' src='../extjs/js/printer.js'></script>
+<title>002</title>
+</head>
+<body>
+<script type='text/javascript'>
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+	Ext.form.Field.prototype.msgTarget = 'side';
+
+	var btnsubmitclick = function() {
+		if(form.getForm().isValid()) {
+			Ext.Msg.alert('提示', '登陆成功！');
+		}
+	}
+
+	var btnresetclick = function() {
+		form.getForm().reset();
+	}
+
+	var btnsubmit = new Ext.Button({
+		text: '提交',
+		handler: btnsubmitclick
+	});
+
+	var btnreset = new Ext.Button({
+		text: '重置',
+		handler: btnresetclick
+	});
+
+	var txtusername = new Ext.form.TextField({
+		width: 140,
+		allowBlank: false,
+		maxLength : 20,
+		name: 'username',
+		fieldLabel: '用户名',
+		blankText: '请输入用户名',
+		maxLengthText: '用户名不能超过20个字符'
+	});
+
+	var txtpassword = new Ext.form.TextField({
+		width: 220,
+		allowBlank: false,
+		maxLength: 20,
+		inputType: 'password',
+		name: 'password',
+		fieldLabel: '密码',
+		blankText: '请输入密码',
+	});
+
+	var txtcheckcode = new Ext.form.TextField({
+		fieldLabel: '验证码',
+		id: 'checkcode',
+		allowBlank: false,
+		width: 100,
+		blankText: '请输入验证码',
+		maxLength: 4,
+		maxLengthText: '验证码不能超过4个字符！'
+	});
+
+	var form = new Ext.form.FormPanel({
+		url: '******',
+		labelAlign: 'right',
+		labelWidth: 45,
+		frame: true,
+		cls: 'loginform',
+		buttonAlign: 'center',
+		bodyStyle: 'padding:6px 0px 0px 15px',
+		items: [txtusername, txtpassword, txtcheckcode],
+		buttons: [btnsubmit, btnreset]
+	});
+
+	var win = new Ext.Window({
+		title: '用户登录',
+		iconCls: 'loginicon',
+		plain: true,
+		width: 276,
+		height:174,
+		resizable: false,
+		shadow: true,
+		modal: true,
+		closable: false,
+		animCollapse: true,
+		items: form
+	});
+	win.show();
+
+
+});
+</script>
+</body>
+</html>
