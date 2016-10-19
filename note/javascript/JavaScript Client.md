@@ -48,16 +48,28 @@ JavaScript程序可以通过Document对象和它包含的Element对象遍历和�
 ### 计时器
 setTimeout() 和 setInterval()
 
-* setTimeout() 方法实现一个函数在指定的毫秒�数后运行。返回的值可以传递给clearTimeout()方法来取消函数的运行
-* setInterval() 方法实现一个函数在指定的毫秒数的间隔里重复调用，返回值可以传递给clearInterval()方法来取消
+* setTimeout() 方法实现一个函数在指定的毫秒数后运行
+* setInterval() 方法实现一个函数在指定的毫秒数间隔重复调用
 
-### 浏览器的定位和导航
-Window的location属性引用的是Location对象，表示当前文档的url。
-
+### 浏览器定位和导航
+Window对象的location属性引用了Location对象，表示窗口中显示的当前文档的url地址。
 ```javascript
 window.location === document.location; // true
 ```
+Location对象的href属性是一个字符串，表示了url的完整文本。
 
+#### 载入新文档
+* assign() 方法可以使浏览器载入并显示指定url中的文档。
+* replace() 方法也可以载入新文档，在载入新文档之前将当前文档删除，不可以通过“后退”按钮回退
+* reload() 方法让浏览器重新载入当前文档，即刷新
+
+### 浏览历史
+Windiw对象的history属性引用的是窗口的History对象，表示浏览器的浏览历史用文档或文档状态的列表的形式。History对象的length属性表示浏览器历史列表中的数量
+
+* back() 方法，表示“后退”
+* forward() 方法，表示“前进”
+* go() 方法接受一个整数参数，可以向前或向后跳转
+* 如果窗口包含子窗口(iframe元素)，子窗口的浏览历史也会按时间顺序穿插在主窗口的历史中，如果后退，则会使子窗口回跳，主窗口不变
 
 
 
