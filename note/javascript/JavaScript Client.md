@@ -71,6 +71,17 @@ Windiw对象的history属性引用的是窗口的History对象，表示浏览器
 * go() 方法接受一个整数参数，可以向前或向后跳转
 * 如果窗口包含子窗口(iframe元素)，子窗口的浏览历史也会按时间顺序穿插在主窗口的历史中，如果后退，则会使子窗口回跳，主窗口不变
 
+### 浏览器和屏幕信息
+#### Navigator对象
+Window对象的navigator属性引用Navigator对象，包含浏览器厂商和版本信息。
+
+* appName属性 web浏览器的全称
+* appVersion 浏览器版本信息
+* userAgent Http头部发送的信息 user-agent信息
+* platform 操作系统信息字符串
+* onLine属性表示浏览器是否链接到网络
+* geolocation属性用于确定用户地理位置信息的接口
+
 
 
 
