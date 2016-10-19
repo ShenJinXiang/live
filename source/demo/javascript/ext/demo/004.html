@@ -12,45 +12,69 @@
 <body>
 <script type='text/javascript'>
 Ext.onReady(function() {
+	Ext.QuickTips.init();
+	Ext.form.Field.prototype.msgTarget = 'side';
+	var btnsubmitclick = function() {
+		Ext.MessageBox.alert("提示", "你点击了确定按钮");
+	}
+	var btnresetclick = function() {
+		Ext.MessageBox.alert("提示", "你点击了重置按钮");
+	}
+	var btnresetmouseover = function() {
+		console.log("提示", "你鼠标悬停在重置按钮上！");
+	}
+	var btnsubmit = new Ext.Button({
+		text: '提交',
+		handler: btnsubmitclick
+	});
+	var btnreset = new Ext.Button({
+		text: '重置',
+		listeners: {
+			'mouseover': btnresetmouseover,
+			'click': btnresetclick
+		}
+	});
+
+	var txtusername = new Ext.form.TextField({
+		width: 340,
+		allowBlank: false,
+		maxLength: 20,
+		name: 'username',
+		fieldLabel: '用户名',
+		blankText: '请输入用户名',
+		maxLengthText: '用户名不能超过20个字符'
+	});
+	var txtpassword = new Ext.form.TextField({
+		width: 340,
+		allowBlank: false,
+		maxLength: 20,
+		name: 'password',
+		fieldLabel: '密码',
+		blankText: '请输入密码',
+		maxLengthText: '密码不能超过20个字符'
+	});
 	var form = new Ext.form.FormPanel({
 		frame: true,
+		title: '表单标题',
 		style: 'margin:10px',
-		items: [
-			new Ext.form.TextField({
-				width: 240,
-				allowBlank: false,
-				maxLength: 20,
-				name: 'username',
-				fieldLabel: '用户名称',
-				blankText: '请输入用户名',
-				maxLengthText: '用户名不能超过20个字符',
-				masTarget: 'side'
-			}),
-			new Ext.form.TextField({
-				width: 240,
-				allowBlank: false,
-				maxLength: 20,
-				inputType: 'password',
-				name: 'password',
-				fieldLabel: '密码',
-				blankText: '请输入密码',
-				maxLengthText: '密码不能超过20个字符',
-				masTarget: 'side'
-			})
-		]
+		html: '<div style="padding:10px">表单内容</div>',
+		items: [txtusername, txtpassword],
+		buttons: [btnsubmit, btnreset]
 	});
-	new Ext.Window({
-		title: '窗口',
-		width: 500,
-		height: 400,
-		html: '<div>这里是窗体内容</div>',
+	var win = new Ext.Window({
+		title: '演示窗口',
+		width: 476,
+		height: 374,
+		html: '<div>窗体内容</div>',
 		resizable: true,
 		modal: true,
 		closable: true,
 		maximizable: true,
 		minimizable: true,
+		buttonAlign: 'center',
 		items: form
-	}).show();
+	});
+	win.show();
 });
 </script>
 </body>
