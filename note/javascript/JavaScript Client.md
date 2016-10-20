@@ -142,3 +142,17 @@ function getElements(/* ids...*/) {
     return elements;
 }
 ```
+
+#### 通过名字选取元素
+> document.getELementsByName("name");
+
+* 定义在HTMLDocument类中，所以只可以用在html中，不能用在xml文档中。
+* 返回NodeList对象，类似包含若干Element的只读数组。
+
+#### 通过标签名选取元素
+> document.getELementsByTagName("tagname");
+
+返回NodeList对象
+参数为“*”选渠道代表文档所有元素的NodeList对象
+
+
