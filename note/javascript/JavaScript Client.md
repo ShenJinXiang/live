@@ -115,5 +115,14 @@ Window对象的open()方法可以打开一个新的浏览器窗口
 
 close() 关闭一个窗口，如果已创建了Window对象的w，可以使用w.close() 关闭。
 
+## 脚本化文档
+每个Window对象又个document属性引用Document对象
+### 选取文档元素
+* 用指定的id属性
+* 用指定的name属性
+* 用指定的标签名字
+* 用指定的css类
+* 匹配指定的css选择器
+
 
 
