@@ -124,5 +124,21 @@ close() 关闭一个窗口，如果已创建了Window对象的w，可以使用w.
 * 用指定的css类
 * 匹配指定的css选择器
 
+#### 通过id选取元素
+任何html元素都可以由一个id属性，在文档中该值必须唯一。
+> document.getElementById("id");
 
-
+```javascript
+/**
+ * 接收任意多个字符串参数，返回id和元素映射对象
+ */
+function getElements(/* ids...*/) {
+    var elements = {};
+    for(var i = 0; i < arguments.length; i++) {
+        var id = arguments[i];
+        var elt = document.getElementId(id);
+        elements[id] = elt;
+    }
+    return elements;
+}
+```
