@@ -81,7 +81,25 @@ Window对象的navigator属性引用Navigator对象，包含浏览器厂商和�
 * platform 操作系统信息字符串
 * onLine属性表示浏览器是否链接到网络
 * geolocation属性用于确定用户地理位置信息的接口
+* javaEnabled 方法 当浏览器可以运行java小程序时返回true
+* cookieEnable 方法 如果浏览器可以保存永久的cookie时，返回true
 
+#### Screen对象
+Window对象的screen属性引用了Screen对象。提供有关窗口显示的大小和可用的颜色数量的信息
+
+* width和height属性，指定以像素为单位的窗口大小
+* availWidth和availHeight指定实际可用的显示大小
+* colorDepth指定的是显示的BPP(bits-per-pixel)值，典型的值有16、24、32
+
+### 对话框
+Window对象提供了3个方法来向用户显示简单的对话框
+
+* alert() 向用户显示一条消息并等待用户关闭对话框
+* confirm() 显示一条消息，要求用户点击“确定”或“取消”按钮，并返回一个布尔值
+* prompt() 显示一条消息，等待用户输入字符串，并返回那个字符串。
+
+### 错误处理
+Window对象的onerror属性是一个事件处理程序，当未捕获的异常传播到调用栈上时就会调用它，并把错误信息输出到浏览器的JavaScript控制台上。
 
 
 
