@@ -168,3 +168,4 @@ function getElements(/* ids...*/) {
 只返回第一个匹配的元素，没有匹配返回null
 
 #### document.all[]
+表示所有文档中的元素（除了Text节点），已被标准方法取代。废弃不用。
