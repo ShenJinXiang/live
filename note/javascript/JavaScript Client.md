@@ -169,3 +169,58 @@ function getElements(/* ids...*/) {
 
 #### document.all[]
 表示所有文档中的元素（除了Text节点），已被标准方法取代。废弃不用。
+
+### 文档结构和遍历
+#### 座位节点树的文档
+Document对象、Element对象、文档中表示文本的Text对象都是Node对象。
+
+* parentNode 属性 该节点的父节点，没有父节点的时候是null
+* 吃了点Nodes 只读的类数组对象(NodeList对象)，该节点的子节点
+* firstChild、lastChild 该节点的字节点的第一个和最后一个，没有子节点则为null
+* nextSibling、previoursSibling 该节点兄弟节点中的前一个和下一个节点
+* nodeType 节点的类型，9-Document节点， 1-Element节点， 3-Text节点， 8-Comment节点， 11-DocumentFragment节点
+* nodeValue Text节点或Commont节点的文本内容
+* nodeName 元素的标签名，大写形式
+
+### 属性
+HTML属性由一个标签和一组称为属性的名-值对组成。
+#### HTML属性作为Element的属性
+表示HTML文档元素的HTMLElement对象定义了读写属性，映射了元素的HTML属性
+
+* HTML属性不区分大小写，但是JavaScript属性名区分大小写，一般采用小写，不只一个单词时，除第一个单词以外的单词首字母大写，如：defaultChecked tabIndex
+* 有些HTML属性在JavaScript中是保留字，一般规则是在属性名加前缀“html” 如 for 属性 写成htmlFor属性。class属性则写成className属性
+
+### 创建、插入和删除节点
+```javascript
+// 从指定的url，异步加载和执行脚本
+function loadasync(url) {
+    var head = document.getElementsByTagName("head")[0];
+    var s = document.createElement("script");
+    s.src = url;
+    head.appendChild(s);
+}
+```
+
+#### 创建节点
+创建新的Element节点，可以使用Document对象的createElement()方法。给方法传递元素的标签名。
+创建文本节点，可以使用document.createTextNode("文本内容");
+复制已存在的节点，每个节点都有一个cloneNode()方法返回该节点的全新副本。传递参数true可以递归复制所有后代节点，传递false只执行前复制。
+
+#### 插入节点
+* appendChild() 在需要插入Element节点上调用，插入指定的节点使其成为那个节点的最后一个子节点
+* insetBefore() 第一个参数是待插入的节点，第二个参数是已存在的节点，新节点插入该节点的前面，在父节点上调用。
+* 如果调用appendChild() 或 insertBefore() 将已存在的文档中的一个节点再次插入，那个节点将自动从它当前的位置删除并在新的位置重新插入，即只改变了节点的顺序
+
+#### 删除和替换节点
+removeChild() 方法
+父节点上调用，将要删除的子节点作为方法的参数
+```javascript
+// 删除n节点：
+n.parentNode.removeChild(n);
+```
+
+replaceChild()
+删除一个子节点，并用新节点取而代之。父节点上调用。第一个参数是新节点，第二个是需要代替的结果
+
+### 文档和元素的几何形状和滚动
+#### 文档坐标和视口坐标

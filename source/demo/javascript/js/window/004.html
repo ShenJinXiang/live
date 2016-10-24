@@ -1,0 +1,23 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>add node</title>
+</head>
+<body>
+<input type='button' id='btn1' value='add' />
+<script>
+(function(){
+	var btn1 = document.getElementById("btn1");
+	btn1.onclick = function() {
+		var body = document.getElementsByTagName("body")[0];
+		var span1 = document.createElement("span");
+		var text1 = document.createTextNode("这是个span的text！");
+		span1.appendChild(text1);
+		body.appendChild(span1);
+
+	}
+})();
+</script>
+</body>
+</html>
