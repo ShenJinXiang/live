@@ -155,4 +155,16 @@ function getElements(/* ids...*/) {
 返回NodeList对象
 参数为“*”选渠道代表文档所有元素的NodeList对象
 
+#### 通过css类选取元素
+> document.getElementsByClassName("className")；
 
+#### 通过css选择器选取元素
+> document.querySelectorAll();
+
+接受包含一个css选择器的字符串参数，返回表示所有元素的NodeList对象
+
+> document.querySelector()；
+
+只返回第一个匹配的元素，没有匹配返回null
+
+#### document.all[]
