@@ -1,0 +1,110 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='utf-8'>
+<link rel='stylesheet' type='text/css' href='../extjs/css/ext-theme-classic/ext-theme-classic-all.css' />
+<script type='text/javascript' src='../extjs/js/ext-all.js'></script>
+<script type='text/javascript' src='../extjs/js/extjs_plus.js'></script>
+<script type='text/javascript' src='../extjs/js/ext-lang-zh_CN.js'></script>
+<script type='text/javascript' src='../extjs/js/printer.js'></script>
+<title>002</title>
+</head>
+<body>
+<script type='text/javascript'>
+Ext.onReady(function() {
+	Ext.QuickTips.init();
+	Ext.form.Field.prototype.magTarget = 'side';
+
+	var btnsubmitclick = function() {
+		Ext.MessageBox.alert("提示", '点击了确定按钮');
+	}
+
+	var btnresetclick = function() {
+		Ext.MessageBox.alert("提示", '点击了重置按钮');
+	}
+
+	var btnresetmouseover = function() {
+		console.log("提示", "鼠标滑过重置按钮");
+	}
+
+	var btnsubmit = new Ext.Button({
+		text: '提交',
+		handler: btnsubmitclick
+	});
+
+	var btnreset = new Ext.Button({
+		text: '重置',
+		listeners: {
+			'mouseover': btnresetmouseover,
+			'click' : btnresetclick
+		}
+	});
+
+	var txtusername = new Ext.form.TextField({
+		allowBlank: false,
+		maxLength: 20,
+		name: 'username',
+		fieldLabel: '用户名称',
+		blankText: '请输入用户名',
+		maxLengthText: '用户名不能超过20个字符'
+	});
+
+	var txtpassword = new Ext.form.TextField({
+		allowBlank: false,
+		maxLength: 20,
+		inputType: 'password',
+		name: 'password',
+		fieldLabel: '密码',
+		blankText: '请输入密码',
+		maxLengthText: '密码不能超过20个字符'
+	});
+
+	var numberfield = new Ext.form.NumberField({
+		fieldLabel: '身高',
+		decimalPrecision: 1,
+		minValue: 0.01,
+		maxValue: 200,
+		allowBlank: false,
+		blankText: '请输入身高'
+	});
+
+	var hiddenfield = new Ext.form.Hidden({
+		name: 'userid',
+		value: '1'
+	});
+
+	var datefield = new Ext.form.DateField({
+		fieldLabel: '出生日期',
+		format: 'Y-m-d',
+		editable: false,
+		allowBlank: false,
+		blankText: '请选择日期'
+	});
+
+	var form = new Ext.form.FormPanel({
+		frame: true,
+		title: '表单标题',
+		style: 'margin:10px',
+		html: '<div style="padding: 10px">form content</div>',
+		items: [txtusername, txtpassword, numberfield,hiddenfield, datefield],
+		buttons: [btnsubmit, btnreset]
+	});
+
+	var win = new Ext.Window({
+		title: '窗口',
+		width: 476,
+		height: 374,
+		html: '<div>window content</div>',
+		resizable: true,
+		closeable: true,
+		maximizable: true,
+		minimizable: true,
+		buttonAlign: 'center',
+		items: form
+	});
+	win.show();
+});
+</script>
+</body>
+</html>
+
