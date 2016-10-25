@@ -282,3 +282,15 @@ function getViewportSize(w) {
     };
 }
 ```
+
+#### 查询元素的几何尺寸
+> getBoundingClientRect()
+
+* 不需要参数，返回一个有left、right、top、bottom属性的对象，left和top属性表示元素的左上角的x和y的坐标，right和bottom属性表示元素的右下角的x和y坐标
+* 返回的是视口坐标中的位置
+
+#### 判断元素在某店
+> document.elementFromPoint()
+
+* 参数x和y坐标（视口坐标）
+* 返回此位置的元素(最里面和最上面的)

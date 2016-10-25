@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<style>
+* {margin:0;padding:0;}
+	#div1 {
+		width: 200px;
+		height: 300px;
+		background-color: #084;
+	}
+	#div2 {
+		width: 400px;
+		height: 500px;
+		background-color: #048;
+	}
+	</style>
+	<title>client box</title>
+</head>
+<body>
+<div>111</div>
+<br><br><br><br><br><br><br><br><br>
+<div id='div1'></div>
+<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+<div id='div2'></div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div>111</div>
+<script type='text/javascript'>
+(function(){
+	document.body.onclick = function(e) {
+		console.log("------------------------");
+		console.log('x:', e.clientX, 'y:', e.clientY);
+		var div1 = document.getElementById("div1");
+		console.dir(div1.getBoundingClientRect());
+		var div2 = document.getElementById("div2");
+		console.dir(div2.getBoundingClientRect());
+		var d = document.elementFromPoint(e.clientX, e.clienty);
+		console.dir(d);
+	}
+
+})();
+</script>
+</body>
+</html>
