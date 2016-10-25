@@ -224,3 +224,38 @@ replaceChild()
 
 ### 文档和元素的几何形状和滚动
 #### 文档坐标和视口坐标
+ 元素的位置是以像素来度量的，向右代表x坐标增加，向下代表y坐标增加。
+ 
+文档坐标: 文档的左上角位置为坐标原点
+视口坐标: 浏览器可视窗口的左上角为坐标原点
+
+* 如果文档比视口要小，还未出现滚动条，则文档的左上角就是视口的左上角，即文档和视口的坐标系统是同一个
+* 坐标之间相互转换需加上或减去滚动的偏移量(scroll offset)
+* 文档坐标比视口坐标更加基础，并且在用户滚动时不会发生变化
+
+获取浏览器窗口滚动条的位置：
+Window对象的pageXOffset和pageYOffset属性，IE可以通过scrollLeft和scrollTop属性来获取
+```javascript
+// 查询窗口滚动条位置
+function getScrollOffsets(w) {
+    w = w || window;
+    if(w.pageXOffset != null) {
+        return {
+            x: w.pageXOffset,
+            y: w.pageYOffset
+        };
+    }
+    var d = w.document;
+    if(document.compatMode == "CSS1Compat") {
+        return {
+            x: d.documentElement.scrollLeft,
+            y: d.documentElement.scrollTop
+        };
+    }
+    
+    return {
+        x: d.body.scrollLeft,
+        y: d.body.scrollTop
+    };
+}
+```
