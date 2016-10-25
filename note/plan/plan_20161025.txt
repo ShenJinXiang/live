@@ -1,0 +1,26 @@
+{
+	"start_time": "2016-10-25",
+	"end_time": "2016-10-29",
+	"content": {
+		"JavaScript权威指南": [
+			{
+				"name": "脚本化文档",
+				"complete": false
+			},
+			{
+				"name": "脚本化css",
+				"complete": false
+			},
+			{
+				"name": "事件处理",
+				"complete": false
+			}
+		],
+		"extjs": [
+			{
+				"name": "ext.js form表单",
+				"complete": false
+			}
+		]
+	}
+}

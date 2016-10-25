@@ -1,0 +1,60 @@
+{
+	"start_time": "2016-10-25",
+	"end_time": "2016-12-31",
+	"content": {
+		"JavaScript权威指南": [
+			{
+				"name": "客户端JavaScript",
+				"complete": false
+			},
+			{
+				"name": "JavaScript核心参考",
+				"complete": false
+			},
+			{
+				"name": "客户端JavaScript参考",
+				"complete": false
+			}
+		],
+		"Nodejs": [
+			{
+				"name": "学会node.js编程基本规范",
+				"complete": false
+			},
+			{
+				"name": "node.js链接mysql数据库",
+				"complete": false
+			},
+			{
+				"name": "node.js完成一个管理系统项目",
+				"complete": false
+			}
+		],
+		"extjs": [
+			{
+				"name": "熟练使用ext.js",
+				"complete": false
+			}
+		],
+		"mysql": [
+			{
+				"name": "熟悉mysql函数编写和应用",
+				"complete": false
+			},
+			{
+				"name": "熟悉mysql存储过程和应用",
+				"complete": false
+			},
+			{
+				"name": "mysql定时器实现和应用",
+				"complete": false
+			}
+		],
+		"blog": [
+			{
+				"name": "完成10篇博客",
+				"complete": false
+			}
+		]
+	}
+}
