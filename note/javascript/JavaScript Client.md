@@ -259,3 +259,26 @@ function getScrollOffsets(w) {
     };
 }
 ```
+```javascript
+// 查询窗口的视口尺寸
+function getViewportSize(w) {
+    w = w || window;
+    if(w.innerWidth != null) {
+        return {
+            w: w.innerWidth,
+            h: w.innerHeight
+        };
+    }
+    var d = w.document;
+    if(document.compatMode == 'CSS1Compat') {
+        return {
+            w: d.documentElement.clientWidth,
+            h: d.documentElement.clientHeight
+        };
+    }
+    return {
+        w: d.body.clientWidth,
+        h: d.body.clientHeight
+    };
+}
+```

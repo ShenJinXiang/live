@@ -13,8 +13,9 @@
 	var body = document.body;
 	body.onmousemove = function(e) {
 		console.log("---------------------------------------------------");
-		console.log('x:', e.clientX, 'y:', e.clientY);
-		console.log('xx:', window.pageXOffset, 'yy:', window.pageYOffset);
+		console.log('鼠标位置--> x:', e.clientX, 'y:', e.clientY);
+		console.log('滚动位置--> xx:', window.pageXOffset, 'yy:', window.pageYOffset);
+		console.log('视口尺寸--> w:', window.innerWidth, 'h:', window.innerHeight);
 	}
  })();
 </script>
