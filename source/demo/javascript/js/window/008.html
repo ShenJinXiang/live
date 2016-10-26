@@ -1,0 +1,65 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<style>
+		*{margin:0;padding:0;}
+	</style>
+	<title>scrollTop</title>
+</head>
+<body>
+<input type='button' value='scroll' id='btn' />
+<div>111</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div>222</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div>333</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div>444</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div>555</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div id='div6'>666</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div>777</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div>888</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div>999</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div>aaa</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div>bbb</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div>ccc</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div>ddd</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div>eee</div>
+<br><br><br><br><br>
+<div>fff</div>
+<script>
+(function(){
+	var div6 = document.getElementById("div6");
+	var btn = document.getElementById("btn");
+	btn.onclick = function() {
+		div6.scrollIntoView();
+	}
+	/*
+	btn.onclick = function() {
+		setInterval(function(){
+			scrollBy(0, 10);
+		}, 50);
+	}
+	*/
+	/*
+	document.body.onclick = function(e) {
+		console.log("mouse client x:", e.clientX, "y:", e.clientY);
+		console.log("mouse document x:", e.clientX + window.pageXOffset, "y:", e.clientY + window.pageYOffset);
+		window.scrollTo(e.clientX + window.pageXOffset, e.clientY + window.pageYOffset);
+	}
+	*/
+})();
+</script>
+</body>
+</html>

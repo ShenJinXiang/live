@@ -1,0 +1,66 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<style>
+*{margin:0;padding:0;}
+.show_div{height:50px;background-color: #084;}
+.btn_span{display:inline-block;padding: 10px;margin-left:20px; border: 1px solid #ccc;cursor:pointer;}
+#toTop{position:fixed;right:10px;bottom:10px;width:60px;height:60px;text-align:center;line-height:60px;font-size:12px;cursor:pointer;border:1px solid #ccc;}
+	</style>
+	<title>scroll to</title>
+</head>
+<body>
+<div>
+	<span class='btn_span'>aaa</span>
+	<span class='btn_span'>bbb</span>
+	<span class='btn_span'>ccc</span>
+	<span class='btn_span'>ddd</span>
+	<span class='btn_span'>eee</span>
+	<span class='btn_span'>fff</span>
+	<span class='btn_span'>ggg</span>
+</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div class='show_div' id='div_aaa'>aaa</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div class='show_div' id='div_bbb'>bbb</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div class='show_div' id='div_ccc'>ccc</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div class='show_div' id='div_ddd'>ddd</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div class='show_div' id='div_eee'>eee</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div class='show_div' id='div_fff'>fff</div>
+<br><br><br><br><br><br><br><br><br><br><br><br>
+<div class='show_div' id='div_ggg'>ggg</div>
+<div id='toTop'>顶部<div>
+<script>
+(function(){
+	var toTop = document.getElementById("toTop");
+	toTop.onclick = function(){
+		scrollTo(0, 0);
+	}
+	var spans = document.getElementsByClassName("btn_span");
+	for(var i = 0; i < spans.length; i++) {
+		spans[i].onclick = function(e){
+			var div = document.getElementById("div_" + e.target.innerText);
+			var box = div.getBoundingClientRect();
+			//scrollTo(0, box.top);
+
+			var timer = setInterval(function(){
+				scrollBy(0, 1);
+				if(window.pageYOffset >= box.top || window.pageYOffset >= document.body.scrollHeight - window.innerHeight) {
+					clearInterval(timer);
+				}
+			}, 10);
+		}
+	}
+	/*
+	console.log(document.body.scrollWidth, document.body.scrollHeight);
+	console.log(window.innerWidth, window.innerHeight);
+	*/
+})();
+</script>
+</body>
+</html>
