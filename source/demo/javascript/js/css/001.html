@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<style>
+		#div{
+			margin: 0;
+			padding: 0;
+			width: 200px;
+			height: 230px;
+			background-color: #084;
+		}
+	</style>
+	<title>getComputerStyle</title>
+</head>
+<body>
+<div id='div'>div</div>
+<script>
+(function(){
+	var div = document.getElementById("div");
+	var ds = window.getComputedStyle(div, null);
+	console.dir(ds);
+})();
+</script>
+</body>
+</html>
