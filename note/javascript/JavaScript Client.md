@@ -342,3 +342,134 @@ html元素对象调用，可使其在屏幕上可见，也可以用getBoundingCl
 
 #### document.write() 方法
 讲字符串参数链接起来，然后将结果字符串插入到文档中调用它的脚本的位置，当脚本执行介绍，浏览器解析生成的输出并显示它。
+
+## 脚本化CSS
+### CSS概览
+* 属性名 冒号 值
+* 内联样式关联css 在HTML元素中设置style属性值
+* 在style标签中写css样式
+* head中使用link标签引入外部css文件 <link rel='stylesheet' href='' type='text/css'>
+
+#### 复合属性
+例子：
+font-family font-size font-weight
+#### 非标准属性
+|浏览器|前缀|
+|--|--|
+|Firefox|-moz-|
+|Chrome|-webkit-|
+|IE|-ms-|
+
+### 重要的CSS属性
+|属性|描述|
+|--|--|
+|position|指定元素的定位类型|
+|top、left|指定元素上、左边缘的位置|
+|bottom、right|指定元素下、右边缘的位置|
+|width、height|指定元素的尺寸|
+|z-index|指定元素相对于其他层叠元素的“堆叠次序”，定义了元素定位的第三个维度|
+|display|指定元素是否以及如何显示|
+|visibility|指定元素是否可见|
+|clip|定义元素的裁剪区域，只显示元素在区域内的部分|
+|overflow|指定元素比分配的空间要大时的处理方式|
+|margin、border、padding|指定元素的空白和边框|
+|background|指定元素的背景颜色或图片|
+|opacity|指定元素的不透明度，CSS3属性|
+
+#### 用CSS定位元素
+CSS的position属性指定了应用到元素上的定位类型
+
+* static 默认属性。指定元素按照常规的文档内容流进行定位，不能使用top、left和类似其他属性定位
+* absolute 指定元素是相对于它包含的元素进行定位，不是文档流的步伐，要不是相对于最近定位的祖先元素，要么是相对于文档本身
+* fixed 指定元素相对于浏览器窗口进行定位。
+* relative 按照常规文档流进行布局，定位相对于文档流中的位置调整。
+
+一旦设置了position属性为除了static以外的值。就可以通过left、top、right、bottom属性指定元素位置。
+如果元素使用绝对定位，它的top和left属性就相对于其position属性设置为除static值以外的祖先元素。如果没有定位过的祖先，则按照文档坐标进行度量，即相对于文档左上角的偏移量。
+
+单位： 像素(px)、英寸(in)、厘米(cm)、点(pt)、字体行高(em)
+
+**z-index**
+* 定义了第三个维度，允许指定元素堆叠次序，按照从低到高的顺序回执。
+* 非定位元素，z-index无效，默认z-index值为0
+
+**CSS 文本阴影**
+text-shadow属性在文本下产生阴影效果
+
+#### 边框、外边距和内边距
+元素的边框是一个围绕元素回执的矩形。
+```css
+border: solid black 1px; /* 1像素的黑色实线边框 */
+border: 3px dotted red; /* 3像素的红色点线边框 */
+```
+可以单独的css属性指定边框的宽度、样式和颜色，也可以指定元素每条边的边框。
+
+margin 指定边框外面 边框和相邻元素之间的空间
+padding 指定边框内，边框和元素内容之间的空间
+
+#### CSS盒模型和定位细节
+* width和height只指定了元素内容区域的尺寸，不包含内边距、边框、外边距
+* left和top指定了容器边框内层到定位元素外侧的距离
+
+**边框盒模型和box-sizing属性**
+标志css盒模型规定width和height样式属性给定内容区域的尺寸，并不包含内边距和边框，称为“内容盒模型”
+
+box-sizing 属性默认值content-box 指标志盒模型,如果指定为box-sizing: border-box，那width和height属性讲包含边框盒内边距
+
+#### 元素显示和可见性
+两个css属性影响了元素的可见性：visibility、display
+
+visibility
+值为hidden时，元素不显示
+值为visible时，元素显示
+
+display 指定元素是否块状元素、内联元素、列表项等
+none时，元素不显示
+
+* visibility属性为hidden时元素不可见，但是文档布局中仍保留了它的空间
+* display属性设置成none，在文档布局中不再分配空间。
+* visibility和display对绝对和固定定位的元素是等价的，因为这些元素不是文档布局的一部分。
+* 隐藏和显示定位元素时一般首选visibility属性
+
+#### 颜色、透明度、半透明度
+color属性指定文档元素包含的文本的颜色
+background-color属性指定任何元素的背景颜色
+background-image属性指定使用的图像
+opacity属性设置透明度
+
+* 如果没有为元素指定背景颜色或图像，它的背景通常透明。
+* opacity的属性值是0-1之间的数字，1代表100%不透明（默认值），0代表100%透明
+
+#### 部分可见：overflow和clip
+overflow属性指定内容超出元素的大小时，如何显示
+
+* visible 默认值，如果需要，内容可以溢出并绘制在元素边框的外面
+* hidden 裁剪调和隐藏溢出的内容
+* scroll 元素一直显示水平和垂直的滚动条，如果内容超出元素尺寸，允许用户通过滚动来查看额外的内容
+* auto 滚动条只在内容超出元素尺寸时显示，而非一直显示
+
+clip属性指定了该显示元素的哪部分，不管是否溢出。
+> rect(top right bottom left)
+
+### 脚本化内联样式
+脚本化css最直接的方式是更改单独的元素的style属性
+```javascript
+e.style.fontSize = '24pt';
+e.style.fontWeight = "bold";
+e.style.color = "blur";
+```
+
+**CSS动画**
+使用setTimeout()或setInterval()重复调用函数来修改元素的内联样式实线css动画。
+
+### 查询计算出的样式
+> getComputedStyle()
+
+* 第一个参数是需要计算样式的元素
+* 第二个参数通常是null或空字符串，也可以是css伪对象的字符串
+* 返回值是CSSStyleDeclaration对象，代表了应用在指定的元素上的所有样式
+* 计算样式的属性是只读的
+* 计算样式的值是绝对值
+* 不计算复合属性
+* 计算样式的cssText属性未定义
+
