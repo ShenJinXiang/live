@@ -308,3 +308,37 @@ function getViewportSize(w) {
 
 html元素对象调用，可使其在屏幕上可见，也可以用getBoundingClientRect()方法获取元素的位置，转换为文档坐标，然后用scrollTo()实现。
 与window.location.hash为命名为锚点(<a name=''>元素)的名字后浏览器产生的行为类似
+
+#### 关于元素尺寸、位置和溢出的信息
+元素尺寸：任何HTML元素的只读属性offsetWidth和offsetHeight以css像素返回它的屏幕尺寸。返回的尺寸包含元素的边框和内边距，不包含外边距
+
+### HTML表单
+|HTML元素|类型属性|事件处理程序|描述和事件|
+|--|--|--|--|
+|&lt;input type='button'&gt; 或  &lt;button type='button'&gt;|"button"|onclick|按钮|
+|&lt;input type='checkbox'&gt;|"checkbox"|onchange|复选按钮|
+|&lt;input type='file'&gt;|"file"|onchange|载入Web服务器的文件的文件名或输入域；它的value属性是只读的|
+|&lt;input type='hidden'&gt;|"hidden"|none|数据由表单提交，但对用户不可见|
+|&lt;option&gt;|none|none|Select对象中的单个选项；时间处理程序在select对象上，而非单独的Option对象上|
+|&lt;input type='password'&gt;|"password"|onchange|密码输入框，输入的字符不可见|
+|&lt;input type='radio'&gt;|"radio"|onchange|单选按钮，同时只能选定一个|
+|&lt;input type='reset'&gt;或  &lt;button type='reset'&gt;|"reset"|onclick|重置表单的按钮|
+|&lt;select&gt;|"select-one"|onchange|选项只能单选的列表或下拉菜单|
+|&lt;select multiple&gt;|"select-multiple"|onchange|选项可以多选的列表|
+|&lt;input type='submit'&gt;或  &lt;button type='submit'&gt;|"submit"|onclick|表单提交按钮|
+|&lt;input type='text'&gt;|"text"|onchange|单行文本输入域；type属性缺少或无法识别时默认的&lt;input&gt;元素|
+|&lt;textarea&gt;|"textarea"|onchange|多行文本输入域|
+
+* JavaScript的From对象支持两个方法：submit()和reset()用来提交和重置
+
+#### Document的属性
+* cookie 允许JavaScript程序读写HTTP cookie的特殊属性
+* domain 该属性允许当Web页面之间交互时，相同域名下互相信任的Web服务器之间写作放宽同源策略安全限制
+* lastModified 包含文档修改时间的字符串
+* location 与Window对象的location属性引用同一个Location对象
+* referrer 如果有表示浏览器导航到当前链接的上一个文档
+* title 文档的<title>和</title>标签之间的内容
+* URL 文档的url 只读字符串。
+
+#### document.write() 方法
+讲字符串参数链接起来，然后将结果字符串插入到文档中调用它的脚本的位置，当脚本执行介绍，浏览器解析生成的输出并显示它。
