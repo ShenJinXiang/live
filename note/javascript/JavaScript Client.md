@@ -294,3 +294,17 @@ function getViewportSize(w) {
 
 * 参数x和y坐标（视口坐标）
 * 返回此位置的元素(最里面和最上面的)
+
+#### 滚动
+> window.scrollTo()
+
+接受一个点的x和y坐标(文档坐标)，作为滚动条的偏移量设置。窗口移动到指定的店出现在视口的左上角。滚动到指定位置
+
+> window.scrollBy()
+
+在当前滚动条的偏移量上增加，可用于持续滚动
+
+> scrollIntoView()
+
+html元素对象调用，可使其在屏幕上可见，也可以用getBoundingClientRect()方法获取元素的位置，转换为文档坐标，然后用scrollTo()实现。
+与window.location.hash为命名为锚点(<a name=''>元素)的名字后浏览器产生的行为类似
