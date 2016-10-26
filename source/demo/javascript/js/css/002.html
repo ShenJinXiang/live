@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>classlist</title>
+</head>
+<body>
+<div class='class1 class2' id='div'></div>
+<input type='button' id='addBtn' value='add' />
+<input type='button' id='removeBtn' value='remove' />
+<input type='button' id='toggleBtn' value='toggle' />
+<input type='button' id='containsBtn' value='contains' />
+<input type='text' id='txt' />
+<script>
+(function(){
+	var txt = document.getElementById("txt");
+	var div = document.getElementById("div");
+	var addBtn = document.getElementById("addBtn");
+	var removeBtn = document.getElementById("removeBtn");
+	var toggleBtn = document.getElementById("toggleBtn");
+	var containsBtn = document.getElementById("containsBtn");
+
+	console.log(div.classList);
+
+	addBtn.onclick = function() {
+		var val = txt.value;
+		div.classList.add(val);
+	}
+
+	removeBtn.onclick = function() {
+		div.classList.remove(txt.value);
+	}
+
+	toggleBtn.onclick = function() {
+		div.classList.toggle(txt.value);
+	}
+
+	containsBtn.onclick = function() {
+		var result = div.classList.contains(txt.value);
+		alert(result);
+	}
+})();
+</script>
+</body>
+</html>

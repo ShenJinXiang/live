@@ -473,3 +473,6 @@ e.style.color = "blur";
 * 不计算复合属性
 * 计算样式的cssText属性未定义
 
+### 脚本化CSS类
+通过脚本修改HTML的css属性值，HTML元素可以有多个css类名，class属性保存了一个用空格隔开的类名列表。
+HTML5为每个元素定义了classList属性，属性值是DOMTOkenList对象：一个只读的类数组对象，方法有：add() remove() 添加和清除一个类名。toggle()如果不存在类名就添加一个，否则删除。contains()方法检测class属性中是否包含一个指定的类名。
