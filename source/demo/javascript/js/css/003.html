@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<style>
+*{margin:0;padding:0;}
+#div1{width: 300px; height: 300px; background-color: red;}
+	</style>
+	<title>脚本化样式1</title>
+</head>
+<body>
+<div id='div1'>111</div>
+<input type='button' value='取消' id='btn1' />
+<input type='button' value='启用' id='btn2' />
+<input type='button' value='添加边框' id='btn3' />
+
+<script>
+(function(){
+	console.dir(document.styleSheets);
+	console.log(document.styleSheets[0].cssRules[0].cssText);
+	var btn1 = document.getElementById("btn1");
+	var btn2 = document.getElementById("btn2");
+	var btn3 = document.getElementById("btn3");
+	btn1.onclick = function() {
+		document.styleSheets[0].disabled = true;
+	}
+	btn2.onclick = function() {
+		document.styleSheets[0].disabled = false;
+	}
+	btn3.onclick = function() {
+		document.styleSheets[0].insertRule("#div1 {border: 1px solid #084;}", 0);
+		console.dir(document.styleSheets);
+	}
+})();
+</script>
+</body>
+</html>
