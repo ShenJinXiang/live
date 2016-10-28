@@ -537,3 +537,76 @@ CSSClassList.prototype.toArray = function(){
     return this.e.className.match(/\b\w+\b/g) || [];
 };
 ```
+
+### 脚本化样式表
+脚本化样式表，不经常用。
+元素对象&lt;style&gt;和&lt;link&gt;元素，如果有id属性，可以用getElementById("") 获取
+
+> document.styleSheets
+
+获取只读的类数组对象，包含了页面的CSSStyleSheet对象，
+#### 开启和关闭样式表
+CSSStyleSheet对象的disabled属性，设置属性值为true，浏览器就忽略此样式表
+```javascript
+function disableStylesheet(ss) {
+    if(typeof ss === 'number') {
+        document.styleSheets[ss].disabled = true;
+    } else {
+        var sheets = document.querySelectorAll(ss);
+        for(var i = 0; i < sheets.length; i++) {
+            sheets[i].disabled = true;
+        }
+    }
+}
+```
+
+#### 查询、插入与删除样式表规则
+document.styleSheets[]数组的元素是CSSStyleSheet对象，CSSStyleSheet对象有一个cssRules[]数组，它包含样式表的所有规则：
+
+> var firstRule = document.styleSheets[0].cssRules[0];
+
+* IE使用不同的属性名rules代替cssRules
+* cssRules[]或rules[]数组的元素为CSSRule对象
+* cssRules的selectText属性是规则的css选择器
+* 使用CSSStyleDeclaration对象的cssText属性来活的规则的文本表示形式
+
+* insertRule() 添加规则
+* deleteRule() 删除规则
+
+> document.styleSheets[0].insertRule("H1 {text-weight: bold;}", 0);
+
+#### 创建新样式表
+可以使用标注呢dom技术：创建新的style元素，将其插入文档头部，然后用innerHTML属性来设置样式表内容。
+在IE8以及更早版本中可以通过document.createStyleSheet()来创建CSSStyleSheet对象
+```javascript
+function addStyle(styles) {
+    var styleElt, styleSheet;
+    if(document.createStyleSheet) {
+        styleSheet = document.createStyleSheet();
+    } else {
+        var haed = document.getElementsByTagName("head")[0];
+        styleElt = document.createElement("style");
+        head.appendChild(styleElt);
+        styleSheet = document.styleSheets[document.styleSheets.length - 1]
+    }
+    
+    if(typeof styles === 'string') {
+        if(styleElt) {
+            styleElt.innerHTML = styles;
+        } else {
+            styleSheet.cssText = styles;
+        }
+    } else {
+        var i = 0;
+        for(selector in styles) {
+            if(styleSheet.insertRule) {
+                var rule = selector + " {" + styles[selector] + "}";
+                styleSheet.insertRule(rule, i++);
+            } else {
+                styleSheet.addRule(selector, styles[selector], i++);
+            }
+        }
+    }
+    
+}
+```
