@@ -5,11 +5,11 @@
 		"JavaScript权威指南": [
 			{
 				"name": "脚本化文档",
-				"complete": false
+				"complete": true
 			},
 			{
 				"name": "脚本化css",
-				"complete": false
+				"complete": true
 			},
 			{
 				"name": "事件处理",
