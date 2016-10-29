@@ -639,3 +639,39 @@ function addStyle(styles) {
 * resize和scroll事件，当用户调整浏览器大小和滚动时触发。
 
 **鼠标事件**
+* 当用户在文档上移动或单击鼠标时都会产生鼠标事件。这些事件在鼠标指针所对应的最里面的元素上触发，会冒泡直到文档最顶层
+* clientX和clientY属性指定了鼠标在窗口坐标中的位置，button和which属性制定了按下的鼠标键是哪个
+* 当键盘辅助间按下时，对应的属性altkey、ctrlKey、metaKey和shiftKey会设置为true
+* 对于click时间，detail属性指定了是单击、双击或三击
+* 用户每次移动或拖动鼠标时，会触发mousemove时间，此时间非常频繁，所以对应的时间处理程序一定不能触发计算密集型任务
+* 用户按下或释放鼠标按键时，会触发mousedown和mouseup时间
+* 用户滚动鼠标滚轮时，浏览器触发mousewheel时间（Firefox中是DOMMouseScroll事件），事件对象属性指定滚轮转动的大小和方向
+
+**键盘事件**
+* 用户每次按下或释放键盘上的按键时都会产生事件
+* 如果没有元素获得焦点，可以直接在文档上出发事件
+* 键盘事件的事件对象有keyCode字段，指定按下或释放的键是哪个，另外还有键盘辅助键状态
+* keydown和keyup是低级键盘事件，无论何时按下或释放按键，都会触发。
+* 当keydown事件产生可打印字符时，在keydown和keyup之间会触发另外的keypress事件
+* 当按下键重复产生字符时，keyup事件之前可能产生很多keypress事件
+
+#### DOM事件
+DOM事件规范标准化了不冒泡的focusin和focusout事件取代冒泡的focus和blur事件，标准化了冒泡的mouseenter和mouseleave事件取代不冒泡的mouseover和mouseout事件
+
+#### HTML5事件
+audio和video元素的事件列表：
+||||||
+|:--:|:--:|:--:|:--:|
+|cnplay|loadeddata|playing|stalled|
+|canplaythrough|loadedmetadata|progress|suspend|
+|durationchange|loadstart|ratechange|timeupdate|
+|emptied|pause|seeked|volumechange|
+|ended|play|seeking|waiting|
+
+HTML5的拖放API允许JavaScript应用参与基于操作系统的拖放操作，事件类型：
+dragstart   drag    dragend     dragenter   dragover    dragleave   drop
+
+HMLT5 离线缓存：
+cached  checking    downloading error   noupdate    obsolete    progress    updateready
+
+### 注册事件处理程序
