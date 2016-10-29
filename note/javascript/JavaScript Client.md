@@ -675,3 +675,52 @@ HMLT5 离线缓存：
 cached  checking    downloading error   noupdate    obsolete    progress    updateready
 
 ### 注册事件处理程序
+1. 给事件目标对象或文档元素设置属性
+2. 将事件处理程序传递给对象或元素
+
+> addEventListener()    标准方法
+> attachEvent()     IE9之前的IE版本
+
+#### 设置JavaScript对象属性为事件处理程序
+事件处理程序属性的名字由"on"后面跟着事件名组成：onclick、onchange、onload、onmouseover
+
+事件处理程序属性的缺点：每个事件目标对应每种事件类型将最多只有一个处理程序
+
+#### 设置HTML标签属性为事件处理程序
+用于设置文档元素事件处理程序属性（property）也可以换成对应HTML标签的属性（attribute），属性值应该是JavaScript代码字符串。
+```html
+<button onclick="alert('Thank you');">点击这里</button>
+```
+
+一些事件类型要直接在浏览器上触发，在JavaScript中，这些事件处理程序在Window对象上注册，在HTML中 放在&lt;body&gt;标签上
+|||||
+|:--:|:--:|:--:|:--:|
+|onafterprint|onfocus|ononline|onresize|
+|onbeforeprint|onhashchange|onpagehide|onstorage|
+|onbeforeunload|onload|onpageshow|onundo|
+|onblur|onmessage|onpopstate|onunload|
+|onerror|onoffline|onredo||
+
+#### addEventListener()
+Window对象、Document对象和所有文档元素都定义了addEventListener()的方法
+* 第一个参数：要注册处理程序的事件类型，字符串，不包括前缀on
+* 第二个参数：指定类型的事件发生时应调用的函数
+* 第三个参数：布尔值，通常传递false，如果传递了true，那么函数将注册为捕获事件处理程序
+* 可以通过多次调用addEventListener()为同一个对象注册同一事件类型的多个处理程序函数，当触发时，按照注册顺序调用
+
+> removeEventListener()
+
+与addEventListener()相对，从对象中删除事件处理程序
+* 第一个参数： 事件类型，字符串
+* 第二个参数： 事件处理程序函数
+* 第三个参数： 布尔值
+
+#### attachEvent()
+IE9之前的IE不支持addEventListener()和removeEventListener()，IE5及以后版本定义了类似的方法：attachEvent()和detachEvent()
+
+attachEvent()和detachEvent()方法的工作原理与addEventlistener()和removeEventListener()类似
+* IE事件模型不支持事件捕获，所以attachEvent()和detachEvent()要求只有两个参数：事件类型和处理程序函数
+* IE方法的第一个参数使用了带"on"前缀的事件处理程序属性名
+* attachEvent() 允许相同的事件处理程序函数注册多次，触发时，注册函数的调用次数和调用次数一样
+
+### 事件处理程序的调用

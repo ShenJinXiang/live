@@ -1,0 +1,34 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>event test 1</title>
+</head>
+<body>
+<button id='btn1'>click me</button>
+<script>
+(function(){
+	var btn = document.getElementById("btn1");
+
+	btn.addEventListener("click", function(){
+		console.log("222");
+	}, false);
+	btn.onclick = function(){
+		console.log("111");
+	}
+	btn.addEventListener("click", function(){
+		console.log("333");
+	}, false);
+	btn.addEventListener("click", function(){
+		console.log("333");
+	}, false);
+	btn.addEventListener("click", btnclick, false);
+	btn.addEventListener("click", btnclick, false);
+
+	function btnclick(){
+		console.log("444");
+	}
+}());
+</script>
+</body>
+</html>
