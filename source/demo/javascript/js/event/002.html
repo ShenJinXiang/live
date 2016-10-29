@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>unload event demo</title>
+</head>
+<body>
+<a href='www.baidu.com' >baidu</a>
+<script>
+(function(){
+	window.onbeforeunload = function() {
+		return "确定要离开吗";
+	}
+})();
+</script>
+</body>
+</html>
+
