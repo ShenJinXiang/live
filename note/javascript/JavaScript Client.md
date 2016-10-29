@@ -724,3 +724,58 @@ attachEvent()和detachEvent()方法的工作原理与addEventlistener()和remove
 * attachEvent() 允许相同的事件处理程序函数注册多次，触发时，注册函数的调用次数和调用次数一样
 
 ### 事件处理程序的调用
+#### 事件处理程序的参数
+通常调用事件处理程序时把事件对象作为一个参数，获取有关事件的详细信息
+```javascript
+function handler(event) {
+    event = event || window.event;
+}
+```
+
+#### 事件处理程序的运行环境
+在实践处理程序内，this关键字指的是事件目标
+对于attachEvent()注册的处理程序，它的this值是全局对象（Window）
+```javascript
+// 注意使用此方式注册的事件处理程序不能删除
+function addEvent(target, type, handler) {
+    if(target.addEventListener) {
+        target.addEventListener(type, handler, false);
+    } else {
+        target.attachEvent("on" + type, function(event){
+            return handler.call(target, event);
+        });
+    }
+}
+```
+
+#### 事件处理程序的返回值
+通常情况，返回值false就是告诉浏览器不要执行这个事件相关的默认操作
+栗子：表单提交按钮的onclick事件处理程序能返回false组织浏览器提交表单
+
+#### 调用顺序
+* 通过设置对象属性或HTML属性注册的处理程序一直优先调用
+* 通过addEventListener()注册的处理程序安装它们的注册顺序调用
+* 通过attachEvent()注册的处理程序可能按照任何顺序调用，所以代码不应该依赖于调用顺序
+
+#### 事件传播
+在调用在目标元素上注册的事件处理函数后，大部分事件会“冒泡”到DOM树根，调用目标的父元素的事件处理程序，然后调用在目标的祖父元素上注册的事件处理程序，一直到Document对象，最后到达Window对象
+
+文档元素上的load事件会冒泡，会在Document对象上停止冒泡，不会传播到Window对象，只有当整个文档都加载完毕时才会触发Window对象的load事件
+
+#### 事件取消
+在支持addEventListener()的浏览器中，也能通过调用事件对象的preventDefault()方法取消事件的默认操作，在IE9之间，可以通过设置事件对象的returnValue属性为false来达到同样的效果
+```javascript
+function cancelHandler(event) {
+    var event = event || window.event;
+    
+    if(event.preventDefault) {
+        event.preventDefault();
+    }
+    if(event.returnValue) {
+        event.returnValue = false;
+    }
+    return false;
+}
+```
+
+### 文档加载事件
