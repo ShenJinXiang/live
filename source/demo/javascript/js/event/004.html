@@ -1,0 +1,18 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>contextmenu</title>
+</head>
+<body>
+<input type='button' value='btn' id='btn' />
+<script>
+(function(){
+	document.body.oncontextmenu = function() {
+		console.log("ddd");
+		return false;
+	}
+})();
+</script>
+</body>
+</html>

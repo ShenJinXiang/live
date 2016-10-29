@@ -779,3 +779,31 @@ function cancelHandler(event) {
 ```
 
 ### 文档加载事件
+大部分web应用都需要web浏览器通知她们文档加载完毕和作为操作准备就绪的事件，window对象的load事件
+load事件直到文档和所有图片加载完毕时才会发生。
+
+### 鼠标事件
+|类型|说明|
+|--|--|
+|click|高级事件，当用户按下并释放鼠标按键或其它方式激活元素时触发|
+|contextmenu|可以取消的事件，当上下文菜单即将出现时触发，当前浏览器在鼠标右键点击时显示上下文菜单，所以这个事件也能像click事件那样使用|
+|dblclick|当用户双击鼠标时触发|
+|mousedown|当用户按下鼠标按键时触发|
+|mouseup|当用户释放鼠标按键时触发|
+|mousemove|当用户移动鼠标时触发|
+|mouseover|当鼠标进入元素时触发，relatedTarget(在IE中是fromElement)指的是鼠标来自的元素|
+|mouseout|当鼠标离开元素时触发，relatedTarget(在IE中是toElement)指的是鼠标要去往的元素|
+|mouseenter|类似“mouseover”，但不冒泡，IE引入，HTML5标准化|
+|mouseleave|类似“mouseout”，不冒泡|
+
+传递给鼠标事件处理程序的事件对象拥有clientX和clientY属性，指定了鼠标指针相对于包含窗口的坐标，加入窗口的滚动偏移量，就可以吧鼠标位置转换成文档坐标
+
+### 鼠标滚轮事件
+除了Firefox以外的所有浏览器支持“mousewheel”事件，Firefox使用“DOMMouseScroll”
+
+### 拖放事件
+### 文本事件
+浏览器有3个传统的键盘输入事件：keydown keyup keypress
+### 键盘事件
+当用户在键盘上按下或释放按键时，会产生keydown和keyup事件，由辅助键、功能键和字母键产生，如果用户按键时间足够长，会导致它开始重复，那么在keyup事件到达之前会收到多个keydown事件
+keyCode指定了对应按下的键，对于产生打印字符的按键，keyCode指时按键上出现的主要字符的unicode编码
