@@ -13,13 +13,13 @@
 			},
 			{
 				"name": "事件处理",
-				"complete": false
+				"complete": true
 			}
 		],
 		"extjs": [
 			{
 				"name": "ext.js form表单",
-				"complete": false
+				"complete": true
 			}
 		]
 	}

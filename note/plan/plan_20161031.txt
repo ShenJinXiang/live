@@ -1,0 +1,30 @@
+{
+	"start_time": "2016-10-31",
+	"end_time": "2016-11-05",
+	"content": {
+		"JavaScript权威指南": [
+			{
+				"name": "脚本化HTTP",
+				"complete": false
+			},
+			{
+				"name": "jquery类库",
+				"complete": false
+			},
+			{
+				"name": "客户端存储",
+				"complete": false
+			}
+		],
+		"nodejs": [
+			{
+				"name": "node.js基础：模块和包",
+				"complete": false
+			},
+			{
+				"name": "node.js CommonJS规范",
+				"complete": false
+			}
+		]
+	}
+}
