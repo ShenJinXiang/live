@@ -927,3 +927,98 @@ function get(url, callback) {
 ```
 
 #### 编码请求主题
+**表单编码的请求**
+```javascript
+// 用于HTTP请求的编码对象
+function encodeFormData(data) {
+    if(!data) {
+        return "";
+    }
+    var pairs = [];
+    for(var name in data) {
+        if(!data.hasOwnProperty(name)) {
+            continue;
+        }
+        if(typeof data[name] === 'function') {
+            continue;
+        }
+        var value = data[name].toString();
+        name = encodeURIComponent(name.replace("%20", "+"));
+        value = encodeURIComponent(value.replace("%20", "+"));
+        pairs.push(name + "=" + value);
+        return pairs.join('&');
+    }
+}
+```
+
+**JSON编码的请求**
+```javascript
+// 使用JSON编码主体来发起HTTP POST请求
+function postJSON(url, data, claaback) {
+    var request = new XMLHttpRequest();
+    request.open("post", url);
+    request.onreadystatechange = function() {
+        if(request.readyState === 4 && callback) {
+            callback(request);
+        }
+    };
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify(data));
+}
+```
+
+### 借助&lt;script&gt;发送HTTP请求：JSONP
+### 基于服务器端推送事件的Comet技术
+
+## jQuery类库
+* 丰富强大的语法（css选择器），用来查询文档元素
+* 高效的查询方法，用来找到与css选择器匹配的文档元素集
+* 一套有用的方法，用来操作选中的元素
+* 强大的函数式编程技巧，用来批量操作元素集，而不是每次只操作单个
+* 简介的语言用法，用来表示一系列顺序操作
+
+### jQuery 基础
+jQuery类库定义了一个全局函数：jQuery(),快捷别名：$
+> var divs = $("div"); // 获取文档中的所有div元素
+
+#### jQuery()函数
+在jQuery类库中，最重要的方法是jQuery()方法（也就是$()），4种调用方式：
+1. 最常用的调用方式，传递css选择器给$()方法。字符串
+2. 传递一个Element、Document或Window对象给$()，此时，$()只是简单的将Element、Document或Window对象封装成jQuery对象并返回
+3. 传递HTML文本字符串给$()方法，根据传入的文本创建好HTML元素并封装成jQuery对象返回
+4. 传入一个函数给$()方法，此时，在文档加载完毕切DOM可操作时，传入的函数将被调用。
+
+#### 查询与查询结果
+$()的返回值是一个jQuery对象，jQuery对象是类数组：拥有length属性和结余0~length-1之间的数值属性，可以使用toArray()方法将jQuery对象转化为真实数组
+
+selector属性：是创建jQuery对象时的选择器字符串
+context属性：上下文对象，是$()方法的第二个参数，如果没有传递，默认的是Document对象
+jquery属性：所有jQuery对象都有的属性，
+
+```javascript
+var bodydiv = $("div");
+console.log(bodydiv.selector);  // div
+console.log(bodydiv.context); // document
+console.log(bodydiv.jquery); // 2.1.4 jquery版本号
+```
+
+**each()**
+* 遍历jQuery对象中的所有元素，用来代替for循环，类似forEach()数组方法。接受一个回调函数作为参数，然后对jQuery对象中的每个元素调用回调函数
+* 如果回调函数在任一个元素上返回false，遍历将在该元素后终止。
+* each()返回调用自身的jQuery对象，可以用于链式调用
+* 回调函数的第一个参数是索引值，第二个参数是当前元素
+* 回调函数中的this值就是当前循环的元素，即第二个参数
+
+**map()**
+* 与Array.prototype.map()方法很接近
+* 接受回调函数作为参数，并为对象中的每个元素都调用回调函数，同时将回调函数的返回值收集起来，封装成一个新的jQuery对象返回。
+* 回调函数的第一个参数为索引值，第二个参数为循环中的元素，即函数的this。
+
+**index()**
+* 接受一个元素作为参数，返回值是该元素在jQuery对象中的索引值，如果找不到，返回-1
+* 如果传入的参数是个字符串，会当成css选择器，并返回选择器的元素中第一个元素的索引值
+
+**is()**
+* 接受一个选择器作为参数，如果选中元素中至少有一个元素匹配该选择器，返回true
+
+### jQuery的getter和setter
