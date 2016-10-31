@@ -1022,3 +1022,52 @@ console.log(bodydiv.jquery); // 2.1.4 jquery版本号
 * 接受一个选择器作为参数，如果选中元素中至少有一个元素匹配该选择器，返回true
 
 ### jQuery的getter和setter
+* jQuery使用同一个方法既当getter用又做setter用，如果传入一个新值，将设置此值，如果没有指定值，则返回当前值
+* 用作setter时，这些方法会给jQuery对象中的每个元素设置值，然后返回该jQuery对象以便链式调用
+* 用作getter时，只会查询元素集中的第一个元素，返回单个值（要遍历所有元素，使用map()），getter不会返回调用自身的jQuery对象
+* 用作setter时，经常接受对象参数，该对象的每个属性都指定一个需要设置的名值对
+* 用作setter时，经常接受函数参数
+
+#### 获取和设置HTML属性
+attr()方法是jQuery中用于HTML属性的getter和setter
+```javascript
+$("form").attr("action"); //获取第一个form元素的action属性
+$("#icon").attr("src", "icon.gif"); // 设置src属性
+$("#banner").attr({src: "banner.gif", alt: "Advertisement", width: 720, height: 64}); // 一次设置4个属性
+$("a").attr("target", "_blank"); // 使得所有链接在新窗口中打开
+$("a").attr("target", function(){
+    if(this.host == location.host) {
+        return "_self";
+    }  else {
+        return "_blank"
+    }
+});
+
+$("a").attr({target: function(){}}); 
+$("a").removeAttr("target");    // 让所有链接在本窗口中打开
+```
+
+#### 获取和设置css属性
+css()方法和attr()类似，css()用于元素的css样式
+```javascript
+$("h1").css("font-weight"); // 获取第一个h1元素的字体重量
+$("h1").css("fontWeight");
+$("h1").css("font"); // 错误 不能获取复合样式
+$("h1").css("font-variant", "smallcaps"); // 设置元素样式
+$("div.note").css("border", "solid black 2px"); // 可以设置复合样式
+$("h1").css({backgroundColor: "black", color: "white"}); // 设置多个样式
+```
+
+#### 获取和设置css类
+* addClass() 选中的元素添加类
+* removeClass() 选中的元素删除类
+* toggleClass() 选中元素没有类时添加，有时删除
+* hasClass() 判断某类是否存在
+
+#### 获取和设置HTML表单值
+val()方法，用来设置和获取HTML表单元素的value属性，还可用于获取和设置复选框、单选按钮以及select元素的选中状态
+
+#### 设置和获取元素的内容
+text()和html()方法用于获取和设置元素的纯文本或html内容
+
+#### 获取和设置元素的位置高宽
