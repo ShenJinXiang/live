@@ -807,3 +807,279 @@ load事件直到文档和所有图片加载完毕时才会发生。
 ### 键盘事件
 当用户在键盘上按下或释放按键时，会产生keydown和keyup事件，由辅助键、功能键和字母键产生，如果用户按键时间足够长，会导致它开始重复，那么在keyup事件到达之前会收到多个keydown事件
 keyCode指定了对应按下的键，对于产生打印字符的按键，keyCode指时按键上出现的主要字符的unicode编码
+
+## 脚本化HTTP
+超文本传输协议(HyperText Transfer Protocol, HTTP)规定Web浏览器如何从Web服务器获取文档和想Web服务器提交表单内容，以及Web服务器如何响应这些请求和提交。通常，http并不在脚本的控制下，只是当用户单机链接、提交表单和输入URL时才发生。
+当脚本设置window对象的location属性或调用表单对象的submit()方法时，会初始化http请求，浏览器将会加载新页面。
+Ajax应用的主要特点是使用脚本操作http和web服务器进行数据交换，不会导致页面重载。
+
+### 使用XMLHttpRequest
+实例化XMLHttpRequest对象：
+> var request = new XMLHttpRequest();
+
+```javascript
+if(window.XMLHttpRequest === undefined) {
+    window.XMLHttpRequest = function() {
+        try {
+            return new ActiveXObject("Msxml2.XMLHTTP.6.0");
+        } catch (e1) {
+            try {
+                return new ActiveXObject("Msxml2.XMLHTTP.3.0");
+            } catch (e2) {
+                throw new Error("XMLHttpRequest is not supported");
+            }
+        }
+    }
+}
+```
+
+HTTP请求4部分：
+* HTTP请求方法或“动作”(verb)
+* 正在请求的URL
+* 一个可选的请求头几何，其中可能包括身份验证信息
+* 一个可选的请求主题
+
+服务器返回的HTTP响应包含3个部分：
+* 一个数字和文字组成的状态吗，用来显示请求的成功和失败
+* 一个响应头几何
+* 响应主题
+
+#### 指定请求
+创建XMLHttpRequest对象之后，发起HTTP请求的下一步是调用XMLHttpRequest对象的open()方法去指定这个请求的两个必需部分：方法和URL
+* open()方法的第一个参数指定HTTP方法或动作，字符串，不区分大小写，一般是get和post
+* get用于常规请求，适用于当url完全指定请求资源，当请求对服务器没有任何副作用以及当服务器的响应是可缓存时
+* post常用语html表单
+* 除了get和post之外，也可以是delete hade options put作为第一个参数
+* open()方法的第二个参数是URL，是请求的主题
+
+> request.setRequestHeader("Content-Type", "text/plain");
+
+使用XMLHttpRequest发起HTTP请求的最后一步是向服务器发送请求，使用send方法
+> request.send(null);
+
+```javascript
+// 用post方法发送纯文本给服务器
+function postMessage(msg) {
+    var request = new XMLHttpRequest();
+    request.open("POST", "log.php");
+    request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
+    request.send(msg);
+}
+```
+
+#### 取得响应
+一个完整的HTTP响应由状态码、响应头集合和响应主体组成
+* status和statusText属性以数字和文本的形式返回HTTP状态码
+* 使用getResponseHeader()和getAllResponseHeaders()能查询响应头
+* 响应主体可以从responseText属性中得到文本形式，从responseXML属性中得到Document形式
+
+readyState是一个整数，指定了HTTP请求的状态
+|常量|值|含义|
+|--|:--:|--|
+|UNSEND|0|open()尚未调用|
+|OPENED|1|open()已调用|
+|HEADERS_RECEIVED|2|接收到头信息|
+|LOADING|3|接收到响应主体|
+|DONE|4|响应完成|
+
+监听readystatechange事件，需把事件处理函数设置为XMLHttpRequest对象的onreadystatechange属性，也可以使用addEventListener()或atachEvent()
+
+```javascript
+// 获取HTTP响应的onreadystatechange
+function getText(url, callback) {
+    var request = new XMLHttpRequest();
+    request.open("GET", url);
+    request.onreadystatechange = function() {
+        if(request.readyState === 4 && request.status === 200) {
+            var type = request.getResponseHeader("Content-Type");
+            if(type.match(/^text/)) {
+                callback(request.responseText);
+            }
+        }
+    };
+    request.send(null);
+}
+```
+
+**同步响应**
+XMLHttpRequest也支持同步响应，open()方法的第三个参数设置为false，那么send()方法将阻塞知道请求完成。
+
+**响应解码**
+```javascript
+// 解析HTTP响应
+function get(url, callback) {
+    var request = new XMLHttpRequest();
+    request.open("GET", url);
+    request.onreadystatechange = function() {
+        if(request.readyState === 4 && request.status === 200) {
+            var type = request.getResponseHeader("Content-Type");
+            if(type.indexOf("xml") !== -1 && request.responseXML) {
+                callback(request.responseXML);
+            } else if (type === "application/json") {
+                callback(JSON.parse(request.responseText));
+            } else {
+                callback(request.responseText);
+            }
+        }
+    };
+    request.send(null);
+}
+```
+
+#### 编码请求主题
+**表单编码的请求**
+```javascript
+// 用于HTTP请求的编码对象
+function encodeFormData(data) {
+    if(!data) {
+        return "";
+    }
+    var pairs = [];
+    for(var name in data) {
+        if(!data.hasOwnProperty(name)) {
+            continue;
+        }
+        if(typeof data[name] === 'function') {
+            continue;
+        }
+        var value = data[name].toString();
+        name = encodeURIComponent(name.replace("%20", "+"));
+        value = encodeURIComponent(value.replace("%20", "+"));
+        pairs.push(name + "=" + value);
+        return pairs.join('&');
+    }
+}
+```
+
+**JSON编码的请求**
+```javascript
+// 使用JSON编码主体来发起HTTP POST请求
+function postJSON(url, data, claaback) {
+    var request = new XMLHttpRequest();
+    request.open("post", url);
+    request.onreadystatechange = function() {
+        if(request.readyState === 4 && callback) {
+            callback(request);
+        }
+    };
+    request.setRequestHeader("Content-Type", "application/json");
+    request.send(JSON.stringify(data));
+}
+```
+
+### 借助&lt;script&gt;发送HTTP请求：JSONP
+### 基于服务器端推送事件的Comet技术
+
+## jQuery类库
+* 丰富强大的语法（css选择器），用来查询文档元素
+* 高效的查询方法，用来找到与css选择器匹配的文档元素集
+* 一套有用的方法，用来操作选中的元素
+* 强大的函数式编程技巧，用来批量操作元素集，而不是每次只操作单个
+* 简介的语言用法，用来表示一系列顺序操作
+
+### jQuery 基础
+jQuery类库定义了一个全局函数：jQuery(),快捷别名：$
+> var divs = $("div"); // 获取文档中的所有div元素
+
+#### jQuery()函数
+在jQuery类库中，最重要的方法是jQuery()方法（也就是$()），4种调用方式：
+1. 最常用的调用方式，传递css选择器给$()方法。字符串
+2. 传递一个Element、Document或Window对象给$()，此时，$()只是简单的将Element、Document或Window对象封装成jQuery对象并返回
+3. 传递HTML文本字符串给$()方法，根据传入的文本创建好HTML元素并封装成jQuery对象返回
+4. 传入一个函数给$()方法，此时，在文档加载完毕切DOM可操作时，传入的函数将被调用。
+
+#### 查询与查询结果
+$()的返回值是一个jQuery对象，jQuery对象是类数组：拥有length属性和结余0~length-1之间的数值属性，可以使用toArray()方法将jQuery对象转化为真实数组
+
+selector属性：是创建jQuery对象时的选择器字符串
+context属性：上下文对象，是$()方法的第二个参数，如果没有传递，默认的是Document对象
+jquery属性：所有jQuery对象都有的属性，
+
+```javascript
+var bodydiv = $("div");
+console.log(bodydiv.selector);  // div
+console.log(bodydiv.context); // document
+console.log(bodydiv.jquery); // 2.1.4 jquery版本号
+```
+
+**each()**
+* 遍历jQuery对象中的所有元素，用来代替for循环，类似forEach()数组方法。接受一个回调函数作为参数，然后对jQuery对象中的每个元素调用回调函数
+* 如果回调函数在任一个元素上返回false，遍历将在该元素后终止。
+* each()返回调用自身的jQuery对象，可以用于链式调用
+* 回调函数的第一个参数是索引值，第二个参数是当前元素
+* 回调函数中的this值就是当前循环的元素，即第二个参数
+
+**map()**
+* 与Array.prototype.map()方法很接近
+* 接受回调函数作为参数，并为对象中的每个元素都调用回调函数，同时将回调函数的返回值收集起来，封装成一个新的jQuery对象返回。
+* 回调函数的第一个参数为索引值，第二个参数为循环中的元素，即函数的this。
+
+**index()**
+* 接受一个元素作为参数，返回值是该元素在jQuery对象中的索引值，如果找不到，返回-1
+* 如果传入的参数是个字符串，会当成css选择器，并返回选择器的元素中第一个元素的索引值
+
+**is()**
+* 接受一个选择器作为参数，如果选中元素中至少有一个元素匹配该选择器，返回true
+
+### jQuery的getter和setter
+* jQuery使用同一个方法既当getter用又做setter用，如果传入一个新值，将设置此值，如果没有指定值，则返回当前值
+* 用作setter时，这些方法会给jQuery对象中的每个元素设置值，然后返回该jQuery对象以便链式调用
+* 用作getter时，只会查询元素集中的第一个元素，返回单个值（要遍历所有元素，使用map()），getter不会返回调用自身的jQuery对象
+* 用作setter时，经常接受对象参数，该对象的每个属性都指定一个需要设置的名值对
+* 用作setter时，经常接受函数参数
+
+#### 获取和设置HTML属性
+attr()方法是jQuery中用于HTML属性的getter和setter
+```javascript
+$("form").attr("action"); //获取第一个form元素的action属性
+$("#icon").attr("src", "icon.gif"); // 设置src属性
+$("#banner").attr({src: "banner.gif", alt: "Advertisement", width: 720, height: 64}); // 一次设置4个属性
+$("a").attr("target", "_blank"); // 使得所有链接在新窗口中打开
+$("a").attr("target", function(){
+    if(this.host == location.host) {
+        return "_self";
+    }  else {
+        return "_blank"
+    }
+});
+
+$("a").attr({target: function(){}}); 
+$("a").removeAttr("target");    // 让所有链接在本窗口中打开
+```
+
+#### 获取和设置css属性
+css()方法和attr()类似，css()用于元素的css样式
+```javascript
+$("h1").css("font-weight"); // 获取第一个h1元素的字体重量
+$("h1").css("fontWeight");
+$("h1").css("font"); // 错误 不能获取复合样式
+$("h1").css("font-variant", "smallcaps"); // 设置元素样式
+$("div.note").css("border", "solid black 2px"); // 可以设置复合样式
+$("h1").css({backgroundColor: "black", color: "white"}); // 设置多个样式
+```
+
+#### 获取和设置css类
+* addClass() 选中的元素添加类
+* removeClass() 选中的元素删除类
+* toggleClass() 选中元素没有类时添加，有时删除
+* hasClass() 判断某类是否存在
+
+#### 获取和设置HTML表单值
+val()方法，用来设置和获取HTML表单元素的value属性，还可用于获取和设置复选框、单选按钮以及select元素的选中状态
+
+#### 设置和获取元素的内容
+text()和html()方法用于获取和设置元素的纯文本或html内容
+
+#### 获取和设置元素的位置高宽
+**offset()**
+* offset()方法可以获取或设置元素的位置
+* 返回一个对象，带有left和top属性，用来表示x和y坐标
+* 如果传入带有这些属性的对象给该方法，会给元素设置制定的位置
+* 必要时，会设置css的position属性来使得元素可定位
+
+```javascript
+var elt = $("#sprite");
+var position = elt.offset();
+position.top += 100;
+elt.offset(position);
+```
