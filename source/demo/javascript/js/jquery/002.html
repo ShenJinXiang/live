@@ -1,0 +1,44 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>demo2</title>
+</head>
+<body>
+<div id='div1'>111</div>
+<div id='div2'>222</div>
+<div>333</div>
+<div>444</div>
+<div>555</div>
+<div>666</div>
+<script src='http://libs.baidu.com/jquery/2.1.4/jquery.min.js'></script>
+<script>
+$(function(){
+	var divs = $("div");
+	/*
+	console.log(divs.length);
+	divs.each(function(index, ele){
+		console.log("------------");
+		console.log($(this).text());
+		console.log(index);
+		console.log(ele);
+		console.log(this === ele);
+		if(index === 4) {
+			return false;
+		}
+	});
+	console.log(divs.each(function(){}) === divs);
+	var div1 = $("#div1");
+	var div2 = $("#div2");
+	console.log(divs.index(div1));
+	console.log(divs.index(div2));
+	console.log(divs.index("#div1"));
+	*/
+	divs.each(function(index, eld){
+		console.log($(eld).is("div"));
+	});
+});
+</script>
+</body>
+</html>
+
