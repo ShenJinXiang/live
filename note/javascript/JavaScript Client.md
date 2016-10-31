@@ -807,3 +807,123 @@ load事件直到文档和所有图片加载完毕时才会发生。
 ### 键盘事件
 当用户在键盘上按下或释放按键时，会产生keydown和keyup事件，由辅助键、功能键和字母键产生，如果用户按键时间足够长，会导致它开始重复，那么在keyup事件到达之前会收到多个keydown事件
 keyCode指定了对应按下的键，对于产生打印字符的按键，keyCode指时按键上出现的主要字符的unicode编码
+
+## 脚本化HTTP
+超文本传输协议(HyperText Transfer Protocol, HTTP)规定Web浏览器如何从Web服务器获取文档和想Web服务器提交表单内容，以及Web服务器如何响应这些请求和提交。通常，http并不在脚本的控制下，只是当用户单机链接、提交表单和输入URL时才发生。
+当脚本设置window对象的location属性或调用表单对象的submit()方法时，会初始化http请求，浏览器将会加载新页面。
+Ajax应用的主要特点是使用脚本操作http和web服务器进行数据交换，不会导致页面重载。
+
+### 使用XMLHttpRequest
+实例化XMLHttpRequest对象：
+> var request = new XMLHttpRequest();
+
+```javascript
+if(window.XMLHttpRequest === undefined) {
+    window.XMLHttpRequest = function() {
+        try {
+            return new ActiveXObject("Msxml2.XMLHTTP.6.0");
+        } catch (e1) {
+            try {
+                return new ActiveXObject("Msxml2.XMLHTTP.3.0");
+            } catch (e2) {
+                throw new Error("XMLHttpRequest is not supported");
+            }
+        }
+    }
+}
+```
+
+HTTP请求4部分：
+* HTTP请求方法或“动作”(verb)
+* 正在请求的URL
+* 一个可选的请求头几何，其中可能包括身份验证信息
+* 一个可选的请求主题
+
+服务器返回的HTTP响应包含3个部分：
+* 一个数字和文字组成的状态吗，用来显示请求的成功和失败
+* 一个响应头几何
+* 响应主题
+
+#### 指定请求
+创建XMLHttpRequest对象之后，发起HTTP请求的下一步是调用XMLHttpRequest对象的open()方法去指定这个请求的两个必需部分：方法和URL
+* open()方法的第一个参数指定HTTP方法或动作，字符串，不区分大小写，一般是get和post
+* get用于常规请求，适用于当url完全指定请求资源，当请求对服务器没有任何副作用以及当服务器的响应是可缓存时
+* post常用语html表单
+* 除了get和post之外，也可以是delete hade options put作为第一个参数
+* open()方法的第二个参数是URL，是请求的主题
+
+> request.setRequestHeader("Content-Type", "text/plain");
+
+使用XMLHttpRequest发起HTTP请求的最后一步是向服务器发送请求，使用send方法
+> request.send(null);
+
+```javascript
+// 用post方法发送纯文本给服务器
+function postMessage(msg) {
+    var request = new XMLHttpRequest();
+    request.open("POST", "log.php");
+    request.setRequestHeader("Content-Type", "text/plain;charset=UTF-8");
+    request.send(msg);
+}
+```
+
+#### 取得响应
+一个完整的HTTP响应由状态码、响应头集合和响应主体组成
+* status和statusText属性以数字和文本的形式返回HTTP状态码
+* 使用getResponseHeader()和getAllResponseHeaders()能查询响应头
+* 响应主体可以从responseText属性中得到文本形式，从responseXML属性中得到Document形式
+
+readyState是一个整数，指定了HTTP请求的状态
+|常量|值|含义|
+|--|:--:|--|
+|UNSEND|0|open()尚未调用|
+|OPENED|1|open()已调用|
+|HEADERS_RECEIVED|2|接收到头信息|
+|LOADING|3|接收到响应主体|
+|DONE|4|响应完成|
+
+监听readystatechange事件，需把事件处理函数设置为XMLHttpRequest对象的onreadystatechange属性，也可以使用addEventListener()或atachEvent()
+
+```javascript
+// 获取HTTP响应的onreadystatechange
+function getText(url, callback) {
+    var request = new XMLHttpRequest();
+    request.open("GET", url);
+    request.onreadystatechange = function() {
+        if(request.readyState === 4 && request.status === 200) {
+            var type = request.getResponseHeader("Content-Type");
+            if(type.match(/^text/)) {
+                callback(request.responseText);
+            }
+        }
+    };
+    request.send(null);
+}
+```
+
+**同步响应**
+XMLHttpRequest也支持同步响应，open()方法的第三个参数设置为false，那么send()方法将阻塞知道请求完成。
+
+**响应解码**
+```javascript
+// 解析HTTP响应
+function get(url, callback) {
+    var request = new XMLHttpRequest();
+    request.open("GET", url);
+    request.onreadystatechange = function() {
+        if(request.readyState === 4 && request.status === 200) {
+            var type = request.getResponseHeader("Content-Type");
+            if(type.indexOf("xml") !== -1 && request.responseXML) {
+                callback(request.responseXML);
+            } else if (type === "application/json") {
+                callback(JSON.parse(request.responseText));
+            } else {
+                callback(request.responseText);
+            }
+        }
+    };
+    request.send(null);
+}
+```
+
+#### 编码请求主题
