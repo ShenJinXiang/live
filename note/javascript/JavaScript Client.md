@@ -357,7 +357,7 @@ font-family font-size font-weight
 #### 非标准属性
 
 |浏览器|前缀|
-|--|--|
+|:--|:--:|
 |Firefox|-moz-|
 |Chrome|-webkit-|
 |IE|-ms-|
@@ -365,7 +365,7 @@ font-family font-size font-weight
 ### 重要的CSS属性
 
 |属性|描述|
-|--|--|
+|:--|:--|
 |position|指定元素的定位类型|
 |top、left|指定元素上、左边缘的位置|
 |bottom、right|指定元素下、右边缘的位置|
@@ -790,7 +790,7 @@ load事件直到文档和所有图片加载完毕时才会发生。
 ### 鼠标事件
 
 |类型|说明|
-|--|--|
+|:--:|:--|
 |click|高级事件，当用户按下并释放鼠标按键或其它方式激活元素时触发|
 |contextmenu|可以取消的事件，当上下文菜单即将出现时触发，当前浏览器在鼠标右键点击时显示上下文菜单，所以这个事件也能像click事件那样使用|
 |dblclick|当用户双击鼠标时触发|
@@ -882,7 +882,7 @@ function postMessage(msg) {
 readyState是一个整数，指定了HTTP请求的状态
 
 |常量|值|含义|
-|--|:--:|--|
+|:--|:--:|:--|
 |UNSEND|0|open()尚未调用|
 |OPENED|1|open()已调用|
 |HEADERS_RECEIVED|2|接收到头信息|
