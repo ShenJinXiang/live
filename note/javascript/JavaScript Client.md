@@ -1165,3 +1165,13 @@ remove() 方法会从文档中删除选中元素，会溢出所有事件处理�
 detach() 和remove()类似，但不会移除事件处理程序和数据
 
 ### 使用jQuery处理事件
+调用jQuery的事件注册方法可以给所有选择元素注册处理程序
+
+|||||
+|:--|:--|:--|:--|
+|blur()|focusin()|mousedown()|mouseup()|
+|change()|focusout()|mouseenter()|resize()|
+|click()|keydown()|mouseleave()|scroll()|
+|dbclick()|keypress()|mousemove()|select()|
+|error()|keyup()|mouseout()|submit()|
+|focus()|load()|mouseover()|unload()|
