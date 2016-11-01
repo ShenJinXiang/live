@@ -664,7 +664,7 @@ DOM事件规范标准化了不冒泡的focusin和focusout事件取代冒泡的fo
 #### HTML5事件
 audio和video元素的事件列表：
 
-||||||
+|||||
 |:--:|:--:|:--:|:--:|
 |cnplay|loadeddata|playing|stalled|
 |canplaythrough|loadedmetadata|progress|suspend|
