@@ -39,8 +39,8 @@ JavaScript程序可以通过Document对象和它包含的Element对象遍历和�
 ### 在HTML中嵌入JavaScript
 四种方法：
 
-* 内嵌，放置在<script>和</script>标签对之间
-* 放置在由<script> 标签的src属性指定的外部文件中
+* 内嵌，放置在&lt;script&gt;和&lt;/script&gt;标签对之间
+* 放置在&lt;script&gt; 标签的src属性指定的外部文件中
 * 放置在HTML事件处理程序中，该程序由onclick、onmousemove之类的HTML属性指定
 * 放置在url中，使用特殊的“javascript:”协议
 
@@ -1082,4 +1082,21 @@ var elt = $("#sprite");
 var position = elt.offset();
 position.top += 100;
 elt.offset(position);
+
+$("h1").offset(function(index, curpos) {
+    return {
+        left: curpost.left + 25 * index,
+        top: curpos.top
+    };
+});
 ```
+
+**position()**
+* position()方法只能用做getter，返回元素的位置是相对于其偏移父元素的， 而不是相对于文档的
+
+**获取高宽信息**
+* width()和height()方法返回基本的宽度和高度，不包括内边距、边框和外边距
+* innerWidth()和innerHeight()返回元素的宽度和高度，包含内边距的宽度和高度
+* outerWidth()和outerHeight()通常返回的是包含元素内边距和边框的尺寸，如果传入true，可以返回包含元素外边距的尺寸
+
+#### 获取和设置元素数据
