@@ -19,10 +19,13 @@ $(function(){
 	console.log(div.width(), div.height());
 	console.log(div.innerWidth(), div.innerHeight());
 	console.log(div.outerWidth(), div.outerHeight());
+	console.dir(div[0].getBoundingClientRect());
+	console.log("----")
 	var div1 = $("#div1");
 	console.log(div1.width(), div1.height());
 	console.log(div1.innerWidth(), div1.innerHeight());
 	console.log(div1.outerWidth(), div1.outerHeight());
+	console.dir(div1[0].getBoundingClientRect());
 });
 </script>
 </body>

@@ -1099,4 +1099,16 @@ $("h1").offset(function(index, curpos) {
 * innerWidth()和innerHeight()返回元素的宽度和高度，包含内边距的宽度和高度
 * outerWidth()和outerHeight()通常返回的是包含元素内边距和边框的尺寸，如果传入true，可以返回包含元素外边距的尺寸
 
+**scrollTop()和scrollLeft()方法**
+* 获取或设置元素滚动条的位置
+* 可以用在Window对象以及Document元素上，当用在Document对象时，会获取或设置存放该Document的Window对象的滚动条位置
+
+```javascript
+function page(n) {
+    var w = $(window);
+    var pagesize = w.height();
+    var current = w.scrollTop();
+    w.scrollTop(current + n * pagesize);
+}
+```
 #### 获取和设置元素数据
