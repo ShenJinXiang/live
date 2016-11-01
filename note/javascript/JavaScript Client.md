@@ -1218,3 +1218,27 @@ $("#button1").click(function(e){ // button1的单击程序触发button2上的单
 ```
 
 ### 动画效果
+时间：
+fast:200ms
+slow:600ms
+默认:400ms
+
+#### 简单动画
+**fadeIn()、fadeOut()、fadeTo()**
+* 最简单的动画：fadeIn()和fadeOut()简单的改变css的opacity属性来显示或隐藏元素
+* fadeIn()、fadeOut()接受可选的时长和回调函数
+* fadeTo() 第一个参数是时长，第二个参数是opacity目标值，第三个参数是回调函数
+
+**show()、hide()、toggle()**
+* hide() 将元素从布局中移除，类似css的display属性设置为none
+* 不带参数时，hide()和show()方法只是简单地立刻隐藏或显示选中元素，带有时长参数时，会显示动画过程
+* toggle()可以改变元素可是状态，如果隐藏则调用show()，如果显示则调用hide()，可以传入时长来显示动画效果
+
+**slideDown()、slideUp()、slideToggle()**
+* slideUp() 隐藏选中元素，高度动态变化到0，然后隐藏。
+* slideDown() 与slideUp()相反
+* slideToggle() 切换
+* 都接受可选的时长和回调参数
+
+#### 自定义动画
+**animate()**

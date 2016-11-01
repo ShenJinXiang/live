@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<style>
+*{margin:0;padding:0;}
+#div{width: 200px;height:250px;border:5px solid red; margin:20px;padding: 10px;background-color:#084;}
+	</style>
+	<title>demo6</title>
+</head>
+<body>
+<input type="button" value='fadein' id='fadein' />
+<input type="button" value='fadeout' id='fadeout' />
+<input type='text' value='1' id='fadetext' />
+<input type='button' value='fadeto' id='fadeto' />
+<div id='div'>111</div>
+<script src='http://libs.baidu.com/jquery/2.1.4/jquery.min.js'></script>
+<script>
+$(function(){
+	$("#fadein").click(function(){
+		$("#div").fadeIn(5000, function(){
+			console.log("fadein end~~~");
+		});
+	});
+
+	$("#fadeout").click(function(){
+		$("#div").fadeOut(5000, function(){
+			console.log("fadeout end~~~");
+		});
+	});
+
+	$("#fadeto").click(function(){
+		$("#div").fadeTo(3000, $("#fadetext").val(), function(){
+			console.log("fadeto end~~");
+		});
+	});
+});
+</script>
+</body>
+</html>
+
+
+
+
+
