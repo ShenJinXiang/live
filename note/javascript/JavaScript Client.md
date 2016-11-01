@@ -315,7 +315,7 @@ html元素对象调用，可使其在屏幕上可见，也可以用getBoundingCl
 ### HTML表单
 
 |HTML元素|类型属性|事件处理程序|描述和事件|
-|--|--|--|--|
+|:--|:--:|:--:|:--|
 |&lt;input type='button'&gt; 或  &lt;button type='button'&gt;|"button"|onclick|按钮|
 |&lt;input type='checkbox'&gt;|"checkbox"|onchange|复选按钮|
 |&lt;input type='file'&gt;|"file"|onchange|载入Web服务器的文件的文件名或输入域；它的value属性是只读的|
