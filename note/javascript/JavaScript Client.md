@@ -1128,3 +1128,27 @@ function page(n) {
 
 ### 修改文档结构
 #### 插入和替换元素
+```javascript
+$("#log").append("<br/>" + message); // 在#log元素的结尾处添加内容
+$("h1").before("<hr/>"); // 在每个h1的前面添加水平线
+$("h1").after("<hr/>"); // 在每个h1的后面添加水平线
+$("hr").replaceWith("<br/>"); // 替换hr元素为br元素
+$("h2").each(function(){  // 将h2替换成好，保持内容不变
+    var h2 = $(this);
+    h2.replaceWith("<h1>" + h2.html() + "</h1>");
+});
+```
+
+|操作|\$(target).method(content)|\$(content).method(target)|
+|:--|:--|:--|
+|在目标元素的结尾处插入内容|append()|appendTo()|
+|在目标元素的起始处插入内容|prepend()|preprendTo()|
+|在目标元素的后面插入内容|after()|insertAfter()|
+|在目标元素的前面插入内容|before()|insertBefore()|
+|将目标元素替换为内容|replaceWith()|replaceAll()|
+
+* 如果传递字符串给第二列中的方法，会把它当做需要插入的HTML字符串，如果传递字符串给第三列中的方法，会把它当做选择器，用来标识目标元素（也可以直接传入jQuery对象、元素或者文本节点来指明目标元素）
+* 第三列中的方法不接受函数参数、第二列中的方法可以
+* 第二列中的方法返回调用自身的jQuery对象。该对象中的元素有可能有新内容或新兄弟节点，但这些元素自身没有修改
+
+#### 复制元素
