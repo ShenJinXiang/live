@@ -1175,3 +1175,46 @@ detach() 和remove()类似，但不会移除事件处理程序和数据
 |dbclick()|keypress()|mousemove()|select()|
 |error()|keyup()|mouseout()|submit()|
 |focus()|load()|mouseover()|unload()|
+
+* focus和blur事件不支持冒泡，但focusin和focusout事件支持
+* resize和unload事件类型只在Window对象中触发
+* scroll()方法经常用于$(window)对象上，也可以用在有滚动条的任何元素上
+* load()方法可以在$(window)对象上调用，用来给窗口注册加载事件处理程序
+* hover()用来给mouseenter和mouseleave事件注册处理成与，调用hover(f, g)和调用mouseenter(f)然后调用mouseleave(g)一样
+* toggle()，将事件处理程序函数绑定到单机事件，也可以指定两个或多个处理程序函数，单击发生时，jQuery每次会调用一个处理程序函数，例如：toggle(f, g, h);第一次单击触发f()，第二次调用g()，第三次调用h()，第四次调用f()。。。
+
+#### jQuery事件处理程序
+如果处理程序返回false，与该事件相关联的默认行为，以及事件接下来的冒泡都会取消，即：返回false等同于调用Event对象的preventDefault()和stopPropagation()方法
+
+#### jQuery事件对象
+jQuery定义自己的Event对象来隐藏浏览器之间的差异，事件处理程序函数的第一个参数为jQuery事件对象
+
+* metakey 如果原生事件对象没有metakey属性，jQuery会使其与ctrlkey属性值一样，在Mac OS中，Command键设置meta键属性
+* pageX pageY  如果原生事件对象没有定义这两属性，但是定义了鼠标指针的clientX和clientY，jQuery会计算出鼠标指针的文档坐标并存储在pageX和pageY中
+* timeStamp  事件发生时的事件，单位是毫秒，由Date.getTime()返回
+
+#### 事件处理程序的高级注册
+bind()方法
+* 第一个参数：事件类型，可以是多个，空格分割
+* 第二个参数：任意值，对应Event对象的data属性
+* 第三个参数：处理程序函数
+
+#### 注销事件处理程序
+用bind()注册事件处理程序后，可以使用unbind()注销，避免在将来的事件中触发
+
+#### 触发事件
+> $("#my_form").submit();  // 就和用户单击提交按钮一样
+
+**trigger()方法**
+* 第一个参数为事件类型
+
+```javascript
+$("#my_form").trigger("submit");
+$("button").trigger("click!"); // 触发没有命名空间的单击处理程序
+
+$("#button1").click(function(e){ // button1的单击程序触发button2上的单击程序
+    $("#button2").trigger(e);
+});
+```
+
+### 动画效果
