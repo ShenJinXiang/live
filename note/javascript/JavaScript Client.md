@@ -313,6 +313,7 @@ html元素对象调用，可使其在屏幕上可见，也可以用getBoundingCl
 元素尺寸：任何HTML元素的只读属性offsetWidth和offsetHeight以css像素返回它的屏幕尺寸。返回的尺寸包含元素的边框和内边距，不包含外边距
 
 ### HTML表单
+
 |HTML元素|类型属性|事件处理程序|描述和事件|
 |--|--|--|--|
 |&lt;input type='button'&gt; 或  &lt;button type='button'&gt;|"button"|onclick|按钮|
@@ -354,6 +355,7 @@ html元素对象调用，可使其在屏幕上可见，也可以用getBoundingCl
 例子：
 font-family font-size font-weight
 #### 非标准属性
+
 |浏览器|前缀|
 |--|--|
 |Firefox|-moz-|
@@ -361,6 +363,7 @@ font-family font-size font-weight
 |IE|-ms-|
 
 ### 重要的CSS属性
+
 |属性|描述|
 |--|--|
 |position|指定元素的定位类型|
@@ -660,6 +663,7 @@ DOM事件规范标准化了不冒泡的focusin和focusout事件取代冒泡的fo
 
 #### HTML5事件
 audio和video元素的事件列表：
+
 ||||||
 |:--:|:--:|:--:|:--:|
 |cnplay|loadeddata|playing|stalled|
@@ -693,6 +697,7 @@ cached  checking    downloading error   noupdate    obsolete    progress    upda
 ```
 
 一些事件类型要直接在浏览器上触发，在JavaScript中，这些事件处理程序在Window对象上注册，在HTML中 放在&lt;body&gt;标签上
+
 |||||
 |:--:|:--:|:--:|:--:|
 |onafterprint|onfocus|ononline|onresize|
@@ -783,6 +788,7 @@ function cancelHandler(event) {
 load事件直到文档和所有图片加载完毕时才会发生。
 
 ### 鼠标事件
+
 |类型|说明|
 |--|--|
 |click|高级事件，当用户按下并释放鼠标按键或其它方式激活元素时触发|
@@ -874,6 +880,7 @@ function postMessage(msg) {
 * 响应主体可以从responseText属性中得到文本形式，从responseXML属性中得到Document形式
 
 readyState是一个整数，指定了HTTP请求的状态
+
 |常量|值|含义|
 |--|:--:|--|
 |UNSEND|0|open()尚未调用|
