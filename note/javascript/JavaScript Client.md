@@ -1376,3 +1376,53 @@ jQuery.ajax({
 |complete|"ajaxComplete"|ajaxComplete()|
 ||"ajaxStart"|ajaxStart()|
 ||"ajaxStop"|ajaxStop()|
+
+### 工具函数
+*jQuery.browser*
+browser属性不是函数而是一个对象，可用于客户端嗅探，如果浏览器是IE，该对象会有一个msie属性，值为true；如果浏览器是Firefox或与其相关，会有一个值为true的mozilla属性。在Safari和Chrome中，webkit属性为true；在Opera中，opera属性为true；version属性包含了浏览器的版本号
+
+*jQuery.contains()*
+该函数接受两个文档元素作为参数，如果第一个元素包含第二个元素，返回true，否则返回false
+
+*jQuery.each()*
+和each()方法不同，each()方法只能遍历jQuery对象，而jQuery.each()工具函数可以遍历数组元素或对象属性，第一个参数是要遍历的数组或对象，第二个参数是要在每个数组元素或对象属性上调用的函数，函数会有两个参数，数组元素的序号或元素的属性名，以及数组元素的值或对象的属性值，函数中的this值和第二个参数是一样的，如果返回false，jQuery.each()会停止当前遍历并立刻返回
+
+*jQuery.extend()*
+接受对象作为参数，将第二个及其以后参数对象的属性复制到第一个对象中，如果同名属性在第一个参数对象中已经存在，则会覆盖，忽略任何值为null和undefined的属性，如果仅传入一个对象，该对象的属性会被复制到jQuery对象中。返回是属性被复制到的对象
+
+*jQuery.globalEval()*
+在全局上下文中执行JavaScript代码字符串，就像在script元素的内容一样
+
+*jQuery.grep()*
+与Array对象的filter()方法类似，介绍数组作为第一个参数，以及一个判断函数作为第二个参数，返回一个新数组，新数组由调用判断函数时返回true的元素组成，如果grep传入第三个参数 true，则会反转判断函数；判断函数的第一个参数为元素的值，第二个参数为索引
+
+*jQuery.isArray()*
+当参数是元素Array对象时，返回true
+
+*jQuery.isEmptyObject()*
+当参数对象没有可枚举的属性时，返回true
+
+*jQuery.isFunction()*
+当参数是原生Function对象时，返回true，注意：在IE8及以前的版本中，window.alert() 和window.attachEvent()等浏览器返回false
+
+*jQuery.isPlainObject()*
+如果参数是“纯”对象，而不是某些特定类型或类的对象的实例时，返回true
+
+*jQuery.makeArray()*
+如果参数是类数组对象，该函数会将对象的属性复制到一个新的数组中，并返回
+
+*jQuery.map()*
+与Array对象的map()方法类似，接受数组组成或类数组对象作为第一个参数，第二个参数则为映射函数。
+
+*jQuery.marge()*
+接受两个数组或类数组对象，会将第二个参数的元素添加到第一个上面，并返回第一个参数，第一个数组会修改，第二个不会。
+
+*jQuery.parseJSON()*
+解析JSON格式的字符串，返回解析结果，格式有误时，抛出异常
+
+*jQuery.trim()*
+接受字符串为唯一参数，返回字符串开头和结尾处空白字符删除后的字符串
+
+### jQuery选择器和选取方法
+
+
