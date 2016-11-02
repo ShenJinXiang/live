@@ -1284,3 +1284,25 @@ animate()发放的第二个参数时可选的，选项对象制定动画如何�
 * 第一个参数是时长(以毫秒为单位的数值或字符串)
 * 第二个参数是队列名，是可选的
 
+### jQuery中的Ajax
+#### load()方法
+* 传入一个URL，异步加载该URL的内容，然后将内容插入每一个选中元素中，替换掉已经存在的任何内容
+* 还可以接受两个可选参数，第一个可选参数表示的数据，可以加到url后面，如果是字符串，会追加到URL后面，如果是对象，会被转化为用&分割的名值对与请求一起发送
+* 第二个可选参数是回调函数，当Ajax请求成功或为成功，以及Url加载完毕并插入选中元素时，会调用回调函数，回调函数的参数：被加载URL的完整文本内容、状态码字符串（'success', 'error', 'timeout'）、用来加载URL的XMLHttpRequest对象
+
+
+```javascript
+$("#temp").load("001.html", "zipcode=02134");
+$("#temp").load("001.html", {zipcode: 02134, units: 'F'});
+```
+
+jQuery的Ajax状态码:
+|状态码|说明|
+|:--:|:--|
+|success|表示请求成功|
+|notmodified|表示请求已正常完成，但服务器返回的响应内容是HTTP304 ‘Not Modefied’， 表示请求的URL内容和上次请求相同，没有变化，只有选项中设置ifModified为true，此状态码才会出现|
+|error|请求没有成功完成，检查回调函数中的XMLHttpRequest对象的HTTP状态码来获取详细细节|
+|timeout|如果Ajax请求没有在选定的超时区间内完成，会电泳错误回调，只有指定timeout选项时才能看到此状态码|
+|parsererror|HTTP请求已成功完成，但jQuery无法安装期望方式解析|
+
+#### Ajax工具函数
