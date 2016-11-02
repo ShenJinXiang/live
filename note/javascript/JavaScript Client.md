@@ -1346,4 +1346,5 @@ jQuery.ajax({
 |选项|说明|
 |:--:|:--|
 |type|指定HTTP的请求方法，默认是“GET”，另一个常用值是“POST”|
-|url|要获取的URL，|
+|url|要获取的URL，对于GET请求，data选项会添加到该URL后|
+|data|添加到URL中（对于get请求）或在请求的内容体中(post请求)发送数据|
