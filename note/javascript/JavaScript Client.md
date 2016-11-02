@@ -1306,3 +1306,44 @@ jQuery的Ajax状态码:
 |parsererror|HTTP请求已成功完成，但jQuery无法安装期望方式解析|
 
 #### Ajax工具函数
+jQuery的其他Ajax高级工具不是方法，而是函数，可以通过jQuery或者$直接调用，而不是在jQuery对象上调用
+* jQuery.getScript()加载并执行JavaScript代码文件
+* jQuery.getJSON()加载URL，并解析为JSON，将解析结果传递到指定的回调函数中
+* jQuery.getScript()和jQuery.getJSON()都会调用通用的URL获取函数：jQUery.get()
+* jQuery.post()和jQuery.get()类似，但执行的是HTTP post请求
+
+**jQuery.getScript()**
+* 第一个参数是JavaScript代码文件的URL
+* 第二个参数是回调函数，jQuery会在代码加载和执行完成后调用该回调函数
+
+**jQuery.getJSON()**
+* 与jQuery.getScript类似，获取文本，调用指定的回调函数
+* 获取到文本后，不会当成脚本执行，而会解析为JSON
+* 解析结果作为回调函数的第一个参数
+
+**jQuery.get()和jQuery.post()**
+* 获取指定的URL的内容，如果有数据的话，还可以传入指定数据，最后将结果传递给指定的回调函数
+* jQuery.get()使用HTTP get请求来实现
+* jQuery.post() 使用 HTTP post 请求
+
+**jQuery.ajax()函数**
+jQuery的所有Ajax工具最后都会调用jQuery.ajax()
+
+* 仅接受一个参数：一个选项对象，该对象指定Ajax请求如何执行的很多细节
+
+```javascript
+// jQuery.getScript(url, callback) 与下面的ajax等价
+jQuery.ajax({
+    type: "GET",
+    url: url,
+    data: null,
+    dataType: "script",
+    success: callback
+});
+```
+
+**通用选项：**
+|选项|说明|
+|:--:|:--|
+|type|指定HTTP的请求方法，默认是“GET”，另一个常用值是“POST”|
+|url|要获取的URL，|
