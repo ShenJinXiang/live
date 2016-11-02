@@ -1349,3 +1349,30 @@ jQuery.ajax({
 |type|指定HTTP的请求方法，默认是“GET”，另一个常用值是“POST”|
 |url|要获取的URL，对于GET请求，data选项会添加到该URL后|
 |data|添加到URL中（对于get请求）或在请求的内容体中(post请求)发送数据|
+|dataType|指定响应数据的预期类型，以及jQuery处理该数据的方式，合法值是"text"、"html"、"script"、"json"、"jsonp"和"xml"，如没有指定，jQuery会检查响应中的Content-Type头来确定如何处理返回的数据|
+|contentType|指定请求的HTTP Content-Type头，默认是"application/x-www-form-urlencoded"|
+|timeout|超时时间，单位是毫秒，如果设置了该选项，请求没有在指定超时时间内完成时，就会取消同时出发error回调，回调中的状态码参数为"timeout"，默认时间是0，表示出发请求完成，否则永远不会取消|
+|cache|对于get请求，如果选项设置为false，jQuery会添加一个参数，参数值是当前时间，可以禁用浏览器缓存|
+|ifModified|当选项设置为true是，jQuery会为请求的每个URL记录Last-Modified和If-None-Math响应头的值|
+|global|指定jQuery是否应该出发上面描述的Ajax请求过程中的事件，默认是true，设置为false会禁用Ajax相关的所有事件|
+
+**回调**
+
+|选项|说明|
+|:--:|:--|
+|context|指定回调函数在调用时的上下文对象this，如果不设置，this会指向选项对象，如果设置应该为window、document或触发事件所在的Element|
+|beforeSend|指定Ajax请求发送到服务器之前激活的回调函数，第一个参数是XMLHttpRequest对象，第二个参数是请求的选项对象，beforeSend的回调函数使得程序有机会再XMLHttpRequest对象上设置自定义HTTP头部，如果函数返回false，Ajax会取消|
+|success|指定Ajax请求成功时调用的回调函数，第一个参数是服务器发送的数据，第二个参数是jQuery状态码，第三个参数是用来发送该请求的XMLHttpRequest对象|
+|error|指定Ajax请求不成功时调用的回调函数,第一个参数是请求的XMLHttpRequest对象，第二个参数是jQuery状态码|
+|complete|指定Ajax请求完成时激活的回调函数，在调用success或error之后调用complete的回调，第一个参数是XMLHttpRequest对象，第二个参数则是状态码|
+
+#### Ajax事件
+
+|回调|事件类型|处理程序注册方法|
+|:--|:--|:--|
+|beforeSend|"ajaxSend"|ajaxSend()|
+|success|"ajaxSuccess"|ajaxSuccess()|
+|error|"ajaxError"|ajaxError()|
+|complete|"ajaxComplete"|ajaxComplete()|
+||"ajaxStart"|ajaxStart()|
+||"ajaxStop"|ajaxStop()|
