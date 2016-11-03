@@ -29,6 +29,8 @@ http.createServer(function(req, res) {
 console.log('HTTP server is listening at port 3000.');
 ```
 
+### 异步式I/O与事件式编程
+
 *readfile.js:*
 ```javascript
 var fs = require('fs');
@@ -80,4 +82,71 @@ setTimeout(function() {
 	event.emit('some_event');
 }, 3000);
 console.log("hehe");
+```
+
+### 模块和包
+
+*创建模块:*
+```javascript
+// module.js
+
+var name;
+
+exports.setName = function(thyName) {
+	name = thyName;
+};
+
+exports.sayHello = function() {
+	console.log('Hello ' + name);
+};
+// module.js end~~~
+
+
+// getmodule.js
+
+var myModule = require('./module');
+
+myModule.setName('Shen JinXiang');
+myModule.sayHello();
+// getmodule.js end~~~
+```
+
+*loadmodule.js:*
+var hello1 = require('./module');
+hello1.setName('ShenJinXiang');
+
+var hello2 = require('./module');
+hello1.setName('ShenJinXiang!');
+
+hello1.sayHello();
+```javascript
+```
+
+*覆盖exports:*
+```javascript
+// hello.js
+
+function Hello() {
+	var name;
+
+	this.setName = function(thyName) {
+		name = thyName;
+	};
+
+	this.sayHello = function() {
+		console.log('Hello ' + name);
+	};
+}
+
+module.exports = Hello;
+// hello.js end~~~
+
+// gethello.js
+
+var Hello = require('./hello');
+
+hello = new Hello();
+hello.setName('ShenJinXiang');
+hello.sayHello();
+// gethello.js end~~~
 ```
