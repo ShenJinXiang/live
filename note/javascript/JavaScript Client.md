@@ -1489,3 +1489,24 @@ browser属性不是函数而是一个对象，可用于客户端嗅探，如果�
 |:submit|匹配&lt;input type='submit'&gt;和&lt;button type='submit'&gt;元素|
 |:text|匹配&lt;input type='text'&gt;元素|
 |:visible|匹配所有当前可将的元素，和":hidden"相反|
+
+**组合选择器**
+
+|组合方式|含义|
+|A B|从匹配选择器A的元素的子孙元素中，选取匹配选择器B的文档元素，组合符就是空白字符|
+|A &gt; B|从匹配选择器A的元素的子元素中，选取匹配选择器B的文档元素|
+|A + B|从匹配选择器A的元素的下一个兄弟元素中，选择匹配选择器B的文档元素|
+|A ~ B|从匹配选择器A的元素后面的兄弟元素中，选取匹配选择器B的文档元素|
+
+```javascript
+"blockquote i" // 匹配<blockquote>里的<i>元素
+"ol > li" // <li>元素是<ol>的直接子元素
+"#output + *" // id='output'元素后面的兄弟元素
+"div.note > h1 + p" // 紧跟<h1>的<p>元素，在<div class='note'>里面
+```
+
+**选择器组**
+```javascript
+"h1, h2, h3" // 匹配<h1>、<h2>、<h3>元素
+"#p1, #p2, #p3" // 匹配id为p1、p2、p3的元素
+```
