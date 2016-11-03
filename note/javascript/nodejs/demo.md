@@ -150,3 +150,37 @@ hello.setName('ShenJinXiang');
 hello.sayHello();
 // gethello.js end~~~
 ```
+
+*创建包:*
+```javascript
+// somepackage/index.js
+
+exports.hello = function() {
+	console.log('Hello.');
+};
+
+// getpackage.js
+
+var somePackage = require('./somepackage');
+somePackage.hello();
+```
+
+*添加package.json*
+```javascript
+// somepackage/package.json
+
+{
+	"main": "./lib/interface.js"
+}
+
+// somepackage/lib/interface.js
+
+exports.hello = function() {
+	console.log('this is interface.js.');
+};
+
+// getpackage.js
+
+var somePackage = require('./somepackage');
+somePackage.hello();
+```
