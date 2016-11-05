@@ -1540,3 +1540,13 @@ jQuery插件是普通的JavaScript代码文件，只需要使用&lt;script&gt;�
 
 ## 客户端存储
 
+客户端存储的几种方式：
+1. web存储， 包含localStorage对象和sessionStorage对象，持久化关联数组，是名值对的映射表，支持大容量数据存储同时兼容当前所有主流浏览器
+2. cookie， 只适合存储少量文本数据，任何cookie形式存储的数据，不论服务器端是否需要，每次HTTP请求都会吧这些数据传输到服务器端
+3. IE User Data， IE5以后、IE8之前，可以做为web存储的替代方案，“userData”实现一定量的字符串数据存储
+4. 离线Web应用， 实现将Web应用整体存储在客户端，而不仅仅是存储数据
+5. Web数据库， 索引数据库API，使用事件处理机制
+6. 文件系统API， 在该文件系统中可以对文件读写
+
+### localStorage 和 sessionStorage
+
