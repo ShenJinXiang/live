@@ -1,0 +1,54 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>001.html</title>
+</head>
+<body>
+<label for='name'>名字：</label>
+<input type='text' name='name' value='' id='name' />
+<label for='val'>值：</label>
+<input type='text' name='val' id='val' />
+<input type='button' id='addBtn' value='添加' />
+<input type='button' id='updBtn' value='修改' />
+<input type='button' id='delBtn' value='删除' />
+<input type='button' id='queryBtn' value='查询' />
+<script>
+(function () {
+	var name = document.getElementById('name');
+	var val = document.getElementById('val');
+	var addBtn = document.getElementById('addBtn');
+	var updBtn = document.getElementById('updBtn');
+	var delBtn = document.getElementById('delBtn');
+	var queryBtn = document.getElementById('queryBtn');
+
+	/*
+	window.onstorage = function (e) {
+		console.log('...');
+	};
+	*/
+	window.addEventListener('storage', function (e) {
+		console.log('--------------');
+	});
+
+	addBtn.onclick = function () {
+		localStorage.setItem(name.value, val.value);
+	};
+
+	queryBtn.onclick = function () {
+		alert(localStorage.getItem(name.value));
+	};
+
+	updBtn.onclick = function () {
+		localStorage[name.value] = val.value;
+	};
+
+	delBtn.onclick = function () {
+		localStorage.removeItem(name.value);
+	};
+
+
+})();
+</script>
+</body>
+</html>

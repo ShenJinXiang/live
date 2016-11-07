@@ -1549,4 +1549,59 @@ jQuery插件是普通的JavaScript代码文件，只需要使用&lt;script&gt;�
 6. 文件系统API， 在该文件系统中可以对文件读写
 
 ### localStorage 和 sessionStorage
+Window对象上的两个属性：localStorage 和 sessionStorage，Storage对象，持久化关联数组，字符串所有，值也是字符串形式。
+```javascript
+var name = localStorage.username;
+name = localStorage['username'];
+if (!name) {
+	name = prompt('Wht is your name?');
+	localStorage.username = name;
+}
 
+// 迭代所有存储的name/value 对
+for(var name in localStorage) {
+	var value = localStorage[name]
+}
+```
+
+#### 存储有效期和作用域
+* localStorage 和 sessionStorage 的区别在于存储的有效期和作用域不同
+* 通过localStorage 存储的数据是永久的，永不过期
+* localStorage的作用去是限定在文档源级别的（协议、主机名、端口确定是不是同一文档源）
+* 同源的文档之间共享同样的localStorage数据，可以相互读取数据，可以覆盖数据
+* localStorage 的作用域受浏览器限制
+* sessionStorage的作用域也限定在文档源中，同事限定在窗口中。
+
+#### 存储API
+setItem()方法 将对应的名字和值传递进去，可以实现数据存储
+getItem()方法 将名字传递进去，可以获得对应的值
+removeItem()方法 可以删除对应的数据
+clear()方法 可以删除所有存储的数据
+
+```javascript
+localStorage.setItem('x', 1);
+localStorage.getItem('x');
+
+for(var i = 0; i < localStorage.length; i++) {
+	var name = localStorage.key(i);	// 获取第i对的名字
+	var value = localStorage.getItem(name); // 获取对应的值
+}
+
+localStorage.removeItem('x'); // 删除'x'项
+localStorage.clear();	// 全部删除
+```
+
+#### 存储事件
+* 无论什么时候存储在localStorage或者sessionStorage的数据发生改变，浏览器都会在可见窗口对象上触发存储事件
+* 对数据进行改变的窗口对象上不会触发，如果浏览器有两个标签页都打开了来自同源的页面，其中一个页面在localStorage上存储了数据，另外一个标签页就会收到一个存储事件
+* 可以通过addEventListener() （IE下使用attachEvent()方法），还可以给Window对象设置onstorage属性的方式
+
+存储事件相关的属性
+
+|属性|说明|
+|:--:|:--|
+|key|被设置或者移除的项的名字或者键名，如果调用的是clear()函数，那么该属性值为null|
+|newValue|保存该项的新值，或者调用removeItem()时，属性值为null|
+|oldValue|改变或者删除该项前，保存该项原先的值，当插入新项时，属性值为null|
+|storageArea|类似于Window对象上的localStorage或者是sessionStorage属性|
+|url|触发存储变化脚本所在文档的URL|
