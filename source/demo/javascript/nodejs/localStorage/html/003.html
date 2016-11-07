@@ -1,0 +1,63 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>003.html</title>
+</head>
+<body>
+<h1>Node.js</h1>
+<p>003.html</p>
+<label for='name'>名字：</label>
+<input type='text' id='name' />
+<label for='val'>值：</val>
+<input type='text' id='val' />
+<input type='button' id='addBtn' value='添加' />
+<input type='button' id='updBtn' value='修改' />
+<input type='button' id='delBtn' value='删除' />
+<input type='button' id='queryBtn' value='查询' />
+<input type='button' id='clearBtn' value='清空' />
+<script>
+(function () {
+	var name = document.getElementById('name');
+	var val = document.getElementById('val');
+	var addBtn = document.getElementById('addBtn');
+	var delBtn = document.getElementById('delBtn');
+	var queryBtn = document.getElementById('queryBtn');
+	var clearBtn = document.getElementById('clearBtn');
+	var updBtn = document.getElementById('updBtn');
+
+	addBtn.onclick = function () {
+		localStorage.setItem(name.value, val.value);
+	};
+
+	delBtn.onclick = function () {
+		localStorage.removeItem(name.value);
+	};
+
+	updBtn.onclick = function () {
+		localStorage[name.value] = val.value;
+	};
+
+	clearBtn.onclick = function () {
+		localStorage.clear();
+	};
+
+	queryBtn.onclick = function () {
+		alert(localStorage.getItem(name.value));
+	};
+
+	window.onstorage = function (e) {
+		var obj = {
+			key: e.key,
+			newValue: e.newValue,
+			oldValue: e.oldValue,
+			storageArea: e.storageArea,
+			url: e.url
+		};
+		console.dir(obj);
+	}
+})();
+</script>
+</body>
+</html>
+
