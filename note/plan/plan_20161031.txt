@@ -5,25 +5,21 @@
 		"JavaScript权威指南": [
 			{
 				"name": "脚本化HTTP",
-				"complete": false
+				"complete": true
 			},
 			{
 				"name": "jquery类库",
-				"complete": false
-			},
-			{
-				"name": "客户端存储",
-				"complete": false
+				"complete": true
 			}
 		],
 		"nodejs": [
 			{
 				"name": "node.js基础：模块和包",
-				"complete": false
+				"complete": true
 			},
 			{
 				"name": "node.js CommonJS规范",
-				"complete": false
+				"complete": true
 			}
 		]
 	}
