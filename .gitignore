@@ -11,3 +11,6 @@
 # eclipse
 .metadata
 /RemoteSystemsTempFiles
+
+# node
+node_modules
