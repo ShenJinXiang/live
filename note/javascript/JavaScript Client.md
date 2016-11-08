@@ -1605,3 +1605,149 @@ localStorage.clear();	// 全部删除
 |oldValue|改变或者删除该项前，保存该项原先的值，当插入新项时，属性值为null|
 |storageArea|类似于Window对象上的localStorage或者是sessionStorage属性|
 |url|触发存储变化脚本所在文档的URL|
+
+### cookie
+* cookie是指Web浏览器存储的少量数据，同时与具体的Web页面或者站点相关的。
+* cookie数据会自动在Web浏览器和Web服务器之间传输，因此服务器端脚本可以读写存储在客户端的cookie值
+
+#### cookie属性：有效期和作用域
+* 除了名(name)和值(value)，cookie还有可选的属性来控制cookie的有效期和作用域
+* cookie默认的有效期很短暂，浏览器关闭cookie数据就丢失
+* 延长cookie的有效期，可以通过设置max-age属性，必须明确告诉浏览器cookie的有效期有多长
+* 和localStorage以及sessionStorage类似，cookie的作用域是通过文档源和文档路径来确定的
+* 属性secure，布尔类型，表明cookie的值以何种形式通过网络传递，默认是不安全的，一点标识为安全的，只能通过https或者其他的安全协议链接的时候才能传递
+
+#### 保存cookie
+> name=vale
+
+```javascript
+document.cookie = 'version=' + encodeURIComponent(document.lastModified);
+```
+
+存储前一半采用JavaScript核心的全局函数encodeURIComponent()对值进行编码，读取时，采用decodeURIComponent()函数解码
+
+设置max-age属性
+> name=value; max-age=seconds
+
+```javascript
+function setcookie (name, value, daysToLive) {
+	var cookie = name + "=" + encodeURIComponent(value);
+	if (typeof daysToLive === 'number') {
+		cookie += "; max-age=" + (dayToLive * 60 * 60 * 24)
+	}
+	document.cookie = cookie;
+}
+```
+
+* 要改变cookie的值，需要使用相同的名字、路径和域，但是新的值重新设置cookie的值
+* 删除一个cookie，需要相同的名字、路径和域，然后指定一个任意(非空)的值，并且max-age属性指定为0，再次设置cookie
+
+#### 读取cookie
+```javascript
+function getcookie() {
+	var cookie = {};
+	var all = document.cookie;
+	if (all === '') {
+		return cookie;
+	}
+	var list = all.split('; ');
+	for(var i = 0; i < list.length; i++) {
+		var cookie = list[i];
+		var p = cookie.indexOf('=');
+		var name = cookie.substring(0, p);
+		var value = cookie.substring(p + 1);
+		value = decodeURIComponent(value);
+		cookie[name] = value;
+	}
+	return cookie;
+}
+```
+
+#### cookie的局限性
+* cookie是伪服务端脚本用来存储少量数据的
+* 每个Web服务器保存的cookie数不能超过20个
+* 每个cookie保存的数据不能超过4kb
+
+#### cookie相关的存储
+```javascript
+function cookieStorage(maxage, path) {
+	var cookie = (function () {
+		var cookie = {};
+		var all = document.cookie;
+		if(all === '') {
+			return cookie;
+		}
+		var list = all.split('; ');
+		for (var i = 0; i < list.length; i++) {
+			var c = list[i];
+			var p = c.indexOf('=');
+			var name = c.substring(0, p);
+			var value = c.substring(p + 1);
+			value = decodeURIComponent(value);
+			cookie[name] = value;
+		}
+		return cookie;
+	} ());
+
+	var keys = [];
+	for (var key in cookie) {
+		keys.push(key);
+	}
+
+	this.length = keys.length;
+
+	this.key = function (n) {
+		if (n < 0 || n > keys.length) {
+			return null;
+		}
+		return keys[n];
+	};
+	
+	this.getItem = function (name) {
+		return cookie[name] || null;
+	};
+
+	this.setItem = function (key, value) {
+		if (! (key in cookie)) {
+			keys.push(key);
+			this.length++;
+		}
+
+		cookie[key] = value;
+
+		var cookie = key + "=" + encodeURIComponent(value);
+
+		if (maxage) {
+			cookie += "; max-age=" + amxage;
+		}
+		if (path) {
+			cookie += "; path=" + path;
+		}
+		document.cookie = cookie;
+	};
+
+	this.removeItem = function (key) {
+		if (! (key in cookie)) {
+			return;
+		}
+		delete cookie[key];
+		for (var i = 0; i < keys.length; i++) {
+			if (keys[i] == key) {
+				keys.splice(i, 1);
+				break;
+			}
+		}
+		this.length--;
+		document.cookie = key + '=; max-age=0';
+	};
+
+	this.clear = function () {
+		for (var i = 0; i < keys.length; i++) {
+			document.cookie = keys[i] + '=; max-age=0';
+		}
+		cookie = {};
+		keys = [];
+		this.length = 0;
+	};
+}
+```
