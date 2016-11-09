@@ -1780,3 +1780,24 @@ Web页面使用HTML的&lt;img&gt;元素嵌入图片，可以通过脚本操控�
 	}
 }());
 ```
+
+### 脚本化音频和视频
+HTML5引入&lt;audio&gt;和&lt;video&gt;元素，对于支持HTML5的浏览器，不需要使用flash插件
+```html
+<audio src='..' />
+<video src='..' width=320 height=240 />
+```
+通常需要使用&lt;source&gt;元素来为指定不同格式的媒体源：
+```html
+<audio id='music'>
+	<source src='music.mp3' type='audio/mpeg'>
+	<source src='music.ogg' type='audio/ogg; codec="vorbis"'>
+</audio>
+```
+
+source元素没有任何内容，没有闭合变迁，不需要使用“/&gt;”来结束他们
+
+contols属性：如果这是了该属性，将显示一系列播放控件，包括播放、暂停按钮、音量控制等
+
+### 类型选择和加载
+
