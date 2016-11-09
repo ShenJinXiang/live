@@ -22,7 +22,7 @@ route.post('/login', function (req, res) {
 });
 
 route.get('/main', function (req, res) {
-	res.render('main');
+	res.render('main', {code: '<h1>shenjinxiang</h1>'});
 });
 
 route.post('/ajax/test', function (req, res) {
