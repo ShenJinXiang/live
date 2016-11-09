@@ -11,3 +11,17 @@ var pool = mysql.createPool({
 	port: 3306
 });
 
+var query = function (sql, callback) {
+	pool.getConnection(function (err, connection) {
+		if (err) {
+			callback(err, null, null);
+		} else {
+			connection.query(sql, function (qerr, rows, fields) {
+				connection.release();
+				callback(qerr, rows, fields);
+			});
+		}
+	});
+}
+
+module.exports = query
