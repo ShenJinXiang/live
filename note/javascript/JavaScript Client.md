@@ -1751,3 +1751,32 @@ function cookieStorage(maxage, path) {
 	};
 }
 ```
+
+## 多媒体和图形编程
+### 脚本化图片
+Web页面使用HTML的&lt;img&gt;元素嵌入图片，可以通过脚本操控，设置元素的src属性，展示一张新的图片，还可以设置图片狂傲，是的图片放大和缩小
+```html
+<img src='images/help.gif' onmouseover='this.src="images/help_rollover.gif"' onmouseout='this.src="images/help.gif"' />
+```
+
+```javascript
+(function() {
+	for(var i = 0; i < document.images.length; i++) {
+		var img = document.images[i];
+		var rollover = img.getAttribute('data-rollover');
+		if(!rollover) {
+			continue;
+		}
+		(new Image()).src = rollover;
+
+		img.setAttribute('data-rollout', img.src);
+
+		img.onmouseover = function() {
+			this.src = this.getAttribute('data-rollover');
+		};
+		img.onmouseout = function () {
+			this.src = this.getAttribute('data-rollout');
+		};
+	}
+}());
+```
