@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>main</title>
+</head>
+<body>
+<h1>main</h1>
+<input type='button' value='ajax' id='ajaxBtn' />
+<script src='http://libs.baidu.com/jquery/2.1.4/jquery.min.js'></script>
+<script>
+$(function () {
+	$("#ajaxBtn").click(function () {
+		$.ajax({
+			url: '/ajax/test',
+			data: {name: 'ajax', 'word': '123456'},
+			type: 'post',
+			success: function (data) {
+				console.dir(data);
+			},
+			error: function (data) {
+				console.log("ERROR!");
+				console.dir(data);
+			}
+		});
+	});
+});
+</script>
+</body>
+</html>
+
