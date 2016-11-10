@@ -1799,5 +1799,81 @@ source元素没有任何内容，没有闭合变迁，不需要使用“/&gt;”
 
 contols属性：如果这是了该属性，将显示一系列播放控件，包括播放、暂停按钮、音量控制等
 
-### 类型选择和加载
+#### 类型选择和加载
+**canPlayType()方法**
+* 测试一个媒体元素能否播放指定类型的媒体文件
+* 传递媒体的MIME类型
+* 如果不能播放则返回空字符串（假值）
 
+```javascript
+var a = new Audio();
+if (a.canPlayType('audio/wav')) {
+	a.src = "soundeffect.wav";
+	a.play();
+}
+```
+
+#### 控制媒体播放
+play() 控制媒体开始
+pause() 控制媒体暂停
+
+```javascript
+// 文档载入完成后，开始播放背景音乐
+window.addEventListener('load', function () {
+	document.getElementById('music').play();
+}, false);
+```
+
+**currentTime 属性**
+* 设置currentTime属性来进行定点播放
+* 可以在媒体播放或者暂停的时候设置currentTime属性
+
+**volume 属性**
+* 表示播放音量，介于0(静音) 至 1(最大音量) 之间
+* 将muted属性设置为true则会进入静音模式，设置为false则会恢复之前指定的音量继续播放
+
+**playbackRate 属性**
+* 指定媒体播放的速度
+* 属性值为1.0表示正常速度，大于1表示快进，0~1之间的值表示慢放，负值表示回放
+
+controls、loop、preload以及autoplay这样的HTML属性不仅影响音频和视频的播放，还可以作为JavaScript的属性来设置和查询。
+
+* controls属性指定是否在浏览器中显示播放控件，属性值为true表示显示控件，反之表示隐藏控件
+* loop属性是布尔类型，指定媒体是否需要循环播放，true表示需要循环播放，false则表示播放到最后就停止
+* preload属性指定在用户开始播放媒体之前，是否加载媒体内容，属性值为none则表示不需要预加载数据，属性值为metadata则表示时长、比特率、帧大小这样的数据
+* autoplay属性指定已经缓存足够多的媒体内容时，是否需要自动开始播放
+
+#### 查询媒体状态
+一些只读属性，描述媒体以及播放器的状态
+* paused属性的值为true表示播放器暂停
+* seeking属性的值为true表示播放器正在调到一个新的播放点
+* ended属性的值为true表示播放器播放完媒体并且停下来，如果loop属性值为true，那么ended属性值永远不为true
+* duration属性指定媒体时长，单位是秒。如果媒体数据还未载入前插入duration属性，就会返回NaN
+* played属性返回已经播放的时间段
+* buffered属性返回当前已经缓冲的时间段
+* seekable属性则返回当前播放器需要调到的时间段
+
+#### 媒体相关事件
+可以通过&lt;audio&gt;和&lt;video&gt;元素的addEventListener()方法来注册处理程序函数
+
+|事件类型|描述|
+|:--:|:--|
+|loadstart|当媒体元素开始请求媒体数据内容的事件触发，相应的networkState属性值为NETWORK_LOADING|
+|progress|正在通过网络加载媒体内容，对应的networkState属性值为NETWORK_LOADING，一般每秒触发2~8次|
+|loadedmetadata|媒体数据已经加载完成，对应的媒体时长和维度数据已经获取，readyState属性值第一次变为HAVE_METADATA|
+|loadeddata|当前播放位置的媒体内容首次加载完毕，readState属性值变为HAVE_CURRENT_DATA|
+|canplay|已经加载了一些媒体内容，可以开始播放，readState属性值为HAVE_FUTURE_DATA|
+|canplaythrough|所有媒体内容加载完毕，可以流畅播放，无须再缓冲更多数据，readState属性值为HAVE_ENOUGH_DATA|
+|suspend|已经缓冲大量数据，但是无法获取到数据，networkState属性值为NETWORK_IDLE|
+|stalled|尝试加载数据，但是无法获取到数据|
+|play|调用play()方法或者设置相应的autoplay属性|
+|waiting|由于未缓冲足够数据知道播放威能开始或者播放停止，当播放足够多数据后，接着会触发playing事件|
+|playing|已经开始播放媒体文件|
+|timeupdate|currentTime属性发送改变了。播放过程中，此事件每秒会触发4-60次|
+|pause|调用了pause()方法，暂停了播放|
+|seeking|通过脚本或者活用通过空间将播放事件调至一个还未缓冲的时间点，导致在内容没有加载完时，停止播放，此时seeking属性值为true|
+|seeked|seeking属性值变回false|
+|ended|媒体播放完毕，播放停止|
+|durationchange|duration属性值发生改变|
+|volumechange|volume或者muted属性值发生改变|
+|ratechange|playbackRate或者defaultPlaybackRate发生改变|
