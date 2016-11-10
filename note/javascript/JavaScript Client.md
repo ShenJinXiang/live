@@ -1877,3 +1877,5 @@ controls、loop、preload以及autoplay这样的HTML属性不仅影响音频和�
 |durationchange|duration属性值发生改变|
 |volumechange|volume或者muted属性值发生改变|
 |ratechange|playbackRate或者defaultPlaybackRate发生改变|
+
+### SVG: 可伸缩的矢量图形
