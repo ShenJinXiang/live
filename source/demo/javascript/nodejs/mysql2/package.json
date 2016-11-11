@@ -1,0 +1,14 @@
+{
+  "name": "mysql2",
+  "version": "1.0.0",
+  "description": "mysql demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "shenjinxiang",
+  "license": "ISC",
+  "dependencies": {
+    "mysql": "^2.12.0"
+  }
+}
