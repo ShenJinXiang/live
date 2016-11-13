@@ -5,31 +5,17 @@
 		"JavaScript权威指南": [
 			{
 				"name": "客户端存储",
-				"complete": false
+				"complete": true
 			},
 			{
 				"name": "多媒体和图形编程",
 				"complete": false
 			}
 		],
-		"nodejs": [
-			{
-				"name": "node-lessons:lesson4",
-				"complete": false
-			},
-			{
-				"name": "node-lessons:lesson5",
-				"complete": false
-			},
-			{
-				"name": "node-lessons:lesson6",
-				"complete": false
-			}
-		],
 		"blog": [
 			{
 				"name": "nodejs链接mysql",
-				"complete": false
+				"complete": true
 			}
 		]
 	}
