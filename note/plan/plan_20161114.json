@@ -1,0 +1,24 @@
+{
+	"start_time": "2016-11-14",
+	"end_time": "2016-11-19",
+	"content": {
+		"JavaScript权威指南": [
+			{
+				"name": "多媒体和图形编程",
+				"complete": false
+			}
+		],
+		"nodejs": [
+			{
+				"name": "express ejs mysql 制作学生管理系统",
+				"complete": false
+			}
+		],
+		"blog": [
+			{
+				"name": "nodejs相关博客2篇",
+				"complete": false
+			}
+		]
+	}
+}
