@@ -1,0 +1,9 @@
+{
+	"queryAllUser": {
+		"sql": "select * from user"
+	},
+	"insertUser": {
+		"sql": "insert into user (`id`, `name`, `username`, `password`, `email`, `age`, `address`, `desc`) values (UUID(), ?, ?, ?, ?, ?, ?, ?)",
+		"values": ["赵云", "zhaoyun", "zhaoyun", "zhaoyun@qq.com", 22, "成都", "蜀汉五虎将之一"]
+	}
+}
