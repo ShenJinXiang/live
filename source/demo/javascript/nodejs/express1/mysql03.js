@@ -1,4 +1,4 @@
-var query = require('./mysql01');
+var query = require('./mysql/query');
 
 query({
 	sql: 'select * from user',
