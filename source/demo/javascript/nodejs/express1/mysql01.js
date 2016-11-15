@@ -1,7 +1,14 @@
 var mysql = require('mysql');
 var dbConfig = require('./config').db;
 
-var pool = mysql.createPool(dbConfig);
+var pool = mysql.createPool({
+	host: dbConfig.host,
+	port: dbConfig.port,
+	user: dbConfig.user,
+	password: dbConfig.password,
+	database: dbConfig.database,
+	connectionLimit: dbConfig.connectionLimit
+});
 
 function query (obj, cb) {
 	pool.getConnection(function (err, conn) {
