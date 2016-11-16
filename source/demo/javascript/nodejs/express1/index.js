@@ -1,12 +1,19 @@
 // index.js
 
 var express = require('express');
+var path = require('path');
 
 var app = express();
 
+app.set('views', path.join(__dirname, 'views'));
+app.set('view engine', 'ejs');
+
+// 静态文件目录
+app.use(express.static(path.join(__dirname, 'public')));
 // body-parser
 app.use(require('body-parser')());
 
+// logger
 app.use(require('./lib/middlewares/logger')());
 
 app.listen(3000, function() {
