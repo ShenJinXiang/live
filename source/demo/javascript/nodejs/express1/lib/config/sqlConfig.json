@@ -1,0 +1,4 @@
+{
+	"queryAllUser": "select * from user",
+	"insertUser": "insert into user (`id`, `name`, `username`, `password`, `email`, `age`, `address`, `desc`) values (UUID(), #{name}, #{username}, #{password}, #{email}, #{age}, #{address}, #{desc})"
+}
