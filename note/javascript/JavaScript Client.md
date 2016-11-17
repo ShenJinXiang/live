@@ -1879,3 +1879,24 @@ controls、loop、preload以及autoplay这样的HTML属性不仅影响音频和�
 |ratechange|playbackRate或者defaultPlaybackRate发生改变|
 
 ### SVG: 可伸缩的矢量图形
+
+### &lt;canvas&gt;中的图形
+* &lt;canvas&gt;元素自身没有任何外观，而是在文档中创建了一个画板，提供了很多绘制客户端JavaScript的API
+* 大部分的画布绘制API都是定义在一个绘制上下文对象上，可以通过画布的getContext()方法，传递“2d”参数，获得CanvasRenderingContext2D对象
+
+
+#### 绘制线段和填充多边形
+* 调用beginPath() 方法开始定义一条新的路径
+* 调用moveTo() 方法则开始定义一条新的子路径
+* 一旦使用moveTo() 方法确定了自路径的起点，接下来就可以调用lineTo()方法来将点与新的点通过直线连接起来。
+
+```javascript
+c.beginPath();
+c.moveTo(100, 100);
+c.lineTo(200, 200);
+c.lineTo(100, 200);
+```
+
+* 绘制或者勾勒线段，需要调用stroke() 方法
+* 填充闭合的区域可以调用fill() 方法
+* closePath() 方法将重点和起点连接起来
