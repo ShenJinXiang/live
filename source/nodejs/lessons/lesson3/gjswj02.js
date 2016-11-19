@@ -3,6 +3,7 @@
 var express = require('express');
 var cheerio = require('cheerio');
 var superagent = require('superagent');
+var path = require('path');
 
 var app = express();
 
@@ -21,7 +22,9 @@ app.get('/', function (request, response, next) {
 				if (index != 0) {
 					var o = {
 						title: $(this).find('td').eq(0).find('a').text(),
+						// url: path.join(url, $(this).find('td').eq(0).find('a').attr('href')),
 						url: $(this).find('td').eq(0).find('a').attr('href'),
+						// url: url + $(this).find('td').eq(0).find('a').attr('href'),
 						fbrq: $(this).find('td').eq(1).text(),
 						wh: $(this).find('td').eq(2).text()
 					};
