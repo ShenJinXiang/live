@@ -52,7 +52,57 @@ arr[3](); // 3
 **不存在变量提升**
 
 先申明，再使用，否则报错
+```javascript
+console.log(a); // 报错ReferenceError
+console.log(b); // undefined
+
+let a = 2;
+var b = 3;
+```
 
 **不允许重复声明**
 
 let不允许在相同作用域内，重复声明同一个变量
+
+```javascript
+function func1 (arg) {
+	let arg;	// 报错
+}
+
+function func2 (arg) {
+	{
+		let arg;	// 不报错
+	}
+}
+```
+
+# ES6的块级作用域
+let 为es6提供了块级作用域
+
+```javascript
+function func1 () {
+	var num = 5;
+	if (true) {
+		var num = 6;
+	}
+	console.log(num);	// 6
+}
+function func2 () {
+	let num = 5;
+	if (true) {
+		let num = 6;
+	}
+	console.log(num); // 5
+}
+```
+
+ES6允许块级作用域任意嵌套
+> {{{{ let a = 'Hello JavaScript'; }}}}
+
+块级作用域概念可以用来替代立即调用匿名函数
+
+# 块级作用域与函数声明
+
+函数不能在块级作用域中申明，只能在顶层作用域和函数作用域中申明
+
+
