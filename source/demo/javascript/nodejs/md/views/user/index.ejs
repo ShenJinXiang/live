@@ -1,0 +1,40 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title><%= title %></title>
+	<style>
+	table {
+		border-collapse: collapse;
+		width: 80%;
+	}
+	table th, td{
+		border: 1px solid #ccc;
+	}
+	</style>
+</head>
+<body>
+<h1>Node.js</h1>
+<p><%= title %></p>
+<a href='/user/addUser' >添加用户</a>
+<table>
+	<tr>
+		<th>id</th>
+		<th>姓名</th>
+		<th>年龄</th>
+		<th>地址</th>
+		<th>说明</th>
+	</tr>
+	<%for (let i = 0; i < data.length; i++) { %>
+		<tr>
+			<td><%= data[i].id%></td>
+			<td><%= data[i].name%></td>
+			<td><%= data[i].age%></td>
+			<td><%= data[i].address%></td>
+			<td><%= data[i].desc%></td>
+		</tr>
+	<%}%>
+</table>
+</body>
+</html>
+
