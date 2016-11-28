@@ -3,6 +3,9 @@
 <head>
 	<meta charset='utf-8'>
 	<title><%= title %></title>
+	<link rel='stylesheet' href='/plugins/jqgrid/css/ui.jqgrid.css'>
+	<link rel='stylesheet' href='/plugins/jqgrid/css/jquery-ui.theme.min.css'>
+	<link rel='stylesheet' href='/plugins/layer/skin/layer.css'>
 	<style>
 	table {
 		border-collapse: collapse;
@@ -16,25 +19,37 @@
 <body>
 <h1>Node.js</h1>
 <p><%= title %></p>
-<a href='/user/addUser' >添加用户</a>
-<table>
-	<tr>
-		<th>id</th>
-		<th>姓名</th>
-		<th>年龄</th>
-		<th>地址</th>
-		<th>说明</th>
-	</tr>
-	<%for (let i = 0; i < data.length; i++) { %>
-		<tr>
-			<td><%= data[i].id%></td>
-			<td><%= data[i].name%></td>
-			<td><%= data[i].age%></td>
-			<td><%= data[i].address%></td>
-			<td><%= data[i].desc%></td>
-		</tr>
-	<%}%>
-</table>
+<a href='javascript:addUser()'>添加用户</a>
+<table id='userGrid'></table>
+<div id='userPages'></div>
+
+<div style='display:none;' id='userContent'>
+	<form id='userForm'>
+		<input type='hidden' id='userid' name='userid' />
+		<label for='name'>姓名</label>
+		<input type='text' name='name' id='name' /><br>
+		<label for='age'>年龄</label>
+		<input type='text' name='age' id='age' /><br>
+		<label for='address'>地址</label>
+		<input type='text' name='address' id='address' /><br>
+		<label for='desc'>说明</label>
+		<input type='text' name='desc' id='desc' /><br>
+		<label for='password'>密码</label>
+		<input type='text' name='password' id='password' /><br>
+		<label for='username'>用户名</label>
+		<input type='text' name='username' id='username' /><br>
+		<label for='email'>邮箱</label>
+		<input type='text' name='email' id='email' /><br>
+		<input type='button' onclick='saveUser()' value='保存' />
+	</form>
+</div>
+
+<script src='/plugins/jquery.js'></script>
+<script src='/plugins/jquery.form.js'></script>
+<script src='/plugins/jqgrid/jquery.jqGrid.min.js'></script>
+<script src='/plugins/jqgrid/grid.locale-cn.js'></script>
+<script src='/plugins/layer/layer.js'></script>
+<script src='/js/user/user.js'></script>
 </body>
 </html>
 
