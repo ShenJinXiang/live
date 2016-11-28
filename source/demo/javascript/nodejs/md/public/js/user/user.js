@@ -6,7 +6,7 @@ function initGrid() {
 	$("#userGrid").jqGrid({
 		url: '/user/userList',
     autowidth: true,
-    height: (($(window.document).height()) - 160),
+    height: (($(window.document).height()) - 260),
     datatype: 'json',
     colNames: ['姓名', '年龄', '地址', '说明', '操作', 'userid'],
     colModel: [
@@ -33,8 +33,8 @@ function initGrid() {
 			total: "message.totalPage",
 			records: "message.totalRow"
 		},
-		rowNum: 50,
-		rowList: [50, 100, 150],
+		rowNum: 2,
+		rowList: [2, 100, 150],
 		pager: '#userPages',
 		mtype: "POST",
 		rownumbers: true,
