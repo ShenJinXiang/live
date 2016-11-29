@@ -1,6 +1,5 @@
 // eventUtil.js
-function EventObj() {
-}
+function EventObj() {}
 
 let ep = EventObj.prototype;
 ep.maxListeners = 10;
@@ -75,7 +74,7 @@ ep.emit = function (eventName) {
  */
 ep.removeAllListeners = function (eventName) {
 	if (eventName) {
-		this.events[eventName] = [];
+		delete this.events[eventName];
 	} else {
 		this.events = Object.create(null);
 	}

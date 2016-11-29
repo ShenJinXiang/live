@@ -49,6 +49,22 @@ btn.on('move', function () {
 
 btn.emit('click');
 btn.emit('move');
-btn.removeListener('click');
+console.log('----');
+btn.removeAllListeners('click');
 btn.emit('click');
 btn.emit('move');
+btn.addListener('click', function () {
+	console.log('click --- 01');
+});
+btn.once('move', function () {
+	console.log('move once');
+});
+console.log(btn.listenerCount('move'));
+console.log('+++++++');
+btn.emit('click');
+btn.emit('move');
+console.log(btn.listenerCount('move'));
+console.log('*******');
+btn.emit('click');
+btn.emit('move');
+console.log(btn.listenerCount('move'));
