@@ -100,7 +100,7 @@ ep.listeners = function (eventName) {
 		return [];
 	}
 	let arr = [];
-	this.evnets[eventName].forEach(function(item) {
+	this.events[eventName].forEach(function(item) {
 		arr.push(item.listener);
 	});
 	return arr;
@@ -120,7 +120,7 @@ ep.listenerCount = function (eventName) {
  * 事件类型名称列表
  */
 ep.eventNames = function () {
-	if (this.events) {
+	if (!this.events) {
 		return [];
 	}
 	let arr = [];
