@@ -27,7 +27,7 @@ ep.setMaxListeners = function (arg) {
  */
 ep.addListener = ep.on = function (eventName, listener) {
 	if (!this.events[eventName]) {
-		ep.events[eventName] = [];
+		this.events[eventName] = [];
 	}
 	this.events[eventName].push({
 		name: eventName,
