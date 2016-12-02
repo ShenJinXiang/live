@@ -1,0 +1,7 @@
+{
+	"/": "index",
+	"/user/userList": "userList",
+	"/user/addUser": "addUser",
+	"/user/updUser": "updateUser",
+	"/user/delUser": "delUser"
+}
