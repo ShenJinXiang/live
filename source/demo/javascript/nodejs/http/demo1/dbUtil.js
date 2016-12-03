@@ -1,9 +1,15 @@
 const fs = require('fs');
 
-let filepath = './db.json'
+/**
+ * 存放数据的文件
+ */
+let dbPath = './db.data'
 
+/**
+ * 获取所有数据
+ */
 let queryList = exports.queryList = function (callback) {
-	fs.readFile(filepath, 'utf-8', function (err, data) {
+	fs.readFile(dbPath, 'utf-8', function (err, data) {
 		if (err) throw err;
 		let obj = {};
 		if (data) {
@@ -13,6 +19,9 @@ let queryList = exports.queryList = function (callback) {
 	});
 };
 
+/**
+ * 根据id获取一条记录
+ */
 let queryById = exports.queryById = function (id, callback) {
 	queryList(function (obj) {
 		let data = obj[id];
@@ -20,6 +29,9 @@ let queryById = exports.queryById = function (id, callback) {
 	});
 };
 
+/**
+ * 保存一条记录，如果id存在则修改，不存在则新增
+ */
 let save = exports.save = function (obj, callback) {
 	queryList(function (data) {
 		data[obj.id] = {
@@ -29,18 +41,21 @@ let save = exports.save = function (obj, callback) {
 			"address": obj.address
 		};
 
-		fs.writeFile(filepath, JSON.stringify(data), function(err) {
+		fs.writeFile(dbPath, JSON.stringify(data), function(err) {
 			if (err) throw err;
 			callback();
 		});
 	});
 };
 
+/**
+ * 根据id删除一条记录
+ */
 let delById = exports.delById = function (id, callback) {
 	queryList(function (data) {
 		delete data[id];
 
-		fs.writeFile(filepath, JSON.stringify(data), function(err) {
+		fs.writeFile(dbPath, JSON.stringify(data), function(err) {
 			if (err) throw err;
 			callback();
 		});
