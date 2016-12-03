@@ -5,13 +5,27 @@
 <title>员工管理</title>
 <style>
 *{margin:0px;padding:0px;}
-table{border-collapse: collapse; width: 80%;margin:5px auto;}
-table th {border:1px solid #ccc; line-height: 32px; background-color: #ddd;}
+body{font-size:12px;}
+table{border-collapse: collapse; width: 80%;margin-left:20px;}
+table th {border:1px solid #ccc; line-height: 32px; background-color: #ddd;font-size:14px;}
 table td {border:1px solid #ccc; line-height: 28px; padding-left: 10px;}
 table tr:hover{background-color: #eee;}
+
+label{width:100px; text-align:right;display:inline-block;}
+.text{text-indent: 5px;height:24px;line-height:24px;}
+ul li {line-height: 34px; height: 34px; }
+.width-text{width: 454px;}
+.btn{width: 80px; height: 30px;  font-weight:bold; border-radius:5px;border:none;cursor:pointer;}
+.save_btn{background-color:#048; color: #fff;}
+.save_btn:hover{background-color:#059;}
+.reset_btn{background-color: #ccc; color: #333;}
+.reset_btn:hover{background:#ddd;}
+a {text-decoration: none; padding: 5px 10px; font-weight:bold; display: inline-block; color: #048; }
+a:hover{color:#069;}
 </style>
 </head>
 <body>
+<a href='#'>添加人员</a>
 <table>
 	<tr>
 		<th>姓名</th>
@@ -46,6 +60,29 @@ table tr:hover{background-color: #eee;}
 </table>
 <br>
 <div class='content'>
+<form action=''>
+	<ul>
+		<li>
+			<input type='hidden' id='id' name='id' />
+			<label for='name'>姓名：</label>
+			<input type='text' class='text' id='name' name='name' />
+			<label for='age'>年龄：</label>
+			<input type='text' class='text' id='age' name='age' />
+		</li>
+		<li>
+			<label for='address'>地址：</label>
+			<input type='text' class='width-text text' id='address' name='address' />
+		</li>
+		<li>
+			<label for='discription'>说明：</label>
+			<input type='text' class='width-text text' id='discription' name='discription' />
+		</li>
+		<li style='text-indent:105px;'>
+			<input type='submit' class='save_btn btn' value='保存'/>
+			<input type='reset' class='reset_btn btn' value='重置'/>
+		</li>
+	</ul>
+</form>
 </div>
 </body>
 </html>
