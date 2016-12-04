@@ -63,3 +63,88 @@ Bootstrap和普通的HTML页面一样，定义标题都是使用标签&lt;h1&gt;
 * 行高为1.42857143（line-height），大约是20px
 * 颜色为深灰色#333
 * 字体为"Helvetica Neue", Helvetica, Arial, sans-serif;（font-family）
+
+## 强调内容
+在实际项目中，对于一些重要的文本，希望突出强调的部分都会做另外的样式处理。Bootstrap同样对这部分做了一些轻量级的处理。
+
+如果想让一个段落p突出显示，可以通过添加类名“.lead”实现，其作用就是增大文本字号，加粗文本，而且对行高和margin也做相应的处理。用法如下：
+```html
+<p>我是普通文本，我的样子长成这样我是普通文本，我的样子长成这样我是普通文本，</p>
+<p class="lead">我是特意要突出的文本，我的样子成这样。我是特意要突出的文本，我的样子长成这样。</p>
+```
+
+## 粗体
+粗体就是给文本加粗，在普通的元素中我们一般通过font-weight设置为bold关键词给文本加粗。在Bootstrap中，可以使用&lt;b&gt;和&lt;strong&gt;标签让文本直接加粗。
+```html
+<p>我在学习<strong>Bootstrap</strong>，我要掌握<strong>Bootstrap</strong>的所有知识。</p>
+```
+
+## 斜体
+在排版中，除了用加粗来强调突出的文本之外，还可以使用斜体。斜体类似于加粗一样，除了可以给元素设置样式font-style值为italic实现之外，在Bootstrap中还可以通过使用标签&lt;em&gt;或&lt;i&gt;来实现。
+
+例如，下面的代码使用了&lt;em&gt;和&lt;i&gt;标签定义了强调文本：
+```html
+<p>我在慕课网上跟<em>大漠</em>一起学习<i>Bootstrap</i>的使用。我一定要学会<i>Bootstrap</i>。</p>
+```
+
+## 强调相关的类
+在Bootstrap中除了使用标签&lt;strong&gt;、&lt;em&gt;等说明正文某些字词、句子的重要性，Bootstrap还定义了一套类名，这里称其为强调类名（类似前面说的“.lead”）,这些强调类都是通过颜色来表示强调，具本说明如下：
+
+* .text-muted：提示，使用浅灰色（#999）
+* .text-primary：主要，使用蓝色（#428bca）
+* .text-success：成功，使用浅绿色(#3c763d)
+* .text-info：通知信息，使用浅蓝色（#31708f）
+* .text-warning：警告，使用黄色（#8a6d3b）
+* .text-danger：危险，使用褐色（#a94442）
+
+```html
+<div class='text-muted'>text-muted 类效果</div>
+<div class='text-primary'>text-primary 类效果</div>
+<div class='text-success'>text-success 类效果</div>
+<div class='text-info'>text-info 类效果</div>
+<div class='text-warning'>text-warning 类效果</div>
+<div class='text-danger'>text-danger 类效果</div>
+```
+
+## 文本对齐风格
+在排版中离不开文本的对齐方式。在CSS中常常使用text-align来实现文本的对齐风格的设置。其中主要有四种风格：
+* 左对齐，取值left
+* 居中对齐，取值center
+* 右对齐，取值right
+* 两端对齐，取值justify
+
+为了简化操作，方便使用，Bootstrap通过定义四个类名来控制文本的对齐风格：
+* .text-left：左对齐
+* .text-center：居中对齐
+* .text-right：右对齐
+* .text-justify：两端对齐
+
+## 列表--简介
+在HTML文档中，列表结构主要有三种：有序列表、无序列表和定义列表。具体使用的标签说明如下：
+
+*无序列表*
+```html
+<ul>
+    <li>…</li>
+</ul>
+```
+
+*有序列表*
+```html
+<ol>
+    <li>…</li>
+</ol>
+```
+
+*定义列表*
+```html
+<dl>
+    <dt>…</dt>
+    <dd>…</dd>
+</dl>
+```
+
+在Bootstrap中默认情况下无序列表和有序列表是带有项目符号的，但在实际工作中很多时候，我们的列表是不需要这个编号的，比如说用无序列表做导航的时候。Bootstrap为众多开发者考虑的非常周道，通过给无序列表添加一个类名“.list-unstyled”,这样就可以去除默认的列表样式的风格
+
+## 列表--内联列表
+Bootstrap像去点列表一样，通过添加类名“.list-inline”来实现内联列表，简单点说就是**把垂直列表换成水平列表，而且去掉项目符号（编号），保持水平显示**。也可以说内联列表就是为制作水平导航而生
