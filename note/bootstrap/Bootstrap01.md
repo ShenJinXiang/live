@@ -469,4 +469,65 @@ Bootstrap框架的表单控件的禁用状态和普通的表单禁用状态实�
 ### 表单提示信息
 平常在制作表单验证时，要提供不同的提示信息。在Bootstrap框架中也提供了这样的效果。使用了一个"help-block"样式，将提示信息以块状显示，并且显示在控件底部。
 
+### 按钮
+```html
+<button class="btn" type="button">基础按钮.btn</button>  
+<button class="btn btn-default" type="button">默认按钮.btn-default</button> 
+<button class="btn btn-primary" type="button">主要按钮.btn-primary</button> 
+<button class="btn btn-success" type="button">成功按钮.btn-success</button> 
+<button class="btn btn-info" type="button">信息按钮.btn-info</button> 
+<button class="btn btn-warning" type="button">警告按钮.btn-warning</button> 
+<button class="btn btn-danger" type="button">危险按钮.btn-danger</button> 
+<button class="btn btn-link" type="button">链接按钮.btn-link</button>
+```
+
+### 基本按钮
+通过类名“btn”来实现
+```html
+<button class="btn" type="button">我是一个基本按钮</button>
+```
+
+### 默认按钮
+Bootstrap框架首先通过基础类名“.btn”定义了一个基础的按钮风格，然后通过“.btn-default”定义了一个默认的按钮风格。默认按钮的风格就是在基础按钮的风格的基础上修改了按钮的背景颜色、边框颜色和文本颜色。
+
+### 多标签支持
+一般制作按钮除了使用&lt;button&gt;标签元素之外，还可以使用&lt;input type="submit"&gt;和&lt;a&gt;标签等。同样，在Bootstrap框架中制作按钮时，除了刚才所说的这些标签元素之外，还可以使用在其他的标签元素上，唯一需要注意的是，要在制作按钮的标签元素上添加类名“btn”。如果不添加是不会有任何按钮效果
+
+```html
+<a class='btn btn-default'>a标签的默认按钮</a>
+<input type='submit' class='btn btn-default' value='submit按钮'/>
+```
+
+### 按钮大小
+上一节介绍了按钮的定制风格，也就是如何实现Web页面中多种风格按钮。在Bootstrap框架中，对于按钮的大小，也是可以定制的。类似于input一样，通过在基础按钮“.btn”的基础上追加类名来控制按钮的大小。
+
+* btn-lg 变大
+* btn 正常
+* btn-sm 变小
+* btn-xs 超小
+
+```html
+<button class="btn btn-default btn-lg" type="button">变大的默认按钮</button>
+<button class="btn btn-default" type="button">默认大小的按钮</button>
+<button class="btn btn-default btn-sm" type="button">变小的默认按钮</button>
+<button class="btn btn-default btn-xs" type="button">超小的默认按钮</button>
+```
+
+### 块状按钮
+Bootstrap框架中提供了一个类名“btn-block”。按钮使用这个类名就可以让按钮充满整个容器，并且这个按钮不会有任何的padding和margin值。在实际当中，常把这种按钮称为块状按钮
+
+### 按钮状态——活动状态
+Bootstrap框架针对按钮的状态做了一些特殊处理。在Bootstrap框架中针对按钮的状态效果主要分为两种：活动状态和禁用状态
+
+Bootstrap按钮的活动状态主要包括按钮的悬浮状态(:hover)，点击状态(:active)和焦点状态（:focus）几种
+
+### 按钮状态——禁用状态
+方法1：在标签中添加disabled属性
+
+方法2：在元素标签中添加类名“disabled”
+
+### 图标
+Bootstrap框架中的图标都是字体图标，其实现原理就是通过@font-face属性加载了字体
+
+在网页中使用图标也非常的简单，在任何内联元素上应用所对应的样式即可
 
