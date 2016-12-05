@@ -335,4 +335,100 @@ Bootstrap框架默认的表单是垂直显示风格，但很多时候我们需�
 
 如果你要在input前面添加一个label标签时，会导致input换行显示。如果你必须添加这样的一个label标签，并且不想让input换行，你需要将label标签也放在容器“form-group”中
 
+### 表单控件(输入框input)
+单行输入框，常见的文本输入框，也就是input的type属性值为text。在Bootstrap中使用input时也必须添加type类型，如果没有指定type类型，将无法得到正确的样式，因为Bootstrap框架都是通过input[type=“?”](其中?号代表type类型，比如说text类型，对应的是input[type=“text”])的形式来定义样式的
 
+为了让控件在各种表单风格中样式不出错，需要添加类名“form-control”
+
+### 表单控件(下拉选择框select)
+Bootstrap框架中的下拉选择框使用和原始的一致，多行选择设置multiple属性的值为multiple。Bootstrap框架会为这些元素提供统一的样式风格
+```html
+<form role='form'>
+	<div class='form-group'>
+		<select class='form-control'>
+			<option>太原</option>
+			<option>大同</option>
+			<option>长治</option>
+			<option>吕梁</option>
+		</select>
+	</div>
+	<div class='form-group'>
+		<select multiple class='form-control'>
+			<option>太原</option>
+			<option>大同</option>
+			<option>长治</option>
+			<option>吕梁</option>
+		</select>
+	</div>
+</form>
+```
+
+### 表单控件(文本域textarea)
+文本域和原始使用方法一样，设置rows可定义其高度，设置cols可以设置其宽度。但如果textarea元素中添加了类名“form-control”类名，则无需设置cols属性。因为Bootstrap框架中的“form-control”样式的表单控件宽度为100%或auto
+```html
+<div class="form-group">
+	<textarea class="form-control" rows="3"></textarea>
+</div>
+```
+
+### 表单控件(复选框checkbox和单选择按钮radio)
+
+Bootstrap框架中checkbox和radio有点特殊，Bootstrap针对他们做了一些特殊化处理，主要是checkbox和radio与label标签配合使用会出现一些小问题（最头痛的是对齐问题）。使用Bootstrap框架，开发人员无需考虑太多，只需要按照下面的方法使用即可
+```html
+<form role="form">
+	<div class="checkbox">
+		<label>
+			<input type="checkbox" value="">
+			记住密码
+		</label>
+	</div>
+	<div class="radio">
+		<label>
+			<input type="radio" name="optionsRadios" id="optionsRadios1" value="love" checked>
+			喜欢
+		</label>
+	</div>
+	<div class="radio">
+		<label>
+			<input type="radio" name="optionsRadios" id="optionsRadios2" value="hate">
+			不喜欢
+		</label>
+	</div>
+</form>
+```
+
+### 表单控件(复选框和单选按钮水平排列)
+有时候，为了布局的需要，将复选框和单选按钮需要水平排列
+
+* 如果checkbox需要水平排列，只需要在label标签上添加类名“checkbox-inline”
+* 如果radio需要水平排列，只需要在label标签上添加类名“radio-inline”
+
+```html
+<form role='form'>
+    <div class='form-group'>
+        <label class='radio-inline'>
+            <input type='radio' name='sex' value='nan'>
+            男性
+        </label>
+        <label class='radio-inline'>
+            <input type='radio' name='sex' value='nv'>
+            女性
+        </label>
+        <label class='radio-inline'>
+            <input type='radio' name='sex' value='zhong'>
+            中性
+        </label>
+    </div>
+	<div class='form-group'>
+		<label class='checkbox-inline'>
+			<input type='checkbox' name='qx'>足球
+		</label>
+		<label class='checkbox-inline'>
+			<input type='checkbox' name='qx'>篮球
+		</label>
+		<label class='checkbox-inline'>
+			<input type='checkbox' name='qx'>羽毛球
+		</label>
+	</div>
+</form>
+```
