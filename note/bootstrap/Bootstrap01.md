@@ -192,12 +192,13 @@ Bootstrap像去点列表一样，通过添加类名“.list-inline”来实现�
 * 使用&lt;kbd&lt;&lt;/kbd&gt;来显示用户输入代码
 
 * &lt;code&gt;：一般是针对于单个单词或单个句子的代码
-* &lt;pre&lt;：一般是针对于多行代码（也就是成块的代码）
-* &lt;kbd&lt;:一般是表示用户要通过键盘输入的内容
+* &lt;pre&gt;：一般是针对于多行代码（也就是成块的代码）
+* &lt;kbd&gt;:一般是表示用户要通过键盘输入的内容
 
 &lt;pre&gt;元素一般用于显示大块的代码，并保证原有格式不变。但有时候代码太多，而且不想让其占有太大的页面篇幅，就想控制代码块的大小。Bootstrap也考虑到这一点，你只需要在pre标签上添加类名“.pre-scrollable”，就可以控制代码块区域最大高度为340px，一旦超出这个高度，就会在Y轴出现滚动条
 
-## 表格是Bootstrap的一个基础组件之一，Bootstrap为表格提供了**1种基础样式和4种附加样式**以及**1个支持响应式的表格**。在使用Bootstrap的表格过程中，只需要添加对应的类名就可以得到不同的表格风格
+## 表格
+表格是Bootstrap的一个基础组件之一，Bootstrap为表格提供了**1种基础样式和4种附加样式**以及**1个支持响应式的表格**。在使用Bootstrap的表格过程中，只需要添加对应的类名就可以得到不同的表格风格
 
 * .table：基础表格
 * .table-striped：斑马线表格
@@ -205,3 +206,56 @@ Bootstrap像去点列表一样，通过添加类名“.list-inline”来实现�
 * .table-hover：鼠标悬停高亮的表格
 * .table-condensed：紧凑型表格
 * .table-responsive：响应式表格
+
+Bootstrap还为表格的行元素&lt;tr&gt;提供了五种不同的类名，每种类名控制了行的不同背景颜色，具体说明如下表所示
+
+|类名|描述|对应颜色|
+|:--:|:--|:--:|
+|.active|表示当前活动的信息|#f5f5f5|
+|.success|表示成功或者正确的行为|#dff0d8|
+|.info|表示中立的信息或行为|#d9edf7|
+|.warning|表示警告，需要特别注意|#fcf8e3|
+|.danger|表示危险或者可能是错误的行为|#f2dede|
+
+其使用非常的简单，只需要在<tr>元素中添加上表对应的类名，就能达到你自己需要的效果：
+```html
+<table class="table table-bordered table-hover">
+  <thead>
+    <tr>
+      <th>类名</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="active">
+      <td>.active</td>
+      <td>表示当前活动的信息</td>
+    </tr>
+    <tr class="success">
+      <td>.success</td>
+      <td>表示成功或者正确的行为</td>
+    </tr>
+    <tr class="info">
+      <td>.info</td>
+      <td>表示中立的信息或行为</td>
+    </tr>
+    <tr class="warning">
+      <td>.warning</td>
+      <td>表示警告，需要特别注意</td>
+    </tr>
+    <tr class="danger">
+      <td>.danger</td>
+      <td>表示危险或者可能是错误的行为</td>
+    </tr>
+  </tbody>
+</table>
+```
+
+### 基础表格
+.table”主要有三个作用：
+* 给表格设置了margin-bottom:20px以及设置单元内距
+* 在thead底部设置了一个2px的浅灰实线
+* 每个单元格顶部设置了一个1px的浅灰实线
+
+### 斑马线表格
+在Bootstrap中实现这种表格效果并不困难，只需要在&lt;table class="table"&gt;的基础上增加类名“.table-striped”即可
