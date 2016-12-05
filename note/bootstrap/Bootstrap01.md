@@ -281,3 +281,52 @@ Bootstrap中带边框的表格使用方法和斑马线表格的使用方法类�
 Bootstrap提供了一个容器，并且此容器设置类名“.table-responsive”,此容器就具有响应式效果，然后将&lt;table class="table"&gt;置于这个容器当中，这样表格也就具有响应式效果
 
 Bootstrap中响应式表格效果表现为：当你的浏览器可视区域小于768px时，表格底部会出现水平滚动条。当你的浏览器可视区域大于768px时，表格底部水平滚动条就会消失
+
+## 表单
+
+### 基础表单
+表单主要功能是用来与用户做交流的一个网页控件，良好的表单设计能够让网页与用户更好的沟通。表单中常见的元素主要包括：**文本输入框**、**下拉选择框**、**单选按钮**、**复选按钮**、**文本域和**按钮**等。其中每个控件所起的作用都各不相同，而且不同的浏览器对表单控件渲染的风格都各有不同
+
+**form-control类:**
+
+* 宽度变成了100%
+* 设置了一个浅灰色（#ccc）的边框
+* 具有4px的圆角
+* 设置阴影效果，并且元素得到焦点之时，阴影和边框效果会有所变化
+* 设置了placeholder的颜色为#999
+
+```html
+<div style='width:300px;'>
+<form role="form">
+  <div class="form-group">
+    <label for="exampleInputEmail1">邮箱：</label>
+    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="请输入您的邮箱地址">
+  </div>
+  <div class="form-group">
+    <label for="exampleInputPassword1">密码</label>
+    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="请输入您的邮箱密码">
+  </div>
+  <div class="checkbox">
+    <label>
+      <input type="checkbox"> 记住密码
+    </label>
+  </div>
+  <button type="submit" class="btn btn-default">进入邮箱</button>
+</form>
+</div>
+```
+
+### 水平表单
+Bootstrap框架默认的表单是垂直显示风格，但很多时候我们需要的水平表单风格（*标签居左*，*表单控件居右*）见下图
+
+在Bootstrap框架中要实现水平表单效果，必须满足以下两个条件
+
+* 在&lt;form&gt;元素是使用类名“form-horizontal”
+* 配合Bootstrap框架的网格系统
+
+在&lt;form&gt;元素上使用类名“form-horizontal”主要有以下几个作用
+* 设置表单控件padding和margin值
+* 改变“form-group”的表现形式，类似于网格系统的“row”
+
+### 内联表单
+在Bootstrap框架中实现这样的表单效果是轻而易举的，你只需要在&lt;form&gt;元素中添加类名“form-inline”即可
