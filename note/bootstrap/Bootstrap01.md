@@ -432,3 +432,41 @@ Bootstrap框架中checkbox和radio有点特殊，Bootstrap针对他们做了一�
 	</div>
 </form>
 ```
+
+### 表单控件(按钮)
+按钮也是表单重要控件之一,制作按钮通常使用下面代码来实现
+```html
+<button class='btn' href='#'>默认</button>
+<button class='btn btn-primary' href='#'>primary</button>
+<button class='btn btn-info' href='#'>info</button>
+<button class='btn btn-success' href='#'>success</button>
+<button class='btn btn-warning' href='#'>warning</button>
+<button class='btn btn-danger' href='#'>danger</button>
+<button class='btn btn-inverse' href='#'>inverse</button>
+```
+
+### 表单控件大小
+前面看到的表单控件都正常的大小。可以通过设置控件的height，line-height，padding和font-size等属性来实现控件的高度设置。不过Bootstrap框架还提供了两个不同的类名，用来控制表单控件的高度。这两个类名是
+
+* input-sm:让控件比正常大小更小
+* input-lg:让控件比正常大小更大
+
+### 表单控件状态(焦点状态)
+每一种状态都能给用户传递不同的信息，比如表单有焦点的状态可以告诉用户可以输入或选择东西，禁用状态可以告诉用户不可以输入或选择东西，还有就是表单控件验证状态，可以告诉用户的操作是否正确等
+
+焦点状态是通过伪类“:focus”来实现。Bootstrap框架中表单控件的焦点状态删除了outline的默认样式，重新添加阴影效果
+
+### 表单控件状态(禁用状态)
+Bootstrap框架的表单控件的禁用状态和普通的表单禁用状态实现方法是一样的，在相应的表单控件上添加属性“disabled”
+
+### 表单控件状态(验证状态)
+在制作表单时，不免要做表单验证。同样也需要提供验证状态样式，在Bootstrap框架中同样提供这几种效果
+
+* .has-warning:警告状态（黄色）
+* .has-error：错误状态（红色）
+* .has-success：成功状态（绿色）
+
+### 表单提示信息
+平常在制作表单验证时，要提供不同的提示信息。在Bootstrap框架中也提供了这样的效果。使用了一个"help-block"样式，将提示信息以块状显示，并且显示在控件底部。
+
+
