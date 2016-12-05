@@ -148,3 +148,60 @@ Bootstrap和普通的HTML页面一样，定义标题都是使用标签&lt;h1&gt;
 
 ## 列表--内联列表
 Bootstrap像去点列表一样，通过添加类名“.list-inline”来实现内联列表，简单点说就是**把垂直列表换成水平列表，而且去掉项目符号（编号），保持水平显示**。也可以说内联列表就是为制作水平导航而生
+
+## 列表--定义列表
+对于定义列表而言，Bootstrap并没有做太多的调整，只是调整了行间距，外边距和字体加粗效果。
+```html
+<dl>
+	<dt>太原</dt>
+	<dd>迎泽</dd>
+	<dd>小店</dd>
+	<dd>杏花岭</dd>
+	<dd>尖草坪</dd>
+	<dd>万柏林</dd>
+	<dt>吕梁</dt>
+	<dd>离石</dd>
+	<dd>中阳</dd>
+	<dd>方山</dd>
+	<dd>柳林</dd>
+</dl>
+```
+
+## 列表--水平定义列表
+水平定义列表就像内联列表一样，Bootstrap可以给<dl>添加类名“.dl-horizontal”给定义列表实现水平显示效果。
+```html
+<dl class='dl-horizontal'>
+	<dt>太原</dt>
+	<dd>迎泽</dd>
+	<dd>小店</dd>
+	<dd>杏花岭</dd>
+	<dd>尖草坪</dd>
+	<dd>万柏林</dd>
+	<dt>吕梁</dt>
+	<dd>离石</dd>
+	<dd>中阳</dd>
+	<dd>方山</dd>
+	<dd>柳林</dd>
+</dl>
+```
+
+## 代码
+在Bootstrap主要提供了三种代码风格
+* 使用&lt;code&gt;&lt;/code&gt;来显示单行内联代码
+* 使用&lt;pre&lt;&lt;/pre&gt;来显示多行块代码
+* 使用&lt;kbd&lt;&lt;/kbd&gt;来显示用户输入代码
+
+* &lt;code&gt;：一般是针对于单个单词或单个句子的代码
+* &lt;pre&lt;：一般是针对于多行代码（也就是成块的代码）
+* &lt;kbd&lt;:一般是表示用户要通过键盘输入的内容
+
+&lt;pre&gt;元素一般用于显示大块的代码，并保证原有格式不变。但有时候代码太多，而且不想让其占有太大的页面篇幅，就想控制代码块的大小。Bootstrap也考虑到这一点，你只需要在pre标签上添加类名“.pre-scrollable”，就可以控制代码块区域最大高度为340px，一旦超出这个高度，就会在Y轴出现滚动条
+
+## 表格是Bootstrap的一个基础组件之一，Bootstrap为表格提供了**1种基础样式和4种附加样式**以及**1个支持响应式的表格**。在使用Bootstrap的表格过程中，只需要添加对应的类名就可以得到不同的表格风格
+
+* .table：基础表格
+* .table-striped：斑马线表格
+* .table-bordered：带边框的表格
+* .table-hover：鼠标悬停高亮的表格
+* .table-condensed：紧凑型表格
+* .table-responsive：响应式表格
