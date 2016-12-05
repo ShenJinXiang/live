@@ -330,3 +330,9 @@ Bootstrap框架默认的表单是垂直显示风格，但很多时候我们需�
 
 ### 内联表单
 在Bootstrap框架中实现这样的表单效果是轻而易举的，你只需要在&lt;form&gt;元素中添加类名“form-inline”即可
+
+内联表单实现原理非常简单，欲将表单控件在一行显示，就需要将表单控件设置成内联块元素（display:inline-block）
+
+如果你要在input前面添加一个label标签时，会导致input换行显示。如果你必须添加这样的一个label标签，并且不想让input换行，你需要将label标签也放在容器“form-group”中
+
+
