@@ -12,5 +12,5 @@
 
   [test2](./test.md#test2)
 
-  [test3](./test.md#test3)
+  [test3](./test.md#test1)
 	
