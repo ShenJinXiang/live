@@ -891,3 +891,50 @@ Bootstrap框架中下拉菜单默认是左对齐，如果你想让下拉菜单�
 	<button type='button' class='btn btn-default'>关于我们</button>
 </div>
 ```
+
+#### 等分按钮
+等分按钮的效果在移动端上特别的实用。整个按钮组宽度是容器的100%，而按钮组里面的每个按钮平分整个容器宽度。例如，如果你按钮组里面有五个按钮，那么每个按钮是20%的宽度，如果有四个按钮，那么每个按钮是25%宽度，以此类推。
+
+等分按钮也常被称为是自适应分组按钮，其实现方法也非常的简单，只需要在按钮组“btn-group”上追加一个“btn-group-justified”类名
+
+```html
+<div class='btn-wrap'>
+	<div class='btn-group btn-group-justified'>
+		<a class='btn btn-default' href='#'>首页</a>
+		<a class='btn btn-default' href='#'>产品展示</a>
+		<a class='btn btn-default' href='#'>案例分析</a>
+		<a class='btn btn-default' href='#'>新闻中心</a>
+		<a class='btn btn-default' href='#'>商务平台</a>
+		<a class='btn btn-default' href='#'>服务平台</a>
+	</div>
+</div>
+```
+
+#### 向上弹起的下拉菜单
+有些菜单是需要向上弹出的，比如说你的菜单在页面最底部，而这个菜单正好有一个下拉菜单，为了让用户有更好的体验，不得不让下拉菜单向上弹出。在Bootstrap框架中专门为这种效果提代了一个类名“dropup”。使用方法正如前面所示，只需要在“btn-group”上添加这个类名（当然，如果是普通向上弹出下拉菜单，你只需要在“dropdown”类名基础上追加“dropup”类名即可）
+
+```html
+<div class="btn-wrap">
+    <div class="btn-group btn-group-justified">
+		<a class="btn btn-default" href="#">首页</a>
+		<a class="btn btn-default" href="#">产品展示</a>
+		<a class="btn btn-default" href="#">产品展示</a>
+		<a class="btn btn-default" href="#">案例分析</a>
+		<!-- 
+		<a class="btn btn-default" href="#">联系我们</a>
+		-->
+		<div class='btn-group dropup'>
+			<a class='btn btn-default dropdown-toggle' data-toggle='dropdown'>
+				联系我们
+				<span class='caret'></span>
+			</a>
+			<ul class='dropdown-menu'>
+				<li><a href='#'>收割机</a></li>
+				<li><a href='#'>电动机</a></li>
+				<li><a href='#'>拖拉机</a></li>
+				<li><a href='#'>电动车</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+```
