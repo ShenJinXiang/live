@@ -48,3 +48,8 @@ app.get('/about', function (req, res) {
 ```
 
 默认忽略大小写或反斜杠
+
+我们这次使用的不是 Node 的 res.end，而是换成了 Express 的扩展 res.send。我们还用res.set 和 res.status 替换了 Node 的 res.writeHead。Express 还提供了一个 res.type 方 法，可以方便地设置响应头 Content-Type。尽管仍然可以使用 res.writeHead 和 res.end， 但没有必要也不作推荐
+
+我们对定制的 404 和 500 页面的处理与对普通页面的处理应有所区别:用的不是app.get，而是 app.use。app.use 是 Express 添加中间件的一种方法
+
