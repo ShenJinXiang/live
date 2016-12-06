@@ -768,3 +768,126 @@ Bootstrap框架中下拉菜单默认是左对齐，如果你想让下拉菜单�
     </ul>
 </div>
 ```
+
+### 按钮
+#### 按钮组
+单个按钮在Web页面中的运用有时候并不能满足我们的业务需求，常常会看到将多个按钮组合在一起使用，比如富文本编辑器里的一组小图标按钮等
+
+使用一个名为“btn-group”的容器，把多个按钮放到这个容器中
+
+除了可以使用&lt;button&gt;元素之外，还可以使用其他标签元素，比如<a>标签。唯一要保证的是：不管使用什么标签，“.btn-group”容器里的标签元素需要带有类名“.btn”
+
+```html
+<!DOCTYPE html>
+<html>
+<head>
+	<title>button group</title>
+	<meta charset='utf-8' />
+	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	<link href='http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet'>
+</head>
+<body>
+<div class="btn-group">
+    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-step-backward"></span></button>
+    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-fast-backward"></span></button>
+    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-backward"></span></button>
+    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-play"></span></button>
+    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-pause"></span></button>
+    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-stop"></span></button>
+    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-forward "></span></button>
+    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-fast-forward"></span></button>
+    <button type="button" class="btn btn-primary"><span class="glyphicon glyphicon-step-forward"></span></button>
+</div>
+<div class='btn-group'>
+	<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-search'></span></button>
+	<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-zoom-in'></span></button>
+	<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-zoom-out'></span></button>
+	<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-upload'></span></button>
+	<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-download'></span></button>
+</div>
+<script src='http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js'></script>
+<script src='http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+</body>
+</html>
+```
+
+#### 按钮工具栏
+将按钮组“btn-group”按组放在一个大的容器“btn-toolbar”中
+
+**按钮组大小设置**
+
+* .btn-group-lg 大按钮组
+* .btn-group-sm 小按钮组
+* .btn-group-xs 超小按钮组
+
+```html
+<div class='btn-toolbar'>
+	<div class='btn-group btn-group-lg'>
+		<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-align-left'></span></button>
+		<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-align-center'></span></button>
+		<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-align-right'></span></button>
+		<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-align-justify'></span></button>
+	</div>
+	<div class='btn-group'>
+		<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-indent-left'></span></button>
+		<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-indent-right'></span></button>
+	</div>
+	<div class='btn-group btn-group-sm'>
+		<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-font'></span></button>
+		<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-bold'></span></button>
+		<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-italic'></span></button>
+	</div>
+	<div class='btn-group btn-group-xs'>
+		<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-text-height'></span></button>
+		<button type='button' class='btn btn-default'><span class='glyphicon glyphicon-text-width'></span></button>
+	</div>
+</div>
+```
+
+#### 嵌套分组
+只需要把当初制作下拉菜单的“dropdown”的容器换成“btn-group”，并且和普通的按钮放在同一级
+
+```html
+<div class='btn-group'>
+	<button type='button' class='btn btn-default'>首页</button>
+	<div class='btn-group'>
+		<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown'>
+			产品展示
+			<span class='caret'></span>
+		</button>
+		<ul class='dropdown-menu'>
+			<li><a href='#'>收割机</a></li>
+			<li><a href='#'>电动机</a></li>
+			<li><a href='#'>拖拉机</a></li>
+			<li><a href='#'>电动车</a></li>
+		</ul>
+	</div>
+	<button type='button' class='btn btn-default'>案例分析</button>
+	<button type='button' class='btn btn-default'>联系我们</button>
+	<button type='button' class='btn btn-default'>关于我们</button>
+</div>
+```
+
+#### 垂直分组
+前面看到的示例，按钮组都是水平显示的。但在实际运用当中，总会碰到垂直显示的效果。在Bootstrap框架中也提供了这样的风格。我们只需要把水平分组的“btn-group”类名换成“btn-group-vertical”即可
+
+```html
+<div class='btn-group-vertical'>
+	<button type='button' class='btn btn-default'>首页</button>
+	<div class='btn-group'>
+		<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown'>
+			产品展示
+			<span class='caret'></span>
+		</button>
+		<ul class='dropdown-menu'>
+			<li><a href='#'>收割机</a></li>
+			<li><a href='#'>电动机</a></li>
+			<li><a href='#'>拖拉机</a></li>
+			<li><a href='#'>电动车</a></li>
+		</ul>
+	</div>
+	<button type='button' class='btn btn-default'>案例分析</button>
+	<button type='button' class='btn btn-default'>联系我们</button>
+	<button type='button' class='btn btn-default'>关于我们</button>
+</div>
+```

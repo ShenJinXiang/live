@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>嵌套分组</title>
+	<meta charset='utf-8' />
+	<meta name='viewport' content='width=device-width, initial-scale=1.0'>
+	<link href='http://cdn.static.runoob.com/libs/bootstrap/3.3.7/css/bootstrap.min.css' rel='stylesheet'>
+</head>
+<body>
+
+<div class='btn-group'>
+	<button type='button' class='btn btn-default'>首页</button>
+	<button type='button' class='btn btn-default'>产品展示</button>
+	<button type='button' class='btn btn-default'>案例分析</button>
+	<button type='button' class='btn btn-default'>联系我们</button>
+	<div class='btn-group'>
+		<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown'>
+			关于我们
+			<span class='caret'></span>
+		</button>
+		<ul class='dropdown-menu'>
+			<li><a href='#'>公司简介</a></li>
+			<li><a href='#'>企业文化</a></li>
+			<li><a href='#'>组织结构</a></li>
+			<li class='divider'></li>
+			<li><a href='#'>客服服务</a></li>
+		</ul>
+	</div>
+</div>
+<br><br>
+<div class='btn-group'>
+	<button type='button' class='btn btn-default'>首页</button>
+	<div class='btn-group'>
+		<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown'>
+			产品展示
+			<span class='caret'></span>
+		</button>
+		<ul class='dropdown-menu'>
+			<li><a href='#'>收割机</a></li>
+			<li><a href='#'>电动机</a></li>
+			<li><a href='#'>拖拉机</a></li>
+			<li><a href='#'>电动车</a></li>
+		</ul>
+	</div>
+	<button type='button' class='btn btn-default'>案例分析</button>
+	<button type='button' class='btn btn-default'>联系我们</button>
+	<button type='button' class='btn btn-default'>关于我们</button>
+</div>
+<br><br>
+<div class='btn-group-vertical'>
+	<button type='button' class='btn btn-default'>首页</button>
+	<div class='btn-group'>
+		<button class='btn btn-default dropdown-toggle' type='button' data-toggle='dropdown'>
+			产品展示
+			<span class='caret'></span>
+		</button>
+		<ul class='dropdown-menu'>
+			<li><a href='#'>收割机</a></li>
+			<li><a href='#'>电动机</a></li>
+			<li><a href='#'>拖拉机</a></li>
+			<li><a href='#'>电动车</a></li>
+		</ul>
+	</div>
+	<button type='button' class='btn btn-default'>案例分析</button>
+	<button type='button' class='btn btn-default'>联系我们</button>
+	<button type='button' class='btn btn-default'>关于我们</button>
+</div>
+<br><br>
+<div class="btn-wrap">
+    <div class="btn-group btn-group-justified">
+    <a class="btn btn-default" href="#">首页</a>
+    <a class="btn btn-default" href="#">产品展示</a>
+    <a class="btn btn-default" href="#">案例分析</a>
+    <a class="btn btn-default" href="#">联系我们</a>
+	</div>
+</div>
+<script src='http://cdn.static.runoob.com/libs/jquery/2.1.1/jquery.min.js'></script>
+<script src='http://cdn.static.runoob.com/libs/bootstrap/3.3.7/js/bootstrap.min.js'></script>
+</body>
+</html>
+
+
