@@ -938,3 +938,92 @@ Bootstrap框架中下拉菜单默认是左对齐，如果你想让下拉菜单�
 	</div>
 </div>
 ```
+
+
+### 导航
+
+#### 基础样式
+Bootstrap框架中制作导航条主要通过“.nav”样式。默认的“.nav”样式不提供默认的导航样式，必须附加另外一个样式才会有效，比如“nav-tabs”、“nav-pills”之类。比如右侧代码编辑器中就有一个tab导航条的例子，他的实现方法就是为ul标签加入.nav和nav-tabs两个类样式
+
+```html
+<ul class="nav nav-tabs">
+    <li><a href="##">Home</a></li>
+    <li><a href="##">CSS3</a></li>
+ 	<li><a href="##">Sass</a></li>
+ 	<li><a href="##">jQuery</a></li>
+ 	<li><a href="##">Responsive</a></li>
+</ul>
+<br><br>
+<ul class="nav nav-pills">
+    <li><a href="##">Home</a></li>
+    <li><a href="##">CSS3</a></li>
+ 	<li><a href="##">Sass</a></li>
+ 	<li><a href="##">jQuery</a></li>
+ 	<li><a href="##">Responsive</a></li>
+</ul>
+```
+
+#### 标签形tab导航
+标签形导航，也称为选项卡导航。特别是在很多内容分块显示的时，使用这种选项卡来分组十分适合。
+
+标签形导航是通过“nav-tabs”样式来实现。在制作标签形导航时需要在原导航“nav”上追加此类名
+
+```html
+<ul class="nav nav-tabs">
+    <li><a href="##">Home</a></li>
+    <li><a href="##">CSS3</a></li>
+ 	<li><a href="##">Sass</a></li>
+ 	<li><a href="##">jQuery</a></li>
+ 	<li><a href="##">Responsive</a></li>
+</ul>
+```
+
+一般情况之下，选项卡教会有一个当前选中项。其实在Bootstrap框架也相应提供了。假设我们想让“Home”项为当前选中项，只需要在其标签上添加类名“class="active"”即可
+```html
+<ul class="nav nav-tabs">
+    <li><a href="##">Home</a></li>
+    <li class='active'><a href="##">CSS3</a></li>
+ 	<li><a href="##">Sass</a></li>
+ 	<li><a href="##">jQuery</a></li>
+ 	<li><a href="##">Responsive</a></li>
+</ul>
+```
+
+除了当前项之外，有的选项卡还带有禁用状态，实现这样的效果，只需要在标签项上添加“class="disabled"”即可
+```html
+<ul class="nav nav-tabs">
+    <li><a href="##">Home</a></li>
+    <li class='active'><a href="##">CSS3</a></li>
+ 	<li><a href="##">Sass</a></li>
+ 	<li class='disabled'><a href="##">jQuery</a></li>
+ 	<li><a href="##">Responsive</a></li>
+</ul>
+```
+
+#### 胶囊形(pills)导航
+胶囊形（pills）导航听起来有点别扭，因为其外形看起来有点像胶囊形状。但其更像我们平时看到的大众形导航。当前项高亮显示，并带有圆角效果。其实现方法和“nav-tabs”类似，同样的结构，只需要把类名“nav-tabs”换成“nav-pills”即可
+```html
+<ul class="nav nav-pills">
+    <li><a href="##">Home</a></li>
+    <li class='active'><a href="##">CSS3</a></li>
+ 	<li><a href="##">Sass</a></li>
+ 	<li class='disabled'><a href="##">jQuery</a></li>
+ 	<li><a href="##">Responsive</a></li>
+</ul>
+```
+
+#### 垂直堆叠的导航
+在实际运用当中，除了水平导航之外，还有垂直导航，就类似前面介绍的垂直排列按钮一样。制作垂直堆叠导航只需要在“nav-pills”的基础上添加一个“nav-stacked”类名即可
+```html
+<ul class="nav nav-pills nav-stacked">
+    <li><a href="##">Home</a></li>
+    <li class='active'><a href="##">CSS3</a></li>
+ 	<li><a href="##">Sass</a></li>
+ 	<li class='disabled'><a href="##">jQuery</a></li>
+ 	<li><a href="##">Responsive</a></li>
+</ul>
+```
+
+#### 自适应导航
+自适应导航指的是导航占据容器全部宽度，而且菜单项可以像表格的单元格一样自适应宽度。自适应导航和前面使用“btn-group-justified”制作的自适应按钮组是一样的。只不过在制作自适应导航时更换了另一个类名“nav-justified”。当然他需要和“nav-tabs”或者“nav-pills”配合在一起使用
+
