@@ -623,3 +623,148 @@ Bootstrap框架的网格系统还支持列的嵌套。你可以在一个列中�
     </div>
 </div>
 ```
+
+## 菜单、按钮及导航
+### 下拉菜单
+* 使用一个名为“dropdown”的容器包裹了整个下拉菜单元素：&lt;div class='dropdown'&gt;&lt;/div&gt;
+* 使用了一个&lt;button&gt;按钮做为父菜单，并且定义类名“dropdown-toggle”和自定义“data-toggle”属性，且值必须和最外容器类名一致，此示例为: data-toggle='dropdown'
+* 下拉菜单项使用一个ul列表，并且定义一个类名为“dropdown-menu”，此示例为:&lt;ul class='dropdown-menu'&gt;
+
+```html
+<div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="shuiguo" data-toggle="dropdown">
+        选中你喜欢的水果
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="shuiguo">
+		<li ><a href='#'>苹果</a></li>
+		<li ><a href='#'>香蕉</a></li>
+		<li ><a href='#'>梨</a></li>
+		<li ><a href='#'>桃</a></li>
+    </ul>
+</div>
+```
+
+#### 下拉菜单（下拉分隔线）
+在Bootstrap框架中的下拉菜单还提供了下拉分隔线，假设下拉菜单有两个组，那么组与组之间可以通过添加一个空的<li>，并且给这个<li>添加类名“divider”来实现添加下拉分隔线的功能
+```html
+<div class="dropdown">
+    <button class="btn btn-default dropdown-toggle" type="button" id="shuiguo" data-toggle="dropdown">
+        选中你喜欢的水果
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="shuiguo">
+		<li ><a href='#'>苹果</a></li>
+		<li ><a href='#'>香蕉</a></li>
+		<li class='divider'></li>
+		<li ><a href='#'>梨</a></li>
+		<li ><a href='#'>桃</a></li>
+    </ul>
+</div>
+<div class="dropdown">
+    <button type="button" class="btn btn-primary dropdown-togglt" id="shiwu" data-toggle="dropdown">
+        食物
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="shiwu">
+		<li><a href='#'>苹果</a></li>
+		<li><a href='#'>香蕉</a></li>
+		<li><a href='#'>梨</a></li>
+		<li><a href='#'>桃</a></li>
+		<li class='divider'></li>
+		<li><a href='#'>芹菜</a></li>
+		<li><a href='#'>萝卜</a></li>
+		<li><a href='#'>茄子</a></li>
+		<li class='divider'></li>
+		<li><a href='#'>米饭</a></li>
+		<li><a href='#'>馒头</a></li>
+		<li><a href='#'>面条</a></li>
+    </ul>
+</div>
+```
+
+#### 下拉菜单（菜单标题）
+为了让这个分组更明显，还可以给每个组添加一个头部（标题）
+```html
+<div class="dropdown">
+    <button type="button" class="btn btn-primary dropdown-togglt" id="shiwu" data-toggle="dropdown">
+        食物
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu" role="menu" aria-labelledby="shiwu">
+		<li class='dropdown-header'>水果</li>
+		<li><a href='#'>苹果</a></li>
+		<li><a href='#'>香蕉</a></li>
+		<li><a href='#'>梨</a></li>
+		<li><a href='#'>桃</a></li>
+		<li class='divider'></li>
+		<li class='dropdown-header'>蔬菜</li>
+		<li><a href='#'>芹菜</a></li>
+		<li><a href='#'>萝卜</a></li>
+		<li><a href='#'>茄子</a></li>
+		<li class='divider'></li>
+		<li class='dropdown-header'>主食</li>
+		<li><a href='#'>米饭</a></li>
+		<li><a href='#'>馒头</a></li>
+		<li><a href='#'>面条</a></li>
+    </ul>
+</div>
+```
+
+#### 下拉菜单（对齐方式）
+Bootstrap框架中下拉菜单默认是左对齐，如果你想让下拉菜单相对于父容器右对齐时，可以在“dropdown-menu”上添加一个“pull-right”或者“dropdown-menu-right”类名
+```html
+<div class="dropdown" style="width:320px;">
+    <button type="button" class="btn btn-primary dropdown-togglt btn-block" id="shiwu" data-toggle="dropdown">
+        食物
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="shiwu">
+		<li class='dropdown-header'>水果</li>
+		<li><a href='#'>苹果</a></li>
+		<li><a href='#'>香蕉</a></li>
+		<li><a href='#'>梨</a></li>
+		<li><a href='#'>桃</a></li>
+		<li class='divider'></li>
+		<li class='dropdown-header'>蔬菜</li>
+		<li><a href='#'>芹菜</a></li>
+		<li><a href='#'>萝卜</a></li>
+		<li><a href='#'>茄子</a></li>
+		<li class='divider'></li>
+		<li class='dropdown-header'>主食</li>
+		<li><a href='#'>米饭</a></li>
+		<li><a href='#'>馒头</a></li>
+		<li><a href='#'>面条</a></li>
+    </ul>
+</div>
+```
+
+#### 下拉菜单（菜单项状态）
+下拉菜单项的默认的状态（不用设置）有悬浮状态（:hover）和焦点状态（:focus）
+
+还有当前状态（.active）和禁用状态（.disabled）。这两种状态使用方法只需要在对应的菜单项上添加对应的类名
+```html
+<div class="dropdown" style="width:320px;">
+    <button type="button" class="btn btn-primary dropdown-togglt btn-block" id="shiwu" data-toggle="dropdown">
+        食物
+        <span class="caret"></span>
+    </button>
+    <ul class="dropdown-menu pull-right" role="menu" aria-labelledby="shiwu">
+		<li class='dropdown-header'>水果</li>
+		<li><a href='#'>苹果</a></li>
+		<li><a href='#'>香蕉</a></li>
+		<li><a href='#'>梨</a></li>
+		<li><a href='#'>桃</a></li>
+		<li class='divider'></li>
+		<li class='dropdown-header'>蔬菜</li>
+		<li><a href='#'>芹菜</a></li>
+		<li class='disabled'><a href='#'>萝卜</a></li>
+		<li><a href='#'>茄子</a></li>
+		<li class='divider'></li>
+		<li class='dropdown-header'>主食</li>
+		<li class='active'><a href='#'>米饭</a></li>
+		<li><a href='#'>馒头</a></li>
+		<li><a href='#'>面条</a></li>
+    </ul>
+</div>
+```
