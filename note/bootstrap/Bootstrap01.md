@@ -531,3 +531,95 @@ Bootstrap框架中的图标都是字体图标，其实现原理就是通过@font
 
 在网页中使用图标也非常的简单，在任何内联元素上应用所对应的样式即可
 
+## 网格系统
+网格系统的实现原理非常简单，仅仅是通过定义容器大小，平分12份(也有平分成24份或32份，但12份是最常见的)，再调整内外边距，最后结合媒体查询，就制作出了强大的响应式网格系统。Bootstrap框架中的网格系统就是将容器平分成12份
+
+### 实现原理
+1. 数据行(.row)必须包含在容器（.container）中，以便为其赋予合适的对齐方式和内距(padding)
+2. 在行(.row)中可以添加列(.column)，但列数之和不能超过平分的总列数，比如12
+3. 具体内容应当放置在列容器（column）之内，而且只有列（column）才可以作为行容器(.row)的直接子元素
+4. 通过设置内距（padding）从而创建列与列之间的间距。然后通过为第一列和最后一列设置负值的外距（margin）来抵消内距(padding)的影响
+
+### 基本用法
+网格系统用来布局，其实就是列的组合。Bootstrap框架的网格系统中有四种基本的用法
+
+#### 列组合
+列组合简单理解就是更改数字来合并列（原则：列总和数不能超12），有点类似于表格的colspan属性
+```html
+<div class="container">
+	<div class='row'>
+		<div class='col-md-4'>row1 .col-md-4</div>
+		<div class='col-md-4'>row1 .col-md-4</div>
+		<div class='col-md-4'>row1 .col-md-4</div>
+	</div>
+	<div class='row'>
+		<div class='col-md-6'>row2 .col-md-6</div>
+		<div class='col-md-6'>row2 .col-md-6</div>
+	</div>
+	<div class='row'>
+		<div class='col-md-2'>row3 .col-md-2</div>
+		<div class='col-md-2'>row3 .col-md-2</div>
+		<div class='col-md-2'>row3 .col-md-2</div>
+		<div class='col-md-2'>row3 .col-md-2</div>
+		<div class='col-md-2'>row3 .col-md-2</div>
+		<div class='col-md-2'>row3 .col-md-2</div>
+	</div>
+	<div class='row'>
+		<div class='col-md-12'>row4 .col-md-12</div>
+	</div>
+	<div class='row'>
+		<div class='col-md-3'>row4 .col-md-3</div>
+		<div class='col-md-9'>row4 .col-md-9</div>
+	</div>
+</div>
+```
+
+#### 列偏移
+有的时候，我们不希望相邻的两个列紧靠在一起，但又不想使用margin或者其他的技术手段来。这个时候就可以使用列偏移（offset）功能来实现。使用列偏移也非常简单，只需要在列元素上添加类名“col-md-offset-*”(其中星号代表要偏移的列组合数)，那么具有这个类名的列就会向右偏移。例如，你在列元素上添加“col-md-offset-4”，表示该列向右移动4个列的宽度
+
+```html
+<div class="container">
+    <div class="row">
+        <div class="col-md-2">.col-md-2</div>
+        <div class="col-md-2 col-md-offset-1">.col-md-2 --1</div>
+        <div class='col-md-2 col-md-offset-1'>.col-md-2 --1</div>
+        <div class='col-md-3 col-md-offset-1'>.col-md-3 --1</div>
+	</div>
+</div>
+```
+
+#### 列排序
+列排序其实就是改变列的方向，就是改变左右浮动，并且设置浮动的距离。在Bootstrap框架的网格系统中是通过添加类名“col-md-push-*”和“col-md-pull-*” (其中星号代表移动的列组合数)
+```html
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">.col-md-4</div>
+    <div class="col-md-8">.col-md-8</div>
+  </div>
+  <div class="row">
+    <div class="col-md-4 col-md-push-8">.col-md-4</div>
+    <div class="col-md-8 col-md-pull-4">.col-md-8</div>
+  </div>
+</div>
+```
+
+#### 列的嵌套
+Bootstrap框架的网格系统还支持列的嵌套。你可以在一个列中添加一个或者多个行（row）容器，然后在这个行容器中插入列（像前面介绍的一样使用列）。但在列容器中的行容器（row），宽度为100%时，就是当前外部列的宽度
+```html
+<div class="container">
+    <div class="row">
+        <div class="col-md-8">.col-md-8
+            <div class="row">
+                <div class="col-md-8">col-md-8</div>
+                <div class="col-md-4">col-md-4</div>
+            </div>
+        </div>
+        <div class="col-md-4">.col-md-4
+            <div class="row">
+                <div class="col-md-9">col-md-9</div>
+                <div class="col-md-3">col-md-3</div>
+            </div>
+        </div>
+    </div>
+</div>
+```
