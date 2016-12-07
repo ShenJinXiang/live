@@ -1112,3 +1112,152 @@ Bootstrap框架中制作导航条主要通过“.nav”样式。默认的“.nav
 	</ul>
 </div>
 ```
+
+### 带表单的导航条
+有的导航条中会带有搜索表单，在Bootstrap框架中提供了一个“navbar-form”，使用方法很简单，在navbar容器中放置一个带有navbar-form类名的表单
+```html
+<div class='navbar navbar-default'>
+	<div class='navbar-header'>
+		<a href='#' class='navbar-brand'>慕课网</a>
+	</div>
+	<ul class='nav navbar-nav'>
+		<li><a href='#'>网站首页</a></li>
+		<li class='active'><a href='#'>名师简介</a></li>
+		<li><a href='#'>成功案例</a></li>
+		<li class='dropdown'>
+			<a href='#' data-toggle='dropdown' class='dropdown-toggle'>关于我们<span class='caret'></span></a>
+			<ul class='dropdown-menu'>
+				<li><a href='#'>公司简介</a></li>
+				<li><a href='#'>联系我们</a></li>
+				<li><a href='#'>客服服务</a></li>
+				<li><a href='#'>售后反馈</a></li>
+			</ul>
+		</li>
+	</ul>
+	<form action='#' class='navbar-form navbar-right' rol='search'>
+		<div class='form-group'>
+			<input type='text' class='form-control' placeholder='请输入关键词' />
+		</div>
+		<button type='submit' class='btn btn-default'>搜索</button>
+	</form>
+</div>
+```
+
+### 固定导航条
+很多情况之一，设计师希望导航条固定在浏览器顶部或底部，这种固定式导航条的应用在移动端开发中更为常见。Bootstrap框架提供了两种固定导航条的方式:
+
+* .navbar-fixed-top 导航条固定再浏览器窗口顶部
+* .navbar-fixed-bottom  导航条固定再浏览器底部
+
+使用方法很简单，只需要在制作导航条最外部容器navbar上追加对应的类名即可
+
+```html
+<div class='navbar navbar-default navbar-fixed-top'>
+	<div class='navbar-header'>
+		<a href='#' class='navbar-brand'>慕课网</a>
+	</div>
+	<ul class='nav navbar-nav'>
+		<li><a href='#'>网站首页</a></li>
+		<li class='active'><a href='#'>名师简介</a></li>
+		<li><a href='#'>成功案例</a></li>
+		<li class='dropdown'>
+			<a href='#' data-toggle='dropdown' class='dropdown-toggle'>关于我们<span class='caret'></span></a>
+			<ul class='dropdown-menu'>
+				<li><a href='#'>公司简介</a></li>
+				<li><a href='#'>联系我们</a></li>
+				<li><a href='#'>客服服务</a></li>
+				<li><a href='#'>售后反馈</a></li>
+			</ul>
+		</li>
+	</ul>
+	<form action='#' class='navbar-form navbar-right' rol='search'>
+		<div class='form-group'>
+			<input type='text' class='form-control' placeholder='请输入关键词' />
+		</div>
+		<button type='submit' class='btn btn-default'>搜索</button>
+	</form>
+</div>
+```
+从运行效果中大家不难发现，页面主内容顶部和底部都被固定导航条给遮住了。为了避免固定导航条遮盖内容，我们需要在body上做一些处理：
+```css
+body {
+  padding-top: 70px;/*有顶部固定导航条时设置*/
+  padding-bottom: 70px;/*有底部固定导航条时设置*/
+}
+```
+
+### 响应式导航条
+```html
+<div class="navbar navbar-default" role="navigation">
+  <div class="navbar-header">
+     　<!-- .navbar-toggle样式用于toggle收缩的内容，即nav-collapse collapse样式所在元素 -->
+       <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".navbar-responsive-collapse">
+         <span class="sr-only">Toggle Navigation</span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+         <span class="icon-bar"></span>
+       </button>
+       <!-- 确保无论是宽屏还是窄屏，navbar-brand都显示 -->
+       <a href="##" class="navbar-brand">慕课网</a>
+  </div>
+  <!-- 屏幕宽度小于768px时，div.navbar-responsive-collapse容器里的内容都会隐藏，显示icon-bar图标，当点击icon-bar图标时，再展开。屏幕大于768px时，默认显示。 -->
+  <div class="collapse navbar-collapse navbar-responsive-collapse">
+    	<ul class="nav navbar-nav">
+      		<li class="active"><a href="##">网站首页</a></li>
+      		<li><a href="##">系列教程</a></li>
+      		<li><a href="##">名师介绍</a></li>
+      		<li><a href="##">成功案例</a></li>
+      		<li><a href="##">关于我们</a></li>
+	 	</ul>
+  </div>
+</div>
+```
+
+### 反色导航条
+反色导航条其实是Bootstrap框架为大家提供的第二种风格的导航条，与默认的导航条相比，使用方法并无区别，只是将navbar-deafult类名换成navbar-inverse。其变化只是导航条的背景色和文本做了修改
+```html
+<div class='navbar navbar-inverse navbar-fixed-top'>
+	<div class='navbar-header'>
+		<a href='#' class='navbar-brand'>慕课网</a>
+	</div>
+	<ul class='nav navbar-nav'>
+		<li class='active'><a href='#'>网站首页</a></li>
+		<li><a href='#'>系列教程</a></li>
+		<li><a href='#'>名师介绍</a></li>
+		<li><a href='#'>成功案例</a></li>
+		<li><a href='#'>关于我们</a></li>
+	</ul>
+</div>
+```
+
+### 分页导航（带页码的分页导航）
+```html
+<ul class="pagination pagination-lg">
+  <li><a href="#">&laquo;第一页</a></li>
+  <li><a href="#">11</a></li>
+  <li><a href="#">12</a></li>
+  <li class="active"><a href="#">13</a></li>
+  <li><a href="#">14</a></li>
+  <li><a href="#">15</a></li>
+  <li class="disabled"><a href="#">最后一页&raquo;</a></li>
+</ul> 
+  
+<ul class="pagination pagination">
+  <li><a href="#">&laquo;第一页</a></li>
+  <li><a href="#">11</a></li>
+  <li><a href="#">12</a></li>
+  <li class="active"><a href="#">13</a></li>
+  <li><a href="#">14</a></li>
+  <li><a href="#">15</a></li>
+  <li class="disabled"><a href="#">最后一页&raquo;</a></li>
+</ul>   
+<ul class="pagination pagination-sm">
+  <li><a href="#">&laquo;第一页</a></li>
+  <li><a href="#">11</a></li>
+  <li><a href="#">12</a></li>
+  <li class="active"><a href="#">13</a></li>
+  <li><a href="#">14</a></li>
+  <li><a href="#">15</a></li>
+  <li class="disabled"><a href="#">最后一页&raquo;</a></li>
+</ul>
+```
