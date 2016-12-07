@@ -1048,3 +1048,67 @@ Bootstrap框架中制作导航条主要通过“.nav”样式。默认的“.nav
 	<li><a href='#'>关于我们</a></li>
 </ul>
 ```
+
+## 导航条、分页导航
+### 基础导航条
+在Bootstrap框中，导航条和导航从外观上差别不是太多，但在实际使用中导航条要比导航复杂得多
+
+1. 首先在制作导航的列表(&lt;ul class=”nav”&gt;)基础上添加类名“navbar-nav”
+2. 在列表外部添加一个容器（div），并且使用类名“navbar”和“navbar-default”
+
+```html
+<div class='navbar navbar-default'>
+	<ul class='nav navbar-nav'>
+		<li><a href='#'>网站首页</a></li>
+		<li class='active'><a href='#'>系列教程</a></li>
+		<li><a href='#'>名师介绍</a></li>
+		<li><a href='#'>成功案例</a></li>
+		<li><a href='#'>关于我们</a></li>
+	</ul>
+</div>
+```
+
+### 为导航条添加标题、二级菜单及状态
+**加入导航条标题**
+
+在Web页面制作中，常常在菜单前面都会有一个标题（文字字号比其它文字稍大一些），其实在Bootstrap框架也为大家做了这方面考虑，其通过“navbar-header”和“navbar-brand”来实现
+```html
+<div class="navbar navbar-default" role="navigation">
+  　<div class="navbar-header">
+  　    <a href="##" class="navbar-brand">慕课网</a>
+  　</div>
+    <ul class="nav navbar-nav">
+	   <li class="active"><a href="##">网站首页</a></li>
+       <li><a href="##">系列教程</a></li>
+       <li><a href="##">名师介绍</a></li>
+       <li><a href="##">成功案例</a></li>
+       <li><a href="##">关于我们</a></li>
+	 </ul>
+</div>
+```
+
+**导航条状态、二级菜单**
+
+同样的，在基础导航条中对菜单提供了当前状态，禁用状态，悬浮状态等效果，而且也可以带有二级菜单的导航条
+
+```html
+<div class="navbar navbar-default" role="navigation">
+  　<div class="navbar-header">
+  　    <a href="##" class="navbar-brand">慕课网</a>
+  　</div>
+	<ul class="nav navbar-nav">
+	 	<li class="active"><a href="##">网站首页</a></li>
+        <li class="dropdown">
+          <a href="##" data-toggle="dropdown" class="dropdown-toggle">系列教程<span class="caret"></span></a>
+          <ul class="dropdown-menu">
+        	<li><a href="##">CSS3</a></li>
+        	<li class='active'><a href="##">JavaScript</a></li>
+        	<li class="disabled"><a href="##">PHP</a></li>
+          </ul>
+       </li>
+       <li><a href="##">名师介绍</a></li>
+       <li><a href="##">成功案例</a></li>
+       <li><a href="##">关于我们</a></li>
+	</ul>
+</div>
+```
