@@ -1261,3 +1261,31 @@ body {
   <li class="disabled"><a href="#">最后一页&raquo;</a></li>
 </ul>
 ```
+
+### 翻页分页导航
+```html
+<ul class="pager">
+  <li><a href="#">&laquo;上一页</a></li>
+  <li><a href="#">下一页&raquo;</a></li>
+</ul> 
+<!--左右对齐-->
+<ul class="pager">
+  <li class="previous"><a href="#">&laquo;上一页</a></li>
+  <li class="next"><a href="#">下一页&raquo;</a></li>
+</ul> 
+<!--禁止状态-->
+<ul class="pager">
+  <li class="disabled"><span>&laquo;上一页</span></li>
+  <li><a href="#">下一页&raquo;</a></li>
+</ul>
+```
+
+### 标签
+```html
+<span class="label label-default">默认标签</span>
+<span class="label label-primary">主要标签</span>
+<span class="label label-success">成功标签</span>
+<span class="label label-info">信息标签</span>
+<span class="label label-warning">警告标签</span>
+<span class="label label-danger">错误标签</span>
+```
