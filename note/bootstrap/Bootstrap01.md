@@ -1027,3 +1027,24 @@ Bootstrap框架中制作导航条主要通过“.nav”样式。默认的“.nav
 #### 自适应导航
 自适应导航指的是导航占据容器全部宽度，而且菜单项可以像表格的单元格一样自适应宽度。自适应导航和前面使用“btn-group-justified”制作的自适应按钮组是一样的。只不过在制作自适应导航时更换了另一个类名“nav-justified”。当然他需要和“nav-tabs”或者“nav-pills”配合在一起使用
 
+#### 导航加下拉菜单（二级导航）
+前面介绍的都是使用Bootstrap框架制作一级导航，但很多时候，在Web页面中是离不开二级导航的效果。那么在Bootstrap框架中制作二级导航就更容易了。只需要将li当作父容器，使用类名“dropdown”，同时在li中嵌套另一个列表ul，使用前面介绍下拉菜单的方法就可以
+```html
+<ul class='nav nav-tabs'>
+	<li class='active'><a href='#'>首页</a></li>
+	<li class='dropdown'>
+		<a href='#' class='dropdown-toggle' data-toggle='dropdown'>
+			教程
+			<span class='caret'></span>
+		</a>
+		<ul class='dropdown-menu'>
+			<li><a href='#'>CSS3</a></li>
+			<li><a href='#'>Sass</a></li>
+			<li class='nav-divider'></li>
+			<li><a href='#'>jQuery</a></li>
+			<li><a href='#'>Responsive</a></li>
+		</ul>
+	</li>
+	<li><a href='#'>关于我们</a></li>
+</ul>
+```
