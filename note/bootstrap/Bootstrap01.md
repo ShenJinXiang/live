@@ -1289,3 +1289,40 @@ body {
 <span class="label label-warning">警告标签</span>
 <span class="label label-danger">错误标签</span>
 ```
+
+## 内置组件
+### 警示框
+#### 默认警示框
+可以在类名为“alert”的div容器里放置提示信息。实现不同类型警示框，只需要在“alert”基础上追加对应的类名
+```html
+<div class='alert alert-info'>请修改相应信息</div>
+<div class='alert alert-success'>谢谢，操作成功！</div>
+<div class='alert alert-warning'>您已操作失败两次，还有最后一次机会</div>
+<div class='alert alert-danger'>对不起，您刚才的操作失败</div>
+```
+
+#### 可关闭的警示框
+只需要在默认的警示框里面添加一个关闭按钮。然后进行三个步骤
+
+1. 需要在基本警示框“alert”的基础上添加“alert-dismissable”样式
+2. 在button标签中加入class="close"类，实现警示框关闭按钮的样式
+3. 要确保关闭按钮元素上设置了自定义属性：“data-dismiss="alert"”（因为可关闭警示框需要借助于Javascript来检测该属性，从而控制警示框的关闭）
+
+```html
+<div class='alert alert-info alert-dismissable'>
+    <button type='button' class='close' data-dismiss='alert'>&times;</button>
+	请修改相应信息
+</div>
+<div class='alert alert-success alert-dismissable'>
+    <button type='button' class='close' data-dismiss='alert'>&times;</button>
+    谢谢，操作成功
+</div>
+<div class='alert alert-warning alert-dismissable'>
+    <button type='button' class='close' data-dismiss='alert'>&times;</button>
+    您已操作失败两次，还有最后一次机会
+</div>
+<div class='alert alert-danger alert-dismissable'>
+    <button type='button' class='close' data-dismiss='alert'>&times;</button>
+    对不起，您刚才的操作失败
+</div>
+```
