@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>index</title>
+<script>
+	var data = {};
+	<% for (let k in data) { %>
+		data['<%=k%>'] = '(<%=data[k]%>)';	
+	<%} %>
+
+	console.dir(data);
+%>
+</script>
+</head>
+<body>
+<h1>express ejs</h1>
+<p><%= data.name %></p>
+<p><%= data.age %></p>
+<p><%= data.address %></p>
+</body>
+</html>
