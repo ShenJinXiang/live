@@ -11,9 +11,9 @@ app.set('view engine', 'ejs');
 // app.use(require('cookie-parser')());
 app.use(require('express-session')({
 	secret: 'shenjinxiang',
-	name: 'testapp',
-	resave: false,
-	saveUninitialized: true
+	//name: 'testapp',
+	// resave: false,
+	//saveUninitialized: true
 }));
 app.use(require('body-parser')());
 app.get('/', function(req, res) {
