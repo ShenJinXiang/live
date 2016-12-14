@@ -1,18 +1,17 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<meta charset='utf-8'>
-	<title>index</title>
-	<script>
-var name = '<%= name %>';
-var age = '<%= age %>';
-var address = '<%= address %>';
-console.log('name:', name);
-console.log('age:', age);
-console.log('address:', address);
-	</script>
-</head>
-<body>
-<h1>express ejs</h1>
-</body>
-</html>
+<%- include('head') %>
+<h1><%= title %></h1>
+<table>
+	<tr>
+		<th>姓名</th>
+		<th>年龄</th>
+		<th>地址</th>
+	</tr>
+	<% for (var index = 0; index < data.length; index++) { %>
+		<tr>
+			<td><%= data[index].name %></td>
+			<td><%= data[index].age %></td>
+			<td><%= data[index].address %></td>
+		</tr>
+	<%}%>
+</table>
+<%- include('foot') %>

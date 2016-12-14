@@ -1,6 +1,4 @@
 const express = require('express');
-const util = require('util');
-const querystring = require('querystring');
 const path = require('path');
 
 let app = express();
@@ -8,23 +6,26 @@ let app = express();
 app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'ejs');
 
-app.use(express.static('public'));
-
-app.use(function (req, res, next) {
-	console.log('11111');
-	next();
-	//console.log(util.inspect(res, false, null));
-	console.log(res.text);
-});
-
-app.get('/user', function (req, res) {
-	let obj = {
-			'name': 'shenjinxiang',
-			'age': 30,
-			'address': '太原'
-	};
-	console.log(obj);
-	res.render('index', obj);
+app.get('/', function (req, res) {
+	let data = [
+		{
+			name: '张三',
+			age: 18,
+			address: '北京'
+		},
+		{
+			name: '李四',
+			age: 23,
+			address: '上海'
+		},
+		{
+			name: '王五',
+			age: 19,
+			address: '天津'
+		}
+	];
+	// 渲染index.ejs视图
+	res.render('index', {title: 'express - ejs', data: data});
 });
 
 app.listen(3000, function () {
