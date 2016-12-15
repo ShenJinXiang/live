@@ -4,6 +4,9 @@ const dbConfig = require('../Config').mysql;
 
 let pool = mysql.createPool(dbConfig);
 
+/**
+ * 通用查询
+ */
 let query = exports.query = function (sql, callback) {
 	console.log(sql);
 	pool.getConnection(function (err, conn) {
@@ -18,6 +21,9 @@ let query = exports.query = function (sql, callback) {
 	});
 };
 
+/**
+ * 判断obj是否为对象，也不是{}，即至少有一个属性
+ */
 let isNotEmptyObject = function (obj) {
 	if (typeof obj !== 'object') {
 		return false;
@@ -96,6 +102,13 @@ exports.save = function(tableName, obj, callback) {
 	});
 };
 
+/**
+ * 修改一条记录
+ * tableName 对应的数据库表名
+ * idName 对应的数据库表主键名称
+ * obj 修改的对象
+ * callback 回调函数
+ */
 exports.update = function () {
 	let tableName, idName, obj, callback;
 	if (arguments.length === 3) {
@@ -114,5 +127,46 @@ exports.update = function () {
 		callback(new Error('参数错误'));
 		return;
 	}
+	if (!obj[idName]) {
+		callback(new Error('参数错误'));
+		return;
+	}
 
+	let sql = 'update ' + tableName + ' set';
+	let values = [];
+	for (let k in obj) {
+		if (k !== idName) {
+			sql += ' ' + k + ' = ?,'
+			values.push(obj[k]);
+		}
+	}
+	sql = sql.substring(0, sql.length - 1) + ' where ' + idName + ' = ? ';
+	values.push(obj[idName]);
+
+	query({sql: sql, values: values}, function (err, data) {
+		callback(err, data);
+	});
+};
+
+exports.delById = function () {
+	let tableName, idName, idValue, callback;
+	if (arguments.length === 3) {
+		tableName = arguments[0];
+		idName = 'id';
+		idValue = arguments[1];
+		callback = arguments[2]
+	} else if (arguments.length === 4) {
+		tableName = arguments[0];
+		idName = arguments[1];
+		idValue = arguments[2];
+		callback = arguments[3]
+	} else {
+		throw new Error('参数个数错误');
+	}
+
+	let sql = 'delete from ' + tableName + ' where ' + idName + ' = ?';
+	let values = [idValue];
+	query({sql: sql, values: values}, function (err, data) {
+		callback(err, data);
+	});
 };
