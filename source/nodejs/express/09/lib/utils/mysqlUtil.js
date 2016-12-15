@@ -4,7 +4,7 @@ const dbConfig = require('../Config').mysql;
 
 let pool = mysql.createPool(dbConfig);
 
-exports.query = function (sql, callback) {
+let query = exports.query = function (sql, callback) {
 	console.log(sql);
 	pool.getConnection(function (err, conn) {
 		if (err) {
@@ -16,4 +16,103 @@ exports.query = function (sql, callback) {
 			});
 		}
 	});
+};
+
+let isNotEmptyObject = function (obj) {
+	if (typeof obj !== 'object') {
+		return false;
+	}
+	for (let k in obj) {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * 根据id获取一条记录
+ * tableName 数据库表名
+ * idName 表主键的名称，默认为'id'
+ * idValue 表主键的值
+ * callback 回调函数
+ */
+exports.findById = function () {
+	let tableName, idName, idValue, callback;
+	if (arguments.length === 3) {
+		tableName = arguments[0];
+		idName = 'id';
+		idValue = arguments[1];
+		callback = arguments[2];
+	} else if (arguments.length == 4) {
+		tableName = arguments[0];
+		idName = arguments[1];
+		idValue = arguments[2];
+		callback = arguments[3];
+	} else {
+		throw new Error('参数个数错误');
+	}
+	query({
+		sql: 'select * from ' + tableName + ' where ' + idName + ' = ?',
+		values: [idValue]
+	}, function (err, data) {
+		if (err) {
+			callback(err);
+		} else {
+			if (data.length === 0) {
+				callback(null, {});
+			} else if (data.length === 1) {
+				callback(null, data[0]);
+			} else {
+				callback(new Error('结果错误'));
+			}
+		}
+	});
+};
+
+/**
+ * 保存一条记录
+ * tableName 表名
+ * obj 要保存的对象
+ * callback 回调函数
+ */
+exports.save = function(tableName, obj, callback) {
+	if (!isNotEmptyObject(obj)) {
+		callback(new Error('参数错误'));
+		return;
+	}
+	let sql = 'insert into ' + tableName + ' (';
+	let temp = 'values (';
+	let values = [];
+
+	for (let k in obj) {
+		sql += ' `' + k + '`,';
+		temp += ' ?,';
+		values.push(obj[k]);
+	}
+	sql = sql.substring(0, sql.length - 1) + ') ';
+	temp = temp.substring(0, temp.length - 1) + ') ';
+	sql += temp;
+	query({sql: sql, values: values}, function (err, data) {
+		callback(err, data);
+	});
+};
+
+exports.update = function () {
+	let tableName, idName, obj, callback;
+	if (arguments.length === 3) {
+		tableName = arguments[0];
+		idName = 'id';
+		obj = arguments[1];
+		callback = arguments[2];
+	} else if (arguments.length === 4) {
+		idName = arguments[1];
+		obj = arguments[2];
+		callback = arguments[3];
+	} else {
+		throw new Error('参数个数错误');
+	}
+	if (!isNotEmptyObject(obj)) {
+		callback(new Error('参数错误'));
+		return;
+	}
+
 };
