@@ -1,36 +1,39 @@
 // app.js
 const express = require('express');
 const path = require('path');
+const url = require('url');
 
 let app = express();
 
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 
-// app.use(require('cookie-parser')('sctalk admin manager'));
-// app.use(require('cookie-parser')());
+/**
+ * 引入express-session
+ */
 app.use(require('express-session')({
 	secret: 'shenjinxiang',
-	//name: 'testapp',
-	// resave: false,
-	//saveUninitialized: true
+	saveUninitialized: true
 }));
-app.use(require('body-parser')());
-app.get('/', function(req, res) {
-	res.render('index', {title: 'shenjinxiang'});
-});
 
-app.post('/login', function (req, res) {
-	let username = req.body.username;
-	let password = req.body.password;
-	console.log(username);
-	console.log(password);
-	req.session.userInfo = {username: username, password: password};
-	res.redirect('/main');
-});
+/**
+ * 引入body-parser
+ */
+app.use(require('body-parser')());
+
+/**
+ * 引入路由日志
+ */
+app.use(require('./lib/middleware/routeLog'));
+
+/**
+ * 登录拦截器
+ */
+app.use(require('./lib/middleware/loginFilter'));
+
 
 app.get('/main', function (req, res) {
-	res.render('main', {username: req.session.userInfo.username});
+	res.render('main', {username: req.session.currentUser.username});
 });
 
 app.listen(3000, function () {
