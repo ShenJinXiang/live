@@ -1,7 +1,7 @@
 // md5Test.js
 const crypto = require('crypto');
 
-let content = 'password';
+let content = 'admin';
 
 let md5 = crypto.createHash('md5');
 md5.update(content);
