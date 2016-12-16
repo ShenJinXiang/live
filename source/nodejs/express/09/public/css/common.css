@@ -1,7 +1,10 @@
-* {margin: 0; padding: 0; font-size: 12px; color: #444;}
+* {margin: 0; padding: 0; font-size: 12px; }
 div {box-sizing: border-box;}
 ul li {list-style:none;}
 .clear {clear: both;}
+.fl {float: letf;}
+.fr {float: right;}
+
 .index-content {width: 500px; margin: 200px auto; border-radius: 5px;     box-shadow: 0px 0px 20px #ccc; border: 1px solid #ddd;}
 .index-menu {height: 60px; line-height: 60px;}
 .index-menu li {float: left; width: 50%; font-size: 14px;font-weight: bold;text-align: center; background: #eee; cursor: pointer;}
@@ -9,3 +12,9 @@ ul li {list-style:none;}
 .index-menu li.register-li{border-radius: 0 5px 0 0;}
 .index-menu li:hover {background: #ddd;}
 .index-menu li.active {background: #428bca;color: #fff;}
+.list-content {display: none; margin: 20px 0;}
+.list-content li{ line-height: 40px;text-align:center;padding: 5px;margin: 5px;}
+.list-content li input[type='text'], .list-content li input[type='password'] {width:80%;height:32px;border-radius: 3px; border: 1px solid #ccc;padding:2px 10px;}
+.list-content li input[type='button'] {width:85%;height:40px;border-radius: 3px; border:none;background: #428bca;color: #fff;cursor:pointer;}
+.list-content li input[type='button']:hover {background: #327bba;}
+.list-content.active{display:block;}

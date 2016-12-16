@@ -7,5 +7,5 @@
 		"database": "nodejs",
 		"connectionLimit": 10
 	},
-	"noLogin": ["/", "/login", "loginValidate"]
+	"noLogin": ["/", "/login", "/register", "/checkUsername"]
 }
