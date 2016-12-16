@@ -14,6 +14,9 @@ let queryUserByUsername = exports.queryUserByUsername = function (username, call
 	}, callback);
 };
 
+/**
+ * 注册
+ */
 exports.register = function (obj, callback) {
 	queryUserByUsername(obj.username, function (err, data) {
 		if (err) {

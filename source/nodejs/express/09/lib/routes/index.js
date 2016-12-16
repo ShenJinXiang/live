@@ -66,6 +66,8 @@ router.post('/checkUsername', function (req, res) {
  * 登出
  */
 router.get('/logout', function (req, res) {
+	delete req.session.currentUser;
+	res.redirect('/');
 });
 
 /**

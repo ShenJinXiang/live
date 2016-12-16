@@ -8,14 +8,69 @@
 	<title>员工管理系统</title>
 </head>
 <body>
-<h1><%= name %></h1>
+<div class='header'>
+	<div class='title'>员工管理</div>
+	<span>当前用户：<%= name %></span>
+	<a href='/logout'>退出登录</a>
+</div>
+<div class='left-content'>
+	<div class='box-title'>部门</div>
+	<div class='operate-box'>
+		<button type='button' class='_btn'>新增</button>
+		<button type='button' class='_btn'>修改</button>
+		<button type='button' class='_btn'>删除</button>
+	</div>
+	<ul id='departmentTree' class='ztree'></ul>
+</div>
+<div class='right-content'>
+	<div class='box-title'>员工</div>
+	<div class='table-ware'>
+	<table class='table'>
+		<thead>
+			<tr>
+				<th>姓名</th>
+				<th>年龄</th>
+				<th>性别</th>
+				<th>所属部门</th>
+				<th>地址</th>
+				<th>说明</th>
+				<th>操作</th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+		</tbody>
+	</table>
+	</div>
+</div>
 <script type='text/javascript' src='/plugin/jquery.js'></script>
 <script type='text/javascript' src='/plugin/jquery.form.js'></script>
 <script type='text/javascript' src='/plugin/layer/layer.js'></script>
 <script type='text/javascript' src='/plugin/ztree/jquery.ztree.core-3.5.min.js'></script>
 <script type='text/javascript' src='/plugin/ztree/jquery.ztree.excheck-3.5.min.js'></script>
 <script type='text/javascript' src='/js/common.js'></script>
-<script type='text/javascript' src='/js/index.js'></script>
+<script type='text/javascript' src='/js/main.js'></script>
 </body>
 </html>
 

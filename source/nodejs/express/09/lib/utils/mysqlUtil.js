@@ -15,6 +15,7 @@ let query = exports.query = function (sql, callback) {
 		} else {
 			conn.query(sql, function (err, rows, fields) {
 				conn.release();
+				console.log(rows);
 				callback(err, rows, fields);
 			});
 		}
