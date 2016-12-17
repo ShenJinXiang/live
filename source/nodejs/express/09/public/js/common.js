@@ -39,3 +39,14 @@ function alertMsg (str, fn) {
 		layer.msg(str, {time: 2000});
 	}
 }
+
+function openContent(title, width, contentId) {
+	layer.open({
+		type: 1, 
+		area: [width + 'px', 'auto'],
+		title: title,
+		shade: 0.6, 
+		anim: 1,
+		content: $('#' + contentId)
+	}); 
+}

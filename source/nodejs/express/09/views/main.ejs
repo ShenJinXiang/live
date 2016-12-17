@@ -3,7 +3,7 @@
 <head>
 	<meta charset='utf-8'>
 	<link type='text/css' rel='stylesheet' href='/plugin/ztree/zTreeStyle.css' />
-	<link type='text/css' rel='stylesheet' href='/plugin/layer/skin/layer.css' />
+	<link type='text/css' rel='stylesheet' href='/plugin/layer/skin/default/layer.css' />
 	<link type='text/css' rel='stylesheet' href='/css/common.css' />
 	<title>员工管理系统</title>
 </head>
@@ -16,9 +16,9 @@
 <div class='left-content'>
 	<div class='box-title'>部门</div>
 	<div class='operate-box'>
-		<button type='button' class='_btn'>新增</button>
-		<button type='button' class='_btn'>修改</button>
-		<button type='button' class='_btn'>删除</button>
+		<button type='button' class='_btn' id='add_department_btn'>新增</button>
+		<button type='button' class='_btn' id='upd_department_btn'>修改</button>
+		<button type='button' class='_btn' id='del_department_btn'>删除</button>
 	</div>
 	<ul id='departmentTree' class='ztree'></ul>
 </div>
@@ -63,6 +63,53 @@
 		</tbody>
 	</table>
 	</div>
+</div>
+
+<div id='departmentContent' style='display: none;'>
+	<form id='departmentForm'>
+		<ul class='form-ul'>
+			<li>
+				<input type='hidden' id='department_pId' name='pId' />
+				<input type='text' id='department_pName' name='pName' />
+			</li>
+			<li>
+				<input type='text' id='department_name' name='name' placeholder='请输入部门名称' />
+			</li>
+			<li>
+				<button type='button' class='_btn'>确定</button>
+				<button type='button' class='_btn'>取消</button>
+			</li>
+		</ul>
+	</form>
+</div>
+
+<div id='employeeContent' style='display: none;'>
+	<form id='employeeForm'>
+		<ul class='form-ul'>
+			<li>
+				<input type='text' id='employee_name' name='name' placeholder='请输入姓名' class='_text' />
+			</li>
+			<li>
+				<input type='hidden' id='employee_departmentId' name='departmentId' />
+				<input type='text' id='employee_departmentName' readonly  class='_text' />
+			</li>
+			<li>
+				<input type='number' id='employee_age' name='age' placeholder='请输入年龄' class='_text' />
+			</li>
+			<li>
+				<select class='_text' id='employee_sex' name='sex'>
+					<option value='1'>男</option>
+					<option value='0'>女</option>
+				</select>
+			</li>
+			<li>
+				<input type='text' id='employee_address' name='address' class='_text' placeholder='请输入地址' />
+			</li>
+			<li>
+				<textarea id='employee_desc' name='desc' class='_text' placeholder='请输入说明'></textarea>
+			</li>
+		</ul>
+	</form>
 </div>
 <script type='text/javascript' src='/plugin/jquery.js'></script>
 <script type='text/javascript' src='/plugin/jquery.form.js'></script>
