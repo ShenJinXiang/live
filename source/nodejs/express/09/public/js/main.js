@@ -66,13 +66,25 @@ function deptClick () {
 
 function addDepartment () {
 	let currentNode = getSelectedNode('departmentTree');
+	if (!currentNode) {
+		$('#department_pId').val('');
+		$('#department_pName').val('没有上级部门');
+	} else {
+		$('#department_pId').val(currentNode.id);
+		$('#department_pName').val(currentNode.name);
+	}
 	openContent('添加部门', 400, 'departmentContent');
 }
 
 function updDepartment () {
-	openContent('添加员工', 500, 'employeeContent');
-
+	let currentNode = getSelectedNode('departmentTree');
+	if (!currentNode) {
+		alertMsg('请选择需要修改的部门');
+		return;
+	}
+	openContent('修改部门', 400, 'departmentContent');
 }
+	//openContent('添加员工', 500, 'employeeContent');
 
 function delDepartment () {
 }
