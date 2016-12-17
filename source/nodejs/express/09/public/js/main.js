@@ -12,13 +12,13 @@ function initUI() {
 
 function initDepartmentTree() {
 	doPost('/department/treeData', {}, function (result) {
-		console.log(result);
 		if (result.result) {
 			let zNodes = result.data;
+			console.log(zNodes);
 			let setting = {
 				data: {
 					simpleData: {
-						enable: false,
+						enable: true,
 						idKey: 'id',
 						pIdKey: 'pId',
 						rootPId: null

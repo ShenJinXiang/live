@@ -21,6 +21,7 @@ CREATE TABLE `department` (
   `id` varchar(64) NOT NULL COMMENT '主键id',
   `name` varchar(255) DEFAULT NULL COMMENT '名称',
   `pId` varchar(64) DEFAULT NULL COMMENT '上级部门id',
+  `createTime` timestamp NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP COMMENT '创建时间',
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
