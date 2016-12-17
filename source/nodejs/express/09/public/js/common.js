@@ -50,3 +50,7 @@ function openContent(title, width, contentId) {
 		content: $('#' + contentId)
 	}); 
 }
+
+function closeLayer() {
+	layer.closeAll();
+}

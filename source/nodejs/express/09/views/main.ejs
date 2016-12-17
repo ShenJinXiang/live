@@ -38,6 +38,7 @@
 			</tr>
 		</thead>
 		<tbody>
+			<!-- 
 			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
 			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
 			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
@@ -60,6 +61,7 @@
 			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
 			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
 			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
+			-->
 		</tbody>
 	</table>
 	</div>
@@ -70,14 +72,14 @@
 		<ul class='form-ul'>
 			<li>
 				<input type='hidden' id='department_pId' name='pId' />
-				<input type='text' id='department_pName' name='pName' />
+				<input type='text' id='department_pName'  class='_text' />
 			</li>
 			<li>
-				<input type='text' id='department_name' name='name' placeholder='请输入部门名称' />
+				<input type='text' id='department_name' name='name' class='_text' placeholder='请输入部门名称' />
 			</li>
 			<li>
 				<button type='button' class='_btn'>确定</button>
-				<button type='button' class='_btn'>取消</button>
+				<button type='button' class='_btn' onclick='closeLayer()'>取消</button>
 			</li>
 		</ul>
 	</form>
@@ -90,23 +92,26 @@
 				<input type='text' id='employee_name' name='name' placeholder='请输入姓名' class='_text' />
 			</li>
 			<li>
-				<input type='hidden' id='employee_departmentId' name='departmentId' />
-				<input type='text' id='employee_departmentName' readonly  class='_text' />
-			</li>
-			<li>
 				<input type='number' id='employee_age' name='age' placeholder='请输入年龄' class='_text' />
 			</li>
 			<li>
-				<select class='_text' id='employee_sex' name='sex'>
-					<option value='1'>男</option>
-					<option value='0'>女</option>
-				</select>
+				<input type='radio' name='sex' checked value='1' id='sex_1'/><label for='sex_1'>男</label>
+				<input type='radio' name='sex' value='0' id='sex_0' /><label for='sex_0'>女</label>
+				
 			</li>
 			<li>
 				<input type='text' id='employee_address' name='address' class='_text' placeholder='请输入地址' />
 			</li>
 			<li>
+				<input type='hidden' id='employee_departmentId' name='departmentId' />
+				<input type='text' id='employee_departmentName' readonly  class='_text' />
+			</li>
+			<li>
 				<textarea id='employee_desc' name='desc' class='_text' placeholder='请输入说明'></textarea>
+			</li>
+			<li>
+				<button type='button' class='_btn'>确定</button>
+				<button type='button' class='_btn' onclick='closeLayer()'>取消</button>
 			</li>
 		</ul>
 	</form>
