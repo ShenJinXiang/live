@@ -27,7 +27,6 @@ function initDepartmentTree() {
 	doPost('/department/treeData', {}, function (result) {
 		if (result.result) {
 			let zNodes = result.data;
-			console.log(zNodes);
 			let setting = {
 				data: {
 					simpleData: {
@@ -61,10 +60,13 @@ function getSelectedNode(id) {
 	return nodes[0];
 }
 
-function deptClick () {
+function deptClick (event, treeId, treeNode) {
+	let departmentId = treeNode.id;
+	initEmployeeList(departmentId);
 }
 
 function addDepartment () {
+	departmentFormRest();
 	let currentNode = getSelectedNode('departmentTree');
 	if (!currentNode) {
 		$('#department_pId').val('');
@@ -77,14 +79,81 @@ function addDepartment () {
 }
 
 function updDepartment () {
+	departmentFormRest();
 	let currentNode = getSelectedNode('departmentTree');
 	if (!currentNode) {
 		alertMsg('请选择需要修改的部门');
 		return;
 	}
-	openContent('修改部门', 400, 'departmentContent');
+	doPost('/department/queryOne', {id: currentNode.id}, function (result) {
+		if (!result.result) {
+			alertMsg(result.msg);
+		} else {
+			$('#department_id').val(result.data.id);
+			$('#department_name').val(result.data.name);
+			$('#department_pName').val(result.data.pName || '没有上级部门');
+			openContent('修改部门', 400, 'departmentContent');
+		}
+	});
+}
+
+function departmentFormRest() {
+	$('#departmentForm #department_pId').val('');
+	$('#departmentForm #department_pName').val('');
+	$('#departmentForm #department_id').val('');
+	$('#departmentForm #department_name').val('');
+}
+
+function saveDepartment () {
+	let data = $('#departmentForm').getFormJson();
+	if (data.name === '' || $.trim(data.name) == '') {
+		tips('请输入部门名称', 'department_name');
+		return;
+	}
+	let url = '/department/addDepartment';
+	if (data.id) {
+		url = '/department/updDepartment';
+	}
+	doPost(url, data, function (result) {
+		if (!result.result) {
+			alertMsg(result.msg);
+		} else {
+			let treeObj = getZTreeObj('departmentTree');
+			let currentNode = getSelectedNode('departmentTree');
+			if (result.data.type === 'add') {
+				treeObj.addNodes(currentNode, result.data.data);
+				alertMsg('添加成功', function () {
+					closeLayer();
+				});
+			} else if (result.data.type === 'upd') {
+				currentNode.name = result.data.data.name;
+				treeObj.updateNode(currentNode);
+				alertMsg('修改成功', function () {
+					closeLayer();
+				});
+			}
+		}
+	});
 }
 	//openContent('添加员工', 500, 'employeeContent');
 
 function delDepartment () {
+	let currentNode = getSelectedNode('departmentTree');
+	doPost('/department/delDepartment', {id: currentNode.id}, function (result) {
+	});
+}
+
+function initEmployeeList(departmentId) {
+	doPost('/employee/queryList', {'departmentId': departmentId}, function (result) {
+		if (!result.result) {
+			alertMsg(result.msg);
+		} else {
+			if (result.data.length === 0) {
+				console.log('没有数据');
+			} else {
+				console.log('list');
+				console.log(result.data);
+			}
+		}
+	});
 }

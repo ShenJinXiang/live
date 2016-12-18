@@ -38,30 +38,6 @@
 			</tr>
 		</thead>
 		<tbody>
-			<!-- 
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			<tr> <td>张飞</td> <td>12</td> <td>男</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> <td>sdf</td> </tr>
-			-->
 		</tbody>
 	</table>
 	</div>
@@ -75,10 +51,11 @@
 				<input type='text' id='department_pName'  class='_text' readonly />
 			</li>
 			<li>
+				<input type='hidden' id='department_id' name='id' />
 				<input type='text' id='department_name' name='name' class='_text' placeholder='请输入部门名称' />
 			</li>
 			<li>
-				<button type='button' class='_btn'>确定</button>
+				<button type='button' class='_btn' onclick='saveDepartment()'>确定</button>
 				<button type='button' class='_btn' onclick='closeLayer()'>取消</button>
 			</li>
 		</ul>
