@@ -23,9 +23,11 @@
 	<ul id='departmentTree' class='ztree'></ul>
 </div>
 <div class='right-content'>
-	<div class='box-title'>员工</div>
+	<div class='box-title'>员工
+		<a href='javascript:addEmployee();'>添加员工</a>
+	</div>
 	<div class='table-ware'>
-	<table class='table'>
+	<table id='employeeTable' class='table'>
 		<thead>
 			<tr>
 				<th>姓名</th>
@@ -38,6 +40,9 @@
 			</tr>
 		</thead>
 		<tbody>
+			<tr>
+				<td colspan='7'>暂无数据.</td>
+			</tr>
 		</tbody>
 	</table>
 	</div>
@@ -66,6 +71,7 @@
 	<form id='employeeForm'>
 		<ul class='form-ul'>
 			<li>
+				<input type='hidden' id='employee_id' nem='id' />
 				<input type='text' id='employee_name' name='name' placeholder='请输入姓名' class='_text' />
 			</li>
 			<li>
@@ -87,7 +93,7 @@
 				<textarea id='employee_desc' name='desc' class='_text' placeholder='请输入说明'></textarea>
 			</li>
 			<li>
-				<button type='button' class='_btn'>确定</button>
+				<button type='button' class='_btn' onclick='saveEmployee()'>确定</button>
 				<button type='button' class='_btn' onclick='closeLayer()'>取消</button>
 			</li>
 		</ul>

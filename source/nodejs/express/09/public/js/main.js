@@ -149,11 +149,92 @@ function initEmployeeList(departmentId) {
 			alertMsg(result.msg);
 		} else {
 			if (result.data.length === 0) {
-				console.log('没有数据');
+				$('#employeeTable tbody').html('<tr><td colspan="7">暂无数据.</td></tr>');
 			} else {
 				console.log('list');
 				console.log(result.data);
+				$('#employeeTable tbody').html('');
+				result.data.forEach(function(item, index) {
+					let _html = '<tr>'
+										+ '	<th>' + item.name + '</th>'
+										+ '	<th>' + item.age + '</th>'
+										+ '	<th>' + ((item.sex == '1') ? '男' : '女') + '</th>'
+										+ '	<th>' + item.departmentName + '</th>'
+										+ '	<th>' + item.address + '</th>'
+										+ '	<th>' + item.desc + '</th>'
+										+ '	<th>'
+										+ "		<a href=\"javascript:updEmployee('" + item.id + "')\">修改</a>"
+										+ "		<a href=\"javascript:delEmployee('" + item.id + "')\">删除</a>"
+										+ '	</th>'
+										+ '</tr>';
+					$('#employeeTable tbody').append($(_html));
+				});
 			}
+		}
+	});
+}
+
+function addEmployee() {
+	let currentNode = getSelectedNode('departmentTree');
+	if (!currentNode || !currentNode.id) {
+		alertMsg('请选择部门');
+		return;
+	}
+	$('#employeeForm').get(0).reset();
+	$('#employeeForm #employee_departmentId').val(currentNode.id);
+	$('#employeeForm #employee_departmentName').val(currentNode.name);
+	openContent('添加员工', 500, 'employeeContent');
+}
+
+function updEmployee(employeeId) {
+	$('#employeeForm').get(0).reset();
+	console.log(employeeId);
+	doPost('/employee/queryOne', {id: employeeId}, function (result) {
+		if (!result.result) {
+			alertMsg(result.msg);
+		} else {
+			$("#employeeForm #employee_id").val(result.data.id);
+			$("#employeeForm #employee_name").val(result.data.name);
+			$("#employeeForm #employee_age").val(result.data.age);
+			$("#employeeForm #employee_address").val(result.data.address);
+			$("#employeeForm #employee_departmentName").val(result.data.departmentName);
+			$("#employeeForm #employee_departmentId").val('');
+			$("#employeeForm #employee_desc").val(result.data.desc);
+			openContent('修改员工', 500, 'employeeContent');
+		}
+	});
+}
+
+function delEmployee(employeeId) {
+	doPost('/employee/delEmployee', {id: employeeId}, function (result) {
+		if (!result.result) {
+			alertMsg(result.msg);
+		} else {
+			let currentNode = getSelectedNode('departmentTree');
+			initEmployeeList(currentNode.id);
+			alertMsg('删除成功', function () {
+				closeLayer();
+			});
+		}
+	});
+}
+
+function saveEmployee() {
+	let data = $('#employeeForm').getFormJson();
+	console.log(data);
+	let url = '/employee/addEmployee';
+	if (data.id) {
+		url = '/employee/updEmployee';
+	}
+	doPost(url, data, function (result) {
+		console.log(result);
+		if (!result.result) {
+			alertMsg(result.msg);
+		} else {
+			initEmployeeList(data.departmentId);
+			alertMsg('保存成功', function () {
+				closeLayer();
+			});
 		}
 	});
 }
