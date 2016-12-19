@@ -10,8 +10,8 @@
 <body>
 <div class='header'>
 	<div class='title'>员工管理</div>
-	<span>当前用户：<%= name %></span>
-	<a href='/logout'>退出登录</a>
+	<span>当前用户：<%= name %>&nbsp;&nbsp;<a href='/logout'>退出登录</a></span>
+	
 </div>
 <div class='left-content'>
 	<div class='box-title'>部门</div>
@@ -71,7 +71,7 @@
 	<form id='employeeForm'>
 		<ul class='form-ul'>
 			<li>
-				<input type='hidden' id='employee_id' nem='id' />
+				<input type='hidden' id='employee_id' name='id' />
 				<input type='text' id='employee_name' name='name' placeholder='请输入姓名' class='_text' />
 			</li>
 			<li>

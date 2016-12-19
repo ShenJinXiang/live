@@ -18,6 +18,9 @@ $.fn.getFormJson = function()
    return o;  
 }; 
 
+/**
+ * 执行ajax post请求
+ */
 function doPost(url, data, callback) {
 	$.ajax({
 		type: 'POST',
@@ -28,10 +31,16 @@ function doPost(url, data, callback) {
 	});
 }
 
+/**
+ * 提示信息 用于表单验证
+ */
 function tips(str, key) {
 	layer.tips(str, '#' + key);
 }
 
+/**
+ * 弹出提示信息
+ */
 function alertMsg (str, fn) {
 	if (typeof fn === 'function') {
 		layer.msg(str, {time: 2000}, fn);
@@ -40,6 +49,9 @@ function alertMsg (str, fn) {
 	}
 }
 
+/**
+ * 弹出layer窗口
+ */
 function openContent(title, width, contentId) {
 	layer.open({
 		type: 1, 
@@ -51,6 +63,18 @@ function openContent(title, width, contentId) {
 	}); 
 }
 
+/**
+ * 关闭layer弹出窗口
+ */
 function closeLayer() {
 	layer.closeAll();
+}
+
+/**
+ * 重置表单
+ */
+function formReset(formId){
+	var $form = $("#"+formId);
+	$form.get(0).reset();
+	$form.find("input[type='hidden']").val("");
 }

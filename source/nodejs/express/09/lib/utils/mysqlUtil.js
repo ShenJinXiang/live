@@ -137,7 +137,7 @@ exports.update = function () {
 	let values = [];
 	for (let k in obj) {
 		if (k !== idName) {
-			sql += ' ' + k + ' = ?,'
+			sql += ' `' + k + '` = ?,'
 			values.push(obj[k]);
 		}
 	}
@@ -149,6 +149,9 @@ exports.update = function () {
 	});
 };
 
+/**
+ * 根据id删除一条记录
+ */
 exports.delById = function () {
 	let tableName, idName, idValue, callback;
 	if (arguments.length === 3) {

@@ -4,6 +4,9 @@ $(function () {
 	initDepartmentTree();
 });
 
+/**
+ * 初始化高度
+ */
 function initUI() {
 	$('.left-content').height($(window).height() - 120);
 	$('#departmentTree').height($(window).height() - 240);
@@ -37,7 +40,7 @@ function initDepartmentTree() {
 					}
 				},
 				view: {
-					selectedMulti: false
+					selectedMulti: false	// 设置只能选中一个节点
 				},
 				callback: {
 					onClick: deptClick
@@ -48,10 +51,16 @@ function initDepartmentTree() {
 	});
 }
 
+/**
+ * 获取zTree对象
+ */
 function getZTreeObj(id) {
 	return $.fn.zTree.getZTreeObj(id);
 }
 
+/**
+ * 获取选中的节点
+ */
 function getSelectedNode(id) {
 	let nodes = getZTreeObj(id).getSelectedNodes();
 	if (!nodes || nodes.length === 0) {
@@ -60,13 +69,19 @@ function getSelectedNode(id) {
 	return nodes[0];
 }
 
+/**
+ * 节点点击时触发 显示员工列表
+ */
 function deptClick (event, treeId, treeNode) {
 	let departmentId = treeNode.id;
 	initEmployeeList(departmentId);
 }
 
+/**
+ * 添加部门，弹出输入框
+ */
 function addDepartment () {
-	departmentFormRest();
+	formReset('departmentForm');
 	let currentNode = getSelectedNode('departmentTree');
 	if (!currentNode) {
 		$('#department_pId').val('');
@@ -78,8 +93,11 @@ function addDepartment () {
 	openContent('添加部门', 400, 'departmentContent');
 }
 
+/**
+ * 修改部门 弹出输入框
+ */
 function updDepartment () {
-	departmentFormRest();
+	formReset('departmentForm');
 	let currentNode = getSelectedNode('departmentTree');
 	if (!currentNode) {
 		alertMsg('请选择需要修改的部门');
@@ -97,13 +115,9 @@ function updDepartment () {
 	});
 }
 
-function departmentFormRest() {
-	$('#departmentForm #department_pId').val('');
-	$('#departmentForm #department_pName').val('');
-	$('#departmentForm #department_id').val('');
-	$('#departmentForm #department_name').val('');
-}
-
+/**
+ * 保存部门数据 后台执行添加或修改操作
+ */
 function saveDepartment () {
 	let data = $('#departmentForm').getFormJson();
 	if (data.name === '' || $.trim(data.name) == '') {
@@ -135,14 +149,35 @@ function saveDepartment () {
 		}
 	});
 }
-	//openContent('添加员工', 500, 'employeeContent');
 
+/**
+ * 删除部门，需要该部门没有下级部门，没有员工
+ */
 function delDepartment () {
 	let currentNode = getSelectedNode('departmentTree');
+	if (!currentNode || !currentNode.id) {
+		alertMsg('请选择需要删除的部门');
+		return;
+	}
+	if (currentNode.isParent) {
+		alertMsg('有下级部门，不能删除!');
+		return;
+	}
+
 	doPost('/department/delDepartment', {id: currentNode.id}, function (result) {
+		if (!result.result) {
+			alertMsg(result.msg);
+		} else {
+			let treeObj = getZTreeObj('departmentTree');
+			treeObj.removeNode(currentNode);
+			alertMsg('删除成功');
+		}
 	});
 }
 
+/**
+ * 显示员工列表
+ */
 function initEmployeeList(departmentId) {
 	doPost('/employee/queryList', {'departmentId': departmentId}, function (result) {
 		if (!result.result) {
@@ -151,8 +186,6 @@ function initEmployeeList(departmentId) {
 			if (result.data.length === 0) {
 				$('#employeeTable tbody').html('<tr><td colspan="7">暂无数据.</td></tr>');
 			} else {
-				console.log('list');
-				console.log(result.data);
 				$('#employeeTable tbody').html('');
 				result.data.forEach(function(item, index) {
 					let _html = '<tr>'
@@ -174,21 +207,26 @@ function initEmployeeList(departmentId) {
 	});
 }
 
+/**
+ * 添加员工 弹出窗口
+ */
 function addEmployee() {
 	let currentNode = getSelectedNode('departmentTree');
 	if (!currentNode || !currentNode.id) {
 		alertMsg('请选择部门');
 		return;
 	}
-	$('#employeeForm').get(0).reset();
+	formReset('employeeForm');
 	$('#employeeForm #employee_departmentId').val(currentNode.id);
 	$('#employeeForm #employee_departmentName').val(currentNode.name);
 	openContent('添加员工', 500, 'employeeContent');
 }
 
+/**
+ * 修改员工，弹出窗口
+ */
 function updEmployee(employeeId) {
-	$('#employeeForm').get(0).reset();
-	console.log(employeeId);
+	formReset('employeeForm');
 	doPost('/employee/queryOne', {id: employeeId}, function (result) {
 		if (!result.result) {
 			alertMsg(result.msg);
@@ -198,13 +236,22 @@ function updEmployee(employeeId) {
 			$("#employeeForm #employee_age").val(result.data.age);
 			$("#employeeForm #employee_address").val(result.data.address);
 			$("#employeeForm #employee_departmentName").val(result.data.departmentName);
-			$("#employeeForm #employee_departmentId").val('');
+			$("#employeeForm #employee_departmentId").val(result.data.departmentId);
 			$("#employeeForm #employee_desc").val(result.data.desc);
+			if(result.data.sex == '1') {
+				$('#employeeForm #sex_1').prop('checked', true);
+			} else {
+				$('#employeeForm #sex_0').prop('checked', true);
+			}
 			openContent('修改员工', 500, 'employeeContent');
 		}
 	});
 }
 
+
+/**
+ * 删除员工
+ */
 function delEmployee(employeeId) {
 	doPost('/employee/delEmployee', {id: employeeId}, function (result) {
 		if (!result.result) {
@@ -219,15 +266,16 @@ function delEmployee(employeeId) {
 	});
 }
 
+/**
+ * 保存员工信息，后台执行 新增或修改
+ */
 function saveEmployee() {
 	let data = $('#employeeForm').getFormJson();
-	console.log(data);
 	let url = '/employee/addEmployee';
 	if (data.id) {
 		url = '/employee/updEmployee';
 	}
 	doPost(url, data, function (result) {
-		console.log(result);
 		if (!result.result) {
 			alertMsg(result.msg);
 		} else {
@@ -238,3 +286,4 @@ function saveEmployee() {
 		}
 	});
 }
+
