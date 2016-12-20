@@ -1,0 +1,33 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>canvas</title>
+	<style>
+canvas{display:block;margin:10px auto;border:1px solid #ccc;}
+	</style>
+</head>
+<body>
+<h1>CANVAS</h1>
+<canvas id='canvas'></canvas>
+<button type='button' id='btn'>click</button>
+<img width='500px' height='400px' id='img'/>
+<script>
+(function(){
+	let canvas = document.getElementById('canvas');
+	canvas.width = 500;
+	canvas.height = 400;
+	let context = canvas.getContext('2d');
+	context.fillRect(100, 100, 200, 200);
+
+	let btn = document.getElementById('btn');
+	btn.onclick = function () {
+		let url = canvas.toDataURL();
+		console.log(url);
+		let img = document.getElementById('img');
+		img.src = url;
+	};
+})();
+</script>
+</body>
+</html>
