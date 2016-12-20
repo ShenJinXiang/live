@@ -14,7 +14,7 @@ CREATE TABLE `user` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- 用户表插入系统管理员记录
-insert into user values (UUID(), '系统管理员', 'admin', MD5('admin'), now());
+insert into user (`id`, `name`, `username`, `password`, `registerDate`) values (UUID(), '系统管理员', 'admin', MD5('admin'), now());
 
 -- 部门表
 CREATE TABLE `department` (

@@ -2,10 +2,16 @@
 const uuid = require('node-uuid');
 const mysqlUtil = require('../utils/mysqlUtil');
 
+/**
+ * 获取部门数据
+ */
 exports.departmentTree = function (callback) {
 	mysqlUtil.query('select * from department order by createTime asc', callback);
 };
 
+/**
+ * 根据id获取部门信息
+ */
 exports.queryDepartmentById = function (id, callback) {
 	mysqlUtil.query({
 		sql: 'select a.id, a.name, a.pId, (select name from department where id = a.pId) pName from department a where a.id = ?',
@@ -23,6 +29,9 @@ exports.queryDepartmentById = function (id, callback) {
 	});
 };
 
+/**
+ * 添加部门信息
+ */
 exports.addDepartment = function (obj, callback) {
 	obj.pId = obj.pId || null;
 	obj.id = uuid.v4();
@@ -35,6 +44,9 @@ exports.addDepartment = function (obj, callback) {
 	});
 };
 
+/**
+ * 修改部门信息
+ */
 exports.updDepartment = function (obj, callback) {
 	mysqlUtil.query({
 		sql: 'update department set name = ? where id = ?',
@@ -48,6 +60,9 @@ exports.updDepartment = function (obj, callback) {
 	});
 };
 
+/**
+ * 删除部门信息
+ */
 exports.delDepartment = function (id, callback) {
 	mysqlUtil.query({
 		sql: 'select count(1) cnt from department where pId = ?',

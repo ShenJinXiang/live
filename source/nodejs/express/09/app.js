@@ -5,6 +5,9 @@ const url = require('url');
 
 let app = express();
 
+/**
+ * 设置视图，引入ejs
+ */
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 

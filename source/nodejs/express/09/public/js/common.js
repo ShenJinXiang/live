@@ -1,8 +1,7 @@
 /**
  * 获取form表单数据
  */
-$.fn.getFormJson = function()  
-{  
+$.fn.getFormJson = function() {  
    var o = {};  
    var a = this.serializeArray();  
    $.each(a, function() {  
@@ -17,6 +16,15 @@ $.fn.getFormJson = function()
    });  
    return o;  
 }; 
+
+/**
+ * 重置表单
+ */
+function formReset(formId){
+	var $form = $("#"+formId);
+	$form.get(0).reset();
+	$form.find("input[type='hidden']").val("");
+}
 
 /**
  * 执行ajax post请求
@@ -68,13 +76,4 @@ function openContent(title, width, contentId) {
  */
 function closeLayer() {
 	layer.closeAll();
-}
-
-/**
- * 重置表单
- */
-function formReset(formId){
-	var $form = $("#"+formId);
-	$form.get(0).reset();
-	$form.find("input[type='hidden']").val("");
 }

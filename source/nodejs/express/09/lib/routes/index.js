@@ -1,3 +1,4 @@
+// lib/routes/index.js
 const express = require('express');
 const userService = require('../service/user');
 const MD5 = require('../utils/MD5Util');

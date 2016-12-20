@@ -18,6 +18,9 @@ router.post('/treeData', function (req, res) {
 	});
 });
 
+/**
+ * 获取一条记录
+ */
 router.post('/queryOne', function (req, res) {
 	department.queryDepartmentById(req.body.id, function (err, data) {
 		if (err) {
@@ -28,6 +31,9 @@ router.post('/queryOne', function (req, res) {
 	});
 });
 
+/**
+ * 添加部门
+ */
 router.post('/addDepartment', function (req, res) {
 	department.addDepartment(req.body, function (err, data) {
 		if (err) {
@@ -38,6 +44,9 @@ router.post('/addDepartment', function (req, res) {
 	});
 });
 
+/**
+ * 修改部门
+ */
 router.post('/updDepartment', function (req, res) {
 	department.updDepartment(req.body, function (err, data) {
 		if (err) {
@@ -48,6 +57,9 @@ router.post('/updDepartment', function (req, res) {
 	});
 });
 
+/**
+ * 删除部门
+ */
 router.post('/delDepartment', function (req, res) {
 	department.delDepartment(req.body.id, function (err, data) {
 		if (err) {
@@ -57,4 +69,5 @@ router.post('/delDepartment', function (req, res) {
 		}
 	});
 });
+
 module.exports = router;

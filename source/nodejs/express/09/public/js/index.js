@@ -2,6 +2,9 @@ $(function () {
 	bindEvent();
 });
 
+/**
+ * 绑定事件
+ */
 function bindEvent() {
 	$('.index-menu li').click(function () {
 		$(this).addClass('active');
@@ -95,6 +98,9 @@ function register() {
 	});
 }
 
+/**
+ * 检测用户名是否重复
+ */
 function checkUsername(username) {
 	doPost('/checkUsername', {username: username}, function (result) {
 		if (!result.result) {
