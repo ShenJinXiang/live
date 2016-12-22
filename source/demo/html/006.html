@@ -1,0 +1,108 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>test</title>
+	<style>
+	table {
+		width: 100%;
+		border-collapse: collapse;
+	}
+	table th, 
+	table td {
+		border: 1px solid #ddd;
+		height: 34px;
+		line-height: 34px;
+		text-indent: 10px;
+	}
+	</style>
+</head>
+<body>
+<h1>hehe</h1>
+<table id='table'>
+	<thead>
+		<tr>
+			<th>系列</th>
+			<th>类型</th>
+			<th>收集</th>
+			<th>未解决</th>
+			<th>临时解决</th>
+			<th>彻底解决</th>
+		</tr>
+	</thead>
+	<tbody>
+	</tbody>
+</table>
+<script src="http://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<script>
+let data = [
+	{"GNMK":"00","XQLX":"00","SJ_HJ":4,"WJJ_HJ":4,"LSJJ_HJ":0,"CDJJ_HJ":0},
+	{"GNMK":"01","XQLX":"01","SJ_HJ":1,"WJJ_HJ":1,"LSJJ_HJ":0,"CDJJ_HJ":0},
+	{"GNMK":"01","XQLX":"02","SJ_HJ":1,"WJJ_HJ":0,"LSJJ_HJ":0,"CDJJ_HJ":1},
+	{"GNMK":"01","XQLX":"03","SJ_HJ":1,"WJJ_HJ":0,"LSJJ_HJ":0,"CDJJ_HJ":1},
+	{"GNMK":"01","XQLX":"04","SJ_HJ":1,"WJJ_HJ":0,"LSJJ_HJ":1,"CDJJ_HJ":0},
+	{"GNMK":"01","XQLX":"05","SJ_HJ":1,"WJJ_HJ":0,"LSJJ_HJ":1,"CDJJ_HJ":0},
+	{"GNMK":"02","XQLX":"01","SJ_HJ":2,"WJJ_HJ":1,"LSJJ_HJ":0,"CDJJ_HJ":1},
+	{"GNMK":"02","XQLX":"02","SJ_HJ":6,"WJJ_HJ":2,"LSJJ_HJ":1,"CDJJ_HJ":3},
+	{"GNMK":"02","XQLX":"03","SJ_HJ":3,"WJJ_HJ":3,"LSJJ_HJ":0,"CDJJ_HJ":0},
+	{"GNMK":"02","XQLX":"04","SJ_HJ":1,"WJJ_HJ":1,"LSJJ_HJ":0,"CDJJ_HJ":0},
+	{"GNMK":"02","XQLX":"05","SJ_HJ":1,"WJJ_HJ":0,"LSJJ_HJ":0,"CDJJ_HJ":1},
+	{"GNMK":"03","XQLX":"01","SJ_HJ":1,"WJJ_HJ":1,"LSJJ_HJ":0,"CDJJ_HJ":0},
+	{"GNMK":"03","XQLX":"02","SJ_HJ":1,"WJJ_HJ":0,"LSJJ_HJ":0,"CDJJ_HJ":1},
+	{"GNMK":"03","XQLX":"03","SJ_HJ":1,"WJJ_HJ":1,"LSJJ_HJ":0,"CDJJ_HJ":0},
+	{"GNMK":"03","XQLX":"04","SJ_HJ":1,"WJJ_HJ":1,"LSJJ_HJ":0,"CDJJ_HJ":0},
+	{"GNMK":"04","XQLX":"01","SJ_HJ":1,"WJJ_HJ":1,"LSJJ_HJ":0,"CDJJ_HJ":0},
+	{"GNMK":"04","XQLX":"02","SJ_HJ":2,"WJJ_HJ":1,"LSJJ_HJ":1,"CDJJ_HJ":0},
+	{"GNMK":"04","XQLX":"03","SJ_HJ":1,"WJJ_HJ":0,"LSJJ_HJ":0,"CDJJ_HJ":1},
+	{"GNMK":"04","XQLX":"04","SJ_HJ":1,"WJJ_HJ":0,"LSJJ_HJ":0,"CDJJ_HJ":1},
+	{"GNMK":"04","XQLX":"05","SJ_HJ":1,"WJJ_HJ":1,"LSJJ_HJ":0,"CDJJ_HJ":0}
+];
+let gnArr = [
+	//{dmbh: '00', dmmc: '请选择'},
+	{dmbh: '01', dmmc: '业务'},
+	{dmbh: '02', dmmc: '财务'},
+	{dmbh: '03', dmmc: '税务'},
+	{dmbh: '04', dmmc: '其它'},
+];
+
+let xqlx = [
+	//{dmbh: '00', dmmc: '请选择'},
+	{dmbh: '01', dmmc: '新增功能'},
+	{dmbh: '02', dmmc: '功能改进'},
+	{dmbh: '03', dmmc: '易用性提升'},
+	{dmbh: '04', dmmc: 'BUG修复'},
+	{dmbh: '05', dmmc: '新系统'}	
+];
+$(function () {
+	$('#table tbody').empty();
+	var html = '';
+	var data_index = 0;
+	gnArr.forEach(function (gn, gn_index) {
+		xqlx.forEach(function (lx, lx_index) {
+			html += '<tr>';
+			if (lx_index == 0) {
+				html += '<td rowspan="5">' + gn.dmmc + gn.dmbh + '</td>';
+			}
+				//'<td>' + gn.dmmc + gn.dmbh + '</td>' +
+			html += '<td>' + lx.dmmc + lx.dmbh + '</td>';
+			let row = data[data_index];
+			if (gn.dmbh == row['GNMK'] && lx.dmbh == row['XQLX']) {
+				html += '<td>' + row['SJ_HJ'] + '</td>' +
+					'<td>' + row['WJJ_HJ'] + '</td>' +
+					'<td>' + row['LSJJ_HJ'] + '</td>' +
+					'<td>' + row['CDJJ_HJ'] + '</td>' +
+					data_index++;
+			} else {
+				html += '<td>0</td>' +
+					'<td>0</td>' +
+					'<td>0</td>' +
+					'<td>0</td>';
+			}
+			'</tr>';
+		});
+	});
+	$('#table tbody').append($(html));
+});
+</script>
+</body>
+</html>
