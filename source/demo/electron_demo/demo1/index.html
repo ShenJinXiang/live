@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>Hello World!</title>
+  </head>
+  <body>
+    <h1>Hello World!</h1>
+	<canvas id='canvas'></canvas>
+<script>
+(function(){
+	let canvas = document.getElementById('canvas');
+	canvas.width = 600;
+	canvas.height = 600;
+	let context = canvas.getContext('2d');
+	context.fillStyle = '#048';
+	context.fillRect(100, 100, 300, 300);
+})();
+</script>
+  </body>
+</html>
