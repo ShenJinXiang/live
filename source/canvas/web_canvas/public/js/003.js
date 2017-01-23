@@ -72,7 +72,7 @@
 	}
 
 	function update (tj) {
-		config.tj.rotate += 0.01;
+		config.tj.rotate += 0.15;
 	}
 
 

@@ -3,13 +3,28 @@
 <head>
 	<meta charset='utf-8'>
 	<style>
-		canvas {display: block; margin:0px auto; border: 1px solid #ccc;}
+		*{margin:0;padding:0;}
+		.box{border:1px solid #bbb; width:800px; height:600px;margin:10px auto;}
+		canvas {display: block; float:left;}
+		.btn-box{width:200px;float:right;padding-top:25px;box-sizing: border-box;}
+		._btn{width:80px;height:34px; background: #ccc;border:1px solid #ccc; color: #444;}
+		._btn:hover{background: #bbb; border-color:#bbb;cursor:pointer;}
+		.log{width:100%; list-style:none; padding:0;margin: 10px 0 0 0;height: 400px; overflow-y:auto;}
+		.log li{line-height: 24px;color:#555;font-size:12px;}
 	</style>
 	<title>Canvas</title>
 </head>
 <body>
 	<h1>shenjinxiang!</h1>
-	<canvas id='canvas'></canvas>
-	<script type='text/javascript' src='/js/003.js'></script>
+	<div class='box'>
+		<canvas id='canvas'></canvas>
+		<div class='btn-box'>
+			<button id='resetBtn' class='_btn'>重玩</button>
+			<button id='backBtn' class='_btn'>悔棋</button>
+			<button id='logBtn' class='_btn'>记录</button>
+			<ul class='log' id='log'></ul>
+		</div>
+	</div>
+	<script type='text/javascript' src='/js/004.js'></script>
 </body>
 </html>
