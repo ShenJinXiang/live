@@ -18,6 +18,9 @@ app.get('/elsfk', function(req, res) {
 	res.render('elsfk');
 });
 
+app.get('/tcs', function (req, res) {
+	res.render('tcs');
+});
 app.listen(3000, function () {
 	console.log('Server running at 3000 port.');
 });
