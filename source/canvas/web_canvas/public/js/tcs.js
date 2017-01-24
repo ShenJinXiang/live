@@ -12,6 +12,7 @@
 		data: [],
 		gData: [],
 		isPlay: true,
+		isKey: true,
 		next: {},
 		hasNext: false,
 		interval: 400
@@ -23,14 +24,18 @@
 	let context = canvas.getContext('2d');
 
 	document.body.onkeydown = function(e) {
-		if (e.keyCode == 37 && current.direction != 1) {
+		if (current.isKey && e.keyCode == 37 && current.direction != 1) {
 			current.direction = 3;
-		} else if (e.keyCode == 38 && current.direction != 2) {
+			current.isKey = false;
+		} else if (current.isKey && e.keyCode == 38 && current.direction != 2) {
 			current.direction = 0;
-		} else if (e.keyCode == 39 && current.direction != 3) {
+			current.isKey = false;
+		} else if (current.isKey && e.keyCode == 39 && current.direction != 3) {
 			current.direction = 1;
-		} else if (e.keyCode == 40 && current.direction != 0) {
+			current.isKey = false;
+		} else if (current.isKey && e.keyCode == 40 && current.direction != 0) {
 			current.direction = 2;
+			current.isKey = false;
 		}
 	}
 
@@ -85,12 +90,13 @@
 		for (let r = 0; r < rows; r++) {
 			for (let c = 0; c < columns; c++) {
 				if (current.gData[c][r] == 0) {
-					drawGrid(sx + c * 20, sy + r * 20, 'rgba(0, 0, 0, 0.2)');
+					drawGrid(sx + c * 20, sy + r * 20, 'rgba(0, 0, 0, 0.1)');
 				} else {
 					drawGrid(sx + c * 20, sy + r * 20, 'rgba(0, 0, 0, 1)');
 				}
 			}
 		}
+		current.isKey = true;
 	}
 
 
