@@ -8,7 +8,7 @@
 
 	let current = {
 		score: 0,
-		direction: 1,
+		direction: 0,
 		data: [],
 		gData: [],
 		isPlay: true,
@@ -22,6 +22,11 @@
 	canvas.width = config.rows * 20 + config.sx * 2;
 	canvas.height = config.columns * 20 + config.sy * 2;
 	let context = canvas.getContext('2d');
+
+	let score = document.getElementById('score');
+	let speed = document.getElementById('speed');
+	let rePlayBtn = document.getElementById('rePlay');
+	rePlayBtn.onclick = rePlay;
 
 	document.body.onkeydown = function(e) {
 		if (current.isKey && e.keyCode == 37 && current.direction != 1) {
@@ -67,15 +72,16 @@
 		if (firstGrid.x == current.next.x && firstGrid.y == current.next.y) {
 			current.data.unshift(firstGrid);
 			current.score += 10;
+			score.innerHTML = current.score;
 			if (current.score % 100 == 0) {
 				current.interval -= 50;
+				speed.innerHTML = parseInt(speed.innerHTML) + 1;
 			}
 			current.hasNext = false;
 			console.log(current.interval);
 		} else if (current.gData[firstGrid.x][firstGrid.y] == 1){
 			alert('游戏结束, 得分：' + current.score);
 			current.isPlay = false;
-			clearInterval(timer);
 		} else {
 			current.data.unshift(firstGrid);
 			current.data.pop();
@@ -165,6 +171,24 @@
 		context.fillStyle = v;
 		context.fill();
 		context.restore();
+	}
+
+	function rePlay() {
+		current = {
+			score: 0,
+			direction: 0,
+			data: [],
+			gData: [],
+			isPlay: true,
+			isKey: true,
+			next: {},
+			hasNext: false,
+			interval: 400
+		};
+		initData();
+		initGdata();
+		speed.innerHTML = 1;
+		score.innerHTML = 0;
 	}
 
 })();
