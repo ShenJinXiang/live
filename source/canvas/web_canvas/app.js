@@ -18,9 +18,16 @@ app.get('/elsfk', function(req, res) {
 	res.render('elsfk');
 });
 
+// 贪吃蛇
 app.get('/tcs', function (req, res) {
 	res.render('tcs');
 });
+
+// 写一个字
+app.get('/xz', function (req, res) {
+	res.render('xz');
+});
+
 app.listen(3000, function () {
 	console.log('Server running at 3000 port.');
 });
