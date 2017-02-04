@@ -1,0 +1,7 @@
+allprojects {//定义init.gradle所需要的仓库地址
+	repositories {
+		maven { url 'http://maven.aliyun.com/nexus/content/groups/public/'}
+	    jcenter()
+	    mavenCentral()
+	}
+}
