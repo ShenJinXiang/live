@@ -1,0 +1,447 @@
+
+ <!DOCTYPE HTML>
+<html >
+<head>
+  <meta charset="UTF-8">
+  
+    <title>隔壁老王的BLOG</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1,user-scalable=no">
+    
+    <meta name="author" content="王鹏飞">
+    
+
+    
+    <meta property="og:type" content="website">
+<meta property="og:title" content="隔壁老王的BLOG">
+<meta property="og:url" content="http://www.wanggebi.com/index.html">
+<meta property="og:site_name" content="隔壁老王的BLOG">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="隔壁老王的BLOG">
+
+    
+    <link rel="alternative" href="/atom.xml" title="隔壁老王的BLOG" type="application/atom+xml">
+    
+    
+    <link rel="icon" href="./img/favicon.ico">
+    
+    
+    <link rel="apple-touch-icon" href="./img/jacman.jpg">
+    <link rel="apple-touch-icon-precomposed" href="./img/jacman.jpg">
+    
+    <link rel="stylesheet" href="./css/style.css">
+</head>
+
+  <body>
+    <header>
+      
+<div>
+		
+			<div id="imglogo">
+				<a href="/"><img src="/img/logo.png" alt="隔壁老王的BLOG" title="隔壁老王的BLOG"/></a>
+			</div>
+			
+			<div id="textlogo">
+				<h1 class="site-name"><a href="/" title="隔壁老王的BLOG">隔壁老王的BLOG</a></h1>
+				<h2 class="blog-motto">每天抽时间多学一点，下次面试的底气就多一点，然后你的工资就能多一点，最后你就会抽出更多时间再多学习一点。</h2>
+			</div>
+			<div class="navbar"><a class="navbutton navmobile" href="#" title="菜單">
+			</a></div>
+			<nav class="animated">
+				<ul>
+					<ul>
+					 
+						<li><a href="/">Home</a></li>
+					
+						<li><a href="/archives">Archives</a></li>
+					
+						<li><a href="/about">About</a></li>
+					
+					<li>
+ 					
+					<form class="search" action="//google.com/search" method="get" accept-charset="utf-8">
+						<label>Search</label>
+						<input type="search" id="search" name="q" autocomplete="off" maxlength="20" placeholder="搜索" />
+						<input type="hidden" name="q" value="site:www.wanggebi.com">
+					</form>
+					
+					</li>
+				</ul>
+			</nav>			
+</div>
+    </header>
+    <div id="container">
+      <div id="main">
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/03/01/springmvc/" title="springmvc与struts2的区别" itemprop="url">springmvc与struts2的区别</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="王鹏飞" target="_blank" itemprop="author">王鹏飞</a>
+		
+  <p class="article-time">
+    <time datetime="2017-02-28T16:00:00.000Z" itemprop="datePublished"> 發表於 2017-03-01</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="springmvc与struts2的区别"><a href="#springmvc与struts2的区别" class="headerlink" title="springmvc与struts2的区别"></a>springmvc与struts2的区别</h2><ol>
+<li>springmvc的入口是一个servlet，即前端控制器，例如：<em>.action；<br>struts2入口是一个filter过虑器，即前端过滤器，例如：/</em>。</li>
+<li>springmvc是基于方法开发，传递参数是通过方法形参，可以设计为单例；<br>struts2是基于类开发，传递参数是通过类的属性，只能设计为多例。</li>
+<li>springmvc通过参数解析器是将request对象内容进行解析成方法形参，将响应数据和页面封装成ModelAndView对象，<br>最后又将模型数据通过request对象传输到页面；<br>struts采用值栈存储请求和响应的数据，通过OGNL存取数据。</li>
+</ol>
+<hr>
+<h2 id="单例多例的区别"><a href="#单例多例的区别" class="headerlink" title="单例多例的区别"></a>单例多例的区别</h2><ul>
+<li>什么是单例多例？</li>
+<li>如何产生单例多例？</li>
+<li>为什么要用单例多例？</li>
+<li>什么时候用单例，什么时候用多例?</li>
+</ul>
+<ol>
+<li>什么是单例多例:<pre><code>所谓单例就是所有的请求都用一个对象来处理，比如我们常用的service和dao层的对象通常都是单例的，而多例则指每个请求用一个
+</code></pre>新的对象来处理，比如action; </li>
+<li>如何产生单例多例:<pre><code>在通用的SSH中，单例在spring中是默认的，如果要产生多例，则在配置文件的bean中添加scope=&quot;prototype&quot;;
+</code></pre></li>
+<li>为什么用单例多例：<pre><code>之所以用单例，是因为没必要每个请求都新建一个对象，这样子既浪费CPU又浪费内存；
+之所以用多例，是为了防止并发问题；即一个请求改变了对象的状态，此时对象又处理另一个请求，而之前请求对对象状态的改变
+</code></pre>导致了对象对另一个请求做了错误的     处理；<pre><code>用单例和多例的标准只有一个：
+当对象含有可改变的状态时（更精确的说就是在实际应用中该状态会改变），则多例，否则单例；
+</code></pre></li>
+<li>何时用单例？何时用多例？<pre><code>对于struts2来说，action必须用多例，因为action本身含有请求参数的值，即可改变的状态；
+而对于STRUTS1来说，action则可用单例，因为请求参数的值是放在actionForm中，而非action中的；
+另外要说一下，并不是说service或dao一定是单例，标准同第3点所讲的，就曾见过有的service中也包含了可改变的状态，同时执行
+方法也依赖该状态，但一样用的单例  ，这样就会出现隐藏的BUG,而并发的BUG通常很难重现和查找。
+</code></pre></li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/SpringMvc/">SpringMvc</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+   
+    
+    <article class="post-expand post" itemprop="articleBody"> 
+        <header class="article-info clearfix">
+  <h1 itemprop="name">
+    
+      <a href="/2017/02/28/struts/" title="传统MVC模式" itemprop="url">传统MVC模式</a>
+  </h1>
+  <p class="article-author">By
+       
+		<a href="/about" title="王鹏飞" target="_blank" itemprop="author">王鹏飞</a>
+		
+  <p class="article-time">
+    <time datetime="2017-02-27T16:00:00.000Z" itemprop="datePublished"> 發表於 2017-02-28</time>
+    
+  </p>
+</header>
+    <div class="article-content">
+        
+        <h2 id="MVC模式"><a href="#MVC模式" class="headerlink" title="MVC模式"></a>MVC模式</h2><ul>
+<li>Model   模型</li>
+<li>View     视图</li>
+<li>Control 控制器</li>
+</ul>
+<hr>
+<h2 id="Control-控制器"><a href="#Control-控制器" class="headerlink" title="Control 控制器"></a>Control 控制器</h2><pre><code>Servlet起到控制器的作用！
+</code></pre><ol>
+<li>获取请求数据封装。</li>
+<li>调用Service处理业务逻辑。</li>
+<li>跳转(转发/重定向)。</li>
+</ol>
+<hr>
+<h2 id="传统mvc开发总结："><a href="#传统mvc开发总结：" class="headerlink" title="传统mvc开发总结："></a>传统mvc开发总结：</h2><ol>
+<li>跳转代码写死，不灵活</li>
+<li>每次都去写servlet，web.xml中配置servlet！</li>
+</ol>
+
+        
+        
+        <p class="article-more-link">
+          
+       </p>
+    </div>
+    <footer class="article-footer clearfix">
+<div class="article-catetags">
+
+
+  <div class="article-tags">
+  
+  <span></span> <a href="/tags/SSH/">SSH</a>
+  </div>
+
+</div>
+
+
+
+
+<div class="comments-count">
+	
+</div>
+
+</footer>
+
+
+    </article>
+
+
+
+
+
+
+
+</div>
+      <div class="openaside"><a class="navbutton" href="#" title="顯示側邊欄"></a></div>
+
+<div id="asidepart">
+<div class="closeaside"><a class="closebutton" href="#" title="隱藏側邊欄"></a></div>
+<aside class="clearfix">
+
+  
+
+
+  
+
+  
+<div class="tagslist">
+	<p class="asidetitle">標簽</p>
+		<ul class="clearfix">
+		
+			
+				<li><a href="/tags/SSH/" title="SSH">SSH<sup>1</sup></a></li>
+			
+		
+			
+				<li><a href="/tags/SpringMvc/" title="SpringMvc">SpringMvc<sup>1</sup></a></li>
+			
+		
+		</ul>
+</div>
+
+
+  <div class="linkslist">
+  <p class="asidetitle">友情鏈接</p>
+    <ul>
+        
+          <li>
+            
+            	<a href="https://coderq.com" target="_blank" title="一个面向程序员交流分享的新一代社区">码农圈</a>
+            
+          </li>
+        
+    </ul>
+</div>
+
+  
+
+
+  <div class="rsspart">
+	<a href="/atom.xml" target="_blank" title="rss">RSS 訂閱</a>
+</div>
+
+  <div class="weiboshow">
+  <p class="asidetitle">新浪微博</p>
+    <iframe width="100%" height="119" class="share_self"  frameborder="0" scrolling="no" src="http://widget.weibo.com/weiboshow/index.php?language=&width=0&height=119&fansRow=2&ptype=1&speed=0&skin=9&isTitle=1&noborder=1&isWeibo=0&isFans=0&uid=null&verifier=b3593ceb&dpc=1"></iframe>
+</div>
+
+
+</aside>
+</div>
+    </div>
+    <footer><div id="footer" >
+	
+	<div class="line">
+		<span></span>
+		<div class="author"></div>
+	</div>
+	
+	
+	<section class="info">
+		<p> 一个人静静坐在电脑面前写代码的感觉，那是什么感觉？ <br/>
+			那是武林高手闭关修炼的感觉。</p>
+	</section>
+	 
+	<div class="social-font" class="clearfix">
+		
+		<a href="http://weibo.com/2349724377" target="_blank" class="icon-weibo" title="微博"></a>
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	</div>
+			
+		
+
+		<p class="copyright">
+		Powered by <a href="http://hexo.io" target="_blank" title="hexo">hexo</a> and Theme by <a href="https://github.com/wuchong/jacman" target="_blank" title="Jacman">Jacman</a> © 2017 
+		
+		<a href="/about" target="_blank" title="王鹏飞">王鹏飞</a>
+		
+		
+		</p>
+</div>
+</footer>
+    <script src="./js/jquery-2.0.3.min.js"></script>
+<script src="./js/jquery.imagesloaded.min.js"></script>
+<script src="./js/gallery.js"></script>
+<script src="./js/jquery.qrcode-0.12.0.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.navbar').click(function(){
+    $('header nav').toggleClass('shownav');
+  });
+  var myWidth = 0;
+  function getSize(){
+    if( typeof( window.innerWidth ) == 'number' ) {
+      myWidth = window.innerWidth;
+    } else if( document.documentElement && document.documentElement.clientWidth) {
+      myWidth = document.documentElement.clientWidth;
+    };
+  };
+  var m = $('#main'),
+      a = $('#asidepart'),
+      c = $('.closeaside'),
+      o = $('.openaside');
+  c.click(function(){
+    a.addClass('fadeOut').css('display', 'none');
+    o.css('display', 'block').addClass('fadeIn');
+    m.addClass('moveMain');
+  });
+  o.click(function(){
+    o.css('display', 'none').removeClass('beforeFadeIn');
+    a.css('display', 'block').removeClass('fadeOut').addClass('fadeIn');      
+    m.removeClass('moveMain');
+  });
+  $(window).scroll(function(){
+    o.css("top",Math.max(80,260-$(this).scrollTop()));
+  });
+  
+  $(window).resize(function(){
+    getSize(); 
+    if (myWidth >= 1024) {
+      $('header nav').removeClass('shownav');
+    }else{
+      m.removeClass('moveMain');
+      a.css('display', 'block').removeClass('fadeOut');
+      o.css('display', 'none');
+        
+    }
+  });
+});
+</script>
+
+
+
+
+
+
+
+
+
+
+<link rel="stylesheet" href="./fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="./fancybox/jquery.fancybox.pack.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){ 
+  $('.article-content').each(function(i){
+    $(this).find('img').each(function(){
+      if ($(this).parent().hasClass('fancybox')) return;
+      var alt = this.alt;
+      if (alt) $(this).after('<span class="caption">' + alt + '</span>');
+      $(this).wrap('<a href="' + this.src + '" title="' + alt + '" class="fancybox"></a>');
+    });
+    $(this).find('.fancybox').each(function(){
+      $(this).attr('rel', 'article' + i);
+    });
+  });
+  if($.fancybox){
+    $('.fancybox').fancybox();
+  }
+}); 
+</script>
+
+
+
+<!-- Analytics Begin -->
+
+
+
+<script>
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?e6d1f421bbc9962127a50488f9ed37d1";
+  var s = document.getElementsByTagName("script")[0]; 
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+
+
+<!-- Analytics End -->
+
+<!-- Totop Begin -->
+
+	<div id="totop">
+	<a title="返回頂部"><img src="/img/scrollup.png"/></a>
+	</div>
+	<script src="/js/totop.js"></script>
+
+<!-- Totop End -->
+
+<!-- MathJax Begin -->
+<!-- mathjax config similar to math.stackexchange -->
+
+
+<!-- MathJax End -->
+
+<!-- Tiny_search Begin -->
+
+<!-- Tiny_search End -->
+
+  </body>
+ </html>
+
