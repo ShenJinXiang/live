@@ -9,6 +9,8 @@
 	jindu.value = 0;
 
 	video.onloadedmetadata = function () {
+		video.play();
+		document.body.appendChild(video);
 		var initialTime = video.initialTime;
 		var duration = video.duration;
 		jindu.max = duration;
