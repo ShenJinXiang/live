@@ -109,6 +109,7 @@ a:active,a:hover{
 	width:65%;
 	margin-top:60px;
 }
+/*
 .page-top{
 	width:65%;
 	position:fixed;
@@ -117,9 +118,6 @@ a:active,a:hover{
 	height:60px;
 	border-bottom:1px solid #f2f2f2;
 	transition: .8s;
-	/* ----------- */
-	/* background-color: #444;*/
-	/* ----------- */
 }
 .page-top .nav{
 	list-style:none;
@@ -141,15 +139,14 @@ a:active,a:hover{
 }
 .page-top .nav a.current{
 	color:#5A5A5A;
-	/*
-	padding-bottom:22px;
-	*/
 	padding-bottom:14px;
 	border-bottom:1px solid #5A5A5A;
 }
+*/
 #disqus_thread,.pagination{
 	border-bottom:1px solid #f2f2f2;
 }
+/*
 .page-top .information{
 	float:right;
 	padding-top:12px;
@@ -172,6 +169,34 @@ a:active,a:hover{
 	display:initial;
 	padding-right:40px;
 }
+*/
+
+
+.page-top {
+	transition: .8s;
+    width: 35%;
+    position: fixed;
+    top: 300px;
+    left: 0px;
+    z-index: 4;
+}
+.page-top .nav{
+	width: 40%;
+    display: inline-block;
+    float: right;
+}
+.page-top .nav li{
+	list-style: none;
+	text-align: center;
+	height: 40px;
+    line-height: 40px;
+    padding: 10px 0;
+}
+.page-top .nav li a{
+}
+
+
+
 .sidebar{
 	width:35%;
 	-webkit-background-size:cover;
@@ -192,7 +217,10 @@ a:active,a:hover{
 }
 .sidebar .logo-title{
 	text-align:center;
+	/*
 	padding-top:240px;
+	*/
+	padding-top:200px;
 }
 .sidebar .logo-title .description{
 	font-size:14px;
@@ -580,8 +608,46 @@ a.btn{
 	.sidebar .logo-title .title img{
 		width:100px;
 	}
+	/*
 	.content,.page-top{
 		width:100%;
+	}
+	*/
+	.content {
+		width: 100%;
+	}
+	.page-top {
+		width: 100%;
+		position: fixed;
+		top: 0px;
+		left: 0px;
+		z-index:3;
+		height:60px;
+		border-bottom:1px solid #f2f2f2;
+		transition: .8s;
+	}
+	.page-top .nav {
+		list-style:none;
+		float:left;
+		font-size:12px;
+		width: 100%;
+		margin: 0px;
+	}
+	.page-top .nav li {
+		display:initial;
+		padding: 0;
+		padding-right:20px;
+		float: left;
+		height: 60px;
+		line-height: 60px;
+	}
+	.page-top .nav li a{
+		height: 100%;
+		display: inline-block;
+		border: none;
+	}
+	.page-top .nav li a.current{
+		border-bottom:1px solid #5A5A5A;
 	}
 	.sidebar .logo-title .title h1{
 		font-size:20px;
