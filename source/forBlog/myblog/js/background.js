@@ -22,12 +22,14 @@
 			update();
 		}, config.time);
 
+		/*
 		window.onresize = function () {
 			canvas.width = $(".sidebar").width();
 			canvas.height = $('.sidebar').height();
 			draw();
 			update();
 		}
+		*/
 		function initBalls() {
 			for (var i = 0; i < 500; i++) {
 				balls.push({
