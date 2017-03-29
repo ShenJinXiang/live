@@ -267,10 +267,10 @@ a:active,a:hover{
 }
 .post{
 	background-color:#FFF;
-	margin:20px; 
+	/*margin:20px; */
 	
 	/* ----------- */
-	/* padding:30px; */
+	padding:30px;
 	/* ----------- */
 }
 .post .post-title h3{
