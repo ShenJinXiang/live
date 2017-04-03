@@ -1,10 +1,16 @@
 function Post() {
 }
 
+Post.prototype.getId = function() {
+	return this.id;
+};
+Post.prototype.setId = function(id) {
+	this.id = id;
+};
+
 Post.prototype.getTitle = function () {
 	return this.title;
 };
-
 Post.prototype.setTitle = function (title) {
 	this.title = title;
 };
@@ -28,5 +34,18 @@ Post.prototype.getDateStr = function () {
 	d = (d > 9) ? ('' + d) : ('0' + d);
 	return year + '-' + month + '-' + d;
 };
+
+Post.prototype.getDateYear = function () {
+	var year = this.date.getFullYear();
+	return year;
+}
+
+Post.prototype.getMonthDay = function() {
+	var month = this.date.getMonth() + 1;
+	var d = this.date.getDate();
+	month = (month > 9) ? ('' + month) : ('0' + month);
+	d = (d > 9) ? ('' + d) : ('0' + d);
+	return month + '-' + d;
+}
 
 module.exports = Post;
