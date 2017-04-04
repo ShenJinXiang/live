@@ -1,3 +1,6 @@
+const config = require('../config');
+console.log(config);
+/*
 const Post = require('./Post');
 
 let post1 = new Post();
@@ -32,3 +35,4 @@ arr.sort(function(a, b) {
 });
 
 console.log(arr);
+*/

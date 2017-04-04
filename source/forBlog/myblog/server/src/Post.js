@@ -1,4 +1,26 @@
-function Post() {
+/**
+ * id
+ * title - 标题
+ * dateStr - 日期
+ * category - 分类
+ * tags - 标签
+ */
+function Post(id, title, dateStr, category, tags, description, url) {
+	this.id = id;
+	this.title = title;
+
+	if (dateStr && dateStr.length == 10) {
+		let year = dateStr.substring(0, 4);
+		let month = dateStr.substring(5, 7);
+		let d = dateStr.substring(8, 10)
+		let date = new Date(year, month - 1, d);
+		this.date = date;
+	}
+
+	this.category = category;
+	this.tags = tags;
+	this.description = description;
+	this.url = url;
 }
 
 Post.prototype.getId = function() {
@@ -38,7 +60,7 @@ Post.prototype.getDateStr = function () {
 Post.prototype.getDateYear = function () {
 	var year = this.date.getFullYear();
 	return year;
-}
+};
 
 Post.prototype.getMonthDay = function() {
 	var month = this.date.getMonth() + 1;
@@ -46,6 +68,38 @@ Post.prototype.getMonthDay = function() {
 	month = (month > 9) ? ('' + month) : ('0' + month);
 	d = (d > 9) ? ('' + d) : ('0' + d);
 	return month + '-' + d;
-}
+};
+
+Post.prototype.setCategory = function (category) {
+	this.category = category;
+};
+
+Post.prototype.getCategory = function () {
+	return this.category;
+};
+
+Post.prototype.setTags = function (tags) {
+	this.tags = tags;
+};
+
+Post.prototype.getTags = function() {
+	return this.tags;
+};
+
+Post.prototype.setDescription = function (description) {
+	this.description = description;
+};
+
+Post.prototype.getDescription = function () {
+	return this.description;
+};
+
+Post.prototype.setUrl = function (url) {
+	this.url = url;
+};
+
+Post.prototype.getUrl = function (url) {
+	return this.url;
+};
 
 module.exports = Post;
