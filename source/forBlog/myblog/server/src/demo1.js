@@ -378,6 +378,68 @@ function getMenuHtml(current) {
  */
 function getContentHtml(options) {
 	if (options.type === 'page') {
+		return getPageContentHtml(options);
+	} else if (options.type === 'archives') {
+		return getArchivesContentHtml();
+	} else if (options.type === 'demo') {
+		return getDemoContentHtml();
+	}
+
+	function getDemoContentHtml() {
+		const demoarr = config.demo;
+
+		let _html = 
+			'<div class="main">' +
+			'	 <div class="autopagerize_page_element">' +
+			'		 <div class="content">' +
+			'			 <div class="archive animated fadeInDown">' +
+			'				 <ul class="list-with-title">' +
+			'					 <div class="archive">' +
+			'					   <ul class="listing">';
+
+		for (let i = 0; i < demoarr.length; i++) {
+			_html += 
+			'<div class="listing-item">' +
+			'	<div class="listing-post">' +
+			'		<a href="' + demoarr[i].url + '" title="' + demoarr[i].title + '">' + demoarr[i].title + '</a>' +
+			'		<div class="post-time">' +
+			'			<span class="date">' + demoarr[i].date + '</span>' +
+			'		</div>' +
+			'	</div>' +
+			'</div>';
+		}
+		_html += 
+			'            </ul>' +
+			'          </div>' +
+			'        </ul>' +
+			'      </div>' +
+			'    </div>' +
+			'  </div>' +
+			'</div>';
+		return _html;
+	}
+
+	function getArchivesContentHtml() {
+		let _html = 
+			'<div class="main">' +
+			'	 <div class="autopagerize_page_element">' +
+			'		 <div class="content">' +
+			'			 <div class="archive animated fadeInDown">' +
+			'				 <ul class="list-with-title">' +
+			'					 <div class="archive">';
+
+		_html += 
+			'          </div>' +
+			'        </ul>' +
+			'      </div>' +
+			'    </div>' +
+			'  </div>' +
+			'</div>';
+
+
+	}
+
+	function getPageContentHtml(options) {
 		let pageNum = options.pageNum || 1;
 		let _posts = posts.slice((pageNum - 1) * config.pageSize, pageNum * config.pageSize);
 		let _html = 
@@ -402,12 +464,12 @@ function getContentHtml(options) {
 					'				<span>' + _posts[i].getDateStr() + '</span>' +
 					'				<span class="delimiter">|</span>' +
 					'				<span>分类:</span>' +
-					'				<a href="javascript:void(0);">' + _posts[i].category + '</a>' +
+					'				<a href="/category/' + _posts[i].category + '">' + _posts[i].category + '</a>' +
 					'				<span class="delimiter">|</span>' +
 					'				<span>标签:</span>';
 			for (let j = 0; j < _posts[i].tags.length; j++) {
 				_html += 
-					'				<a href="javascript:void(0);">' + _posts[i].tags[j] + '</a>';
+					'				<a href="/tags/' + _posts[i].tags[j] + '">' + _posts[i].tags[j] + '</a>';
 			}
 			_html +=
 					'			</div>' +
@@ -445,6 +507,8 @@ function getContentHtml(options) {
 	}
 }
 
+
+
 const fs = require('fs');
 function doPages() {
 	let totalPage = Math.ceil(posts.length / config.pageSize);
@@ -459,6 +523,13 @@ function doPages() {
 		});
 
 	}
+
+	_html = getHeaderHtml() + getSidebarHtml() + getMenuHtml(3) + getContentHtml({type: 'demo'}) + getFooterHtml();
+	let path = './demo/index.html';
+	fs.writeFile(path, _html, function(err) {
+		if (err) throw err;
+		console.log(path + '写入完成');
+	});
 }
 
 doPages();
