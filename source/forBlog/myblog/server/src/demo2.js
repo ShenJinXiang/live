@@ -1,3 +1,5 @@
+const path = require('path');
+const fs = require('fs');
 var mkdirs = module.exports.mkdirs = function(dirpath, mode, callback) {
 	path.exists(dirpath, function(exists) {
 		if(exists) {
@@ -10,3 +12,5 @@ var mkdirs = module.exports.mkdirs = function(dirpath, mode, callback) {
 		}
 	});
 };
+
+mkdirs('./abc/edf/eee/a');
