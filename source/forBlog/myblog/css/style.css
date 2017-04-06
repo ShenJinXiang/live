@@ -17,6 +17,7 @@ body{
 	font-size:15px;
 	width:100%;
 	margin:0 auto 30px;
+	overflow-x: hidden;
 }
 p{
 	line-height:1.9em;
