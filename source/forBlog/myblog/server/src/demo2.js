@@ -1,16 +1,14 @@
+/*
+const du = require('./dateUtil');
+const fsUtil = require('./fsUtil');
 const path = require('path');
-const fs = require('fs');
-var mkdirs = module.exports.mkdirs = function(dirpath, mode, callback) {
-	path.exists(dirpath, function(exists) {
-		if(exists) {
-			callback(dirpath);
-		} else {
-			//尝试创建父目录，然后再创建当前目录
-			mkdirs(path.dirname(dirpath), mode, function(){
-				fs.mkdir(dirpath, mode, callback);
-			});
-		}
-	});
-};
+console.log(du.getFirstDateStr());
+console.log(du.getFirstDateStr('yyyy-MM-dd HH:mm:ss SSS'));
+console.log(du.getLastDateStr());
+console.log(du.getLastDateStr('yyyy-MM-dd HH:mm:ss SSS'));
+let str = '今天是：' + du.getDateStr(new Date()) + '这个月第一秒是：' + du.getFirstDateStr() + '这个月最后一秒是：' + du.getLastDateStr()
 
-mkdirs('./abc/edf/eee/a');
+fsUtil.writeFile(path.join(__dirname, '/aaa/bbb/ccc/ddd'), str);
+*/
+const config = require('../config');
+console.log(config);

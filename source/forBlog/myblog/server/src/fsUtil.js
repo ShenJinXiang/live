@@ -1,7 +1,38 @@
 const fs = require('fs');
 const path = require('path');
+const log = require('./log');
 
-let mkdirs = function(path, callback) {
+let mkdirsSync = function(dirpath) {
+	try {
+		if (!fs.existsSync(dirpath)) {
+			mkdirsSync(path.dirname(dirpath));
+			fs.mkdirSync(dirpath);
+		}
+	} catch (err) {
+		throw err;
+	}
 };
 
-exports.mkdirs = mkdirs;
+let writeFile = function() {
+	let dirpath = arguments[0];
+	let fname = (arguments.length === 2) ? 'index.html' : arguments[1];
+	let content = (arguments.length === 2) ? arguments[1] : arguments[2];
+	let filePath = path.join(dirpath, fname);
+	if (!fs.existsSync(dirpath)) {
+		mkdirsSync(dirpath);
+		log('目录创建：' + dirpath);
+	}
+
+	fs.writeFile(filePath, content, function(err) {
+		if (err) {
+			log ('文件：' + filePath + ' 写入错误');
+			log('错误信息：' + err.message);
+			log('错误地址：' + err.stack);
+		} else {
+			log('文件：' + filePath + '写入完毕');
+		}
+	});
+};
+
+exports.mkdirsSync = mkdirsSync;
+exports.writeFile = writeFile;
