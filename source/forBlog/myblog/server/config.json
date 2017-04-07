@@ -11,44 +11,37 @@
 		"home": {
 			"name": "首页",
 			"index": "home",
-			"path": "/",
-			"filePath": "/index.html"
+			"path": "/"
 		},
 		"page": {
 			"name": "分页",
 			"index": "page",
-			"path": "/pages/#pageNum#",
-			"filePath": "/pages/#pageNum#/index.html"
+			"path": "/pages/page/#pageNum#"
 		},
 		"archives": {
 			"name": "归档",
 			"index": "archives",
-			"path": "/archives",
-			"filePath": "/archives/index.html"
+			"path": "/pages/archives"
 		},
 		"tags": {
 			"name": "标签",
 			"index": "tags",
-			"path": "/archives/tags/#tag#",
-			"filePath": "/archives/tags/#tag#/index.html"
+			"path": "/pages/archives/tags/#tag#"
 		},
 		"category": {
 			"name": "分类",
 			"index": "category",
-			"path": "/archives/category/#category#",
-			"filePath": "/archives/category/#category#/index.html"
+			"path": "/pages/archives/category/#category#"
 		},
 		"demo": {
 			"name": "demo",
 			"index": "demo",
-			"path": "/demo",
-			"filePath": "/demo/index.html"
+			"path": "/pages/demo"
 		},
 		"post": {
 			"name": "post",
 			"index": "post",
-			"path": "/pages/_category/#year#/#month#/#day#/#title#/",
-			"filePath": "/pages/_category/#year#/#month#/#day#/#title#/index.html"
+			"path": "/pages/posts/#category#/#year#/#month#/#day#/#title#/"
 		}
 	},
 	"demo" : [

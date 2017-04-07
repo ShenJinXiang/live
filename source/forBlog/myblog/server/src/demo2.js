@@ -38,14 +38,29 @@ fn2();
 */
 
 //let str = "/pages/_category/#year#/#month#/#day#/#title#/index.html";
+/*
 let str = "/pages/_category/${year}/${month}/${day}/${title}/index.html";
 let reg = /\#[\w]+\#/g
+
+let p= path.join(process.cwd(), `${str}`);
+console.log(p);
+*/
+
 let obj = {
+	category: 'java',
 	year: '2017',
 	month: '04',
 	day: '12',
 	title: '一个好人'
 };
-
-let p= path.join(process.cwd(), `${str}`);
+let str = '今天是：' + du.getDateStr(new Date()) + '这个月第一秒是：' + du.getFirstDateStr('yyyy-MM-dd HH:mm:ss SSS') + '这个月最后一秒是：' + du.getLastDateStr('yyyy-MM-dd HH:mm:ss SSS');
+const config = require('../config');
+let p = config.paths.post.path;
 console.log(p);
+let reg = /\#[\w]+\#/g
+let params = p.match(reg);
+params.forEach(function(item){
+	let parm = item.substring(1, item.length - 1);
+	p = p.replace(item, obj[parm]);
+});
+fsUtil.writeFile(path.join(process.cwd(), p), str);

@@ -3,39 +3,63 @@
 主页面
 
 ```
-{
-	"name": "首页",
-	"path": "/",
-	"filePath": "/index.html"
-},
-{
-	"name": "分页",
-	"path": "/pages/2",
-	"filePath": "/pages/2/index.html"
-},
-{
-	"name": "归档",
-	"path": "/archives",
-	"filePath": "/archives/index.html"
-},
-{
-	"name": "标签",
-	"path": "/archives/tags/java",
-	"filePath": "/archives/tags/java/index.html"
-},
-{
-	"name": "分类",
-	"path": "/archives/category/java",
-	"filePath": "/archives/category/java/index.html"
-},
-{
-	"name": "demo",
-	"path": "/demo",
-	"filePath": "/demo/index.html"
-},
-{
-	"name": "post",
-	"path": "/pages/_category/_year/_month/_day/_title/",
-	"filePath": "/pages/_category/_year/_month/_day/_title/index.html",
-}
+blog/
+   |-- css/												 样式文件
+   |   |-- style.css
+   |
+   |-- images/                                           图片文件
+   |   |-- title.ico
+   |
+   |-- js/                                               脚本文件
+   |   |-- common.js
+   |
+   |-- pages/                                            用nodejs生成的页面文件
+   |   |-- page/                                         分页页面
+   |   |   |-- #pageNum#/
+   |   |       |-- index.html
+   |   |
+   |   |-- archives/                                     归档
+   |   |   |-- index.html
+   |   |   |
+   |   |   |-- category/                                 分类归档
+   |   |   |   |-- #category#/
+   |   |   |       |-- index.html
+   |   |   |
+   |   |   |-- tags/                                     标签归档
+   |   |       |-- #tag#/
+   |   |           |-- index.html
+   |   |    
+   |   |-- demo/                                         demo归档
+   |   |   |-- index.html
+   |   |
+   |   |-- posts                                         文章
+   |       |-- #category#/
+   |           |-- #year#/
+   |               |-- #month#/
+   |                   |-- #date#/
+   |                       |-- #title#/
+   |                           |-- index.html
+   |                           |-- index.js
+   |                           |-- index.css
+   |
+   |-- static/                                          静态文件
+   |   |-- #category#/
+   |       |-- #year#/
+   |           |-- #month#/
+   |               |-- #date#/
+   |                   |-- #title#/
+   |                       |-- index.html
+   |                       |-- index.js
+   |                       |-- index.css
+   |
+   |-- plugin/                                          插件
+   |   |-- prism/
+   |   |   |-- prism.js
+   |   |   |-- prism.css
+   |   |
+   |   |-- jquery.js
+   |
+   |-- server/                                          nodejs脚本文件
+   |
+   |-- index.html                                       首页
 ```
