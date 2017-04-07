@@ -4,7 +4,7 @@
 
 ```
 blog/
-   |-- css/												 样式文件
+   |-- css/                                              样式文件
    |   |-- style.css
    |
    |-- images/                                           图片文件
