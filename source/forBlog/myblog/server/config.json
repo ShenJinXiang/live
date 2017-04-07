@@ -7,50 +7,50 @@
 		"archives": "/archives",
 		"demo": "/demo"
 	},
-	"paths": [
-		{
+	"paths": {
+		"home": {
 			"name": "首页",
 			"index": "home",
 			"path": "/",
 			"filePath": "/index.html"
 		},
-		{
+		"page": {
 			"name": "分页",
 			"index": "page",
 			"path": "/pages/#pageNum#",
 			"filePath": "/pages/#pageNum#/index.html"
 		},
-		{
+		"archives": {
 			"name": "归档",
 			"index": "archives",
 			"path": "/archives",
 			"filePath": "/archives/index.html"
 		},
-		{
+		"tags": {
 			"name": "标签",
 			"index": "tags",
 			"path": "/archives/tags/#tag#",
 			"filePath": "/archives/tags/#tag#/index.html"
 		},
-		{
+		"category": {
 			"name": "分类",
 			"index": "category",
 			"path": "/archives/category/#category#",
 			"filePath": "/archives/category/#category#/index.html"
 		},
-		{
+		"demo": {
 			"name": "demo",
 			"index": "demo",
 			"path": "/demo",
 			"filePath": "/demo/index.html"
 		},
-		{
+		"post": {
 			"name": "post",
 			"index": "post",
 			"path": "/pages/_category/#year#/#month#/#day#/#title#/",
 			"filePath": "/pages/_category/#year#/#month#/#day#/#title#/index.html"
 		}
-	],
+	},
 	"demo" : [
 		{
 			"title": "Canvas时钟",

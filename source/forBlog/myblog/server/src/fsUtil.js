@@ -29,7 +29,7 @@ let writeFile = function() {
 			log('错误信息：' + err.message);
 			log('错误地址：' + err.stack);
 		} else {
-			log('文件：' + filePath + '写入完毕');
+			log('写入文件：' + filePath);
 		}
 	});
 };
