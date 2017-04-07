@@ -1,3 +1,6 @@
+const dateUtil = require('./dateUtil');
+const stringUtil = require('./stringUtil');
+const config = require('../config');
 /**
  * id
  * title - 标题
@@ -49,25 +52,23 @@ Post.prototype.setDate = function (dateStr) {
 };
 
 Post.prototype.getDateStr = function () {
-	var year = this.date.getFullYear();
-	var month = this.date.getMonth() + 1;
-	var d = this.date.getDate();
-	month = (month > 9) ? ('' + month) : ('0' + month);
-	d = (d > 9) ? ('' + d) : ('0' + d);
-	return year + '-' + month + '-' + d;
+	return dateUtil.getDateStr(this.date);
 };
 
 Post.prototype.getDateYear = function () {
-	var year = this.date.getFullYear();
-	return year;
+	return dateUtil.getDateStr(this.date, 'yyyy');
 };
 
 Post.prototype.getMonthDay = function() {
-	var month = this.date.getMonth() + 1;
-	var d = this.date.getDate();
-	month = (month > 9) ? ('' + month) : ('0' + month);
-	d = (d > 9) ? ('' + d) : ('0' + d);
-	return month + '-' + d;
+	return dateUtil.getDateStr(this.date, 'MM-dd');
+};
+
+Post.prototype.getMonth = function() {
+	return dateUtil.getDateStr(this.date, 'MM');
+};
+
+Post.prototype.getDay = function() {
+	return dateUtil.getDateStr(this.date, 'dd');
 };
 
 Post.prototype.setCategory = function (category) {
@@ -98,8 +99,16 @@ Post.prototype.setUrl = function (url) {
 	this.url = url;
 };
 
-Post.prototype.getUrl = function (url) {
-	return this.url;
+Post.prototype.getUrl = function () {
+	let dirpath = config.paths.post.path;
+	let _url = stringUtil.replace(dirpath, {
+		category: this.getCategory(),
+		year: this.getDateYear(),
+		month: this.getMonth(),
+		day: this.getDay(),
+		title: this.getTitle()
+	});
+	return _url;
 };
 
 module.exports = Post;

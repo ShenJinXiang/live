@@ -6,6 +6,7 @@ let getDateStr = function (date, patter) {
 	let minute = getStr(date.getMinutes());
 	let second = getStr(date.getSeconds());
 	let millisecond = date.getMilliseconds();
+	millisecond = (millisecond > 99) ? ('' + millisecond) : ((millisecond > 9) ? ('0' + millisecond) : ('00' + millisecond));
 	if (!!patter) {
 		let str = 
 			patter.replace('yyyy', year)

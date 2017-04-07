@@ -1,7 +1,7 @@
 const dateUtil = require('./dateUtil');
 
 let log = function(info) {
-	let dateStr = dateUtil.getDateStr(new Date(), 'yyyy-MM-dd HH:mm:ss SSS');
+	let dateStr = dateUtil.getDateStr(new Date(), 'yyyy-MM-dd HH:mm:ss');
 	console.log(`[${dateStr}] ${info}`);
 }
 

@@ -1,6 +1,7 @@
 const du = require('./dateUtil');
 const fsUtil = require('./fsUtil');
 const path = require('path');
+const config = require('../config');
 /*
 console.log(du.getFirstDateStr());
 console.log(du.getFirstDateStr('yyyy-MM-dd HH:mm:ss SSS'));
@@ -9,7 +10,6 @@ console.log(du.getLastDateStr('yyyy-MM-dd HH:mm:ss SSS'));
 let str = '今天是：' + du.getDateStr(new Date()) + '这个月第一秒是：' + du.getFirstDateStr() + '这个月最后一秒是：' + du.getLastDateStr()
 
 fsUtil.writeFile(path.join(__dirname, '/aaa/bbb/ccc/ddd'), str);
-const config = require('../config');
 console.log(config);
 var a = 2;
 function fun() {
@@ -46,6 +46,7 @@ let p= path.join(process.cwd(), `${str}`);
 console.log(p);
 */
 
+/*
 let obj = {
 	category: 'java',
 	year: '2017',
@@ -64,3 +65,30 @@ params.forEach(function(item){
 	p = p.replace(item, obj[parm]);
 });
 fsUtil.writeFile(path.join(process.cwd(), p), str);
+*/
+/*
+let content = fsUtil.readFile(path.join(process.cwd(), '/server/src/template/page.html'));
+console.log(content);
+const su = require('./stringUtil');
+const log = require('./log');
+
+let obj = {
+	category: 'java',
+	year: '2017',
+	month: '04',
+	day: '12',
+	title: '一个好人',
+	page: 'sdfsdf水淀粉'
+};
+let p = config.paths.post.path;
+log(p);
+p = su.replace(p, obj);
+log(p);
+let content = fsUtil.readFile(path.join(process.cwd(), '/server/src/template/page.html'));
+log(content);
+content = su.replace(content, obj);
+log(content);
+*/
+const html = require('./html');
+let content = html.indexHtml();
+console.log(content);
