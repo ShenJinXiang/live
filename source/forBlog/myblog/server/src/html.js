@@ -2,36 +2,7 @@ const path = require('path');
 const config = require('../config');
 const fsUtil = require('./fsUtil');
 const stringUtil = require('./stringUtil');
-
-let indexHtml = function() {
-	let html = fsUtil.readFile(path.join(__dirname, '/template/index.html'));
-	return html;
-};
-
-let menuHtml = function(type) {
-	let html = fsUtil.readFile(path.join(__dirname, `/template/menu${type}.html`));
-	return html;
-};
-
-let pageHtml = function() {
-	let html = fsUtil.readFile(path.join(__dirname, '/template/page.html'));
-	return html;
-};
-
-let postsHtml = function() {
-	let html = fsUtil.readFile(path.join(__dirname, '/template/posts.html'));
-	return html;
-};
-
-let pageBtnsHtml = function() {
-	let html = fsUtil.readFile(path.join(__dirname, '/template/pageBtns.html'));
-	return html;
-};
-
-let pageBtnHtml = function() {
-	let html = fsUtil.readFile(path.join(__dirname, '/template/pageBtn.html'));
-	return html;
-};
+const template = require('./template');
 
 let pagesHtml = function(posts) {
 	let indexContent = indexHtml();
