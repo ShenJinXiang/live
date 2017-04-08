@@ -11,7 +11,7 @@ app.listen(4000, function() {
 
 function getStaticPath() {
 	if (process.argv.length <= 2) {
-		return path.join(__dirname, '../');
+		return process.cwd();
 	}
 	if (!!process.argv[2]) {
 		return process.argv[2];

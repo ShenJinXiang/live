@@ -60,6 +60,15 @@ blog/
    |   |-- jquery.js
    |
    |-- server/                                          nodejs脚本文件
+   |   |-- src/
+   |   |-- app.js
+   |   |   |-- template/
+   |   |   |-- Post.js
+   |   |   |-- fsUtil.js
+   |   |   |-- stringUtil.js
+   |   |   |-- dateUtil.js
+   |   |
+   |   |-- config.json
    |
    |-- index.html                                       首页
 ```

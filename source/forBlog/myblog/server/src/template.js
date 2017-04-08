@@ -50,3 +50,38 @@ let pageBtns = fsUtil.readFile(path.join(__dirname, '/template/pageBtns.html'));
  * pageText
  */
 let pageBtn = fsUtil.readFile(path.join(__dirname, '/template/pageBtn.html'));
+
+/**
+ * 归档页面主体页面
+ * archives
+ */
+let archives = fsUtil.readFile(path.join(__dirname, '/template/archives.html'));
+
+/**
+ * 归档标题 带年
+ * year
+ * archiveList
+ */
+let archiveTitle = fsUtil.readFile(path.join(__dirname, '/template/archiveTitle.html'));
+
+/**
+ * 归档页面 每条记录
+ * href
+ * title
+ * monthday
+ */
+let archive = fsUtil.readFile(path.join(__dirname, '/template/archive.html'));
+
+exports.index = index;
+exports.menu0 = menu0;
+exports.menu1 = menu1;
+exports.menu2 = menu2;
+exports.menu3 = menu3;
+exports.page = page;
+exports.posts = posts;
+exports.pageBtns = pageBtns;
+exports.pageBtn = pageBtn;
+
+exports.archives = archives;
+exports.archiveTitle = archiveTitle;
+exports.archive = archive;
