@@ -72,6 +72,13 @@ let archiveTitle = fsUtil.readFile(path.join(__dirname, '/template/archiveTitle.
  */
 let archive = fsUtil.readFile(path.join(__dirname, '/template/archive.html'));
 
+
+/**
+ * demo主体页面
+ * demoList
+ */
+let demoList = fsUtil.readFile(path.join(__dirname, '/template/demoList.html'));
+
 exports.index = index;
 exports.menu0 = menu0;
 exports.menu1 = menu1;
@@ -85,3 +92,5 @@ exports.pageBtn = pageBtn;
 exports.archives = archives;
 exports.archiveTitle = archiveTitle;
 exports.archive = archive;
+
+exports.demoList = demoList;

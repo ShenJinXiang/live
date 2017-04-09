@@ -261,3 +261,4 @@ html.pagesHtml(posts);
 html.archivesHtml(posts);
 html.tagsHtml(posts);
 html.categoryHtml(posts);
+html.demoHtml();

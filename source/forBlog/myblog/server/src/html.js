@@ -155,6 +155,9 @@ let tagsHtml = function(postList) {
 	});
 };
 
+/*
+ * 分类页面
+ */
 let categoryHtml = function(postList) {
 	let index = template.index;
 	let menu0 = template.menu0;
@@ -181,7 +184,25 @@ let categoryHtml = function(postList) {
 	});
 };
 
+let demoHtml = function() {
+	let index = template.index;
+	let menu3 = template.menu3;
+	let demoList = template.demoList;
+	let archive= template.archive;
+
+	let demoArr = [];
+	config.demo.forEach(function(item) {
+		let demo = stringUtil.replace(archive, {href: item.url, title: item.title, monthday: item.date});
+		demoArr.push(demo);
+	});
+	let demoContent = stringUtil.replace(demoList, {demoList: demoArr.join(' ')});
+	let dirpath = path.join(process.cwd(), config.paths.demo.path);
+	let html = stringUtil.replace(index, {title: config.title, description: config.description, menu: menu3, main: demoContent});
+	fsUtil.writeFile(dirpath, html);
+};
+
 exports.pagesHtml = pagesHtml;
 exports.archivesHtml = archivesHtml;
 exports.tagsHtml = tagsHtml;
 exports.categoryHtml = categoryHtml;
+exports.demoHtml = demoHtml;
