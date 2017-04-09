@@ -12,13 +12,6 @@ function Post(id, title, dateStr, category, tags, description, url) {
 	this.id = id;
 	this.title = title;
 
-	if (dateStr && dateStr.length == 10) {
-		let year = dateStr.substring(0, 4);
-		let month = dateStr.substring(5, 7);
-		let d = dateStr.substring(8, 10)
-		let date = new Date(year, month - 1, d);
-		this.date = date;
-	}
 
 	this.category = category;
 	this.tags = tags;
@@ -41,14 +34,19 @@ Post.prototype.setTitle = function (title) {
 };
 
 Post.prototype.setDate = function (dateStr) {
-	if (dateStr.length != 10) {
-		return;
+	let reg = /\d+/g
+	let str = dateStr.match(reg).join('');
+	if(str.length < 8) {
+		throw new Err('日期格式错误');
 	}
-	var year = dateStr.substring(0, 4);
-	var month = dateStr.substring(5, 7);
-	var d = dateStr.substring(8, 10)
-	var date = new Date(year, month - 1, d);
-	this.date = date;
+	let year = str.substring(0, 4);
+	let month = parseInt(str.substring(4, 6));
+	let day = parseInt(str.substring(6, 8));
+	let d = new Date();
+	d.setFullYear(year);
+	d.setMonth(month - 1);
+	d.setDate(day);
+	this.date = d;
 };
 
 Post.prototype.getDateStr = function () {

@@ -1,4 +1,5 @@
 const fs = require('fs');
+const readline = require('readline');
 const path = require('path');
 const log = require('./log');
 
@@ -46,6 +47,29 @@ let readFile = function(filePath) {
 	}
 }
 
+let readLines = function(file, callback) {
+	var data = [];
+
+	var rl = readline.createInterface({
+		input : fs.createReadStream(file)
+	});
+
+	rl.on('line', function(line){
+		data.push(line);
+	});
+
+	rl.on('close', function() {
+		callback(data);
+	});
+};
+
+let readdir = function(file) {
+	return fs.readdirSync(file);
+};
+
+
 exports.mkdirsSync = mkdirsSync;
 exports.writeFile = writeFile;
 exports.readFile = readFile;
+exports.readLines = readLines;
+exports.readdir = readdir;

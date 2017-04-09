@@ -2,6 +2,7 @@
 	"title": "LikeStar",
 	"description": "申锦祥的个人博客",
 	"pageSize": 10,
+	"src": "/src/posts",
 	"url": {
 		"index": "/",
 		"archives": "/archives",
