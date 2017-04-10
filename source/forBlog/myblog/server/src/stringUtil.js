@@ -14,5 +14,11 @@ let replace = function(str, obj) {
 	return str;
 };
 
+let trim = function(str) {
+	let reg = /^\s+|\s+$/g
+	return str.replace(reg, '');
+};
+
 exports.getParams = getParams;
 exports.replace = replace;
+exports.trim = trim;

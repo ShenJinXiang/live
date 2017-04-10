@@ -47,6 +47,7 @@ let readFile = function(filePath) {
 	}
 }
 
+/*
 let readLines = function(file, callback) {
 	var data = [];
 
@@ -62,6 +63,11 @@ let readLines = function(file, callback) {
 		callback(data);
 	});
 };
+*/
+let readLines = function(file) {
+	let content = readFile(file);
+	return content.split('\n');
+}
 
 let readdir = function(file) {
 	return fs.readdirSync(file);

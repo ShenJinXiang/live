@@ -109,4 +109,16 @@ Post.prototype.getUrl = function () {
 	return _url;
 };
 
+Post.prototype.setSource = function(source) {
+	this.source = source;
+};
+
+Post.prototype.getSource = function() {
+	return this.source;
+};
+
+Post.prototype.getContent = function() {
+	return this.source.join('\n');
+};
+
 module.exports = Post;
