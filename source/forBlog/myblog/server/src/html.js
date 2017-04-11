@@ -224,7 +224,7 @@ let postsHtml = function(postList) {
 			category: item.getCategory(),
 			tags: tagsHtml.join(' ')
 		});
-		let preBtn;
+		let preBtn = '';
 		if(i === 0) {
 			preBtn = '';
 		} else {
@@ -235,7 +235,7 @@ let postsHtml = function(postList) {
 				pageText: '上一篇'
 			});
 		}
-		let nextBtn;
+		let nextBtn = '';
 		if (i === postList.length - 1) {
 			nextBen = '';
 		} else {

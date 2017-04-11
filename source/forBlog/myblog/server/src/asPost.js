@@ -20,6 +20,9 @@ let asPost = function(file, callback) {
 	let lines = fsUtil.readLines(filePath);
 
 	let headIndex = lines.indexOf('------' + os.EOL);
+	if (headIndex == -1) {
+		headIndex = lines.indexOf('------');
+	}
 	let headerArr = lines.slice(0, headIndex);
 	let bodyArr = lines.slice(headIndex + 1);
 	parseHeaderArr(headerArr);
