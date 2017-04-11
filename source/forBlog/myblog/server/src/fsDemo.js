@@ -2,6 +2,7 @@ const path = require('path');
 const fsUtil = require('./fsUtil');
 const Post = require('./Post');
 const asPost = require('./asPost');
+const clean = require('./clean');
 
 // console.log(asPost.fileList());
 /*
@@ -11,5 +12,4 @@ console.log(arr);
 console.log(arr.length);
 */
 
-let posts = asPost.posts();
-console.log(posts);
+clean.remove('pages');
