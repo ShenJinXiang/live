@@ -1,7 +1,7 @@
 const ap = require('./asPost');
 const html = require('./html');
 
-let main = function() {
+let generate = function() {
 	let posts = ap.posts();
 
 	posts.sort(function(post1, post2) {
@@ -16,4 +16,4 @@ let main = function() {
 	html.demoHtml();
 };
 
-main();
+module.exports = generate;

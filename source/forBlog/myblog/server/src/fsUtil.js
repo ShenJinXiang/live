@@ -1,4 +1,5 @@
 const fs = require('fs');
+const exec = require('child_process').exec;
 const readline = require('readline');
 const path = require('path');
 const log = require('./log');
@@ -21,7 +22,7 @@ let writeFile = function() {
 	let filePath = path.join(dirpath, fname);
 	if (!fs.existsSync(dirpath)) {
 		mkdirsSync(dirpath);
-		log(`目录创建：${dirpath}`);
+		log(`创建目录：${dirpath}`);
 	}
 
 	fs.writeFile(filePath, content, function(err) {
@@ -73,7 +74,16 @@ let readdir = function(file) {
 	return fs.readdirSync(file);
 };
 
+let remove = function(file) {
+	exec('rm -rf ' + file, function(err, stdout){
+		if (err) {
+			throw err;
+		}
+		log(`删除：${file}`);
+	});
+}
 
+exports.remove = remove;
 exports.mkdirsSync = mkdirsSync;
 exports.writeFile = writeFile;
 exports.readFile = readFile;

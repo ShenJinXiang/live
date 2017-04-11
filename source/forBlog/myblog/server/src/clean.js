@@ -1,14 +1,9 @@
-const exec = require('child_process').exec;
 const path = require('path');
-const log = require('./log');
+const fsUtil = require('./fsUtil');
 
-let remove = function(file) {
-	exec('rm -rf ' + path.join(process.cwd(), file), function(err, stdout){
-		if (err) {
-			throw err;
-		}
-		log(`删除：${file}`);
-	});
-}
+let clean = function() {
+	fsUtil.remove(path.join(process.cwd(), '/pages'));
+	fsUtil.remove(path.join(process.cwd(), 'index.html'));
+};
 
-exports.remove = remove;
+module.exports = clean;

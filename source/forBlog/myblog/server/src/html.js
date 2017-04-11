@@ -210,9 +210,6 @@ let postsHtml = function(postList) {
 	let pageBtn = template.pageBtn;
 	
 	postList.forEach(function(item, i) {
-		console.log('------------------------------');
-		console.log(item);
-		console.log('------------------------------');
 		let tagsHtml = [];
 		let tags = item.tags;
 		tags.forEach(function(tag) {

@@ -1,20 +1,22 @@
-const express = require('express');
-const path = require('path');
+const program = require('commander');
 
-const app = express();
+program
+	.version('0.0.1')
+	.option('-g, --generate', '生成静态文件')
+  .option('-s, --server', '启动服务')
+  .option('-c, --clean', '删除生成的静态文件')
+  .parse(process.argv);
 
-app.use(express.static(getStaticPath()));
+if (program.generate) {
+	const generate = require('./src/generate');
+	generate();
+}
+if (program.server) {
+	const server = require('./src/server');
+	server.start();
+}
 
-app.listen(4000, function() {
-	console.log('Server running at 4000 port.');
-});
-
-function getStaticPath() {
-	if (process.argv.length <= 2) {
-		return process.cwd();
-	}
-	if (!!process.argv[2]) {
-		return process.argv[2];
-	}
-	return path.join(__dirname, '../');
+if (program.clean) {
+	const clean = require('./src/clean');
+	clean();
 }
