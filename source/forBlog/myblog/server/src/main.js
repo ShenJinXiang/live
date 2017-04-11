@@ -8,6 +8,7 @@ let main = function() {
 		return post1.id > post2.id;
 	});
 
+	html.postsHtml(posts);
 	html.pagesHtml(posts);
 	html.archivesHtml(posts);
 	html.tagsHtml(posts);

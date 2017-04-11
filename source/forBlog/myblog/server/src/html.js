@@ -201,8 +201,76 @@ let demoHtml = function() {
 	fsUtil.writeFile(dirpath, html);
 };
 
+let postsHtml = function(postList) {
+	let index = template.index;
+	let menu0 = template.menu0;
+	let page = template.page;
+	let posts = template.posts;
+	let pageBtns = template.pageBtns;
+	let pageBtn = template.pageBtn;
+	
+	postList.forEach(function(item, i) {
+		console.log('------------------------------');
+		console.log(item);
+		console.log('------------------------------');
+		let tagsHtml = [];
+		let tags = item.tags;
+		tags.forEach(function(tag) {
+			let tagHref = stringUtil.replace(config.paths.tags.path, {tag: tag});
+			tagsHtml.push(`<a href='${tagHref}'>${tag}</a>`);
+		});
+		let postContent = stringUtil.replace(posts, {
+			url: item.getUrl(),
+			title: item.getTitle(),
+			description: item.getContent(),
+			date: item.getDateStr(),
+			category: item.getCategory(),
+			tags: tagsHtml.join(' ')
+		});
+		let preBtn;
+		if(i === 0) {
+			preBtn = '';
+		} else {
+			let prePost = postList[i - 1];
+			preBtn = stringUtil.replace(pageBtn, {
+				topage: 'pre',
+				href: prePost.getUrl(),
+				pageText: '上一篇'
+			});
+		}
+		let nextBtn;
+		if (i === postList.length - 1) {
+			nextBen = '';
+		} else {
+			let nextPost = postList[i + 1];
+			nextBtn = stringUtil.replace(pageBtn, {
+				topage: 'next',
+				href: nextPost.getUrl(),
+				pageText: '下一篇'
+			});
+		}
+		let pageBtnsContent = stringUtil.replace(pageBtns, {prePageBtn: preBtn, nextPageBtn: nextBtn});
+		let pageContent = stringUtil.replace(page, {page: postContent, pagebtns: pageBtnsContent});
+		let html = stringUtil.replace(index, {
+				title: config.title,
+				description: config.description,
+				menu: menu0,
+				main: pageContent
+		});
+		let dirpath = path.join(process.cwd(), stringUtil.replace(config.paths.post.path, {
+			category: item.getCategory(),
+			year: item.getDateYear(),
+			month: item.getMonth(),
+			day: item.getDay(),
+			title: item.getTitle()
+		}));
+		fsUtil.writeFile(dirpath, html);
+	});
+};
+
 exports.pagesHtml = pagesHtml;
 exports.archivesHtml = archivesHtml;
 exports.tagsHtml = tagsHtml;
 exports.categoryHtml = categoryHtml;
 exports.demoHtml = demoHtml;
+exports.postsHtml = postsHtml;

@@ -1,3 +1,4 @@
+const os = require('os');
 const path = require('path');
 const fsUtil = require('./fsUtil');
 const stringUtil = require('./stringUtil');
@@ -18,7 +19,7 @@ let asPost = function(file, callback) {
 	let filePath = path.join(process.cwd(), config.src, file);
 	let lines = fsUtil.readLines(filePath);
 
-	let headIndex = lines.indexOf('------');
+	let headIndex = lines.indexOf('------' + os.EOL);
 	let headerArr = lines.slice(0, headIndex);
 	let bodyArr = lines.slice(headIndex + 1);
 	parseHeaderArr(headerArr);
