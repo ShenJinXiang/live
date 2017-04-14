@@ -1,4 +1,4 @@
-var os = require('os');
+let os = require('os');
 const stringUtil = require('./stringUtil');
 
 const CURRENT = {
