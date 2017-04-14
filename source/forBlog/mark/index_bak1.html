@@ -1,0 +1,452 @@
+<!doctype html>
+<html>
+<head>
+<meta charset='utf-8'>
+<meta name="X-UA-Compatible" content="IE=edge">
+<meta name="author" content="shenjinxiang,likestarsjx@gmail.com">
+<meta name="description" content="申锦祥的个人博客">
+<meta name="keywords" content="Java,JavaScript,HTML,CSS,canvas,Linux,shenjinxiang,LikeStar">
+<meta content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=0" name="viewport">
+<meta content="yes" name="apple-mobile-web-app-capable">
+<meta content="black" name="apple-mobile-web-app-status-bar-style">
+<meta content="telephone=no" name="format-detection">
+<meta name="renderer" content="webkit">
+<link rel="icon" href="./images/title.ico" type="image/x-ico">
+<link rel="stylesheet" href='./css/style.css'>
+<title>LikeStar</title>
+</head>
+<body>
+	<div class='sidebar fadeInDown animated'>
+		<div class='logo-title'>
+			<div class='title'>
+				<h1>
+					<a href='javascript:void(0);'>LikeStar<span>.BLOG</span></a>
+				</h1>
+				<div class='description'>
+					<p>做一个有用的程序猿</p>
+				</div>
+			</div>
+		</div>
+		<div class='footer'>
+			<span>ShenJinXiang</span>
+		</div>
+	</div>
+	<div class='page-top animated fadeInDown'>
+		<ul class='nav'>
+			<li>
+				<a href='javascript:void(0);' class='current'>
+					<i class='baseline'></i>
+					首 页
+				</a>
+			</li>
+			<li>
+				<a href='javascript:void(0);' >
+					<i class='baseline'></i>
+					归 档
+				</a>
+			</li>
+			<li>
+				<a href='javascript:void(0);' >
+					<i class='baseline'></i>
+					留 言
+				</a>
+			</li>
+			<li>
+				<a href='javascript:void(0);' >
+					<i class='baseline'></i>
+					DEMO
+				</a>
+			</li>
+		</ul>
+	</div>
+	<div class='main'>
+		<div class='autopagerize_page_element'>
+			<div class='content'>
+
+				<div class='post animated fadeInDown'>
+					<div class='post-title'>
+						<h3>
+							<a href='javascript:void(0);'>大学生如何用较小的成本提高宿舍生活质量？</a>
+						</h3>
+					</div>
+					<div class='post-content'>
+<h1>ejs模板引擎</h1>
+
+<p>express使用到现在的阶段，有一个很重要的问题还没解决，那就是mvc模式中的view层，之前我们只是简单的给浏览器发送一个字符串，或者拼接html字符串，对于简单的页面来说还可以实现，但是实际开发的时候显然是不合适的，类似于java web开发的时候有jsp、FreeMarker等模板引擎，nodejs中同样也有模板引擎，比如 jade、ejs等模板引擎，今天简单介绍一下ejs，原因很简单，这个非常容易上手</p>
+
+<h2>安装ejs</h2>
+
+<p>ejs安装很简单，同样是使用npm工具
+<code>
+$ npm install ejs --save
+</code>
+使用&#39;--save&#39;命令同时更新package.json中的依赖列表</p>
+
+<h2>express中加载ejs</h2>
+
+<p><code></code>`javascript
+// app.js
+const express = require(&#39;express&#39;);
+const path = require(&#39;path&#39;);</p>
+
+<p>let app = express();</p>
+
+<p>app.set(&#39;views&#39;, path.join(__dirname, &#39;/views&#39;));
+app.set(&#39;view engine&#39;, &#39;ejs&#39;);</p>
+
+<p>app.listen(3000, function () {
+	console.log(&#39;Server running at 3000 port.&#39;);
+});
+<code></code>`</p>
+
+<p>上面的代码中，没有设置任何路由，不过已经加载了ejs，<code>app.set(&#39;views&#39;, path.join(__dirname, &#39;/views&#39;));</code> 这行代码的意思是，设置视图根目录为views目录，<code>app.set(&#39;view engine&#39;, &#39;ejs&#39;);</code> 的意思是设置视图的后缀名为‘ejs’，这样就加载上了ejs模板</p>
+
+<h2>使用ejs模板</h2>
+
+<p>创建目录views
+<code>
+$ mkdir views
+</code></p>
+
+<p>在views目录下创建index.ejs文件
+<code>
+$ touch views/index.ejs
+</code></p>
+
+<p>编辑index.ejs
+<code>html
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset=&#39;utf-8&#39;&gt;
+	&lt;title&gt;index&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;express ejs&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></p>
+
+<p>修改app.js 添加路由
+<code></code>`javascript
+const express = require(&#39;express&#39;);
+const path = require(&#39;path&#39;);</p>
+
+<p>let app = express();</p>
+
+<p>app.set(&#39;views&#39;, path.join(__dirname, &#39;/views&#39;));
+app.set(&#39;view engine&#39;, &#39;ejs&#39;);</p>
+
+<p>app.get(&#39;/&#39;, function (req, res) {
+	// 渲染index.ejs视图
+	res.render(&#39;index&#39;);
+});</p>
+
+<p>app.listen(3000, function () {
+	console.log(&#39;Server running at 3000 port.&#39;);
+});
+<code></code>`</p>
+
+<p>启动app.js应用
+<code>
+$ node app.js
+Server running at 3000 port.
+</code></p>
+
+<p>浏览器中访问 &quot;http://localhost:3000/&quot; 结果如下:</p>
+
+<p><img alt="" src="./img/015.png"/></p>
+
+<p>需要注意的是，res.render()方法，ejs文件的路径是以配置的视图路径为根目录的，本例中，配置的视图根目录为“views”，所以要渲染“views/index.ejs”，则写成“res.render(&#39;index&#39;)”，ejs文件的目录为“views/user/user.ejs”，那么渲染的方法为“res.render(&#39;user/user&#39;)”</p>
+
+<h2>ejs中的一些标签</h2>
+
+<p>作为模板引擎，类似于jsp，可以执行java代码，可以从servlet传值至jsp显示，ejs中也有同样的功能，先看看一些标签列表</p>
+
+<ul><li>&amp;lt;% &#39;Scriptlet&#39; 标签, 用于控制流，没有输出</li><li>&amp;lt;%= 向模板输出值（带有转义）</li><li>&amp;lt;%- 向模板输出没有转义的值</li><li>&amp;lt;%# 注释标签，不执行，也没有输出</li><li>&amp;lt;%% 输出字面的 &#39;&lt;%&#39;</li><li>%&amp;gt; 普通的结束标签</li><li>-%&amp;gt; Trim-mode (&#39;newline slurp&#39;) 标签, 移除随后的换行符</li></ul>
+
+<p>下面我们修改index.ejs:
+<code>html
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset=&#39;utf-8&#39;&gt;
+	&lt;title&gt;index&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;express ejs&lt;/h1&gt;
+&lt;%
+console.log(&#39;hello ejs&#39;);
+%&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></p>
+
+<p>运行app.js
+<code>
+$ node app.js
+Server running at 3000 port.
+</code></p>
+
+<p>浏览器中访问 &quot;http://localhost:3000/&quot; 发现页面结果与之前是一样的，打开浏览器控制台，也没有任何输出，而在后台中输出了<code>hello ejs</code>，也就是说 ‘&amp;lt;%’、‘%&amp;gt;’之间可以执行js代码，运行在服务器端，类似于jsp中使用 <code>System.out.println()</code>一样的道理</p>
+
+<p>下面我们给ejs传递值，并显示出来，修改app.js文件:
+<code></code>`javascript
+// app.js
+const express = require(&#39;express&#39;);
+const path = require(&#39;path&#39;);</p>
+
+<p>let app = express();</p>
+
+<p>app.set(&#39;views&#39;, path.join(__dirname, &#39;/views&#39;));
+app.set(&#39;view engine&#39;, &#39;ejs&#39;);</p>
+
+<p>app.get(&#39;/&#39;, function (req, res) {
+	// 渲染index.ejs视图
+	res.render(&#39;index&#39;, {title: &#39;ejs 练习&#39;, name: &#39;shenjinxiang&#39;});
+});</p>
+
+<p>app.listen(3000, function () {
+	console.log(&#39;Server running at 3000 port.&#39;);
+});
+<code></code>`</p>
+
+<p>在index.ejs中获取并给浏览器上显示值
+<code>html
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset=&#39;utf-8&#39;&gt;
+	&lt;title&gt;index&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;express ejs&lt;/h1&gt;
+&lt;p&gt;标题：&lt;%= title %&gt;&lt;/p&gt;
+&lt;p&gt;姓名：&lt;%= name %&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></p>
+
+<p>同样的启动app.js应用，浏览器中访问 &quot;http://localhost:3000/&quot; 结果如下：</p>
+
+<p><img alt="" src="./img/016.png"/></p>
+
+<p>如果传递的值为html结构的字符串，看看是什么情况
+<code></code>`javascript
+const express = require(&#39;express&#39;);
+const path = require(&#39;path&#39;);</p>
+
+<p>let app = express();</p>
+
+<p>app.set(&#39;views&#39;, path.join(__dirname, &#39;/views&#39;));
+app.set(&#39;view engine&#39;, &#39;ejs&#39;);</p>
+
+<p>app.get(&#39;/&#39;, function (req, res) {
+	// 渲染index.ejs视图
+	res.render(&#39;index&#39;, {title: &#39;&lt;h2&gt;ejs 练习&lt;/h2&gt;&#39;, name: &#39;shenjinxiang&#39;});
+});</p>
+
+<p>app.listen(3000, function () {
+	console.log(&#39;Server running at 3000 port.&#39;);
+});
+<code></code>`</p>
+
+<p>修改index.ejs
+<code>html
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset=&#39;utf-8&#39;&gt;
+	&lt;title&gt;index&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;express ejs&lt;/h1&gt;
+&lt;p&gt;标题：&lt;%= title %&gt;&lt;/p&gt;
+&lt;%- title %&gt;
+&lt;p&gt;姓名：&lt;%= name %&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></p>
+
+<p>启动app.js应用，浏览器访问 &quot;http://localhost:3000/&quot; 结果如下:</p>
+
+<p><img alt="" src="./img/017.png"/></p>
+
+<p>也可以传递数组数据的值，修改app.js
+<code></code>`javascript
+// app.js
+const express = require(&#39;express&#39;);
+const path = require(&#39;path&#39;);</p>
+
+<p>let app = express();</p>
+
+<p>app.set(&#39;views&#39;, path.join(__dirname, &#39;/views&#39;));
+app.set(&#39;view engine&#39;, &#39;ejs&#39;);</p>
+
+<p>app.get(&#39;/&#39;, function (req, res) {
+	let data = [
+		{
+			name: &#39;张三&#39;,
+			age: 18,
+			address: &#39;北京&#39;
+		},
+		{
+			name: &#39;李四&#39;,
+			age: 23,
+			address: &#39;上海&#39;
+		},
+		{
+			name: &#39;王五&#39;,
+			age: 19,
+			address: &#39;天津&#39;
+		}
+	];
+	// 渲染index.ejs视图
+	res.render(&#39;index&#39;, {title: &#39;express - ejs&#39;, data: data});
+});</p>
+
+<p>app.listen(3000, function () {
+	console.log(&#39;Server running at 3000 port.&#39;);
+});
+<code></code>`</p>
+
+<p>修改index.ejs页面
+<code>html
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset=&#39;utf-8&#39;&gt;
+	&lt;title&gt;index&lt;/title&gt;
+&lt;style&gt;
+table{border-collapse: collapse;width:80%;margin:10px auto;}
+table th, table td {border: 1px solid #ccc; line-height: 28px;text-indent:10px;}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;姓名&lt;/th&gt;
+		&lt;th&gt;年龄&lt;/th&gt;
+		&lt;th&gt;地址&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;% for (var index = 0; index &lt; data.length; index++) { %&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;%= data[index].name %&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;%= data[index].age %&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;%= data[index].address %&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;%}%&gt;
+&lt;/table&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></p>
+
+<p>启动app.js应用，浏览器访问 &quot;http://localhost:3000/&quot; 效果如下:</p>
+
+<p><img alt="" src="./img/018.png"/></p>
+
+<h2>ejs包含</h2>
+
+<p>ejs同样可以包含其他的ejs页面，语法为:
+<code>
+&lt;%- include(path) %&gt;
+</code></p>
+
+<p>这里的path要么是绝对路径，如果不是，则相对于视图根目录，即‘veiws’目录。例如，在‘views/users.ejs’ 中包含 ‘views/user/show.ejs’，应该使用<code>&lt;%- include(&#39;user/show&#39;) %&gt;</code></p>
+
+<p>举个最简单的例子，比如我们可以创建head.ejs和foot.ejs文件
+<code>
+$ touch views/head.ejs
+$ touch views/foot.ejs
+</code></p>
+
+<p>编辑head.ejs:
+<code>html
+&lt;!doctype thml&gt;
+&lt;html&gt;
+&lt;head&gt;
+	&lt;meta charset=&#39;utf-8&#39;&gt;
+	&lt;title&gt;Express应用&lt;/title&gt;
+	&lt;!-- 
+	此处添加公用css文件 link
+	--&gt;
+&lt;style&gt;
+table{border-collapse: collapse;width:80%;margin:10px auto;}
+table th, table td {border: 1px solid #ccc; line-height: 28px;text-indent:10px;}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+</code></p>
+
+<p>编辑foot.ejs:
+<code>html
+&lt;!--
+此处添加公用JavaScript文件 
+--&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</code></p>
+
+<p>修改index.ejs
+<code>html
+&lt;%- include(&#39;head&#39;) %&gt;
+&lt;h1&gt;&lt;%= title %&gt;&lt;/h1&gt;
+&lt;table&gt;
+	&lt;tr&gt;
+		&lt;th&gt;姓名&lt;/th&gt;
+		&lt;th&gt;年龄&lt;/th&gt;
+		&lt;th&gt;地址&lt;/th&gt;
+	&lt;/tr&gt;
+	&lt;% for (var index = 0; index &lt; data.length; index++) { %&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;%= data[index].name %&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;%= data[index].age %&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;%= data[index].address %&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;%}%&gt;
+&lt;/table&gt;
+&lt;%- include(&#39;foot&#39;) %&gt;
+</code></p>
+
+<p>启动app.js应用，浏览器访问 &quot;http://localhost:3000/&quot; 运行结果和之前的例子一样</p>
+
+<p>到目前为止，我们已经可以用ejs的一些简单使用了，其实ejs还有很多特性，这里不做介绍了，其实是我也不会，在摸索中。。 哈~~</p>
+						
+					</div>
+					<div class='post-footer'>
+						<div class="meta">
+							<div class="info">
+								<span>日期:</span>
+								<span>2017/01/01</span>
+								<span class='delimiter'>|</span>
+								<span>分类:</span>
+								<a href='javascript:void(0);'>nodejs</a>
+								<span class='delimiter'>|</span>
+								<span>标签:</span>
+								<a href='javascript:void(0);'>nodejs</a>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class='pagination'>
+					<ul class='clearfix'>
+						<li class='pre pagbuttons'>
+							<a role="navigation" href="javascript:void(0);" class="btn">上一页</a>
+						</li>
+						<li class='next pagbuttons'>
+							<a role="navigation" href="javascript:void(0);" class="btn">下一页</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+<script src='./plugin/jquery.js'></script>
+<script src='./js/common.js'></script>
+<!-- 
+<script src='./js/background.js'></script>
+-->
+</body>
+</html>
