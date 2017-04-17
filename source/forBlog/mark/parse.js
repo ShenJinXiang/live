@@ -11,49 +11,83 @@ const CURRENT = {
 };
 
 const regs = {
-	H1: /^[#]{1}[^#]{1}[*]*/,
-	H2: /^[#]{2}[^#]{1}[*]*/,
-	H3: /^[#]{3}[^#]{1}[*]*/,
-	H4: /^[#]{4}[^#]{1}[*]*/,
-	H5: /^[#]{5}[^#]{1}[*]*/,
-	H6: /^[#]{6}[^#]{1}[*]*/,
-	CODE: /^[`]{3}/
+	H1: /^[\s]*[#]{1}[^#]{1}.*/,
+	H2: /^[\s]*[#]{2}[^#]{1}.*/,
+	H3: /^[\s]*[#]{3}[^#]{1}.*/,
+	H4: /^[\s]*[#]{4}[^#]{1}.*/,
+	H5: /^[\s]*[#]{5}[^#]{1}.*/,
+	H6: /^[\s]*[#]{6}[^#]{1}.*/,
+	HR: /^[\s]*([*]{3}||[-]{3})[\s]*$/,
+	UL: /^[*]{1}[^*]{1}.*$/,
+	OL: /^[\d]+[\.]{1}[^.]{1}.*$/,
+	CODE: /^[\s]*[`]{3}.*$/,
+	A: /\[.*\]\(.+\)/g,
+	IMG: /^\s*\!\[.*\]\(.+\)\s*$/
 };
 
-let getH1Test = function(line) {
+let h1 = function(line) {
 	let str = line.substring(1);
 	console.log(`str: ${str}`);
 	return '<h1>' + stringUtil.trim(str) + '</h1>';
 }
 
-let parse = function(lines) {
-	let current = CURRENT.DEFAULT;
+let h2 = function(line) {
+	let str = line.substring(2);
+	console.log(`str: ${str}`);
+	return '<h2>' + stringUtil.trim(str) + '</h2>';
+}
 
-	lines.forEach(function(line, index) {
-		if (current === CURRENT.DEFAULT) {
+let h3 = function(line) {
+	let str = line.substring(3);
+	console.log(`str: ${str}`);
+	return '<h3>' + stringUtil.trim(str) + '</h3>';
+}
 
-		} else {
-		}
+let h4 = function(line) {
+	let str = line.substring(4);
+	console.log(`str: ${str}`);
+	return '<h4>' + stringUtil.trim(str) + '</h4>';
+}
+
+let h5 = function(line) {
+	let str = line.substring(5);
+	console.log(`str: ${str}`);
+	return '<h5>' + stringUtil.trim(str) + '</h5>';
+}
+
+let h6 = function(line) {
+	let str = line.substring(6);
+	console.log(`str: ${str}`);
+	return '<h6>' + stringUtil.trim(str) + '</h6>';
+}
+
+function isArray(o) {
+	return Object.prototype.toString.call(o) == '[object Array]';
+}
+
+// ----------------------------------------------------------------------
+
+let currentStatus = {
+	status: CURRENT.DEFAULT,
+	index: 0,
+	line: '',
+	lines: []
+};
+
+let parse = function(lineArr) {
+	let datas = [];
+	currentStatus.lines = lineArr;
+	currentStatus.lines.forEach(function(line, index) {
+		currentStatus.line = line;
+		currentStatus.index = index;
+		datas.push(parseLine());
 	});
+	return datas;
 };
 
-let regTest = function(str) {
-	let h1 = regs.H1;
-	let h2 = regs.H2;
-	let h3 = regs.H3;
-	let h4 = regs.H4;
-	let h5 = regs.H5;
-	let h6 = regs.H6;
-	let code = regs.CODE;
-	console.log(h1.test(str));
-	console.log(h2.test(str));
-	console.log(h3.test(str));
-	console.log(h4.test(str));
-	console.log(h5.test(str));
-	console.log(h6.test(str));
-	console.log(code.test(str));
-	let html = getH1Test(str);
-	console.log(html);
-};
+function parseLine() {
+	return currentStatus.line;
+}
 
-regTest("# 哈哈");
+
+module.exports = parse;
