@@ -16,9 +16,10 @@ let encodeFile = function(file, callback) {
 			console.log(`文件：${file} 读取错误`);
 			console.log(`错误信息：${err.message}`);
 			console.log(`错误地址：${err.stack}`);
+			callback(err);
 		} else {
 			let b = Buffer.from(data);
-			callback(b.toString('base64'));
+			callback(null, b.toString('base64'));
 		}
 	});
 };
@@ -42,8 +43,10 @@ let decodeFile = function(file, data, callback) {
 				console.log(`文件：${file} 写入错误`);
 				console.log(`错误信息：${err.message}`);
 				console.log(`错误地址：${err.stack}`);
+				callback(err);
 			} else {
 				console.log(`文件：${file} 写入成功`);
+				callback();
 			}
 	});
 };
@@ -60,8 +63,3 @@ let decodeFileSync = function(file, data) {
 	}
 };
 
-let file1 = './base64.js';
-let file2 = './base641.js';
-let b = encodeFileSync(file1);
-console.log(b);
-decodeFileSync(file2, b);
