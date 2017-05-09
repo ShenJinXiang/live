@@ -10,7 +10,7 @@ app.set('view engine', 'ejs');
 
 app.get('/', function(req, res) {
 	let arr = fs.readdirSync(process.cwd());
-	res.render('index', {files: arr.join(',')});
+	res.render('index', {pathname: path.parse(process.cwd()).name, files: arr.join(',')});
 });
 
 app.listen(4000, function() {

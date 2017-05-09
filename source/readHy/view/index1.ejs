@@ -6,7 +6,7 @@
 	<style>
 	* {margin:0px; padding:0px;background:#000;}
 	h1{text-align:center; color: #fff;}
-	canvas{display:block;margin:5px auto;border: 1px solid #ccc;}
+	img{display:block;margin:5px auto;}
 	.left{ display: none; position: fixed; left: 0px; top:250px; width: 80px; height: 142px; background: transparent; cursor: pointer; z-index: 100; }
 	.left:before{ display:block; content:''; position: absolute; width: 100px; height: 4px; top: 35px; left: -10px; background:#aaa; transform:rotate(-45deg); }
 	.left:after{ display:block; content:''; position: absolute; width: 100px; height: 4px; top: 104px; left: -10px; background:#aaa; transform:rotate(45deg); }
@@ -21,24 +21,20 @@
 	<div id='left' class='left'></div>
 	<div id='right' class='right'></div>
 	<h1 id='filename'></h1>
-	<canvas id='canvas'></canvas>
+	<img id='image' />
 <script>
 (function(){
 	var left = document.getElementById('left');
 	var right = document.getElementById('right');
 
 	var files = document.getElementById('files').value;
-	var pathname = document.getElementById('pathname');
 	var filename = document.getElementById('filename');
+	var pathname = document.getElementById('pathname');
 	var fileArr = files.split(',');
-	var canvas = document.getElementById('canvas');
-	canvas.width = window.innerWidth - 160;
-	canvas.height = window.innerHeight - 60;
-	var context = canvas.getContext('2d');
+	var img = document.getElementById('image');
 
 	var index = 0;
-	var img = new Image();
-
+	show();
 	left.onclick = function() {
 		index = (index == 0) ? 0 : (index - 1);
 		if (index == 0) {
@@ -63,18 +59,10 @@
 		}
 		show();
 	};
-	show();
 	function show() {
 		var file = fileArr[index];
 		img.src = file;
-		img.onload = function() {
-			filename.innerText = pathname.value + file.substring(0, file.indexOf('.'));
-			draw()
-		};
-	}
-
-	function draw() {
-		context.drawImage(img, 0, 0, canvas.width, canvas.height);
+		filename.innerText = pathname.value + file.substring(0, file.indexOf('.'));
 	}
 })();
 </script>
