@@ -1,0 +1,45 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>index</title>
+	<style>
+	* {margin:0px; padding:0px;background:#000;}
+	h1{text-align:center; color: #fff;}
+	canvas{display:block;margin:5px auto;}
+	</style>
+</head>
+<body>
+	<input type='hidden' id='files' value='<%=files %>' />
+	<h1 id='filename'></h1>
+	<canvas id='canvas'></canvas>
+<script>
+(function(){
+	var files = document.getElementById('files').value;
+	var filename = document.getElementById('filename');
+	var fileArr = files.split(',');
+	var canvas = document.getElementById('canvas');
+	var context = canvas.getContext('2d');
+
+	var index = 0;
+	var img = new Image();
+	show();
+	function show() {
+		img.src = fileArr[index];
+		console.log(img.src);
+		img.onload = function() {
+			console.log(fileArr[index]);
+			filename.innerText = fileArr[index];
+			draw()
+		};
+	}
+
+	function draw() {
+		canvas.width = img.width;
+		canvas.height = img.height;
+		context.drawImage(img, 0, 0, img.width, img.height);
+	}
+})();
+</script>
+</body>
+</html>
