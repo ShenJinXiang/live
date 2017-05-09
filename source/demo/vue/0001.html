@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset='utf-8'>
+	<title>vuejs</title>
+</head>
+<body>
+<div id='author'>
+	<input type='text' v-model='name'/>
+	<input type='text' v-model='age'/>
+	<input type='text' v-model='address'/>
+	<p>姓名：{{name}}</p>
+	<p v-if='sex == 1'>性别：男</p>
+	<p v-if='sex == 0'>性别：女</p>
+	<p>年龄：{{age}}</p>
+	<p>地址：{{address}}</p>
+</div>
+<div id='jiekouconfig'>
+	<p>服务器地址：{{server_host}}</p>
+	<p>服务器端口：{{server_port}}</p>
+	<p>服务器名称：{{server_name}}</p>
+	<p>加密key：{{key}}</p>
+
+	<table width='100%'>
+		<thead>
+			<th>key</th>
+			<th>title</th>
+			<th>url</th>
+			<th>params</th>
+		</thead>
+		<tbody>
+			<tr v-for="jk in jiekous">
+				<td>{{jk.key}}</td>
+				<td>{{jk.title}}</td>
+				<td>{{jk.url}}</td>
+				<td>
+					<span v-for="param in jk.params"> {{param}} </span>
+				</td>
+			</tr>
+		</tbody>
+	</table>
+</div>
+<script src="https://unpkg.com/vue/dist/vue.js"></script>
+<script src='./0001.js'></script>
+</body>
+</html>
