@@ -51,6 +51,33 @@
 	var index = 0;
 	var img = new Image();
 
+	document.body.onmousewheel = function(event) {
+		console.log(event);
+		if (event.wheelDelta > 0) {
+			index = (index == 0) ? 0 : (index - 1);
+			if (index == 0) {
+				left.style.display = 'none';
+			} else {
+				left.style.display = 'block';
+			}
+			if (index != fileArr.length - 1) {
+				right.style.display = 'block';
+			}
+			show();
+		} else {
+			index = (index == fileArr.length - 1) ? (fileArr.length - 1) : (index + 1);
+			if (index == fileArr.length - 1) {
+				right.style.display = 'none';
+			} else {
+				right.style.display = 'block';
+			}
+			if (index != 0) {
+				left.style.display = 'block';
+			}
+			show();
+		}
+	}
+
 	left.onclick = function() {
 		index = (index == 0) ? 0 : (index - 1);
 		if (index == 0) {
