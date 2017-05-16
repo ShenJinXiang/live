@@ -19,11 +19,6 @@
 		canvas.height = video.videoHeight;
 		czDiv.style.width = video.videoWidth + 'px';
 		var duration = video.duration.toFixed(0);
-
-		timer = setInterval(function() {
-			setDqbfjd();
-			draw();
-		}, 20);
 	});
 
 	/**
@@ -36,17 +31,33 @@
 	addEvent(bfzt, 'click', function(e) {
 		if (video.paused) {
 			video.play();
+			playVideo();
 			if (!video.paused) {
 				bfzt.className = 'zt';
 			}
 		} else {
 			video.pause();
+			pauseVideo();
 			if(video.paused) {
 				bfzt.className = 'bf';
 			}
 		}
 		setDqbfjd();
 	});
+
+
+	function playVideo () {
+		timer = setInterval(function() {
+			setDqbfjd();
+			draw();
+		}, 20);
+	}
+
+	function pauseVideo () {
+		if (timer) {
+			clearInterval(timer);
+		}
+	}
 
 	function draw() {
 		context.clearRect(0, 0, canvas.width, canvas.height);

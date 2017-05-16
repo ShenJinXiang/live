@@ -17,7 +17,7 @@ canvas {
 .cz-box {
 	display:block;
 	background-color: #444;
-	height: 74px;
+	height: 54px;
 	margin: 0px auto;
 	position: relative;
 }
@@ -41,14 +41,14 @@ canvas {
 .bf {
 	position: absolute;
 	display: inline-block;
-	top: 30px;
+	top: 22px;
 	left: 20px;
 	width: 0px;
 	height: 0px;
 	border-right: 0px;
-	border-top: 12px solid transparent;
-	border-left: 16px solid #ddd;
-	border-bottom: 12px solid transparent;
+	border-top: 9px solid transparent;
+	border-left: 12px solid #ddd;
+	border-bottom: 9px solid transparent;
 	cursor: pointer;
 }
 
@@ -59,12 +59,12 @@ canvas {
 .zt {
 	position: absolute;
 	display: inline-block;
-	top: 30px;
+	top: 22px;
 	left: 20px;
-	width: 6px;
-	height: 24px;
-	border-left: 5px solid #ddd;
-	border-right: 5px solid #ddd;
+	width: 4px;
+	height: 18px;
+	border-left: 4px solid #ddd;
+	border-right: 4px solid #ddd;
 	cursor: pointer;
 }
 
