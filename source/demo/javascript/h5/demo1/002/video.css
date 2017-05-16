@@ -10,8 +10,6 @@ body {
 canvas {
 	display: block;
 	margin: 0px auto;
-	margin-top: 5px;
-	border: 1px solid #ccc;
 }
 
 .cz-box {
@@ -24,16 +22,25 @@ canvas {
 
 .bfzjd {
 	position: absolute;
-	top: 10px;
+	top: 6px;
+	width: 100%;
+	height: 10px;
+	cursor: pointer;
+}
+.bfzjd .jdt {
+	background-color: #aaa;
 	width: 100%;
 	height: 2px;
+	position: absolute;
+	top: 4px;
+	left: 0px;
 	background-color: #aaa;
 }
 
 .dqbfjd {
 	position: absolute;
-	top: 0px;
-	width: 80px;
+	top: 4px;
+	width: 0px;
 	height: 2px;
 	background-color: orange;
 }
@@ -69,5 +76,29 @@ canvas {
 }
 
 .zt:hover {
+	border-color: #fff;
+}
+
+.sjxx {
+	font-size: 12px;
+	color: #eee;
+	position: absolute;
+	display: inline-block;
+	top: 22px;
+	left: 80px;
+	height: 18px;
+}
+
+.zdhcz {
+	position: absolute;
+	display: inline-block;
+	top: 22px;
+	right: 50px;
+	width: 26px;
+	height: 18px;
+	border: 3px solid #eee;
+	box-sizing: border-box;
+}
+.zdhcz:hover {
 	border-color: #fff;
 }
