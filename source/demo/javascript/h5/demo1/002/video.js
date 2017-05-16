@@ -1,6 +1,6 @@
 (function() {
 	var config = {
-		video_src: './003.mp4',
+		video_src: './002.mp4',
 		//video_src: './001.mp4',
 		width: 600,
 		height: 400
