@@ -4,6 +4,7 @@ const log = require('./log');
 
 let fileCount = 0;
 let dirCount = 0;
+
 let read = function(file) {
 	let stat = fs.statSync(file);
 	if (stat.isDirectory()) {
