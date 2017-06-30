@@ -24,3 +24,5 @@ mkdir public/js
 mkdir public/css
 mkdir public/plugins
 ```
+4. 编写dateKit.js 日期工具
+5. 编写log.js 日志工具
