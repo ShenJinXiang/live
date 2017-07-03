@@ -26,3 +26,8 @@ mkdir public/plugins
 ```
 4. 编写dateKit.js 日期工具
 5. 编写log.js 日志工具
+
+## 2017-07-03
+1. 创建app.js、lib/server.js
+2. 添加自定义中间件，routeLog.js
+3. 添加路由lib/main.js
