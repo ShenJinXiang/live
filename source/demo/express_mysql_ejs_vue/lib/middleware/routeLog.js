@@ -11,12 +11,12 @@ const log = require('../utils/log');
  */
 module.exports = function(req, res, next) {
 	let pathname = url.parse(req.url).pathname;
-	log('请求路径:', pathname);
+	util.log('请求路径:', pathname);
 	if (req.method === 'GET' || req.method === 'get') {
-		log('Get请求，参数:', req.query);
+		util.log('Get请求，参数:', req.query);
 		next();
 	} else if (req.method === 'POST' || req.method === 'post') {
-		log('POST请求，参数:', req.body);
+		util.log('POST请求，参数:', req.body);
 		next();
 	}
 };

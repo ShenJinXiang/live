@@ -16,9 +16,8 @@ let start = function(port) {
 	app.use(require('body-parser')());
 	app.use(require('./middleware/routeLog'));
 
-	console.log('11');
 	app.use('/', require('./routes/main'));
-	console.log('22');
+	app.use('/person', require('./routes/person'));
 
 	app.listen(port, function () {
 		console.log(`Server running at ${port}.`);
