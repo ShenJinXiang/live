@@ -16,7 +16,7 @@ router.get('/', function(req, res) {
 router.post('/list', function(req, res) {
 	try {
 		let data = fileDao.read(fname);
-		res.json({result: true, data: data});
+		res.json({result: true, data: {size: data.length, list: data}});
 	} catch (err) {
 		res.json({result: false, msg: err.message});
 	}
