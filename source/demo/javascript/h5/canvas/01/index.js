@@ -5,7 +5,7 @@
 	canvas.height = 800;
 	var context = canvas.getContext('2d');
 
-	var isFixedColor = true;
+	var isFixedColor = false;
 	var fixedColor = '#aaa';
 
 	var init = {
@@ -13,6 +13,11 @@
 		y: canvas.height / 2,
 		r: canvas.width/ 2,
 		c: '#058',
+	}
+
+	var prexy = {
+		ex: -100,
+		ey: -100
 	}
 	var box = canvas.getBoundingClientRect();
 	var balls = [init];
@@ -34,7 +39,7 @@
 				context.fillStyle = isFixedColor ? fixedColor : ball.c;
 				context.arc(ball.x, ball.y, ball.r, 0, 2 * Math.PI, false);
 				context.closePath();
-				if (context.isPointInPath(ex, ey)) {
+				if (context.isPointInPath(ex, ey) && !context.isPointInPath(prexy.ex, prexy.ey)) {
 					context.clearRect(ball.x - ball.r, ball.y - ball.r, 2 * ball.r, 2 * ball.r);
 					var b1 = {x: ball.x - ball.r / 2, y: ball.y - ball.r / 2, r: ball.r / 2, c: getRandomColor()};
 					var b2 = {x: ball.x - ball.r / 2, y: ball.y + ball.r / 2, r: ball.r / 2, c: getRandomColor()};
@@ -54,6 +59,8 @@
 				} */
 			}
 		} 
+		prexy.ex = ex;
+		prexy.ey = ey;
 	}
 
 	function drawBall(ball) {
