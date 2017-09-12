@@ -2,13 +2,13 @@
 	var canvas = document.getElementById('canvas');
 	var context;
 	var balls = [];
-	var scale = 1;
+	var scale = 4;
 	var prePoint = {
 		x: -100,
 		y: -100
 	};
 	var img = new Image();
-	img.src = './img/03.jpg';
+	img.src = './img/04.jpeg';
 	img.onload = initData;
 
 	var imgData = [];
@@ -17,6 +17,10 @@
 		var _canvas = document.createElement('canvas');
 		_canvas.width = img.width;
 		_canvas.height = img.height;
+		if (img.width != img.height) {
+			alert('图片宽高应该一样的尺寸');
+			return;
+		}
 		var _context = _canvas.getContext('2d');
 		_context.drawImage(img, 0, 0, _canvas.width, _canvas.height);
 		var data = _context.getImageData(0, 0, _canvas.width, _canvas.height).data
@@ -29,7 +33,6 @@
 			}
 			_imgData.push(row);
 		}
-		console.log(_imgData);
 
 		for (var y = 0; y < img.height; y++) {
 			var r = [];
@@ -42,7 +45,6 @@
 				imgData.push(r);
 			}
 		}
-		console.log(imgData);
 		initCanvas();
 	}
 
@@ -57,34 +59,22 @@
 		canvas.addEventListener('mousemove', draw, false);
 	}
 
-	function colorStr(sx, sy, ex, ey) {
-		return getColorStr(getColorInfo(sx, sy, ex, ey));
+	function colorStr(ball) {
+		return getColorStr(getColorInfo(ball));
 	}
 
 	function getColorStr(pixel) {
 		return 'rgba(' + pixel.red + ', ' + pixel.green + ', ' + pixel.blue + ', ' + pixel.alpha + ')';
 	}
 
-	function getColorInfo(sx, sy, ex, ey) {
-		var sr = 0, sg = 0, sb = 0, sa = 0, cnt = 0;
-		for (var y = sy; y < ey; y++) {
-			for (var x = sx; x < ex; x++) {
-				cnt++;
-				if (!imgData || !imgData[y] || !imgData[y][x]) {
-					console.log('y -> ' + y + '  x -> ' + x);
-				}
-				sr += imgData[y][x]['red'];
-				sg += imgData[y][x]['green'];
-				sb += imgData[y][x]['blue'];
-				sa += imgData[y][x]['alpha'];
-			}
-		}
-		return new Pixel(sr / cnt, sg / cnt, sb / cnt, sa / cnt);
+	function getColorInfo(ball) {
+		var d = imgData[Math.round(ball.y)][Math.round(ball.x)];
+		return new Pixel(d.red, d.green, d.blue, d.alpha);
 	}
 
 	function drawBall(ball) {
 		context.beginPath();
-		context.fillStyle = colorStr(ball.sx, ball.sy, ball.ex, ball.ey);
+		context.fillStyle = colorStr(ball);
 		context.arc(ball.x, ball.y, ball.r, 0, 2 * Math.PI, false);
 		context.closePath();
 		context.fill();
@@ -97,32 +87,64 @@
 			var ball = balls[i];
 			if (ball) {
 				context.beginPath();
-				context.fillStyle = colorStr(ball.sx, ball.sy, ball.ex, ball.ey);
+				context.fillStyle = colorStr(ball);
 				context.arc(ball.x, ball.y, ball.r, 0, 2 * Math.PI, false);
-				if (context.isPointInPath(point.x, point.y) /*&& !context.isPointInPath(prePoint.x, prePoint.y)*/ && ball.r > 2) {
-					context.clearRect(ball.sx, ball.sy, 2 * ball.r, 2 * ball.r);
-					var b1 = new Ball(Math.round(ball.x - ball.r / 2), Math.round(ball.y - ball.r / 2), Math.round(ball.r / 2));
-					var b2 = new Ball(Math.round(ball.x - ball.r / 2), Math.round(ball.y + ball.r / 2), Math.round(ball.r / 2));
-					var b3 = new Ball(Math.round(ball.x + ball.r / 2), Math.round(ball.y - ball.r / 2), Math.round(ball.r / 2));
-					var b4 = new Ball(Math.round(ball.x + ball.r / 2), Math.round(ball.y + ball.r / 2), Math.round(ball.r / 2));
+				if (context.isPointInPath(point.x, point.y) && !context.isPointInPath(prePoint.x, prePoint.y) && ball.r > 2) {
+					var b1 = new Ball(ball.x - ball.r / 2, ball.y - ball.r / 2, ball.r / 2);
+					var b2 = new Ball(ball.x - ball.r / 2, ball.y + ball.r / 2, ball.r / 2);
+					var b3 = new Ball(ball.x + ball.r / 2, ball.y - ball.r / 2, ball.r / 2);
+					var b4 = new Ball(ball.x + ball.r / 2, ball.y + ball.r / 2, ball.r / 2);
 
-					drawBall(b1);
-					drawBall(b2);
-					drawBall(b3);
-					drawBall(b4);
-					balls.push(b1);
-					balls.push(b2);
-					balls.push(b3);
-					balls.push(b4);
+					drawAnimatBalls(ball, b1, b2, b3, b4);
 					delete balls[i];
 				}
-				context.closePath();
 			}
 		}
-		/*
 		prePoint.x = point.x;
 		prePoint.y = point.y;
-		*/
+	}
+
+	function drawAnimatBalls(ball, b1, b2, b3, b4) {
+		var timeStep = 20;
+		var cnt = 0;
+		var time = 10;
+		var step = 0.5 * ball.r / time;
+		
+		var timer = setInterval(function() {
+			context.clearRect(ball.x - ball.r, ball.y - ball.r, 2 * ball.r, 2 * ball.r);
+			cnt++;
+
+			context.beginPath();	
+			context.fillStyle = colorStr(b1);
+			context.arc(ball.x - cnt * step, ball.y - cnt * step, ball.r - cnt * step, 0, 2 * Math.PI, false);
+			context.closePath();
+			context.fill();
+
+			context.beginPath();	
+			context.fillStyle = colorStr(b1);
+			context.arc(ball.x - cnt * step, ball.y + cnt * step, ball.r - cnt * step, 0, 2 * Math.PI, false);
+			context.closePath();
+			context.fill();
+
+			context.beginPath();	
+			context.fillStyle = colorStr(b1);
+			context.arc(ball.x + cnt * step, ball.y - cnt * step, ball.r - cnt * step, 0, 2 * Math.PI, false);
+			context.closePath();
+			context.fill();
+			context.beginPath();	
+			context.fillStyle = colorStr(b1);
+			context.arc(ball.x + cnt * step, ball.y + cnt * step, ball.r - cnt * step, 0, 2 * Math.PI, false);
+			context.closePath();
+			context.fill();
+
+			if (cnt >= time) {
+				clearInterval(timer);
+				balls.push(b1);
+				balls.push(b2);
+				balls.push(b3);
+				balls.push(b4);
+			}
+		}, timeStep);
 	}
 
 	function getPointByEvent(e) {
@@ -139,10 +161,6 @@
 		this.x = x;
 		this.y = y;
 		this.r = r;
-		this.sx = x - r;
-		this.sy = y - r;
-		this.ex = x + r;
-		this.ey = y + r;
 	}
 
 	function Pixel(red, green, blue, alpha) {
